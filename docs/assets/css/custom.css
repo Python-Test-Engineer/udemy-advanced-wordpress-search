@@ -1,0 +1,100 @@
+html {
+    scrollbar-gutter: stable;
+}
+
+/* Override H3 border color to orange in MkDocs Material theme */
+.md-typeset h3 {
+    border-left-color: #ffa500 !important;
+}
+
+/* Alternative orange shades you can use: */
+/* 
+   #ff8c00 - Dark orange
+   #ffa500 - Orange
+   #ff6600 - Bright orange
+   #ff7f00 - Medium orange
+*/
+#ancestors_ai {
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.tagline {
+    color: #ff8c00;
+    font-style: italic;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    font-weight: 200;
+}
+
+.md-nav__title {
+    font-size: 20px;
+    font-weight: 800;
+
+}
+
+p,
+li {
+    font-size: 20px;
+}
+
+
+h2 {
+    margin: 2rem 0rem 0rem 0rem !important;
+    border-bottom: solid 1px green;
+}
+
+h3 {
+    /* margin: 3rem 0rem 1rem 0rem !important; */
+    padding: 0rem 0rem 0.5rem 0.5rem !important;
+    border-left: solid 5px rgb(228, 45, 228);
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+code {
+    font-family: Consolas, monospace;
+    /* font-weight: 700; */
+}
+
+blockquote {
+    border-left: solid 5px orange;
+
+
+}
+
+/* Full width container with comfortable padding */
+.md-grid {
+    max-width: 100%;
+    padding-left: 6rem;
+    padding-right: 6rem;
+}
+
+.md-main__inner {
+    max-width: none;
+}
+
+.md-content {
+    max-width: none;
+}
+
+/* Responsive padding for smaller screens */
+@media screen and (max-width: 76.25em) {
+    .md-grid {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+
+@media screen and (max-width: 60em) {
+    .md-grid {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+}
+
+/* Keep navigation sidebar normal width */
+.md-sidebar {
+    max-width: 12rem;
+}

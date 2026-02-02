@@ -1,0 +1,2620 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="AI Powered Search in WordPress">
+      
+      
+      
+      
+        <link rel="prev" href="../vector-databases-hack/">
+      
+      
+        <link rel="next" href="../ann-hnsw-explainer/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Vector Search - Advanced WP Search</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Raleway";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../assets/css/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="white">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#vector_search_distance_metrics" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Advanced WP Search" class="md-header__button md-logo" aria-label="Advanced WP Search" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Advanced WP Search
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Vector Search
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="white"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="grey"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://advanced-wordpress-search.netlify.app/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Advanced WP Search
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Advanced WP Search" class="md-nav__button md-logo" aria-label="Advanced WP Search" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Advanced WP Search
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://advanced-wordpress-search.netlify.app/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Advanced WP Search
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Course
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course/intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course/course-screenshots/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Screenshots
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course/requirements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Theory
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Theory
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fts/tf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Term Frequency
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fts/idf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Inverse Doc Freq
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fts/tf-idf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    TF-IDF
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fts/bm25/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BM25
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fts/bm25-simple-calc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BM25 Calc
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fts/negative-bm25-scores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Negative Scores
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fts/stop-words/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Stop Words
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fts/multiple-indexes-on-same-col/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    COLS with many indexes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fts/sql-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SQL Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Implementations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Implementations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MySQL Docs
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MySQL Docs
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../implementations/fts-docs-articles-example/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Articles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mysql-docs/01-intro/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01: Introduction
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mysql-docs/02-natural-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02: Natural Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mysql-docs/03-boolean-search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03: Boolean Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mysql-docs/04-query-expansion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04: Query Expansion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mysql-docs/05-stop-words/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05: Stop Words
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mysql-docs/06-restrictions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06: Restrictions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../mysql-docs/07-fts-tuning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07: FTS Tuning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../implementations/products/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Products
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../implementations/wp-fts-sql-examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WP Posts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vector Search
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Vector Search
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vector-databases-hack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vector DB Hack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vector Search
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vector Search
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1_what_is_vector_search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What Is Vector Search?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. What Is Vector Search?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector_search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vector Search
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_words_as_points_in_space" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Words as Points in Space
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Words as Points in Space">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple_2d_example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simple 2D Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3_what_is_a_vector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. What Is a Vector?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. What Is a Vector?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2d_example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2D Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real_embedding_example_768_dimensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real Embedding Example (768 dimensions)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4_how_vector_search_works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. How Vector Search Works
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. How Vector Search Works">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step_1_convert_documents_to_vectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1 — Convert Documents to Vectors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step_2_convert_query_to_vector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2 — Convert Query to Vector
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step_3_compare_vectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3 — Compare Vectors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step_4_rank_by_similarity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4 — Rank by Similarity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5_cosine_similarity_the_semantic_search_standard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Cosine Similarity (The Semantic Search Standard)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6_distance_metrics_wordpress_mysql_context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Distance Metrics (WordPress &amp; MySQL Context)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#61_euclidean_distance_l2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Euclidean Distance (L2)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#62_manhattan_distance_l1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Manhattan Distance (L1)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#63_cosine_distance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Cosine Distance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#64_dot_product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 Dot Product
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#65_chebyshev_distance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 Chebyshev Distance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#66_hamming_distance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.6 Hamming Distance
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ann-hnsw-explainer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Indexing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Hybrid Search
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Hybrid Search
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hybrid/reranking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reranking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Signals
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Signals
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../signals/plugin-demo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plugin Demo
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../signals/signals-guide-book/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Signals Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About Craig
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    About Craig
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../craig/cv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CV
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../craig/contact/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contact
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1_what_is_vector_search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. What Is Vector Search?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. What Is Vector Search?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vector_search" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vector Search
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2_words_as_points_in_space" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Words as Points in Space
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Words as Points in Space">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#simple_2d_example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simple 2D Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3_what_is_a_vector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. What Is a Vector?
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. What Is a Vector?">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2d_example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2D Example
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real_embedding_example_768_dimensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real Embedding Example (768 dimensions)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4_how_vector_search_works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. How Vector Search Works
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. How Vector Search Works">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step_1_convert_documents_to_vectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1 — Convert Documents to Vectors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step_2_convert_query_to_vector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2 — Convert Query to Vector
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step_3_compare_vectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3 — Compare Vectors
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step_4_rank_by_similarity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4 — Rank by Similarity
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5_cosine_similarity_the_semantic_search_standard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Cosine Similarity (The Semantic Search Standard)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6_distance_metrics_wordpress_mysql_context" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Distance Metrics (WordPress &amp; MySQL Context)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#61_euclidean_distance_l2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Euclidean Distance (L2)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#62_manhattan_distance_l1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Manhattan Distance (L1)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#63_cosine_distance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Cosine Distance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#64_dot_product" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 Dot Product
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#65_chebyshev_distance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.5 Chebyshev Distance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#66_hamming_distance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.6 Hamming Distance
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="vector_search_distance_metrics">Vector Search &amp; Distance Metrics:<a class="headerlink" href="#vector_search_distance_metrics" title="Permanent link">&para;</a></h1>
+<p>A Complete Guide for WordPress and MySQL Developers</p>
+<p>Modern search is no longer about matching exact words — it’s about understanding <strong>meaning</strong>. Vector search brings semantic intelligence to WordPress, MySQL, and any custom search pipeline by representing text as <strong>vectors</strong> (lists of numbers) and comparing them using <strong>distance metrics</strong>.</p>
+<p>This document gives you a complete, developer‑friendly walkthrough of:</p>
+<ul>
+<li>What vector search is  </li>
+<li>How embeddings work  </li>
+<li>How similarity is calculated  </li>
+<li>How different distance metrics behave  </li>
+<li>How all of this fits into WordPress and MySQL search architecture  </li>
+</ul>
+<hr />
+<h2 id="1_what_is_vector_search">1. What Is Vector Search?<a class="headerlink" href="#1_what_is_vector_search" title="Permanent link">&para;</a></h2>
+<p>Traditional search engines (like WordPress’s default search or MySQL’s MATCH AGAINST) match <strong>exact words</strong>.</p>
+<h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
+<p>Query: <strong>“car”</strong><br />
+Keyword search finds documents containing “car” — but misses:</p>
+<ul>
+<li>automobile  </li>
+<li>vehicle  </li>
+<li>sedan  </li>
+<li>SUV  </li>
+</ul>
+<p>Vector search understands <strong>concepts</strong>, not just words.</p>
+<h3 id="vector_search">Vector Search<a class="headerlink" href="#vector_search" title="Permanent link">&para;</a></h3>
+<p>Query: <strong>“car”</strong><br />
+Matches documents about:</p>
+<ul>
+<li>automobile  </li>
+<li>vehicle  </li>
+<li>sedan  </li>
+<li>SUV  </li>
+<li>truck  </li>
+</ul>
+<p>Because all these concepts live close together in <strong>semantic space</strong>.</p>
+<h2 id="2_words_as_points_in_space">2. Words as Points in Space<a class="headerlink" href="#2_words_as_points_in_space" title="Permanent link">&para;</a></h2>
+<p>Embeddings convert text into vectors — numerical coordinates in a multi‑dimensional space.</p>
+<h3 id="simple_2d_example">Simple 2D Example<a class="headerlink" href="#simple_2d_example" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>        Y-axis (Vehicle Type)
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>        │
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    5   │         🚗 car
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        │       
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    4   │     🚙 SUV    🚕 taxi
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        │    
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    3   │   🚚 truck
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        │
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    2   │
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>        │
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    1   │   🐕 dog      🐱 cat
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        │
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    0   └─────────────────────── X-axis (Animal vs Vehicle)
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        0   1   2   3   4   5
+</span></code></pre></div>
+<p><strong>Key idea:</strong><br />
+Similar meanings → close together<br />
+Different meanings → far apart  </p>
+<p>Real embeddings have <strong>384–1536 dimensions</strong>, but the principle is identical.</p>
+<h2 id="3_what_is_a_vector">3. What Is a Vector?<a class="headerlink" href="#3_what_is_a_vector" title="Permanent link">&para;</a></h2>
+<p>A vector is simply a list of numbers.</p>
+<h3 id="2d_example">2D Example<a class="headerlink" href="#2d_example" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>&quot;car&quot; = [4.2, 4.8]
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>&quot;dog&quot; = [1.3, 1.1]
+</span></code></pre></div>
+<h3 id="real_embedding_example_768_dimensions">Real Embedding Example (768 dimensions)<a class="headerlink" href="#real_embedding_example_768_dimensions" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>&quot;car&quot; = [0.23, -0.45, 0.12, 0.89, ...]
+</span></code></pre></div>
+<p>Each dimension encodes some semantic feature (vehicle‑ness, speed, size, etc.).</p>
+<h2 id="4_how_vector_search_works">4. How Vector Search Works<a class="headerlink" href="#4_how_vector_search_works" title="Permanent link">&para;</a></h2>
+<h3 id="step_1_convert_documents_to_vectors">Step 1 — Convert Documents to Vectors<a class="headerlink" href="#step_1_convert_documents_to_vectors" title="Permanent link">&para;</a></h3>
+<p>Each document is embedded into a vector.</p>
+<h3 id="step_2_convert_query_to_vector">Step 2 — Convert Query to Vector<a class="headerlink" href="#step_2_convert_query_to_vector" title="Permanent link">&para;</a></h3>
+<p>The user’s query is embedded the same way.</p>
+<h3 id="step_3_compare_vectors">Step 3 — Compare Vectors<a class="headerlink" href="#step_3_compare_vectors" title="Permanent link">&para;</a></h3>
+<p>Using a <strong>distance metric</strong> (cosine, Euclidean, dot product, etc.).</p>
+<h3 id="step_4_rank_by_similarity">Step 4 — Rank by Similarity<a class="headerlink" href="#step_4_rank_by_similarity" title="Permanent link">&para;</a></h3>
+<p>Closest vectors = most relevant results.</p>
+<p>This is where <strong>distance metrics</strong> become critical.</p>
+<h2 id="5_cosine_similarity_the_semantic_search_standard">5. Cosine Similarity (The Semantic Search Standard)<a class="headerlink" href="#5_cosine_similarity_the_semantic_search_standard" title="Permanent link">&para;</a></h2>
+<p>Cosine similarity measures the <strong>angle</strong> between vectors — ignoring length.</p>
+<p>[
+\text{Cosine Similarity} = \frac{A \cdot B}{||A|| \cdot ||B||}
+]</p>
+<ul>
+<li>1.0 → identical direction  </li>
+<li>0.0 → unrelated  </li>
+<li>-1.0 → opposite meaning  </li>
+</ul>
+<p>Cosine is the <strong>default</strong> for semantic search because it focuses on meaning, not magnitude.</p>
+<h2 id="6_distance_metrics_wordpress_mysql_context">6. Distance Metrics (WordPress &amp; MySQL Context)<a class="headerlink" href="#6_distance_metrics_wordpress_mysql_context" title="Permanent link">&para;</a></h2>
+<p>When implementing vector search in WordPress — via a plugin, custom table, or external vector DB — you must choose a <strong>distance metric</strong>.</p>
+<p>Different metrics produce different rankings.</p>
+<p>Below is a unified explanation of each metric, with diagrams and WordPress‑specific guidance.</p>
+<h2 id="61_euclidean_distance_l2">6.1 Euclidean Distance (L2)<a class="headerlink" href="#61_euclidean_distance_l2" title="Permanent link">&para;</a></h2>
+<p>Straight‑line distance.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>   y
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>   |
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a> 4 |                B
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a> 3 |
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a> 2 |
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a> 1 |      A
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>   |
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>   +---------------------------- x
+</span></code></pre></div>
+<p><strong>Meaning:</strong><br />
+Measures literal geometric distance.</p>
+<p><strong>Best for:</strong><br />
+- Embeddings where magnitude encodes meaning<br />
+- General vector search  </p>
+<p><strong>WordPress use:</strong><br />
+- Custom MySQL tables<br />
+- External vector DBs that default to L2  </p>
+<hr />
+<h2 id="62_manhattan_distance_l1">6.2 Manhattan Distance (L1)<a class="headerlink" href="#62_manhattan_distance_l1" title="Permanent link">&para;</a></h2>
+<p>Grid‑based movement.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>   y
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>   |
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a> 4 |                B
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a> 3 |                |
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a> 2 |                |
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a> 1 |      A -------+
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>   |
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>   +---------------------------- x
+</span></code></pre></div>
+<p><strong>Meaning:</strong><br />
+Sum of absolute differences.</p>
+<p><strong>Best for:</strong><br />
+- Sparse vectors (rare in NLP)  </p>
+<p><strong>WordPress use:</strong><br />
+- Experimental scoring only  </p>
+<hr />
+<h2 id="63_cosine_distance">6.3 Cosine Distance<a class="headerlink" href="#63_cosine_distance" title="Permanent link">&para;</a></h2>
+<p>Angle between vectors.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Origin
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>  |
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>  |   A
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>  |  /
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>  | /
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>  |/___________
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>       \
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>        \
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>         B
+</span></code></pre></div>
+<p><strong>Meaning:</strong><br />
+Measures similarity of direction.</p>
+<p><strong>Best for:</strong><br />
+- Semantic search<br />
+- Sentence embeddings  </p>
+<p><strong>WordPress use:</strong><br />
+- Hybrid search (BM25 + embeddings)<br />
+- Most semantic search plugins<br />
+- Recommended default  </p>
+<hr />
+<h2 id="64_dot_product">6.4 Dot Product<a class="headerlink" href="#64_dot_product" title="Permanent link">&para;</a></h2>
+<p>Alignment × magnitude.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Origin
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>  |
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>  |   A →→
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>  |  /
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>  | /
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>  |/___________ →→ B (longer)
+</span></code></pre></div>
+<p><strong>Meaning:</strong><br />
+Rewards vectors that point the same way <em>and</em> have large magnitude.</p>
+<p><strong>Best for:</strong><br />
+- Recommender systems<br />
+- Models trained for dot‑product scoring  </p>
+<p><strong>WordPress use:</strong><br />
+- Related posts<br />
+- Product recommendations  </p>
+<h2 id="65_chebyshev_distance">6.5 Chebyshev Distance<a class="headerlink" href="#65_chebyshev_distance" title="Permanent link">&para;</a></h2>
+<p>Largest single‑dimension difference.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>   y
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>   |
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a> 4 |                B
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a> 3 |
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a> 2 |
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a> 1 |      A
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>   |
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>   +---------------------------- x
+</span></code></pre></div>
+<p><strong>Meaning:</strong><br />
+“How bad is the worst mismatch?”</p>
+<p><strong>WordPress use:</strong><br />
+- Outlier detection<br />
+- Quality control  </p>
+<p>Not used for semantic search.</p>
+<h2 id="66_hamming_distance">6.6 Hamming Distance<a class="headerlink" href="#66_hamming_distance" title="Permanent link">&para;</a></h2>
+<p>Counts mismatched positions.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>A = (2,1)
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>B = (6,4)
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>Differences:
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>- 2 vs 6 → different
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>- 1 vs 4 → different
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>Hamming distance = 2
+</span></code></pre></div>
+<p><strong>Meaning:</strong><br />
+Only for binary vectors.</p>
+<p><strong>WordPress use:</strong><br />
+- Duplicate detection<br />
+- Hash fingerprints  </p>
+<p>Not used for embeddings.</p>
+<h1 id="7_summary_table">7. Summary Table<a class="headerlink" href="#7_summary_table" title="Permanent link">&para;</a></h1>
+<!-- | Metric | Measures | Best For | WordPress Use |
+|--------|----------|----------|----------------|
+| **Cosine** | Angle | Semantic similarity | Best default for semantic search |
+| **Euclidean** | Straight‑line distance | General vector search | Custom tables, vector DBs |
+| **Dot Product** | Alignment × magnitude | Recommenders | Related posts/products |
+| **Manhattan** | Grid distance | Sparse vectors | Rare |
+| **Chebyshev** | Max deviation | Outliers | Data validation |
+| **Hamming** | Mismatched bits | Binary vectors | Duplicate detection | -->
+
+<style>
+  .vector-metrics-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: system-ui, sans-serif;
+    background-color: #111; /* full dark background */
+    color: #e5e5e5;         /* light text */
+  }
+
+  /* Header */
+  .vector-metrics-table thead tr {
+    background-color: #1e3a8a; /* deep blue */
+    color: #ffffff;
+  }
+
+  .vector-metrics-table th,
+  .vector-metrics-table td {
+    padding: 10px;
+    text-align: left;
+  }
+
+  /* Zebra stripes (dark variants) */
+  .vector-metrics-table tbody tr:nth-child(even) {
+    background-color: #1a1a1a;
+  }
+  .vector-metrics-table tbody tr:nth-child(odd) {
+    background-color: #222;
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 600px) {
+    .vector-metrics-table thead {
+      display: none;
+    }
+    .vector-metrics-table tr {
+      display: block;
+      margin-bottom: 12px;
+      border: 1px solid #333;
+      padding: 8px;
+      border-radius: 6px;
+      background-color: #1a1a1a;
+    }
+    .vector-metrics-table td {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 4px;
+    }
+    .vector-metrics-table td::before {
+      content: attr(data-label);
+      font-weight: bold;
+      color: #93c5fd; /* soft blue labels */
+      margin-right: 10px;
+    }
+  }
+</style>
+
+<table class="vector-metrics-table">
+  <thead>
+    <tr>
+      <th>Metric</th>
+      <th>Measures</th>
+      <th>Best For</th>
+      <th>WordPress Use</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td data-label="Metric">🧭 Cosine</td>
+      <td data-label="Measures">Angle</td>
+      <td data-label="Best For">Semantic similarity</td>
+      <td data-label="WordPress Use">Best default for semantic search</td>
+    </tr>
+    <tr>
+      <td data-label="Metric">📏 Euclidean</td>
+      <td data-label="Measures">Straight‑line distance</td>
+      <td data-label="Best For">General vector search</td>
+      <td data-label="WordPress Use">Custom tables, vector DBs</td>
+    </tr>
+    <tr>
+      <td data-label="Metric">🎯 Dot Product</td>
+      <td data-label="Measures">Alignment × magnitude</td>
+      <td data-label="Best For">Recommenders</td>
+      <td data-label="WordPress Use">Related posts/products</td>
+    </tr>
+    <tr>
+      <td data-label="Metric">📐 Manhattan</td>
+      <td data-label="Measures">Grid distance</td>
+      <td data-label="Best For">Sparse vectors</td>
+      <td data-label="WordPress Use">Rare</td>
+    </tr>
+    <tr>
+      <td data-label="Metric">📊 Chebyshev</td>
+      <td data-label="Measures">Max deviation</td>
+      <td data-label="Best For">Outliers</td>
+      <td data-label="WordPress Use">Data validation</td>
+    </tr>
+    <tr>
+      <td data-label="Metric">🔢 Hamming</td>
+      <td data-label="Measures">Mismatched bits</td>
+      <td data-label="Best For">Binary vectors</td>
+      <td data-label="WordPress Use">Duplicate detection</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="8_how_this_fits_into_wordpress_search_architecture">8. How This Fits Into WordPress Search Architecture<a class="headerlink" href="#8_how_this_fits_into_wordpress_search_architecture" title="Permanent link">&para;</a></h2>
+<h3 id="1_default_wordpress_search_like">1. Default WordPress Search (LIKE)<a class="headerlink" href="#1_default_wordpress_search_like" title="Permanent link">&para;</a></h3>
+<p>No vectors. No semantics.</p>
+<h3 id="2_mysql_fulltext_search_match_against">2. MySQL Full‑Text Search (MATCH AGAINST)<a class="headerlink" href="#2_mysql_fulltext_search_match_against" title="Permanent link">&para;</a></h3>
+<p>Lexical only — still no semantics.</p>
+<h3 id="3_hybrid_search_bm25_embeddings">3. Hybrid Search (BM25 + Embeddings)<a class="headerlink" href="#3_hybrid_search_bm25_embeddings" title="Permanent link">&para;</a></h3>
+<p>Combine:<br />
+- BM25 for keyword precision<br />
+- Cosine similarity for semantic recall  </p>
+<p>This is the <strong>sweet spot</strong> for most WordPress sites.</p>
+<h3 id="4_full_vector_search_in_mysql">4. Full Vector Search in MySQL<a class="headerlink" href="#4_full_vector_search_in_mysql" title="Permanent link">&para;</a></h3>
+<p>Store embeddings in a custom table (JSON, FLOAT[], etc.) and compute:</p>
+<ul>
+<li>Cosine  </li>
+<li>Euclidean  </li>
+<li>Dot product  </li>
+<li>Manhattan  </li>
+</ul>
+<p>This gives you full semantic search without external services.</p>
+<h2 id="9_realworld_example_ecommerce_search">9. Real‑World Example: E‑commerce Search<a class="headerlink" href="#9_realworld_example_ecommerce_search" title="Permanent link">&para;</a></h2>
+<p>Query: <strong>“comfortable shoes for running”</strong></p>
+<h3 id="keyword_search">Keyword Search<a class="headerlink" href="#keyword_search" title="Permanent link">&para;</a></h3>
+<p>Finds documents containing the exact words.<br />
+Misses synonyms like “sneakers”, “athletic”, “cushioned”.</p>
+<h3 id="vector_search_1">Vector Search<a class="headerlink" href="#vector_search_1" title="Permanent link">&para;</a></h3>
+<p>Understands:</p>
+<ul>
+<li>sneakers ≈ shoes  </li>
+<li>athletic ≈ running  </li>
+<li>cushioned ≈ comfortable  </li>
+</ul>
+<p>Produces dramatically better results.</p>
+<h2 id="10_multilanguage_magic">10. Multi‑Language Magic<a class="headerlink" href="#10_multilanguage_magic" title="Permanent link">&para;</a></h2>
+<p>Embeddings place meaning in the same space across languages.</p>
+<p>English “cat”<br />
+French “chat”<br />
+German “Katze”  </p>
+<p>→ All cluster together.</p>
+<p>This makes vector search inherently multilingual.</p>
+<h2 id="11_advantages_limitations">11. Advantages &amp; Limitations<a class="headerlink" href="#11_advantages_limitations" title="Permanent link">&para;</a></h2>
+<h3 id="advantages"><strong>Advantages</strong><a class="headerlink" href="#advantages" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Understands meaning  </li>
+<li>Handles synonyms  </li>
+<li>Context‑aware  </li>
+<li>Typo‑tolerant  </li>
+<li>Multilingual  </li>
+<li>Harder to game  </li>
+</ul>
+<h3 id="limitations"><strong>Limitations</strong><a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Slower than keyword search  </li>
+<li>Requires more storage  </li>
+<li>Harder to explain  </li>
+<li>Embedding generation costs CPU/GPU  </li>
+<li>Sometimes you <em>want</em> exact matches  </li>
+</ul>
+<h2 id="12_quick_summary">12. Quick Summary<a class="headerlink" href="#12_quick_summary" title="Permanent link">&para;</a></h2>
+<p>Vector search in 5 points:</p>
+<ol>
+<li>Convert text → vectors  </li>
+<li>Compare vectors using distance metrics  </li>
+<li>Rank by similarity  </li>
+<li>Understand meaning, not just words  </li>
+<li>Works across languages  </li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      &copy; 2025 <a href="https://advanced-wordpress-search.netlify.app/"  target="_blank" rel="noopener">Craig West - Advanced Search in Wordpress</a>
+
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,113 @@
+site_name: UDEMY Advanced WP Search
+site_description: "UDEMY AI Powered Search in WordPress"
+
+repo_url: https://advanced-wordpress-search.netlify.app/
+repo_name: Advanced WP Search
+
+theme:
+  features:
+  - content.code.copy
+  icon:
+    repo: fontawesome/brands/github
+  font:
+    text: Raleway
+    code: Roboto Mono
+  name: "material"
+  palette:
+  # Dark mode as default (listed first)
+  - scheme: slate
+    primary: "blue"
+    accent: "white"
+    toggle:
+      icon: material/brightness-4
+      name: Switch to light mode
+  # Light mode as alternative
+  - scheme: default
+    primary: "blue"
+    accent: "grey"
+    toggle:
+      icon: material/brightness-7
+      name: Switch to dark mode
+
+extra_javascript:
+- "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.6/MathJax.js?config=TeX-MML-AM_CHTML"
+extra_css:
+- "assets/css/custom.css"
+extra:
+  manifest: "manifest.json"
+  social:
+  - icon: "fontawesome/brands/github-alt"
+    link: ""
+
+plugins:
+- search
+- mkdocstrings
+
+markdown_extensions:
+- pymdownx.highlight
+- pymdownx.superfences
+# - pymdownx.emoji:
+#     emoji_index: !!python/name:material.extensions.emoji.twemoji
+#     emoji_generator: !!python/name:material.extensions.emoji.to_svg
+- admonition
+- attr_list
+- codehilite
+- footnotes
+- toc:
+    permalink: true
+    separator: "_"
+- pymdownx.highlight:
+    anchor_linenums: true
+    line_spans: __span
+    pygments_lang_class: true
+
+# Page tree
+nav:
+- "About": "index.md"
+- "Course":
+  - "About": "course/intro.md"
+  - "Screenshots": "course/course-screenshots.md"
+  - "Requirements": "course/requirements.md"
+
+- "Theory":
+  - "Term Frequency": "fts/tf.md"
+  - "Inverse Doc Freq": "fts/idf.md"
+  - "TF-IDF": "fts/tf-idf.md"
+  - "BM25": "fts/bm25.md"
+  - "BM25 Calc": "fts/bm25-simple-calc.md"
+  - "Negative Scores": "fts/negative-bm25-scores.md"
+  - "Stop Words": "fts/stop-words.md"
+  - "COLS with many indexes": "fts/multiple-indexes-on-same-col.md"
+  - "SQL Guide": "fts/sql-guide.md"
+- "Implementations":
+  - "MySQL Docs":
+    - "Articles": "implementations/fts-docs-articles-example.md"
+    - "01: Introduction": "mysql-docs/01-intro.md"
+    - "02: Natural Search": "mysql-docs/02-natural-search.md"
+    - "03: Boolean Search": "mysql-docs/03-boolean-search.md"
+    - "04: Query Expansion": "mysql-docs/04-query-expansion.md"
+    - "05: Stop Words": "mysql-docs/05-stop-words.md"
+    - "06: Restrictions": "mysql-docs/06-restrictions.md"
+    - "07: FTS Tuning": "mysql-docs/07-fts-tuning.md"
+  - "Products": "implementations/products.md"
+  - "WP Posts": "implementations/wp-fts-sql-examples.md"
+- "Vector Search":
+  - "Vector DB Hack": "vector/vector-databases-hack.md"
+  # - "Vector Search in WP 1": "vector/vector-search-explainer.md"
+  # - "Vector Search in WP 2": "vector/vectors-wordpress.md"
+  - "Vector Search": "vector/vectors-wp-combined.md"
+  - "Indexing": "vector/ann-hnsw-explainer.md"
+- "Hybrid Search":
+  - "Reranking": "hybrid/reranking.md"
+- "Signals":
+  - "Plugin Demo": "signals/plugin-demo.md"
+  - "Signals Guide": "signals/signals-guide-book.md"
+# - "RAG":
+#   - "RAG Overview": "rag/rag-overview.md"
+#   - "Agentic RAG": "rag/agentic-rag.md"
+- "About Craig":
+  - "CV": "craig/cv.md"
+  - "Contact": "craig/contact.md"
+
+copyright: |
+  &copy; 2025 <a href="https://advanced-wordpress-search.netlify.app/"  target="_blank" rel="noopener">Craig West - Advanced Search in Wordpress</a>

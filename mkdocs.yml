@@ -16,14 +16,14 @@ theme:
   palette:
   # Dark mode as default (listed first)
   - scheme: slate
-    primary: "blue"
+    primary: "purple"
     accent: "white"
     toggle:
       icon: material/brightness-4
       name: Switch to light mode
   # Light mode as alternative
   - scheme: default
-    primary: "blue"
+    primary: "purple"
     accent: "grey"
     toggle:
       icon: material/brightness-7

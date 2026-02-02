@@ -41,7 +41,7 @@ Matches documents about:
 
 Because all these concepts live close together in **semantic space**.
 
-
+![vector-office](../images/vectors/vector-office-example.png)
 
 ## 2. Words as Points in Space
 

@@ -2,7 +2,7 @@
 
 In my work building chatbots and voice/video agents, getting the right answer is paramount.
 
-I built a number of plugins for WP Search that used Full Text Search and Vector/Semantic Search for my site https://ancestors-ai.com/ and I decided to share my learnings with others.
+I built a number of plugins for WP Search that used Full Text Search and Vector/Semantic Search for my site [https://ancestors-ai.com/](https://ancestors-ai.com/) and I decided to share my learnings with others.
 
 ## Full text Search
 

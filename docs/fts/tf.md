@@ -6,6 +6,28 @@ Imagine you're looking for your favorite toy in a messy room. The more times you
 
 **Term Frequency (TF)** = How many times a word appears in a document
 
+**Simple Term Frequency:**
+
+```
+TF = (number of times term appears in document) / (total number of terms in document)
+```
+
+**Example:**
+
+Document: "the cat sat on the mat"
+
+- Total terms: 6
+- Query term "the" appears: 2 times
+- TF("the") = 2/6 = 0.33
+
+**Why normalize by document length?**
+
+Without dividing by total terms, longer documents would always score higher just because they have more words. Normalizing makes it fair - a term appearing 2 times in a 10-word doc (20%) is more significant than 2 times in a 1000-word doc (0.2%).
+
+**Limitation:**
+
+This treats the 1st and 100th occurrence equally. That's why most search systems use something like BM25 instead, which adds diminishing returns.
+
 ## Why Do We Care?
 
 Search engines like Google need to figure out which documents (web pages) are most relevant to your search. If you search for "python programming", a document that mentions "python" 20 times is probably more relevant than one that mentions it only once!
@@ -49,12 +71,14 @@ TF(dog) = 3/4 = 0.25
 **Your Search:** "machine learning"
 
 **Document 1:** Blog post about AI
+
 - "machine" appears 5 times
 - "learning" appears 5 times
 - Total words: 100
 - TF(machine) = 0.05, TF(learning) = 0.05
 
 **Document 2:** Tutorial on machine learning
+
 - "machine" appears 25 times
 - "learning" appears 30 times
 - Total words: 200

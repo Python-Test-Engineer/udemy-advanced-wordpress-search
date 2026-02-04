@@ -16,15 +16,18 @@ It's the ULTIMATE combination that makes search engines actually work! 🎯
 Imagine you're looking for books about **"cats"** in a library:
 
 **Just using TF (Term Frequency):**
+
 - Book A: Uses "the" 100 times, "cat" 10 times
 - Book B: Uses "the" 50 times, "cat" 10 times
 - Problem: "the" gets high scores but doesn't help! 😕
 
 **Just using IDF (Inverse Document Frequency):**
+
 - "cat" is rare → high IDF score ✓
 - But which BOOK talks about cats the most? We don't know! 
 
 **Using TF-IDF (The Perfect Combo):**
+
 - Finds books that mention "cat" OFTEN (TF)
 - AND recognizes "cat" is a MEANINGFUL word (IDF)
 - Ignores useless words like "the" automatically! 
@@ -156,11 +159,13 @@ Document C: "I like machine. The machine is old."
 ## The Magic Formula Breakdown
 
 ### High TF-IDF Score happens when:
+
 1. **High TF** - Word appears many times in the document
 2. **High IDF** - Word is rare across all documents
 3. **Multiply them** - Both conditions met!
 
 ### Low TF-IDF Score happens when:
+
 1. Word doesn't appear in document (TF = 0)
 2. Word is super common like "the" (IDF ≈ 0)
 3. Either one being zero = final score is zero!
@@ -170,11 +175,13 @@ Document C: "I like machine. The machine is old."
 ## Key Insights
 
 **TF-IDF automatically filters out:**
+
 - ❌ Common words: "the", "is", "and", "of", "in"
 - ❌ Irrelevant documents
 - ❌ Documents that just spam keywords
 
 **TF-IDF automatically promotes:**
+
 - ✅ Meaningful, distinctive words
 - ✅ Documents where key terms appear frequently
 - ✅ Relevant, high-quality search results
@@ -194,11 +201,13 @@ Document C: "I like machine. The machine is old."
 ## Why Search Engines Love TF-IDF
 
 **Before TF-IDF:**
+
 - Search for "best pizza": Get docs about "the best" everything
 - Keyword stuffing worked: "pizza pizza pizza pizza"
 - Results were terrible! 
 
 **With TF-IDF:**
+
 - Common words like "best" get low scores automatically
 - Keyword stuffing doesn't help (IDF stays same)
 - Actual relevant content wins! 
@@ -216,6 +225,7 @@ TF-IDF = TF × IDF
 ```
 
 **The Golden Rules:**
+
 1. High TF + High IDF = **Very Relevant!** 🌟🌟🌟
 2. High TF + Low IDF = **Probably common word** (the, is, and)
 3. Low TF + High IDF = **Rare word but not in this doc**
@@ -228,6 +238,7 @@ TF-IDF = TF × IDF
 **Question:** Why does TF-IDF work so well?
 
 **Answer:** Because it mimics how humans think!
+
 - We care about words that appear OFTEN in a specific context (TF)
 - We ignore words that appear EVERYWHERE (low IDF)
 - We focus on what makes something UNIQUE and RELEVANT

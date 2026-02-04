@@ -2056,17 +2056,23 @@
 <p>It's the ULTIMATE combination that makes search engines actually work! 🎯</p>
 <h2 id="the_simple_story">The Simple Story<a class="headerlink" href="#the_simple_story" title="Permanent link">&para;</a></h2>
 <p>Imagine you're looking for books about <strong>"cats"</strong> in a library:</p>
-<p><strong>Just using TF (Term Frequency):</strong>
-- Book A: Uses "the" 100 times, "cat" 10 times
-- Book B: Uses "the" 50 times, "cat" 10 times
-- Problem: "the" gets high scores but doesn't help! 😕</p>
-<p><strong>Just using IDF (Inverse Document Frequency):</strong>
-- "cat" is rare → high IDF score ✓
-- But which BOOK talks about cats the most? We don't know! </p>
-<p><strong>Using TF-IDF (The Perfect Combo):</strong>
-- Finds books that mention "cat" OFTEN (TF)
-- AND recognizes "cat" is a MEANINGFUL word (IDF)
-- Ignores useless words like "the" automatically! </p>
+<p><strong>Just using TF (Term Frequency):</strong></p>
+<ul>
+<li>Book A: Uses "the" 100 times, "cat" 10 times</li>
+<li>Book B: Uses "the" 50 times, "cat" 10 times</li>
+<li>Problem: "the" gets high scores but doesn't help! 😕</li>
+</ul>
+<p><strong>Just using IDF (Inverse Document Frequency):</strong></p>
+<ul>
+<li>"cat" is rare → high IDF score ✓</li>
+<li>But which BOOK talks about cats the most? We don't know! </li>
+</ul>
+<p><strong>Using TF-IDF (The Perfect Combo):</strong></p>
+<ul>
+<li>Finds books that mention "cat" OFTEN (TF)</li>
+<li>AND recognizes "cat" is a MEANINGFUL word (IDF)</li>
+<li>Ignores useless words like "the" automatically! </li>
+</ul>
 <h2 id="how_it_works_-_the_formula">How It Works - The Formula<a class="headerlink" href="#how_it_works_-_the_formula" title="Permanent link">&para;</a></h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>TF-IDF = TF × IDF
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
@@ -2212,14 +2218,18 @@
 </ol>
 <hr />
 <h2 id="key_insights">Key Insights<a class="headerlink" href="#key_insights" title="Permanent link">&para;</a></h2>
-<p><strong>TF-IDF automatically filters out:</strong>
-- ❌ Common words: "the", "is", "and", "of", "in"
-- ❌ Irrelevant documents
-- ❌ Documents that just spam keywords</p>
-<p><strong>TF-IDF automatically promotes:</strong>
-- ✅ Meaningful, distinctive words
-- ✅ Documents where key terms appear frequently
-- ✅ Relevant, high-quality search results</p>
+<p><strong>TF-IDF automatically filters out:</strong></p>
+<ul>
+<li>❌ Common words: "the", "is", "and", "of", "in"</li>
+<li>❌ Irrelevant documents</li>
+<li>❌ Documents that just spam keywords</li>
+</ul>
+<p><strong>TF-IDF automatically promotes:</strong></p>
+<ul>
+<li>✅ Meaningful, distinctive words</li>
+<li>✅ Documents where key terms appear frequently</li>
+<li>✅ Relevant, high-quality search results</li>
+</ul>
 <hr />
 <h2 id="comparison_table">Comparison Table<a class="headerlink" href="#comparison_table" title="Permanent link">&para;</a></h2>
 <table>
@@ -2254,14 +2264,18 @@
 </table>
 <hr />
 <h2 id="why_search_engines_love_tf-idf">Why Search Engines Love TF-IDF<a class="headerlink" href="#why_search_engines_love_tf-idf" title="Permanent link">&para;</a></h2>
-<p><strong>Before TF-IDF:</strong>
-- Search for "best pizza": Get docs about "the best" everything
-- Keyword stuffing worked: "pizza pizza pizza pizza"
-- Results were terrible! </p>
-<p><strong>With TF-IDF:</strong>
-- Common words like "best" get low scores automatically
-- Keyword stuffing doesn't help (IDF stays same)
-- Actual relevant content wins! </p>
+<p><strong>Before TF-IDF:</strong></p>
+<ul>
+<li>Search for "best pizza": Get docs about "the best" everything</li>
+<li>Keyword stuffing worked: "pizza pizza pizza pizza"</li>
+<li>Results were terrible! </li>
+</ul>
+<p><strong>With TF-IDF:</strong></p>
+<ul>
+<li>Common words like "best" get low scores automatically</li>
+<li>Keyword stuffing doesn't help (IDF stays same)</li>
+<li>Actual relevant content wins! </li>
+</ul>
 <hr />
 <h2 id="quick_summary">Quick Summary<a class="headerlink" href="#quick_summary" title="Permanent link">&para;</a></h2>
 <p><strong>Remember the Formula:</strong>
@@ -2270,18 +2284,22 @@
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>         × 
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>         (How rare word is ACROSS ALL docs)
 </span></code></pre></div></p>
-<p><strong>The Golden Rules:</strong>
-1. High TF + High IDF = <strong>Very Relevant!</strong> 🌟🌟🌟
-2. High TF + Low IDF = <strong>Probably common word</strong> (the, is, and)
-3. Low TF + High IDF = <strong>Rare word but not in this doc</strong>
-4. Low TF + Low IDF = <strong>Not relevant at all</strong></p>
+<p><strong>The Golden Rules:</strong></p>
+<ol>
+<li>High TF + High IDF = <strong>Very Relevant!</strong> 🌟🌟🌟</li>
+<li>High TF + Low IDF = <strong>Probably common word</strong> (the, is, and)</li>
+<li>Low TF + High IDF = <strong>Rare word but not in this doc</strong></li>
+<li>Low TF + Low IDF = <strong>Not relevant at all</strong></li>
+</ol>
 <hr />
 <h2 id="think_about_it">Think About It<a class="headerlink" href="#think_about_it" title="Permanent link">&para;</a></h2>
 <p><strong>Question:</strong> Why does TF-IDF work so well?</p>
-<p><strong>Answer:</strong> Because it mimics how humans think!
-- We care about words that appear OFTEN in a specific context (TF)
-- We ignore words that appear EVERYWHERE (low IDF)
-- We focus on what makes something UNIQUE and RELEVANT</p>
+<p><strong>Answer:</strong> Because it mimics how humans think!</p>
+<ul>
+<li>We care about words that appear OFTEN in a specific context (TF)</li>
+<li>We ignore words that appear EVERYWHERE (low IDF)</li>
+<li>We focus on what makes something UNIQUE and RELEVANT</li>
+</ul>
 <p><strong>That's the genius of TF-IDF!</strong></p>
 <p><br></p>
 

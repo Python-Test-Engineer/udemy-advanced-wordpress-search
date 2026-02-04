@@ -1987,14 +1987,18 @@
 <h2 id="the_formula">The Formula<a class="headerlink" href="#the_formula" title="Permanent link">&para;</a></h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>IDF(term) = log(N / df)
 </span></code></pre></div>
-<p>Where:
-- <strong>N</strong> = total number of documents
-- <strong>df</strong> = number of documents containing the term</p>
+<p>Where:</p>
+<ul>
+<li><strong>N</strong> = total number of documents</li>
+<li><strong>df</strong> = number of documents containing the term</li>
+</ul>
 <h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
-<p>Say you have 1,000 documents:
-- "the" appears in 999 documents → IDF = log(1000/999) ≈ 0.001 (very low)
-- "quantum" appears in 10 documents → IDF = log(1000/10) = 2 (higher)
-- "riboflavin" appears in 1 document → IDF = log(1000/1) = 3 (highest)</p>
+<p>Say you have 1,000 documents:</p>
+<ul>
+<li>"the" appears in 999 documents → IDF = log(1000/999) ≈ 0.001 (very low)</li>
+<li>"quantum" appears in 10 documents → IDF = log(1000/10) = 2 (higher)</li>
+<li>"riboflavin" appears in 1 document → IDF = log(1000/1) = 3 (highest)</li>
+</ul>
 <h2 id="why_it_matters">Why It Matters<a class="headerlink" href="#why_it_matters" title="Permanent link">&para;</a></h2>
 <p>When combined with Term Frequency (how often a word appears in a single document), IDF helps identify the most important words for each document. Words that appear frequently in one document but rarely across all documents get the highest TF-IDF scores.</p>
 <p>This is fundamental to search engines, document classification, and information retrieval systems.</p>
@@ -2088,15 +2092,19 @@ IDF ensures they don’t dominate search results.</p>
 <p>Rare terms often carry the <em>actual</em> meaning of a query.<br />
 IDF boosts these so search engines can rank documents more intelligently.</p>
 <h3 id="3_it_improves_relevance">3. It improves relevance<a class="headerlink" href="#3_it_improves_relevance" title="Permanent link">&para;</a></h3>
-<p>TF‑IDF (Term Frequency × IDF) combines:
-- <strong>TF</strong> → how often a word appears in a document<br />
-- <strong>IDF</strong> → how rare the word is across the whole collection  </p>
+<p>TF‑IDF (Term Frequency × IDF) combines:</p>
+<ul>
+<li><strong>TF</strong> → how often a word appears in a document  </li>
+<li><strong>IDF</strong> → how rare the word is across the whole collection  </li>
+</ul>
 <p>Together, they create a balanced score that rewards documents that use important terms frequently.</p>
 <h3 id="4_its_foundational_for_modern_search">4. It’s foundational for modern search<a class="headerlink" href="#4_its_foundational_for_modern_search" title="Permanent link">&para;</a></h3>
-<p>Even though we now have embeddings, transformers, and semantic search, IDF still:
-- powers classical search engines<br />
-- influences hybrid search systems<br />
-- appears in ranking models like BM25  </p>
+<p>Even though we now have embeddings, transformers, and semantic search, IDF still:</p>
+<ul>
+<li>powers classical search engines  </li>
+<li>influences hybrid search systems  </li>
+<li>appears in ranking models like BM25  </li>
+</ul>
 <h2 id="putting_it_all_together">Putting It All Together<a class="headerlink" href="#putting_it_all_together" title="Permanent link">&para;</a></h2>
 <p>IDF is essentially a <em>discriminator</em>:<br />
 It helps a search engine decide which words actually help identify the right documents.</p>

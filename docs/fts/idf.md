@@ -18,12 +18,14 @@ IDF(term) = log(N / df)
 ```
 
 Where:
+
 - **N** = total number of documents
 - **df** = number of documents containing the term
 
 ## Example
 
 Say you have 1,000 documents:
+
 - "the" appears in 999 documents → IDF = log(1000/999) ≈ 0.001 (very low)
 - "quantum" appears in 10 documents → IDF = log(1000/10) = 2 (higher)
 - "riboflavin" appears in 1 document → IDF = log(1000/1) = 3 (highest)
@@ -115,22 +117,28 @@ Imagine a collection of **1,000 documents**:
 ## Why IDF Is Important
 
 ### 1. It filters out noise
+
 Common words don’t help distinguish one document from another.  
 IDF ensures they don’t dominate search results.
 
 ### 2. It highlights meaningful terms
+
 Rare terms often carry the *actual* meaning of a query.  
 IDF boosts these so search engines can rank documents more intelligently.
 
 ### 3. It improves relevance
+
 TF‑IDF (Term Frequency × IDF) combines:
+
 - **TF** → how often a word appears in a document  
 - **IDF** → how rare the word is across the whole collection  
 
 Together, they create a balanced score that rewards documents that use important terms frequently.
 
 ### 4. It’s foundational for modern search
+
 Even though we now have embeddings, transformers, and semantic search, IDF still:
+
 - powers classical search engines  
 - influences hybrid search systems  
 - appears in ranking models like BM25  

@@ -6,16 +6,51 @@ This uses a custom table `articles` that is used in the official MySQL docs.
 
 MySQL Full-Text Search lets you search through text columns **FAST** without using slow `LIKE` queries!
 
+## Create FTS inded
+
+Two ways:
+
+1. After table creation:
+
+```sql
+CREATE TABLE IF NOT EXISTS  (
+  `id` int UNSIGNED NOT NULL,
+  `title` varchar(200) DEFAULT NULL,
+  `body` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_
+
+-- Using ALTER TABLE
+ALTER TABLE articles 
+ADD FULLTEXT INDEX ft_title_content (title, body);
+
+-- Or using CREATE INDEX
+CREATE FULLTEXT INDEX ft_title_body
+ON articles(title, body);
+
+```
+
+2. As part of table creation:
+
+```sql
+CREATE TABLE IF NOT EXISTS articles (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(255),
+    body TEXT,
+    FULLTEXT INDEX ft_title_body (title, body)
+);
+```
+
 ### The Problem with LIKE:
 
 ```sql
 -- Slow query (scans entire table!) 
 SELECT * FROM articles 
 WHERE body LIKE '%machine learning%';
+```
 
 Time: 5 seconds for 1 million rows ❌
 Cannot use indexes efficiently
-```
+
 
 ### The Solution: Full-Text Search
 
@@ -33,10 +68,11 @@ CREATE TABLE IF NOT EXISTS `articles` (
 -- Fast query (uses full-text index!) ⚡
 SELECT * FROM articles 
 WHERE MATCH(body) AGAINST('machine learning');
+```
 
 Time: 0.05 seconds for 1 million rows ✅
 Uses specialized full-text indexes
-```
+
 
 **Speed improvement: 100x faster!** 
 

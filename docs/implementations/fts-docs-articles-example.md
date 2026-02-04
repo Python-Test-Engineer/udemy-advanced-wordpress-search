@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS  (
 
 -- Using ALTER TABLE
 ALTER TABLE articles 
-ADD FULLTEXT INDEX ft_title_content (title, body);
+ADD FULLTEXT INDEX ft_title_body (title, body);
 
 -- Or using CREATE INDEX
 CREATE FULLTEXT INDEX ft_title_body

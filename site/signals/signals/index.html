@@ -2345,61 +2345,79 @@
 <h3 id="the_three_primary_intent_types">The Three Primary Intent Types<a class="headerlink" href="#the_three_primary_intent_types" title="Permanent link">&para;</a></h3>
 <h4 id="11_navigational_intent">1.1 Navigational Intent<a class="headerlink" href="#11_navigational_intent" title="Permanent link">&para;</a></h4>
 <p><strong>Goal:</strong> User wants to find a specific page, post, or resource they know exists.</p>
-<p><strong>Characteristics:</strong>
-- Specific brand names, product names, or page titles
-- Often includes unique identifiers
-- Low tolerance for irrelevant results</p>
-<p><strong>Examples:</strong>
-- "contact us"
-- "pricing page"
-- "return policy"
-- "author bio john smith"</p>
-<p><strong>Detection Signals:</strong>
-- Exact match queries
-- Queries containing site-specific terminology
-- Single-word navigation terms (about, contact, pricing)
-- Queries with proper nouns</p>
-<p><strong>Optimization Strategy:</strong>
-Prioritize exact matches and known page titles. Users with navigational intent need the quickest path to their destination.</p>
+<p><strong>Characteristics:</strong></p>
+<ul>
+<li>Specific brand names, product names, or page titles</li>
+<li>Often includes unique identifiers</li>
+<li>Low tolerance for irrelevant results</li>
+</ul>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>"contact us"</li>
+<li>"pricing page"</li>
+<li>"return policy"</li>
+<li>"author bio john smith"</li>
+</ul>
+<p><strong>Detection Signals:</strong></p>
+<ul>
+<li>Exact match queries</li>
+<li>Queries containing site-specific terminology</li>
+<li>Single-word navigation terms (about, contact, pricing)</li>
+<li>Queries with proper nouns</li>
+</ul>
+<p><strong>Optimization Strategy:</strong></p>
+<p>Prioritize exact matches and known page titles. Users with navigational intent need the quickest path to their destination.</p>
 <h4 id="12_informational_intent">1.2 Informational Intent<a class="headerlink" href="#12_informational_intent" title="Permanent link">&para;</a></h4>
 <p><strong>Goal:</strong> User seeks knowledge, guidance, or content on a topic.</p>
-<p><strong>Characteristics:</strong>
-- Question-based queries
-- How-to phrases
-- General topic exploration
-- Willingness to browse multiple results</p>
-<p><strong>Examples:</strong>
-- "how to install wordpress plugin"
-- "best practices for SEO"
-- "what is a custom post type"
-- "wordpress security tips"</p>
-<p><strong>Detection Signals:</strong>
-- Questions words (how, what, why, when, where, who)
-- Phrases like "best," "tips," "guide," "tutorial"
-- General topic keywords without specific product names
-- Comparative terms ("vs", "versus", "compared to")</p>
-<p><strong>Optimization Strategy:</strong>
-Surface comprehensive content, guides, and blog posts. Group related content together and suggest follow-up topics.</p>
+<p><strong>Characteristics:</strong></p>
+<ul>
+<li>Question-based queries</li>
+<li>How-to phrases</li>
+<li>General topic exploration</li>
+<li>Willingness to browse multiple results</li>
+</ul>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>"how to install wordpress plugin"</li>
+<li>"best practices for SEO"</li>
+<li>"what is a custom post type"</li>
+<li>"wordpress security tips"</li>
+</ul>
+<p><strong>Detection Signals:</strong></p>
+<ul>
+<li>Questions words (how, what, why, when, where, who)</li>
+<li>Phrases like "best," "tips," "guide," "tutorial"</li>
+<li>General topic keywords without specific product names</li>
+<li>Comparative terms ("vs", "versus", "compared to")</li>
+</ul>
+<p><strong>Optimization Strategy:</strong></p>
+<p>Surface comprehensive content, guides, and blog posts. Group related content together and suggest follow-up topics.</p>
 <h4 id="13_transactional_intent">1.3 Transactional Intent<a class="headerlink" href="#13_transactional_intent" title="Permanent link">&para;</a></h4>
 <p><strong>Goal:</strong> User is ready to take action—purchase, download, signup, or convert.</p>
-<p><strong>Characteristics:</strong>
-- Action-oriented language
-- Product or service names
-- Urgency indicators
-- High commercial value</p>
-<p><strong>Examples:</strong>
-- "buy premium theme"
-- "download plugin"
-- "sign up for newsletter"
-- "book consultation"
-- "pricing for enterprise plan"</p>
-<p><strong>Detection Signals:</strong>
-- Action verbs (buy, download, purchase, order, subscribe)
-- Commercial terms (price, cost, discount, deal)
-- Product/service names with action context
-- Words like "cheap," "affordable," "best deal"</p>
-<p><strong>Optimization Strategy:</strong>
-Highlight products, services, and conversion pages. Include clear calls-to-action and pricing information in search results.</p>
+<p><strong>Characteristics:</strong></p>
+<ul>
+<li>Action-oriented language</li>
+<li>Product or service names</li>
+<li>Urgency indicators</li>
+<li>High commercial value</li>
+</ul>
+<p><strong>Examples:</strong></p>
+<ul>
+<li>"buy premium theme"</li>
+<li>"download plugin"</li>
+<li>"sign up for newsletter"</li>
+<li>"book consultation"</li>
+<li>"pricing for enterprise plan"</li>
+</ul>
+<p><strong>Detection Signals:</strong></p>
+<ul>
+<li>Action verbs (buy, download, purchase, order, subscribe)</li>
+<li>Commercial terms (price, cost, discount, deal)</li>
+<li>Product/service names with action context</li>
+<li>Words like "cheap," "affordable," "best deal"</li>
+</ul>
+<p><strong>Optimization Strategy:</strong></p>
+<p>Highlight products, services, and conversion pages. Include clear calls-to-action and pricing information in search results.</p>
 <h3 id="detecting_intent_in_wordpress">Detecting Intent in WordPress<a class="headerlink" href="#detecting_intent_in_wordpress" title="Permanent link">&para;</a></h3>
 <p><strong>Query Analysis Approach:</strong></p>
 <ol>
@@ -2409,76 +2427,98 @@ Highlight products, services, and conversion pages. Include clear calls-to-actio
 <li><strong>Context Clues:</strong> Consider user's previous searches in the session</li>
 </ol>
 <p><strong>Intent Confidence Scoring:</strong></p>
-<p>Not all queries clearly signal intent. Assign confidence scores:
-- <strong>High Confidence (80-100%):</strong> Clear indicators present
-- <strong>Medium Confidence (50-79%):</strong> Mixed signals or ambiguous
-- <strong>Low Confidence (0-49%):</strong> Generic query with no clear intent</p>
+<p>Not all queries clearly signal intent. Assign confidence scores:</p>
+<ul>
+<li><strong>High Confidence (80-100%):</strong> Clear indicators present</li>
+<li><strong>Medium Confidence (50-79%):</strong> Mixed signals or ambiguous</li>
+<li><strong>Low Confidence (0-49%):</strong> Generic query with no clear intent</li>
+</ul>
 <p>When confidence is low, serve diverse results covering multiple intent types.</p>
 <h2 id="2_user_action_signals">2. User Action Signals<a class="headerlink" href="#2_user_action_signals" title="Permanent link">&para;</a></h2>
 <p>User actions reveal whether your search results are actually meeting user needs. These behavioral signals are often more truthful than explicit feedback.</p>
 <h3 id="21_click_patterns">2.1 Click Patterns<a class="headerlink" href="#21_click_patterns" title="Permanent link">&para;</a></h3>
 <h4 id="click-through_rate_ctr">Click-Through Rate (CTR)<a class="headerlink" href="#click-through_rate_ctr" title="Permanent link">&para;</a></h4>
 <p><strong>What it measures:</strong> Percentage of search sessions resulting in at least one click.</p>
-<p><strong>Significance:</strong>
-- Low CTR (&lt;30%): Results aren't relevant or compelling
-- Medium CTR (30-60%): Acceptable but room for improvement
-- High CTR (&gt;60%): Strong result relevance</p>
-<p><strong>Tracking:</strong>
-- Search query
-- Number of results displayed
-- Number of clicks
-- Which result positions get clicked</p>
-<p><strong>Red Flags:</strong>
-- Zero-click searches (user leaves without clicking)
-- Clicks only on first result (other results ignored)
-- Clicks on irrelevant results (indicates poor ranking)</p>
+<p><strong>Significance:</strong></p>
+<ul>
+<li>Low CTR (&lt;30%): Results aren't relevant or compelling</li>
+<li>Medium CTR (30-60%): Acceptable but room for improvement</li>
+<li>High CTR (&gt;60%): Strong result relevance</li>
+</ul>
+<p><strong>Tracking:</strong></p>
+<ul>
+<li>Search query</li>
+<li>Number of results displayed</li>
+<li>Number of clicks</li>
+<li>Which result positions get clicked</li>
+</ul>
+<p><strong>Red Flags:</strong></p>
+<ul>
+<li>Zero-click searches (user leaves without clicking)</li>
+<li>Clicks only on first result (other results ignored)</li>
+<li>Clicks on irrelevant results (indicates poor ranking)</li>
+</ul>
 <h4 id="click_position_analysis">Click Position Analysis<a class="headerlink" href="#click_position_analysis" title="Permanent link">&para;</a></h4>
 <p><strong>What it measures:</strong> Which result positions receive the most engagement.</p>
-<p><strong>Key Insights:</strong>
-- <strong>Position 1-3:</strong> Should capture 70-80% of clicks if results are relevant
-- <strong>Position 4-7:</strong> Moderate engagement; users are willing to scroll
-- <strong>Position 8+:</strong> Low engagement; likely not meeting user needs</p>
-<p><strong>Optimization Actions:</strong>
-- If position 5 gets more clicks than position 1: Your ranking algorithm needs adjustment
-- If all positions get equal clicks: Results may all be equally mediocre
-- If only position 1 gets clicks: Other results might be irrelevant</p>
+<p><strong>Key Insights:</strong></p>
+<ul>
+<li><strong>Position 1-3:</strong> Should capture 70-80% of clicks if results are relevant</li>
+<li><strong>Position 4-7:</strong> Moderate engagement; users are willing to scroll</li>
+<li><strong>Position 8+:</strong> Low engagement; likely not meeting user needs</li>
+</ul>
+<p><strong>Optimization Actions:</strong></p>
+<ul>
+<li>If position 5 gets more clicks than position 1: Your ranking algorithm needs adjustment</li>
+<li>If all positions get equal clicks: Results may all be equally mediocre</li>
+<li>If only position 1 gets clicks: Other results might be irrelevant</li>
+</ul>
 <h4 id="click_depth">Click Depth<a class="headerlink" href="#click_depth" title="Permanent link">&para;</a></h4>
 <p><strong>What it measures:</strong> How many results a user clicks on before finding what they need.</p>
-<p><strong>Patterns:</strong>
-- <strong>Single Click:</strong> Found what they needed immediately (ideal)
-- <strong>2-3 Clicks:</strong> Exploring options or refining search mentally
-- <strong>4+ Clicks:</strong> Struggling to find relevant content</p>
-<p><strong>Session-Based Tracking:</strong>
-Track the entire search journey, not just individual queries. Users might:
+<p><strong>Patterns:</strong></p>
+<ul>
+<li><strong>Single Click:</strong> Found what they needed immediately (ideal)</li>
+<li><strong>2-3 Clicks:</strong> Exploring options or refining search mentally</li>
+<li><strong>4+ Clicks:</strong> Struggling to find relevant content</li>
+</ul>
+<p><strong>Session-Based Tracking:</strong></p>
+<p>Track the entire search journey, not just individual queries. Users might:
 1. Search → Click → Return → Refine search → Click again
 2. Search → Click multiple results → Compare → Choose one</p>
 <h3 id="22_time-based_signals">2.2 Time-Based Signals<a class="headerlink" href="#22_time-based_signals" title="Permanent link">&para;</a></h3>
 <h4 id="dwell_time">Dwell Time<a class="headerlink" href="#dwell_time" title="Permanent link">&para;</a></h4>
 <p><strong>What it measures:</strong> How long users spend on a clicked result before returning to search.</p>
-<p><strong>Interpretation:</strong>
-- <strong>&lt;10 seconds:</strong> Quick bounce, likely irrelevant (pogo-sticking)
-- <strong>10-30 seconds:</strong> Skimmed content, partially relevant
-- <strong>30-120 seconds:</strong> Engaged with content, likely relevant
-- <strong>&gt;120 seconds:</strong> Deep engagement, high relevance</p>
+<p><strong>Interpretation:</strong></p>
+<ul>
+<li><strong>&lt;10 seconds:</strong> Quick bounce, likely irrelevant (pogo-sticking)</li>
+<li><strong>10-30 seconds:</strong> Skimmed content, partially relevant</li>
+<li><strong>30-120 seconds:</strong> Engaged with content, likely relevant</li>
+<li><strong>&gt;120 seconds:</strong> Deep engagement, high relevance</li>
+</ul>
 <p><strong>Important Note:</strong> Longer isn't always better. A user finding a quick answer to a simple question might have 15 seconds of dwell time but be completely satisfied.</p>
-<p><strong>Context Matters:</strong>
-- Blog post: Expect 2-5 minutes for engaged reading
-- Product page: 30-90 seconds if interested
-- Contact page: 10-20 seconds to find information
-- Download page: 5-15 seconds to initiate download</p>
+<p><strong>Context Matters:</strong></p>
+<ul>
+<li>Blog post: Expect 2-5 minutes for engaged reading</li>
+<li>Product page: 30-90 seconds if interested</li>
+<li>Contact page: 10-20 seconds to find information</li>
+<li>Download page: 5-15 seconds to initiate download</li>
+</ul>
 <h4 id="return_to_search">Return to Search<a class="headerlink" href="#return_to_search" title="Permanent link">&para;</a></h4>
 <p><strong>What it measures:</strong> Whether users return to search results after clicking.</p>
-<p><strong>Patterns:</strong>
-- <strong>No Return:</strong> User found what they needed (success)
-- <strong>Quick Return (&lt;10s):</strong> Result was irrelevant
-- <strong>Delayed Return (&gt;30s):</strong> User read but didn't find complete answer
-- <strong>Return + Refine:</strong> User learned something and adjusted their search</p>
+<p><strong>Patterns:</strong></p>
+<ul>
+<li><strong>No Return:</strong> User found what they needed (success)</li>
+<li><strong>Quick Return (&lt;10s):</strong> Result was irrelevant</li>
+<li><strong>Delayed Return (&gt;30s):</strong> User read but didn't find complete answer</li>
+<li><strong>Return + Refine:</strong> User learned something and adjusted their search</li>
+</ul>
 <h4 id="session_duration">Session Duration<a class="headerlink" href="#session_duration" title="Permanent link">&para;</a></h4>
 <p><strong>What it measures:</strong> Total time from initial search to session end.</p>
-<p><strong>Analysis:</strong>
-- <strong>Short Sessions (&lt;1 min):</strong> Either very successful or very frustrated
-- <strong>Medium Sessions (1-5 min):</strong> Normal exploration and refinement
-- <strong>Long Sessions (&gt;5 min):</strong> Either deep research or struggling to find answers</p>
+<p><strong>Analysis:</strong></p>
+<ul>
+<li><strong>Short Sessions (&lt;1 min):</strong> Either very successful or very frustrated</li>
+<li><strong>Medium Sessions (1-5 min):</strong> Normal exploration and refinement</li>
+<li><strong>Long Sessions (&gt;5 min):</strong> Either deep research or struggling to find answers</li>
+</ul>
 <h3 id="23_refinement_behavior">2.3 Refinement Behavior<a class="headerlink" href="#23_refinement_behavior" title="Permanent link">&para;</a></h3>
 <h4 id="query_reformulation">Query Reformulation<a class="headerlink" href="#query_reformulation" title="Permanent link">&para;</a></h4>
 <p><strong>What it measures:</strong> How users modify their searches.</p>
@@ -2509,20 +2549,20 @@ Track the entire search journey, not just individual queries. Users might:
 <li>"wordpress themes" → "how to customize wordpress theme"</li>
 <li>Action: User realized they need different information</li>
 </ol>
-<p><strong>Tracking Strategy:</strong>
-Maintain search session history to identify refinement patterns. Store:
+<p><strong>Tracking Strategy:</strong></p>
+<p>Maintain search session history to identify refinement patterns. Store:
 - Previous queries in session
 - Time between queries
 - Results clicked in each query
 - Final successful query (if any)</p>
 <h4 id="abandonment_signals">Abandonment Signals<a class="headerlink" href="#abandonment_signals" title="Permanent link">&para;</a></h4>
-<p><strong>Zero-Result Refinement:</strong>
-User searches, gets no results, tries again. This is critical data:
+<p><strong>Zero-Result Refinement:</strong></p>
+<p>User searches, gets no results, tries again. This is critical data:
 - Track which queries return zero results
 - Monitor how users reformulate after zero results
 - Identify vocabulary gaps (users' terms vs. your content's terms)</p>
-<p><strong>Multi-Query Abandonment:</strong>
-User tries multiple searches then leaves without clicking. Indicates:
+<p><strong>Multi-Query Abandonment:</strong></p>
+<p>User tries multiple searches then leaves without clicking. Indicates:
 - Search functionality isn't working
 - Content doesn't exist
 - Results are consistently irrelevant</p>
@@ -2534,22 +2574,24 @@ User tries multiple searches then leaves without clicking. Indicates:
 <li><strong>Query Abandonment:</strong> User realizes they phrased query wrong (neutral)</li>
 <li><strong>Alternative Exit:</strong> User navigates away via menu/link instead (neutral)</li>
 </ol>
-<p><strong>Tracking Method:</strong>
-- Log searches where user doesn't click any result
-- Track subsequent user behavior (did they navigate elsewhere?)
-- Compare no-click rate across different query types</p>
+<p><strong>Tracking Method:</strong></p>
+<ul>
+<li>Log searches where user doesn't click any result</li>
+<li>Track subsequent user behavior (did they navigate elsewhere?)</li>
+<li>Compare no-click rate across different query types</li>
+</ul>
 <h2 id="3_quality_of_response_signals">3. Quality of Response Signals<a class="headerlink" href="#3_quality_of_response_signals" title="Permanent link">&para;</a></h2>
 <h3 id="31_relevance_scoring">3.1 Relevance Scoring<a class="headerlink" href="#31_relevance_scoring" title="Permanent link">&para;</a></h3>
 <h4 id="result_relevance_assessment">Result Relevance Assessment<a class="headerlink" href="#result_relevance_assessment" title="Permanent link">&para;</a></h4>
-<p><strong>Implicit Signals:</strong>
-These signals suggest relevance without explicit user feedback.</p>
+<p><strong>Implicit Signals:</strong></p>
+<p>These signals suggest relevance without explicit user feedback.</p>
 <ol>
 <li><strong>Long Clicks:</strong> User clicks and doesn't return for extended period</li>
 <li><strong>Last Click:</strong> Final click in search session (user stopped searching)</li>
 <li><strong>Click Position vs. Dwell Time:</strong> Lower-ranked results with high dwell time suggest they're more relevant than higher-ranked results</li>
 </ol>
-<p><strong>Scoring Model:</strong>
-Assign quality scores to each search result based on actions:</p>
+<p><strong>Scoring Model:</strong></p>
+<p>Assign quality scores to each search result based on actions:</p>
 <ul>
 <li>Click + No Return: +10 points (strong relevance)</li>
 <li>Click + Quick Return (&lt;10s): -5 points (irrelevant)</li>
@@ -2558,41 +2600,51 @@ Assign quality scores to each search result based on actions:</p>
 <li>Click + Long Dwell (&gt;30s) + No Return: +10 points (fully satisfied)</li>
 <li>No Click: 0 points (neutral, might be relevant but not compelling)</li>
 </ul>
-<p><strong>Aggregate Over Time:</strong>
-- Track scores per query-result pair
-- Calculate average relevance score
-- Identify consistently high-scoring and low-scoring results
-- Adjust ranking algorithm accordingly</p>
+<p><strong>Aggregate Over Time:</strong></p>
+<ul>
+<li>Track scores per query-result pair</li>
+<li>Calculate average relevance score</li>
+<li>Identify consistently high-scoring and low-scoring results</li>
+<li>Adjust ranking algorithm accordingly</li>
+</ul>
 <h3 id="32_result_diversity">3.2 Result Diversity<a class="headerlink" href="#32_result_diversity" title="Permanent link">&para;</a></h3>
 <h4 id="why_diversity_matters">Why Diversity Matters<a class="headerlink" href="#why_diversity_matters" title="Permanent link">&para;</a></h4>
-<p>When intent is unclear, diverse results hedge your bets. A search for "apple" could mean:
-- The fruit (informational)
-- Apple Inc. (navigational)
-- Apple recipes (informational/transactional)</p>
+<p>When intent is unclear, diverse results hedge your bets. A search for "apple" could mean:</p>
+<ul>
+<li>The fruit (informational)</li>
+<li>Apple Inc. (navigational)</li>
+<li>Apple recipes (informational/transactional)</li>
+</ul>
 <p><strong>Diversity Signals:</strong></p>
 <ol>
 <li><strong>Click Distribution:</strong> Are clicks spread across different result types?</li>
 <li><strong>Query Refinement Direction:</strong> Do users narrow or broaden?</li>
 <li><strong>Multi-Click Pattern:</strong> Do users click on different content types?</li>
 </ol>
-<p><strong>Measurement:</strong>
-- Content type diversity (posts, pages, products, media)
-- Topic diversity (different categories/tags)
-- Format diversity (articles, downloads, videos)</p>
-<p><strong>Optimization:</strong>
-For ambiguous queries, ensure top 10 results cover multiple interpretations. Track which interpretation gets most engagement, then emphasize that intent in future.</p>
+<p><strong>Measurement:</strong></p>
+<ul>
+<li>Content type diversity (posts, pages, products, media)</li>
+<li>Topic diversity (different categories/tags)</li>
+<li>Format diversity (articles, downloads, videos)</li>
+</ul>
+<p><strong>Optimization:</strong></p>
+<p>For ambiguous queries, ensure top 10 results cover multiple interpretations. Track which interpretation gets most engagement, then emphasize that intent in future.</p>
 <h3 id="33_satisfaction_metrics">3.3 Satisfaction Metrics<a class="headerlink" href="#33_satisfaction_metrics" title="Permanent link">&para;</a></h3>
 <h4 id="direct_satisfaction_signals">Direct Satisfaction Signals<a class="headerlink" href="#direct_satisfaction_signals" title="Permanent link">&para;</a></h4>
-<p><strong>Success Indicators:</strong>
-- User clicked a result and didn't return to search
-- Single query session (no refinement needed)
-- Long dwell time on clicked result
-- Conversion occurred after search</p>
-<p><strong>Failure Indicators:</strong>
-- Multiple query reformulations
-- Pogo-sticking (click, immediate return, repeat)
-- Zero-result queries
-- Session abandonment</p>
+<p><strong>Success Indicators:</strong></p>
+<ul>
+<li>User clicked a result and didn't return to search</li>
+<li>Single query session (no refinement needed)</li>
+<li>Long dwell time on clicked result</li>
+<li>Conversion occurred after search</li>
+</ul>
+<p><strong>Failure Indicators:</strong></p>
+<ul>
+<li>Multiple query reformulations</li>
+<li>Pogo-sticking (click, immediate return, repeat)</li>
+<li>Zero-result queries</li>
+<li>Session abandonment</li>
+</ul>
 <h4 id="aggregate_satisfaction_score">Aggregate Satisfaction Score<a class="headerlink" href="#aggregate_satisfaction_score" title="Permanent link">&para;</a></h4>
 <p><strong>Calculate per query type:</strong></p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Satisfaction Score = (Successful Sessions / Total Sessions) × 100
@@ -2603,181 +2655,240 @@ For ambiguous queries, ensure top 10 results cover multiple interpretations. Tra
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  - No return to search within 5 minutes
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>  - OR conversion event triggered
 </span></code></pre></div>
-<p><strong>Benchmarks:</strong>
-- Excellent: &gt;70% satisfaction
-- Good: 50-70% satisfaction
-- Needs Improvement: 30-50% satisfaction
-- Critical: &lt;30% satisfaction</p>
+<p><strong>Benchmarks:</strong></p>
+<ul>
+<li>Excellent: &gt;70% satisfaction</li>
+<li>Good: 50-70% satisfaction</li>
+<li>Needs Improvement: 30-50% satisfaction</li>
+<li>Critical: &lt;30% satisfaction</li>
+</ul>
 <h3 id="34_conversion_tracking">3.4 Conversion Tracking<a class="headerlink" href="#34_conversion_tracking" title="Permanent link">&para;</a></h3>
 <h4 id="search-to-conversion_path">Search-to-Conversion Path<a class="headerlink" href="#search-to-conversion_path" title="Permanent link">&para;</a></h4>
-<p><strong>Track conversions that follow search:</strong>
-- Purchase after product search
-- Newsletter signup after information search
-- Contact form submission after service search
-- Download after resource search</p>
-<p><strong>Conversion Attribution:</strong>
-- Direct: Conversion on clicked result
-- Assisted: Conversion after viewing multiple search results
-- Indirect: Conversion in same session but different page</p>
-<p><strong>Value Assignment:</strong>
-Queries that lead to conversions are more valuable. Assign value weights:
+<p><strong>Track conversions that follow search:</strong></p>
+<ul>
+<li>Purchase after product search</li>
+<li>Newsletter signup after information search</li>
+<li>Contact form submission after service search</li>
+<li>Download after resource search</li>
+</ul>
+<p><strong>Conversion Attribution:</strong></p>
+<ul>
+<li>Direct: Conversion on clicked result</li>
+<li>Assisted: Conversion after viewing multiple search results</li>
+<li>Indirect: Conversion in same session but different page</li>
+</ul>
+<p><strong>Value Assignment:</strong></p>
+<p>Queries that lead to conversions are more valuable. Assign value weights:
 - Direct conversion query: High value (prioritize optimization)
 - Assisted conversion query: Medium value
 - Informational query: Low value (but still important for user experience)</p>
-<p><strong>Optimization:</strong>
-For high-value queries, ensure:
-- Best results appear in top 3 positions
-- Result snippets are compelling and clear
-- Conversion path is obvious and easy</p>
+<p><strong>Optimization:</strong></p>
+<p>For high-value queries, ensure:</p>
+<ul>
+<li>Best results appear in top 3 positions</li>
+<li>Result snippets are compelling and clear</li>
+<li>Conversion path is obvious and easy</li>
+</ul>
 <h2 id="4_implementing_signal_collection_in_wordpress">4. Implementing Signal Collection in WordPress<a class="headerlink" href="#4_implementing_signal_collection_in_wordpress" title="Permanent link">&para;</a></h2>
 <h3 id="data_collection_strategy">Data Collection Strategy<a class="headerlink" href="#data_collection_strategy" title="Permanent link">&para;</a></h3>
 <h4 id="what_to_track_minimum_viable_setup">What to Track (Minimum Viable Setup)<a class="headerlink" href="#what_to_track_minimum_viable_setup" title="Permanent link">&para;</a></h4>
-<p><strong>Search Event:</strong>
-- Query text
-- User ID (if logged in) or session ID
-- Timestamp
-- Number of results returned
-- User's intent category (if detectable)</p>
-<p><strong>Click Event:</strong>
-- Query text
-- Result ID (post/page/product)
-- Result position in search results
-- Timestamp
-- Session ID</p>
-<p><strong>Engagement Event:</strong>
-- Session ID
-- Time on page
-- Return to search (yes/no)
-- Subsequent action (another search, conversion, exit)</p>
+<p><strong>Search Event:</strong></p>
+<ul>
+<li>Query text</li>
+<li>User ID (if logged in) or session ID</li>
+<li>Timestamp</li>
+<li>Number of results returned</li>
+<li>User's intent category (if detectable)</li>
+</ul>
+<p><strong>Click Event:</strong></p>
+<ul>
+<li>Query text</li>
+<li>Result ID (post/page/product)</li>
+<li>Result position in search results</li>
+<li>Timestamp</li>
+<li>Session ID</li>
+</ul>
+<p><strong>Engagement Event:</strong></p>
+<ul>
+<li>Session ID</li>
+<li>Time on page</li>
+<li>Return to search (yes/no)</li>
+<li>Subsequent action (another search, conversion, exit)</li>
+</ul>
 <h4 id="database_design">Database Design<a class="headerlink" href="#database_design" title="Permanent link">&para;</a></h4>
 <p><strong>Custom Table Structure:</strong></p>
-<p><strong>wp_search_logs:</strong>
-- id (auto increment)
-- session_id (varchar)
-- user_id (bigint, nullable)
-- query (text)
-- num_results (int)
-- intent_type (varchar: navigational/informational/transactional/unknown)
-- timestamp (datetime)</p>
-<p><strong>wp_search_clicks:</strong>
-- id (auto increment)
-- search_log_id (foreign key to wp_search_logs)
-- result_id (bigint - post ID)
-- result_position (int)
-- timestamp (datetime)
-- dwell_time (int - seconds, updated on return or session end)
-- converted (boolean - did user convert?)</p>
-<p><strong>wp_search_quality:</strong>
-- id (auto increment)
-- query (text, indexed)
-- result_id (bigint)
-- relevance_score (float)
-- click_count (int)
-- avg_dwell_time (float)
-- last_updated (datetime)</p>
+<p><strong>wp_search_logs:</strong></p>
+<ul>
+<li>id (auto increment)</li>
+<li>session_id (varchar)</li>
+<li>user_id (bigint, nullable)</li>
+<li>query (text)</li>
+<li>num_results (int)</li>
+<li>intent_type (varchar: navigational/informational/transactional/unknown)</li>
+<li>timestamp (datetime)</li>
+</ul>
+<p><strong>wp_search_clicks:</strong></p>
+<ul>
+<li>id (auto increment)</li>
+<li>search_log_id (foreign key to wp_search_logs)</li>
+<li>result_id (bigint - post ID)</li>
+<li>result_position (int)</li>
+<li>timestamp (datetime)</li>
+<li>dwell_time (int - seconds, updated on return or session end)</li>
+<li>converted (boolean - did user convert?)</li>
+</ul>
+<p><strong>wp_search_quality:</strong></p>
+<ul>
+<li>id (auto increment)</li>
+<li>query (text, indexed)</li>
+<li>result_id (bigint)</li>
+<li>relevance_score (float)</li>
+<li>click_count (int)</li>
+<li>avg_dwell_time (float)</li>
+<li>last_updated (datetime)</li>
+</ul>
 <h3 id="privacy_considerations">Privacy Considerations<a class="headerlink" href="#privacy_considerations" title="Permanent link">&para;</a></h3>
-<p><strong>GDPR Compliance:</strong>
-- Store session IDs instead of personally identifiable information when possible
-- Provide opt-out mechanism for search tracking
-- Auto-delete logs older than retention period (e.g., 90 days)
-- Anonymize data after 30 days if possible
-- Include search data in data export requests
-- Delete user's search data upon account deletion</p>
-<p><strong>Best Practices:</strong>
-- Don't store sensitive search queries (passwords, credit cards, etc.)
-- Hash or encrypt query text for security
-- Aggregate data for analysis, delete raw logs regularly
-- Be transparent about tracking in privacy policy</p>
-<hr />
+<p><strong>GDPR Compliance:</strong></p>
+<ul>
+<li>Store session IDs instead of personally identifiable information when possible</li>
+<li>Provide opt-out mechanism for search tracking</li>
+<li>Auto-delete logs older than retention period (e.g., 90 days)</li>
+<li>Anonymize data after 30 days if possible</li>
+<li>Include search data in data export requests</li>
+<li>Delete user's search data upon account deletion</li>
+</ul>
+<p><strong>Best Practices:</strong></p>
+<ul>
+<li>Don't store sensitive search queries (passwords, credit cards, etc.)</li>
+<li>Hash or encrypt query text for security</li>
+<li>Aggregate data for analysis, delete raw logs regularly</li>
+<li>Be transparent about tracking in privacy policy</li>
+</ul>
 <h2 id="5_analysis_and_optimization_workflow">5. Analysis and Optimization Workflow<a class="headerlink" href="#5_analysis_and_optimization_workflow" title="Permanent link">&para;</a></h2>
 <h3 id="weekly_analysis_routine">Weekly Analysis Routine<a class="headerlink" href="#weekly_analysis_routine" title="Permanent link">&para;</a></h3>
 <h4 id="1_identify_problem_queries">1. Identify Problem Queries<a class="headerlink" href="#1_identify_problem_queries" title="Permanent link">&para;</a></h4>
-<p><strong>Queries with Low Satisfaction:</strong>
-- Filter queries with &lt;30% satisfaction score
-- Analyze why users aren't finding what they need
-- Improve content or adjust ranking</p>
-<p><strong>Zero-Result Queries:</strong>
-- List all queries returning no results
-- Identify patterns (missing content topics, synonym issues)
-- Create content or improve synonym matching</p>
-<p><strong>High-Abandonment Queries:</strong>
-- Queries where users leave without clicking
-- Review result quality and relevance
-- Adjust ranking or result presentation</p>
+<p><strong>Queries with Low Satisfaction:</strong></p>
+<ul>
+<li>Filter queries with &lt;30% satisfaction score</li>
+<li>Analyze why users aren't finding what they need</li>
+<li>Improve content or adjust ranking</li>
+</ul>
+<p><strong>Zero-Result Queries:</strong></p>
+<ul>
+<li>List all queries returning no results</li>
+<li>Identify patterns (missing content topics, synonym issues)</li>
+<li>Create content or improve synonym matching</li>
+</ul>
+<p><strong>High-Abandonment Queries:</strong></p>
+<ul>
+<li>Queries where users leave without clicking</li>
+<li>Review result quality and relevance</li>
+<li>Adjust ranking or result presentation</li>
+</ul>
 <h4 id="2_discover_opportunities">2. Discover Opportunities<a class="headerlink" href="#2_discover_opportunities" title="Permanent link">&para;</a></h4>
-<p><strong>High-Volume Queries:</strong>
-- Identify most common searches
-- Ensure these have excellent results
-- Consider creating dedicated content</p>
-<p><strong>Conversion-Driving Queries:</strong>
-- Find queries that lead to conversions
-- Optimize these heavily
-- Consider featuring results prominently</p>
-<p><strong>Emerging Trends:</strong>
-- Identify queries increasing in frequency
-- Create content proactively
-- Adjust search algorithm for new patterns</p>
+<p><strong>High-Volume Queries:</strong></p>
+<ul>
+<li>Identify most common searches</li>
+<li>Ensure these have excellent results</li>
+<li>Consider creating dedicated content</li>
+</ul>
+<p><strong>Conversion-Driving Queries:</strong></p>
+<ul>
+<li>Find queries that lead to conversions</li>
+<li>Optimize these heavily</li>
+<li>Consider featuring results prominently</li>
+</ul>
+<p><strong>Emerging Trends:</strong></p>
+<ul>
+<li>Identify queries increasing in frequency</li>
+<li>Create content proactively</li>
+<li>Adjust search algorithm for new patterns</li>
+</ul>
 <h4 id="3_ab_testing">3. A/B Testing<a class="headerlink" href="#3_ab_testing" title="Permanent link">&para;</a></h4>
-<p><strong>Test Variables:</strong>
-- Ranking algorithm changes
-- Result presentation (snippets, formatting)
-- Intent detection methods
-- Number of results per page</p>
-<p><strong>Measurement:</strong>
-- Compare satisfaction scores
-- Track click-through rates
-- Monitor conversion rates
-- Measure time-to-success</p>
+<p><strong>Test Variables:</strong></p>
+<ul>
+<li>Ranking algorithm changes</li>
+<li>Result presentation (snippets, formatting)</li>
+<li>Intent detection methods</li>
+<li>Number of results per page</li>
+</ul>
+<p><strong>Measurement:</strong></p>
+<ul>
+<li>Compare satisfaction scores</li>
+<li>Track click-through rates</li>
+<li>Monitor conversion rates</li>
+<li>Measure time-to-success</li>
+</ul>
 <h3 id="monthly_deep_dive">Monthly Deep Dive<a class="headerlink" href="#monthly_deep_dive" title="Permanent link">&para;</a></h3>
-<p><strong>Intent Analysis:</strong>
-- Review intent classification accuracy
-- Analyze queries misclassified
-- Update intent detection rules</p>
-<p><strong>Algorithm Performance:</strong>
-- Compare relevance scores over time
-- Identify ranking improvements or degradations
-- Review user feedback (if collected)</p>
-<p><strong>Content Gaps:</strong>
-- Identify topics users search for but you lack content
-- Prioritize content creation
-- Consider partner content or external resources</p>
+<p><strong>Intent Analysis:</strong></p>
+<ul>
+<li>Review intent classification accuracy</li>
+<li>Analyze queries misclassified</li>
+<li>Update intent detection rules</li>
+</ul>
+<p><strong>Algorithm Performance:</strong></p>
+<ul>
+<li>Compare relevance scores over time</li>
+<li>Identify ranking improvements or degradations</li>
+<li>Review user feedback (if collected)</li>
+</ul>
+<p><strong>Content Gaps:</strong></p>
+<ul>
+<li>Identify topics users search for but you lack content</li>
+<li>Prioritize content creation</li>
+<li>Consider partner content or external resources</li>
+</ul>
 <h2 id="6_advanced_signal_analysis">6. Advanced Signal Analysis<a class="headerlink" href="#6_advanced_signal_analysis" title="Permanent link">&para;</a></h2>
 <h3 id="machine_learning_opportunities">Machine Learning Opportunities<a class="headerlink" href="#machine_learning_opportunities" title="Permanent link">&para;</a></h3>
 <h4 id="automated_intent_detection">Automated Intent Detection<a class="headerlink" href="#automated_intent_detection" title="Permanent link">&para;</a></h4>
-<p><strong>Training Data:</strong>
-- Historical queries with known outcomes
-- Manual labeling of query intent
-- Click patterns as intent indicators</p>
-<p><strong>Model Approach:</strong>
-- Text classification model
-- Features: query text, user history, time of day, session context
-- Output: intent category + confidence score</p>
+<p><strong>Training Data:</strong></p>
+<ul>
+<li>Historical queries with known outcomes</li>
+<li>Manual labeling of query intent</li>
+<li>Click patterns as intent indicators</li>
+</ul>
+<p><strong>Model Approach:</strong></p>
+<ul>
+<li>Text classification model</li>
+<li>Features: query text, user history, time of day, session context</li>
+<li>Output: intent category + confidence score</li>
+</ul>
 <h4 id="learning_to_rank">Learning to Rank<a class="headerlink" href="#learning_to_rank" title="Permanent link">&para;</a></h4>
-<p><strong>Signals for Ranking Model:</strong>
-- Historical click-through rates
-- Dwell time patterns
-- User feedback (if available)
-- Content metadata (freshness, authority, completeness)</p>
-<p><strong>Training:</strong>
-- Use successful searches as positive examples
-- Use failed searches as negative examples
-- Continuously update model with new data</p>
+<p><strong>Signals for Ranking Model:</strong></p>
+<ul>
+<li>Historical click-through rates</li>
+<li>Dwell time patterns</li>
+<li>User feedback (if available)</li>
+<li>Content metadata (freshness, authority, completeness)</li>
+</ul>
+<p><strong>Training:</strong></p>
+<ul>
+<li>Use successful searches as positive examples</li>
+<li>Use failed searches as negative examples</li>
+<li>Continuously update model with new data</li>
+</ul>
 <h3 id="personalization_signals">Personalization Signals<a class="headerlink" href="#personalization_signals" title="Permanent link">&para;</a></h3>
-<p><strong>User History:</strong>
-- Previous successful searches
-- Content categories engaged with
-- Conversion history
-- Search time patterns</p>
-<p><strong>Contextual Signals:</strong>
-- Device type (mobile users might have different intent)
-- Time of day (research vs. quick answers)
-- Geographic location (if relevant)
-- Referral source</p>
-<p><strong>Implementation Considerations:</strong>
-- Balance personalization with privacy
-- Provide non-personalized option
-- Avoid filter bubbles
-- Test personalization impact on satisfaction</p>
+<p><strong>User History:</strong></p>
+<ul>
+<li>Previous successful searches</li>
+<li>Content categories engaged with</li>
+<li>Conversion history</li>
+<li>Search time patterns</li>
+</ul>
+<p><strong>Contextual Signals:</strong></p>
+<ul>
+<li>Device type (mobile users might have different intent)</li>
+<li>Time of day (research vs. quick answers)</li>
+<li>Geographic location (if relevant)</li>
+<li>Referral source</li>
+</ul>
+<p><strong>Implementation Considerations:</strong></p>
+<ul>
+<li>Balance personalization with privacy</li>
+<li>Provide non-personalized option</li>
+<li>Avoid filter bubbles</li>
+<li>Test personalization impact on satisfaction</li>
+</ul>
 <h2 id="7_common_pitfalls_and_solutions">7. Common Pitfalls and Solutions<a class="headerlink" href="#7_common_pitfalls_and_solutions" title="Permanent link">&para;</a></h2>
 <h3 id="pitfall_1_over-optimizing_for_click-through_rate">Pitfall 1: Over-Optimizing for Click-Through Rate<a class="headerlink" href="#pitfall_1_over-optimizing_for_click-through_rate" title="Permanent link">&para;</a></h3>
 <p><strong>Problem:</strong> High CTR doesn't always mean good search quality. Users might click irrelevant results due to misleading titles.</p>
@@ -2804,12 +2915,14 @@ For high-value queries, ensure:
 <li><strong>Privacy Matters:</strong> Collect data responsibly and transparently</li>
 </ol>
 <h3 id="success_metrics">Success Metrics<a class="headerlink" href="#success_metrics" title="Permanent link">&para;</a></h3>
-<p>Track these over time to measure improvement:
-- Average satisfaction score (target: &gt;70%)
-- Zero-result query rate (target: &lt;5%)
-- Conversion rate from search (track improvement)
-- Average time-to-success (track reduction)
-- Search abandonment rate (target: &lt;20%)</p>
+<p>Track these over time to measure improvement:</p>
+<ul>
+<li>Average satisfaction score (target: &gt;70%)</li>
+<li>Zero-result query rate (target: &lt;5%)</li>
+<li>Conversion rate from search (track improvement)</li>
+<li>Average time-to-success (track reduction)</li>
+<li>Search abandonment rate (target: &lt;20%)</li>
+</ul>
 <h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
 <p>Search signals transform your WordPress search from a basic keyword matcher into an intelligent system that learns from user behavior. By tracking intent, actions, and quality metrics, you create a feedback loop that continuously improves the search experience.</p>
 <p>Remember: The goal isn't perfect search results immediately, but rather a system that gets better every week by learning from real user behavior. Start simple, measure consistently, and iterate based on what the data tells you.</p>

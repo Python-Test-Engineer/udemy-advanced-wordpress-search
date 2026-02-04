@@ -1,9 +1,6 @@
 # Inverse Document Frequency (IDF)
 
-
-
 ![idf](../images/fts/idf2.png)
-
 
 **IDF** measures how rare or unique a term is across a collection of documents. It's the "inverted" part of TF-IDF (Term Frequency-Inverse Document Frequency).
 
@@ -65,6 +62,7 @@ The formula for Inverse Document Frequency (IDF) is:
 **IDF(t) = log(N / df_t)**
 
 Where:
+
 - **N** = total number of documents in the corpus
 - **df_t** = number of documents containing term t
 - **log** = logarithm (typically natural log or log base 10)
@@ -72,16 +70,19 @@ Where:
 **Common variations:**
 
 1. **Smoothed IDF** (most common in practice):
+
    ```
    IDF(t) = log(N / df_t) + 1
    ```
 
 2. **IDF with smoothing to avoid division by zero**:
+
    ```
    IDF(t) = log((N + 1) / (df_t + 1)) + 1
    ```
 
 3. **Probabilistic IDF**:
+
    ```
    IDF(t) = log((N - df_t) / df_t)
    ```
@@ -118,12 +119,14 @@ Imagine a collection of **1,000 documents**:
 
 ### 1. It filters out noise
 
-Common words don’t help distinguish one document from another.  
+Common words don’t help distinguish one document from another. 
+
 IDF ensures they don’t dominate search results.
 
 ### 2. It highlights meaningful terms
 
 Rare terms often carry the *actual* meaning of a query.  
+
 IDF boosts these so search engines can rank documents more intelligently.
 
 ### 3. It improves relevance
@@ -147,6 +150,7 @@ Even though we now have embeddings, transformers, and semantic search, IDF still
 ## Putting It All Together
 
 IDF is essentially a *discriminator*:  
+
 It helps a search engine decide which words actually help identify the right documents.
 
 - **Common words → low IDF → low importance**  

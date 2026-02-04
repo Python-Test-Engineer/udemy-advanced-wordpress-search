@@ -2058,40 +2058,53 @@
 </span></code></pre></div>
 <p><strong>What it does:</strong> Measures how rare or common a word is across all documents.</p>
 <p><strong>Why it matters:</strong> Rare words are more informative. If you search for "php tutorial" the word "php" is more valuable than "the" or "a".</p>
-<p><strong>How it works:</strong>
-- Words appearing in few documents get high IDF scores (more valuable)
-- Words appearing in many documents get low IDF scores (less valuable)</p>
-<p><strong>Simple formula:</strong>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>IDF(qi) = log((N - n(qi) + 0.5) / (n(qi) + 0.5))
+<p><strong>How it works:</strong></p>
+<ul>
+<li>Words appearing in few documents get high IDF scores (more valuable)</li>
+<li>Words appearing in many documents get low IDF scores (less valuable)</li>
+</ul>
+<p><strong>Simple formula:</strong></p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>IDF(qi) = log((N - n(qi) + 0.5) / (n(qi) + 0.5))
 </span></code></pre></div>
 Where N = total documents, n(qi) = documents containing the term</p>
 <h3 id="component_2_term_frequency_with_saturation">Component 2: Term Frequency with Saturation<a class="headerlink" href="#component_2_term_frequency_with_saturation" title="Permanent link">&para;</a></h3>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>(f(qi, D) × (k1 + 1)) / (f(qi, D) + k1)
 </span></code></pre></div>
 <p><strong>What it does:</strong> Measures how often a term appears in the document, with diminishing returns.</p>
-<p><strong>Why it matters:</strong> A word appearing 5 times is more relevant than appearing once. But appearing 100 times isn't 100× more relevant than once—there's a saturation point.</p>
-<p><strong>The k1 parameter</strong> (typically 1.2 to 2.0):
-- Higher k1 = term frequency matters more
-- Lower k1 = faster saturation (repetition matters less)</p>
-<p><strong>Example with k1 = 1.2:</strong>
-- Term appears 1 time: score ≈ 0.55
-- Term appears 2 times: score ≈ 0.73
-- Term appears 5 times: score ≈ 0.89
-- Term appears 100 times: score ≈ 0.99</p>
+<p><strong>Why it matters:</strong> </p>
+<p>A word appearing 5 times is more relevant than appearing once. But appearing 100 times isn't 100× more relevant than once—there's a saturation point.</p>
+<p><strong>The k1 parameter</strong> (typically 1.2 to 2.0):</p>
+<ul>
+<li>Higher k1 = term frequency matters more</li>
+<li>Lower k1 = faster saturation (repetition matters less)</li>
+</ul>
+<p><strong>Example with k1 = 1.2:</strong></p>
+<ul>
+<li>Term appears 1 time: score ≈ 0.55</li>
+<li>Term appears 2 times: score ≈ 0.73</li>
+<li>Term appears 5 times: score ≈ 0.89</li>
+<li>Term appears 100 times: score ≈ 0.99</li>
+</ul>
 <p>Notice how the score increases but never exceeds 1.0, and improvements get smaller.</p>
 <h3 id="component_3_document_length_normalization">Component 3: Document Length Normalization<a class="headerlink" href="#component_3_document_length_normalization" title="Permanent link">&para;</a></h3>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>1 - b + b × (|D| / avgdl)
 </span></code></pre></div>
-<p><strong>What it does:</strong> Adjusts scores based on document length.</p>
-<p><strong>Why it matters:</strong> Longer documents naturally contain more words, so they might match query terms more often just by being longer, not by being more relevant.</p>
-<p><strong>The b parameter</strong> (typically 0.75):
-- b = 0: Document length doesn't matter at all
-- b = 1: Full length normalization (strongly penalizes long documents)
-- b = 0.75: Balanced approach (standard)</p>
-<p><strong>How it works:</strong>
-- If |D| = avgdl (document is average length): factor = 1 (no adjustment)
-- If |D| &gt; avgdl (document is longer): factor &gt; 1 (slight penalty)
-- If |D| &lt; avgdl (document is shorter): factor &lt; 1 (slight boost)</p>
+<p><strong>What it does:</strong> </p>
+<p>Adjusts scores based on document length.</p>
+<p><strong>Why it matters:</strong> </p>
+<p>Longer documents naturally contain more words, so they might match query terms more often just by being longer, not by being more relevant.</p>
+<p><strong>The b parameter</strong> (typically 0.75):</p>
+<ul>
+<li>b = 0: Document length doesn't matter at all</li>
+<li>b = 1: Full length normalization (strongly penalizes long documents)</li>
+<li>b = 0.75: Balanced approach (standard)</li>
+</ul>
+<p><strong>How it works:</strong></p>
+<ul>
+<li>If |D| = avgdl (document is average length): factor = 1 (no adjustment)</li>
+<li>If |D| &gt; avgdl (document is longer): factor &gt; 1 (slight penalty)</li>
+<li>If |D| &lt; avgdl (document is shorter): factor &lt; 1 (slight boost)</li>
+</ul>
 <h2 id="putting_it_all_together">Putting It All Together<a class="headerlink" href="#putting_it_all_together" title="Permanent link">&para;</a></h2>
 <p>Let's walk through a complete example.</p>
 <p><strong>Search Query:</strong> "php tutorial"</p>
@@ -2114,15 +2127,17 @@ Where N = total documents, n(qi) = documents containing the term</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>2.5 × 1.69 / 0.925 ≈ 4.57
 </span></code></pre></div></p>
 <h3 id="step_2_calculate_for_tutorial">Step 2: Calculate for "tutorial"<a class="headerlink" href="#step_2_calculate_for_tutorial" title="Permanent link">&para;</a></h3>
-<p>Assume:
-- f("tutorial", D) = 1
-- IDF("tutorial") = 3.0 (rarer)</p>
-<p><strong>Term frequency component:</strong>
+<p>Assume:</p>
+<ul>
+<li>f("tutorial", D) = 1</li>
+<li>IDF("tutorial") = 3.0 (rarer)</li>
+</ul>
+<p><strong>Term frequency component:</strong></p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>(1 × 2.2) / (1 + 1.2) = 2.2 / 2.2 = 1.0
-</span></code></pre></div></p>
-<p><strong>Combined for "tutorial":</strong>
+</span></code></pre></div>
+<p><strong>Combined for "tutorial":</strong></p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>3.0 × 1.0 / 0.925 ≈ 3.24
-</span></code></pre></div></p>
+</span></code></pre></div>
 <h3 id="step_3_sum_everything">Step 3: Sum Everything<a class="headerlink" href="#step_3_sum_everything" title="Permanent link">&para;</a></h3>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>BM25 score = 4.57 + 3.24 = 7.81
 </span></code></pre></div>

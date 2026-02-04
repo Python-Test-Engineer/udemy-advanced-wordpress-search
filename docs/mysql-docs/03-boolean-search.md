@@ -2,7 +2,7 @@
 
 MySQL can perform boolean full-text searches using the IN BOOLEAN MODE modifier. With this modifier, certain characters have special meaning at the beginning or end of words in the search string. In the following query, the + and - operators indicate that a word must be present or absent, respectively, for a match to occur. Thus, the query retrieves all the rows that contain the word “MySQL” but that do not contain the word “YourSQL”:
 
-```
+```sql
 SELECT * FROM articles WHERE MATCH (title,body)
 AGAINST ('+MySQL -YourSQL' IN BOOLEAN MODE);
 ```
@@ -238,6 +238,7 @@ Note
 You may notice a slight difference in the ranking values returned by the SELECT ... MATCH ... AGAINST statement and the MySQL command-line client (1.0886961221694946 versus 1.088696164686938). The difference is due to how the casts between integers and floats/doubles are performed internally by InnoDB (along with related precision and rounding decisions), and how they are performed elsewhere, such as in the MySQL command-line client or other types of calculators.
 
 ## Relevancy Ranking for a Multiple Word Search
+
 This example demonstrates the relevancy ranking calculation for a multiple-word full-text search based on the articles table and data used in the previous example.
 
 If you search on more than one word, the relevancy ranking value is a sum of the relevancy ranking value for each word, as shown in this formula:

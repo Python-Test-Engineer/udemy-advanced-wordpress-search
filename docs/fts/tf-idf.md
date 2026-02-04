@@ -32,9 +32,8 @@ Imagine you're looking for books about **"cats"** in a library:
 - AND recognizes "cat" is a MEANINGFUL word (IDF)
 - Ignores useless words like "the" automatically! 
 
-
-
 ## How It Works - The Formula
+
 
 ```
 TF-IDF = TF × IDF
@@ -45,9 +44,8 @@ IDF = log(Total documents / Documents containing word)
 ```
 
 **In Plain English:**
-> TF-IDF gives HIGH scores to words that appear FREQUENTLY in a specific document but RARELY across all documents.
 
----
+> TF-IDF gives HIGH scores to words that appear FREQUENTLY in a specific document but RARELY across all documents.
 
 ## Step-by-Step Example
 
@@ -59,8 +57,6 @@ Let's search for **"python programming"** across 4 documents:
 2. "The weather is nice today. The sun is shining."
 3. "Programming is fun. I enjoy coding every day."
 4. "Python snakes are dangerous reptiles in the wild."
-
----
 
 ### Calculate for word: "python"
 
@@ -86,8 +82,6 @@ Let's search for **"python programming"** across 4 documents:
 
 **Winner:** Doc 1! It's about Python programming! 🏆
 
----
-
 ### Calculate for word: "the"
 
 **Step 1: TF for each document**
@@ -111,8 +105,6 @@ Let's search for **"python programming"** across 4 documents:
 
 **Result:** Even though "the" appears in Doc 2, its TF-IDF score is LOW because "the" is common!
 
----
-
 ## Visual Comparison
 
 ```
@@ -134,8 +126,6 @@ Document C: "I like machine. The machine is old."
 └─ TF-IDF: MEDIUM ████ ← SOMEWHAT RELEVANT (wrong context!)
 ```
 
----
-
 ## Real-World Example: Google Search
 
 **You search:** "electric car battery"
@@ -150,11 +140,10 @@ Document C: "I like machine. The machine is old."
 | Random News Article | "the" (100×), "is" (50×), "and" (40×) | **0.1** | #999 ❌ |
 
 **Why Tesla wins:**
+
 - ✅ All three search terms appear FREQUENTLY (high TF)
 - ✅ All three terms are MEANINGFUL (medium/high IDF)
 - ✅ TF-IDF = Perfect balance!
-
----
 
 ## The Magic Formula Breakdown
 
@@ -170,8 +159,6 @@ Document C: "I like machine. The machine is old."
 2. Word is super common like "the" (IDF ≈ 0)
 3. Either one being zero = final score is zero!
 
----
-
 ## Key Insights
 
 **TF-IDF automatically filters out:**
@@ -186,8 +173,6 @@ Document C: "I like machine. The machine is old."
 - ✅ Documents where key terms appear frequently
 - ✅ Relevant, high-quality search results
 
----
-
 ## Comparison Table
 
 | Metric | What It Does | Problem It Has | TF-IDF Solution |
@@ -195,8 +180,6 @@ Document C: "I like machine. The machine is old."
 | **TF only** | Counts word frequency in doc | Common words get high scores | Multiplies by IDF to penalize common words |
 | **IDF only** | Identifies rare words | Doesn't know which docs have them | Multiplies by TF to find where they appear |
 | **TF-IDF** | Combines both! | ✅ Solves both problems | Perfect balance! |
-
----
 
 ## Why Search Engines Love TF-IDF
 
@@ -212,11 +195,10 @@ Document C: "I like machine. The machine is old."
 - Keyword stuffing doesn't help (IDF stays same)
 - Actual relevant content wins! 
 
----
-
 ## Quick Summary
 
 **Remember the Formula:**
+
 ```
 TF-IDF = TF × IDF
        = (How often word appears in THIS doc) 
@@ -231,7 +213,6 @@ TF-IDF = TF × IDF
 3. Low TF + High IDF = **Rare word but not in this doc**
 4. Low TF + Low IDF = **Not relevant at all**
 
----
 
 ## Think About It
 

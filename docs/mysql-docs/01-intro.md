@@ -112,6 +112,7 @@ Before you can use full-text search, you need to create a special type of index 
 ### Supported Column Types
 
 Full-text indexes work only with text columns:
+
 - **CHAR** - Fixed-length strings
 - **VARCHAR** - Variable-length strings (most common)
 - **TEXT** - Large text fields
@@ -119,6 +120,7 @@ Full-text indexes work only with text columns:
 ### Creating a FULLTEXT Index
 
 **Option 1: During table creation**
+
 ```sql
 CREATE TABLE articles (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -130,6 +132,7 @@ CREATE TABLE articles (
 ```
 
 **Option 2: Add to existing table**
+
 ```sql
 -- Using ALTER TABLE
 ALTER TABLE articles 
@@ -188,8 +191,6 @@ MySQL offers three different ways to perform full-text searches, each with its o
 └──────────────────┴─────────────────────────────────────────────┘
 ```
 
----
-
 ### Mode 1: Natural Language Search (Default)
 
 This is the simplest and most common mode. It treats your search string as plain text, just like you'd type into Google.
@@ -216,12 +217,14 @@ WHERE MATCH(title, content) AGAINST('machine learning' IN NATURAL LANGUAGE MODE)
 ```
 
 **Features:**
+
 - Double quotes create phrase searches: `"machine learning"` finds that exact phrase
 - Stopwords (common words like "the", "a", "is") are automatically ignored
 - Results are automatically ranked by relevance
 - Simple and user-friendly
 
 **Example Use Case:**
+
 ```sql
 -- Find articles about Python programming
 SELECT title, content, 
@@ -232,13 +235,12 @@ ORDER BY relevance DESC
 LIMIT 10;
 ```
 
----
-
 ### Mode 2: Boolean Search
 
 Boolean mode gives you precise control using special operators. It's like using advanced search filters.
 
 **Syntax:**
+
 ```sql
 SELECT * FROM articles 
 WHERE MATCH(title, content) 
@@ -280,6 +282,7 @@ AGAINST('"machine learning" >Python' IN BOOLEAN MODE)
 ```
 
 **When to use Boolean mode:**
+
 - Advanced search interfaces
 - When users need precise control
 - Filtering out unwanted content
@@ -292,6 +295,7 @@ AGAINST('"machine learning" >Python' IN BOOLEAN MODE)
 Query expansion is like having MySQL help you find related content. It performs the search twice, using results from the first search to improve the second.
 
 **How it works:**
+
 ```
 Step 1: Search for "SQL"
         ↓
@@ -306,6 +310,7 @@ Step 3: Searches again with expanded terms
 ```
 
 **Syntax:**
+
 ```sql
 -- Both of these work:
 SELECT * FROM articles 
@@ -527,6 +532,8 @@ GROUP BY category WITH ROLLUP;
 ### Stopwords
 
 Common words (called "stopwords") are ignored in searches:
+
+
 - Examples: "the", "a", "an", "is", "at", "which"
 - These are filtered out automatically to improve performance
 - You can customize the stopword list if needed

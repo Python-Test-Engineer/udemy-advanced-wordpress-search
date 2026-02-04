@@ -155,24 +155,29 @@ ORDER BY score DESC;
 ```
 
 **Why these scores?**
+
 ```
 Article 1: "MySQL Database Tutorial"
+
   • "mysql" in title (high weight) ████████
   • "database" in title (high weight) ████████
   • Both terms in body ██████
   Total: 3.45 ⭐⭐⭐⭐⭐
 
 Article 4: "MySQL Performance Tips"
+
   • "mysql" in title ████████
   • "database" in body only ████
   Total: 2.10 ⭐⭐⭐⭐
 
 Article 2: "PostgreSQL vs MySQL"
+
   • "mysql" in title ████████
   • "database" in body (implied) ██
   Total: 1.75 ⭐⭐⭐
 
 Article 5: "Database Design Principles"
+
   • "database" in title ████
   • No "mysql" mention
   Total: 0.85 ⭐⭐
@@ -185,6 +190,7 @@ Article 5: "Database Design Principles"
 Gives you **precise control** with special operators!
 
 **Key Features:**
+
 - ✅ Use operators: `+` (must have), `-` (must not have), `*` (wildcard)
 - ✅ Use quotes `""` for exact phrases
 - ✅ Combine multiple conditions
@@ -233,6 +239,7 @@ Query: "+database -oracle"
        (MUST have database, MUST NOT have oracle)
 
 Document Analysis:
+
   📄 Doc 1: "MySQL Database Tutorial"
      database ✓ | oracle ✗ → MATCH! ✅
   
@@ -250,6 +257,7 @@ Query: '"machine learning"'
        (Exact phrase, words must be adjacent)
 
 Document Analysis:
+
   📄 Doc 1: "machine learning algorithms"
      "machine learning" ✓ → MATCH! ✅
   
@@ -267,6 +275,7 @@ Query: "develop*"
        (Matches: develop, developer, development, developing)
 
 Document Analysis:
+
   📄 Doc 1: "web development tutorial"
      develop* ✓ (development) → MATCH! ✅
   
@@ -300,6 +309,7 @@ AGAINST('+beginner +(mysql postgresql) -oracle tutorial*' IN BOOLEAN MODE);
 └─────────────────────────────────────────────── ──┘
 
 Documents:
+
   📄 "MySQL Tutorial for Beginners"
      beginner ✓ | mysql ✓ | oracle ✗ | tutorial ✓
      Result: MATCH! ✅⭐⭐⭐⭐⭐
@@ -352,6 +362,7 @@ AGAINST('+python +(django flask) +remote -junior' IN BOOLEAN MODE);
 Performs a **two-pass search** to find related content!
 
 **Key Features:**
+
 - ✅ First search finds most relevant documents
 - ✅ Extracts common terms from those results
 - ✅ Second search uses expanded term list
@@ -421,6 +432,7 @@ LIMIT 20;
 **Pass 1 - Find Top Matches:**
 ```
 Top 5 Documents Found:
+
 ┌───────────────────────────────────────┐
 │ 1. User Authentication Methods        │
 │ 2. OAuth 2.0 Implementation Guide     │
@@ -433,6 +445,7 @@ Top 5 Documents Found:
 **Analysis - Extract Common Terms:**
 ```
 Words frequently appearing with "authentication":
+
 ┌─────────────────────────────────────────┐
 │ • authentication (original)             │
 │ • oauth                                 │
@@ -450,6 +463,7 @@ Words frequently appearing with "authentication":
 **Pass 2 - Search with Expanded Terms:**
 ```
 Additional Documents Found:
+
 ┌───────────────────────────────────────┐
 │ 6. Login Security Best Practices      │
 │ 7. Password Hashing Algorithms        │
@@ -501,6 +515,7 @@ LIMIT 10;
 
 ```
 ✅ GOOD USE CASES:
+
   • Exploratory research
   • When you're not sure of exact terms
   • Finding related content
@@ -509,6 +524,7 @@ LIMIT 10;
   • Learning about new topics
 
 ❌ AVOID WHEN:
+
   • You need exact matches
   • Precision is critical
   • Results are already good
@@ -577,6 +593,7 @@ LIMIT 20 OFFSET 40;  -- Page 3 (20 results per page)
 ```
 
 **Visual:**
+
 ```
 Results 41-60 of 245 total matches
 ┌────┬───────────────────────────┬───────┐
@@ -607,6 +624,7 @@ ORDER BY publish_date DESC;
 ```
 
 **Logic Flow:**
+
 ```
 ┌─────────────────────────────────────────────────┐
 │  STEP 1: Full-Text Filter                      │
@@ -669,6 +687,7 @@ LIMIT 50;
 ```
 
 **Why this works:**
+
 ```
 ┌─────────────────────────────────────────────────┐
 │  Natural Language Mode Benefits:                │
@@ -693,6 +712,7 @@ AND publish_date > DATE_SUB(NOW(), INTERVAL 1 YEAR);
 ```
 
 **Logic Flow:**
+
 ```
 ┌─────────────────────────────────────────────┐
 │  Requirements:                              │
@@ -727,6 +747,7 @@ LIMIT 50;
 ```
 
 **Expansion Process:**
+
 ```
 Original: "authentication"
     ↓
@@ -766,17 +787,20 @@ SHOW VARIABLES LIKE 'ft_min_word_len';
 ft_min_word_len = 4
 
 Indexed:
+
   ✅ "mysql" (5 chars)
   ✅ "database" (8 chars)
   ✅ "tutorial" (8 chars)
 
 NOT Indexed:
+
   ❌ "sql" (3 chars)
   ❌ "php" (3 chars)
   ❌ "car" (3 chars)
 ```
 
 **To change (requires restart):**
+
 ```sql
 -- In my.cnf or my.ini
 [mysqld]
@@ -803,6 +827,7 @@ MySQL ignores common words like: "the", "is", "at", "which", "on", etc.
 ```
 
 **Example:**
+
 ```
 Query: "the best mysql tutorial"
 Actually searches: "best mysql tutorial"
@@ -817,10 +842,12 @@ Words appearing in 50%+ of rows are ignored in **Natural Language Mode**!
 Table with 100 rows:
 
 Word "database":
+
   Appears in 60 rows (60%)
   Result: IGNORED ❌
   
 Word "mysql":
+
   Appears in 30 rows (30%)
   Result: USED ✅
 ```
@@ -922,18 +949,21 @@ Time: 0.05 seconds ✅
 ## Quick Reference
 
 ### Natural Language Mode:
+
 ```sql
 -- Simple relevance search
 MATCH(column) AGAINST('search terms')
 ```
 
 ### Boolean Mode:
+
 ```sql
 -- Precise control
 MATCH(column) AGAINST('+must -not "exact phrase" wild*' IN BOOLEAN MODE)
 ```
 
 ### Query Expansion:
+
 ```sql
 -- Broad exploration
 MATCH(column) AGAINST('term' WITH QUERY EXPANSION)
@@ -1076,7 +1106,7 @@ WHERE MATCH(title, body)
 AGAINST('+mysql' IN BOOLEAN MODE);
 ```
 
----
+
 
 **Remember:** Full-Text Search is powerful but requires proper setup and understanding of its modes and limitations. Always test with your actual data to find the best configuration!
 

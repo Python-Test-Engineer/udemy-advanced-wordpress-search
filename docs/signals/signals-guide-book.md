@@ -14,7 +14,6 @@
 10. [Implementation Roadmap](#implementation-roadmap)
 11. [Key Takeaways](#key-takeaways)
 
----
 
 ## Introduction
 
@@ -56,7 +55,6 @@ This guide covers three critical signal categories:
 
 Together, these signals create a complete picture of search performance and user satisfaction.
 
----
 
 ## User Intent Signals
 
@@ -83,12 +81,14 @@ Your BM25 scoring parameters, semantic search weights, and RAG prompt engineerin
 **User Goal:** Find a specific page, post, or resource they know exists
 
 **Characteristics:**
+
 - Specific brand names, product names, or page titles
 - Often includes unique identifiers
 - Low tolerance for irrelevant results
 - Quick abandonment if not found immediately
 
 **Query Examples:**
+
 - "contact us"
 - "pricing page"
 - "return policy"
@@ -96,6 +96,7 @@ Your BM25 scoring parameters, semantic search weights, and RAG prompt engineerin
 - "woocommerce documentation"
 
 **Detection Signals:**
+
 - Exact match queries
 - Queries containing site-specific terminology
 - Single-word navigation terms (about, contact, pricing, blog)
@@ -107,6 +108,7 @@ Your BM25 scoring parameters, semantic search weights, and RAG prompt engineerin
 Prioritize exact matches and known page titles. Users with navigational intent need the quickest path to their destination.
 
 For advanced search systems:
+
 - Boost exact title matches in BM25 scoring
 - Increase weight on post_title and post_name fields
 - Reduce semantic search influence (embeddings less useful here)
@@ -120,6 +122,7 @@ For advanced search systems:
 **User Goal:** Seek knowledge, guidance, or content on a topic
 
 **Characteristics:**
+
 - Question-based queries
 - How-to phrases
 - General topic exploration
@@ -127,6 +130,7 @@ For advanced search systems:
 - Interest in comprehensive content
 
 **Query Examples:**
+
 - "how to install wordpress plugin"
 - "best practices for SEO"
 - "what is a custom post type"
@@ -134,6 +138,7 @@ For advanced search systems:
 - "difference between BM25 and TF-IDF"
 
 **Detection Signals:**
+
 - Question words (how, what, why, when, where, who)
 - Phrases like "best," "tips," "guide," "tutorial," "explain"
 - General topic keywords without specific product names
@@ -141,6 +146,7 @@ For advanced search systems:
 - Longer queries (4+ words)
 
 **Optimization Strategy:**
+
 
 Surface comprehensive content, guides, and blog posts. Group related content together and suggest follow-up topics.
 
@@ -159,12 +165,14 @@ For advanced search systems:
 **User Goal:** User is ready to take action—purchase, download, signup, or convert
 
 **Characteristics:**
+
 - Action-oriented language
 - Product or service names
 - Urgency indicators
 - High commercial value
 
 **Query Examples:**
+
 - "buy premium theme"
 - "download plugin"
 - "sign up for newsletter"
@@ -173,6 +181,7 @@ For advanced search systems:
 - "purchase license"
 
 **Detection Signals:**
+
 - Action verbs (buy, download, purchase, order, subscribe, book, get, install)
 - Commercial terms (price, cost, discount, deal, cheap, affordable, free)
 - Product/service names with action context
@@ -207,6 +216,7 @@ Don't rely on a single indicator. Combine multiple signals:
 4. **Context Clues:** Consider user's previous searches in the session
 
 **Pattern Matching Example:**
+
 ```
 Query: "how to configure full-text search mysql"
 - Contains "how to" → +60% informational
@@ -232,18 +242,21 @@ Previous queries in the session provide clues:
 Not all queries clearly signal intent. Assign confidence scores:
 
 **High Confidence (80-100%):**
+
 - Clear intent indicators present
 - Historical data confirms intent
 - Single dominant intent type
 - **Action:** Aggressively optimize for detected intent
 
 **Medium Confidence (50-79%):**
+
 - Mixed signals present
 - Multiple plausible intents
 - Limited historical data
 - **Action:** Serve diverse results covering multiple intent types
 
 **Low Confidence (0-49%):**
+
 - Generic query with no clear intent
 - No clear indicators
 - Ambiguous context
@@ -254,11 +267,13 @@ Not all queries clearly signal intent. Assign confidence scores:
 Some queries legitimately have mixed intent:
 
 **Query: "wordpress search"**
+
 - Could be navigational (looking for WordPress.org search page)
 - Could be informational (learning about WordPress search)
 - Could be transactional (buying a search plugin)
 
 **Strategy: Result Diversification**
+
 - Position 1-2: Navigational results (official documentation)
 - Position 3-5: Informational content (tutorials, guides)
 - Position 6-8: Transactional options (plugins, services)
@@ -283,29 +298,34 @@ CTR = (Searches with ≥1 click / Total searches) × 100
 ```
 
 **Benchmarks:**
+
 - **Excellent:** >70% CTR
 - **Good:** 50-70% CTR
 - **Needs Improvement:** 30-50% CTR
 - **Critical:** <30% CTR
 
 **Significance:**
+
 - Low CTR (<30%): Results aren't relevant or compelling
 - Medium CTR (30-60%): Acceptable but room for improvement
 - High CTR (>60%): Strong result relevance
 
 **What Low CTR Indicates:**
+
 - Results don't match user intent
 - Poor result titles or snippets
 - Results are technically correct but not useful
 - Users finding answers in SERP snippets without clicking
 
 **Tracking:**
+
 - Search query
 - Number of results displayed
 - Number of clicks
 - Which result positions get clicked
 
 **Red Flags:**
+
 - Zero-click searches (user leaves without clicking)
 - Clicks only on first result (other results ignored)
 - Clicks on irrelevant results (indicates poor ranking)
@@ -315,11 +335,13 @@ CTR = (Searches with ≥1 click / Total searches) × 100
 **What it measures:** Which result positions receive the most engagement
 
 **Key Insights:**
+
 - **Position 1-3:** Should capture 70-80% of clicks if results are relevant
 - **Position 4-7:** Moderate engagement; users are willing to scroll
 - **Position 8+:** Low engagement; likely not meeting user needs
 
 **Optimization Actions:**
+
 - If position 5 gets more clicks than position 1: Your ranking algorithm needs adjustment
 - If all positions get equal clicks: Results may all be equally mediocre
 - If only position 1 gets clicks: Other results might be irrelevant
@@ -344,6 +366,7 @@ Calculate expected CTR by position (based on historical averages), then compare 
 **What it measures:** How many results a user clicks on before finding what they need
 
 **Patterns:**
+
 - **Single Click:** Found what they needed immediately (ideal)
 - **2-3 Clicks:** Exploring options or refining search mentally
 - **4+ Clicks:** Struggling to find relevant content
@@ -351,6 +374,7 @@ Calculate expected CTR by position (based on historical averages), then compare 
 **Interpretation:**
 
 High click depth indicates:
+
 - Poor ranking (best results not at top)
 - Ambiguous query requiring exploration
 - Users comparing multiple options (normal for transactional intent)
@@ -368,6 +392,7 @@ Track the entire search journey, not just individual queries. Users might:
 **What it measures:** How long users spend on a clicked result before returning to search
 
 **Interpretation:**
+
 - **<10 seconds:** Quick bounce, likely irrelevant (pogo-sticking)
 - **10-30 seconds:** Skimmed content, partially relevant
 - **30-120 seconds:** Engaged with content, likely relevant
@@ -376,6 +401,7 @@ Track the entire search journey, not just individual queries. Users might:
 **Important Note:** Longer isn't always better. A user finding a quick answer to a simple question might have 15 seconds of dwell time but be completely satisfied.
 
 **Context Matters:**
+
 - Blog post: Expect 2-5 minutes for engaged reading
 - Product page: 30-90 seconds if interested
 - Contact page: 10-20 seconds to find information
@@ -393,6 +419,7 @@ Compare actual vs. expected to gauge true engagement.
 **Machine Learning Application:**
 
 Use dwell time as a ranking signal:
+
 - Train models on historical dwell time data
 - Predict expected dwell time for query-document pairs
 - Boost results with historically high dwell time for similar queries
@@ -402,6 +429,7 @@ Use dwell time as a ranking signal:
 **What it measures:** Whether users return to search results after clicking
 
 **Patterns:**
+
 - **No Return:** User found what they needed (success)
 - **Quick Return (<10s):** Result was irrelevant
 - **Delayed Return (>30s):** User read but didn't find complete answer
@@ -423,6 +451,7 @@ Use dwell time as a ranking signal:
 **What it measures:** Total time from initial search to session end
 
 **Analysis:**
+
 - **Short Sessions (<1 min):** Either very successful or very frustrated
 - **Medium Sessions (1-5 min):** Normal exploration and refinement
 - **Long Sessions (>5 min):** Either deep research or struggling to find answers
@@ -430,12 +459,14 @@ Use dwell time as a ranking signal:
 **Session Success Indicators:**
 
 Successful sessions typically show:
+
 - 1-2 searches
 - 1-3 clicks total
 - Moderate dwell time (30s-2min)
 - Ends with conversion or extended engagement
 
 Unsuccessful sessions typically show:
+
 - 3+ searches with refinements
 - Many quick clicks (<10s dwell)
 - Abandonment without conversion
@@ -449,28 +480,34 @@ Unsuccessful sessions typically show:
 **Refinement Types:**
 
 **1. Specification:** Adding more keywords to narrow results
+
 - "wordpress" → "wordpress custom post types"
 - **Action:** Previous results too broad
 
 **2. Generalization:** Removing keywords to broaden results
+
 - "wordpress woocommerce abandoned cart recovery" → "woocommerce abandoned cart"
 - **Action:** Previous search too specific, no results found
 
 **3. Synonym Substitution:** Trying different words for same concept
+
 - "tutorial" → "guide" → "how to"
 - **Action:** Vocabulary mismatch between user and content
 
 **4. Intent Shift:** Changing search approach entirely
+
 - "wordpress themes" → "how to customize wordpress theme"
 - **Action:** User realized they need different information
 
 **5. Spelling Correction:** Fixing typos or trying alternative spellings
+
 - "wordpres" → "wordpress"
 - **Action:** Initial query had errors
 
 **Tracking Strategy:**
 
 Maintain search session history to identify refinement patterns. Store:
+
 - Previous queries in session
 - Time between queries
 - Results clicked in each query
@@ -488,6 +525,7 @@ Maintain search session history to identify refinement patterns. Store:
 **Zero-Result Refinement:**
 
 User searches, gets no results, tries again. This is critical data:
+
 - Track which queries return zero results
 - Monitor how users reformulate after zero results
 - Identify vocabulary gaps (users' terms vs. your content's terms)
@@ -495,6 +533,7 @@ User searches, gets no results, tries again. This is critical data:
 **Multi-Query Abandonment:**
 
 User tries multiple searches then leaves without clicking. Indicates:
+
 - Search functionality isn't working
 - Content doesn't match user needs
 - Poor ranking obscures relevant results
@@ -503,10 +542,12 @@ User tries multiple searches then leaves without clicking. Indicates:
 **Partial Success Pattern:**
 
 User finds something but continues searching:
+
 - Click → Quick dwell → Refine search → Click again
 - Indicates: Initial result was partially helpful but incomplete
 
 **Track abandonment by:**
+
 - Intent type (navigational queries abandoned faster)
 - Query complexity (longer queries more likely to be abandoned)
 - Time of day (rushed users abandon faster)
@@ -519,6 +560,7 @@ User finds something but continues searching:
 **What it measures:** How often search sessions lead to desired actions
 
 **Key Conversions to Track:**
+
 - Purchase/checkout
 - Form submission
 - Download
@@ -527,11 +569,13 @@ User finds something but continues searching:
 - Contact request
 
 **Calculation:**
+
 ```
 Conversion Rate = (Searches leading to conversion / Total searches) × 100
 ```
 
 **Analysis by Intent:**
+
 - Navigational: High conversion expected (user knows what they want)
 - Informational: Low immediate conversion (education phase)
 - Transactional: Moderate-high conversion expected
@@ -539,11 +583,13 @@ Conversion Rate = (Searches leading to conversion / Total searches) × 100
 **Query-Level Conversion Tracking:**
 
 Identify high-converting queries:
+
 - "buy premium plugin" → 45% conversion rate
 - "wordpress themes" → 12% conversion rate
 - "what is wordpress" → 2% conversion rate
 
 **Optimization:**
+
 - Prioritize high-converting queries in UX
 - Create dedicated landing pages for top converters
 - Improve ranking for conversion-driving results
@@ -551,16 +597,16 @@ Identify high-converting queries:
 #### Attribution Windows
 
 Track conversions across different timeframes:
+
 - **Immediate (same session):** Direct conversion from search
 - **Short-term (24 hours):** User researched, then returned
 - **Medium-term (7 days):** Longer consideration period
 - **Long-term (30 days):** Extended decision-making
 
 Different queries have different attribution windows:
+
 - "buy now" → expect immediate conversion
 - "wordpress review" → expect 7-30 day window
-
----
 
 ## Response Quality Signals
 
@@ -582,12 +628,14 @@ Satisfaction Score = (
 ```
 
 Where:
+
 - CTR is click-through rate (0-1)
 - Avg Dwell Time in seconds (capped at 120s)
 - Return Rate is percentage who return to search (0-1)
 - Conversion Rate is percentage who convert (0-1)
 
 **Interpretation:**
+
 - **Excellent:** >70/100
 - **Good:** 55-70/100
 - **Needs Improvement:** 40-55/100
@@ -596,6 +644,7 @@ Where:
 **Query-Level Satisfaction:**
 
 Track satisfaction for individual queries over time:
+
 - Identify consistently low-satisfaction queries
 - Monitor improvement after optimization
 - Detect degradation when content changes
@@ -603,11 +652,13 @@ Track satisfaction for individual queries over time:
 **Alternative Satisfaction Metrics:**
 
 **Binary Success:**
+
 ```
 Success = (Dwell Time > 30s AND No Immediate Return) OR Conversion
 ```
 
 **Weighted Engagement:**
+
 ```
 Engagement = (Clicks × 1) + (Dwell Minutes × 2) + (Conversions × 10)
 ```
@@ -635,12 +686,14 @@ Relevance = (
 **Learning from Historical Data:**
 
 Build a relevance model:
+
 1. Collect query-result pairs with outcome data
 2. Label successful vs. unsuccessful results
 3. Train model to predict relevance
 4. Use predictions to improve ranking
 
 **Features for Relevance Model:**
+
 - Query-document term overlap
 - BM25 score
 - Historical CTR for this query-doc pair
@@ -654,6 +707,7 @@ Build a relevance model:
 **What it measures:** Percentage of queries returning no results
 
 **Calculation:**
+
 ```
 Zero-Result Rate = (Queries with 0 results / Total queries) × 100
 ```
@@ -661,6 +715,7 @@ Zero-Result Rate = (Queries with 0 results / Total queries) × 100
 **Target:** <5%
 
 **Common Causes:**
+
 - Typos and misspellings
 - Vocabulary mismatch (user terms vs. content terms)
 - Missing content in that topic area
@@ -670,6 +725,7 @@ Zero-Result Rate = (Queries with 0 results / Total queries) × 100
 **Optimization Actions:**
 
 For high zero-result rate:
+
 1. Implement fuzzy matching for typos
 2. Add synonym expansion
 3. Fall back to partial matching
@@ -679,6 +735,7 @@ For high zero-result rate:
 **Opportunity Analysis:**
 
 Zero-result queries reveal content gaps:
+
 - Group by topic/theme
 - Identify high-volume zero-result queries
 - Prioritize content creation
@@ -689,22 +746,26 @@ Zero-result queries reveal content gaps:
 **What it measures:** How long it takes users to find what they need
 
 **Calculation:**
+
 ```
 Time to Success = Time from first search to final successful interaction
 ```
 
 **Successful interaction indicators:**
+
 - Long dwell time (>30s) without return
 - Conversion
 - No further search activity
 
 **Benchmarks:**
+
 - **Excellent:** <30 seconds
 - **Good:** 30-90 seconds
 - **Needs Improvement:** 90-180 seconds
 - **Poor:** >180 seconds
 
 **Factors Affecting Time to Success:**
+
 - Result ranking quality
 - Result presentation (snippets, titles)
 - Number of results shown
@@ -712,12 +773,12 @@ Time to Success = Time from first search to final successful interaction
 - UI/UX of search interface
 
 **Optimization:**
+
 - Reduce by improving ranking (relevant results at top)
 - Better result snippets (users can evaluate faster)
 - Instant search/autocomplete
 - Persistent search results during browsing
 
----
 
 ## Implementation and Tracking
 
@@ -993,17 +1054,20 @@ CREATE TABLE wp_search_sessions (
 #### GDPR Compliance
 
 **Data Minimization:**
+
 - Store session IDs instead of personally identifiable information when possible
 - Don't store IP addresses unless necessary
 - Anonymize data after 30 days if possible
 
 **User Rights:**
+
 - Provide opt-out mechanism for search tracking
 - Include search data in data export requests
 - Delete user's search data upon account deletion
 - Auto-delete logs older than retention period (e.g., 90 days)
 
 **Implementation:**
+
 
 ```php
 // Anonymize old data
@@ -1049,13 +1113,14 @@ function export_user_search_data($user_id) {
 ```
 
 **Best Practices:**
+
 - Don't store sensitive search queries (passwords, credit cards, etc.)
 - Hash or encrypt query text for security
 - Aggregate data for analysis, delete raw logs regularly
 - Be transparent about tracking in privacy policy
 - Provide clear opt-out options
 
----
+
 
 ## Analysis and Optimization Workflow
 
@@ -1064,6 +1129,7 @@ function export_user_search_data($user_id) {
 #### Quick Health Check
 
 **Key Metrics to Review:**
+
 - Total searches today vs. yesterday
 - Current CTR
 - Zero-result rate
@@ -1084,6 +1150,7 @@ GROUP BY DATE(timestamp);
 ```
 
 **Alert Conditions:**
+
 - Zero-result rate >15%: Investigate immediately
 - CTR drops >10%: Check for search functionality issues
 - Unusual spike in searches: May indicate bot activity or trending topic
@@ -1158,6 +1225,7 @@ LIMIT 20;
 ```
 
 Ensure these have excellent results and consider:
+
 - Creating dedicated landing pages
 - Featuring in site navigation
 - Optimizing heavily for these queries
@@ -1212,6 +1280,7 @@ ORDER BY growth_pct DESC;
 #### 3. A/B Testing
 
 **Test Variables:**
+
 - Ranking algorithm changes
 - Result presentation (snippets, formatting)
 - Intent detection methods
@@ -1283,6 +1352,7 @@ GROUP BY intent_type;
 ```
 
 **Actions:**
+
 - Update intent detection rules based on mislabeled queries
 - Adjust confidence thresholds
 - Add new intent keywords
@@ -1305,6 +1375,7 @@ ORDER BY month;
 ```
 
 **Track improvement:**
+
 - Month-over-month relevance score changes
 - Query satisfaction trends
 - Zero-result rate trends
@@ -1330,6 +1401,7 @@ ORDER BY search_frequency DESC;
 ```
 
 **Content creation priorities:**
+
 1. High-volume, zero-result queries
 2. High-conversion-intent queries with limited results
 3. Emerging trend queries
@@ -1346,6 +1418,7 @@ ORDER BY search_frequency DESC;
 **Training Data Collection:**
 
 Collect labeled examples:
+
 - Historical queries with manual intent labels
 - Click patterns as intent indicators (navigational = single click on top result, informational = multiple clicks, etc.)
 - Session context (previous queries, time on site)
@@ -1387,6 +1460,7 @@ confidence = max(model.predict_proba([new_query])[0])
 ```
 
 **Features for Intent Detection:**
+
 - Query text (TF-IDF vectors)
 - Query length
 - Presence of question words
@@ -1449,6 +1523,7 @@ model.fit(X, y, group=[len(get_labeled_documents(q)) for q in training_queries])
 ```
 
 **Signals for Ranking Model:**
+
 - Historical click-through rates for query-document pairs
 - Average dwell time patterns
 - User feedback (if available - thumbs up/down)
@@ -1484,6 +1559,7 @@ def rerank_results(query, initial_results, user_context):
 ### Personalization Signals
 
 **User History:**
+
 - Previous successful searches
 - Content categories engaged with
 - Conversion history
@@ -1491,6 +1567,7 @@ def rerank_results(query, initial_results, user_context):
 - Preferred content types
 
 **Contextual Signals:**
+
 - Device type (mobile users might have different intent)
 - Time of day (morning research vs. evening quick answers)
 - Geographic location (if relevant)
@@ -1540,6 +1617,7 @@ function personalize_search_results($query, $results, $user_id) {
 ```
 
 **Implementation Considerations:**
+
 - Balance personalization with privacy concerns
 - Provide non-personalized option
 - Avoid filter bubbles (show diverse results)
@@ -1616,8 +1694,6 @@ HAVING total_searches >= 10
 ORDER BY (semantic_relevance - keyword_relevance) DESC;
 ```
 
----
-
 ## Common Pitfalls and Solutions
 
 ### Pitfall 1: Over-Optimizing for Click-Through Rate
@@ -1627,6 +1703,7 @@ ORDER BY (semantic_relevance - keyword_relevance) DESC;
 **Solution:** Always combine CTR with dwell time and return-to-search metrics. A high CTR with low dwell time indicates misleading results.
 
 **Example:**
+
 - Query: "wordpress backup"
 - Result 1: "The Ultimate Guide to WordPress Backup" (CTR: 80%, Dwell: 8s)
 - Result 2: "WordPress Backup Plugin Tutorial" (CTR: 45%, Dwell: 180s)
@@ -1640,6 +1717,7 @@ Result 1 has higher CTR but Result 2 is actually more valuable.
 **Solution:** Set quality benchmarks for all query types. Rare queries still deserve good results. Track satisfaction scores across frequency tiers.
 
 **Segmentation:**
+
 - High-volume (>100/month): Optimize heavily
 - Medium-volume (10-100/month): Monitor and improve
 - Long-tail (<10/month): Ensure baseline quality
@@ -1651,6 +1729,7 @@ Result 1 has higher CTR but Result 2 is actually more valuable.
 **Solution:** Develop separate optimization strategies for each intent category. Adjust ranking algorithms based on detected intent.
 
 **Intent-Specific Metrics:**
+
 - Navigational: Time to first click (should be fast)
 - Informational: Number of results explored (higher is okay)
 - Transactional: Conversion rate (most important)
@@ -1662,6 +1741,7 @@ Result 1 has higher CTR but Result 2 is actually more valuable.
 **Solution:** Establish regular analysis routines and commit to implementing changes. Start small with weekly quick wins.
 
 **Action Framework:**
+
 - Daily: Monitor for critical issues
 - Weekly: Fix top 3 problem queries
 - Monthly: Implement 1-2 algorithmic improvements
@@ -1672,12 +1752,14 @@ Result 1 has higher CTR but Result 2 is actually more valuable.
 **Problem:** Over-reliance on automated signals without understanding user context. Metrics don't capture everything.
 
 **Solution:** Combine quantitative signals with qualitative research:
+
 - User interviews (why do you search this way?)
 - Survey pop-ups (was this helpful?)
 - User testing sessions
 - Support ticket analysis
 
 **Balanced Approach:**
+
 80% quantitative signals + 20% qualitative insights = best results
 
 ### Pitfall 6: Privacy Violations
@@ -1685,6 +1767,7 @@ Result 1 has higher CTR but Result 2 is actually more valuable.
 **Problem:** Tracking too much personal information or not respecting user privacy preferences.
 
 **Solution:**
+
 - Default to session-based tracking (no personal IDs)
 - Implement opt-out mechanisms
 - Regular data deletion schedules
@@ -1696,6 +1779,7 @@ Result 1 has higher CTR but Result 2 is actually more valuable.
 **Problem:** Implementing ranking changes without A/B testing can harm search quality without you realizing it.
 
 **Solution:** Always A/B test significant changes:
+
 - Control group (20-50% of users)
 - Treatment group (50-80% of users)
 - Run for at least 1 week
@@ -1719,98 +1803,9 @@ GROUP BY device_type;
 ```
 
 Optimize accordingly:
+
 - Mobile: Faster load times, concise results
 - Desktop: More detailed information, more results per page
-
----
-
-## Implementation Roadmap
-
-### 8-Week Implementation Plan
-
-#### Phase 1: Foundation (Weeks 1-2)
-
-**Week 1: Setup**
-- Create database tables (search_logs, search_clicks, search_quality)
-- Implement basic frontend tracking (search queries, clicks)
-- Set up session management
-- Test data collection pipeline
-
-**Deliverable:** Data flowing into database
-
-**Week 2: Basic Analytics**
-- Create SQL queries for key metrics
-- Build simple dashboard (can be spreadsheet initially)
-- Validate data accuracy
-- Document baseline metrics
-
-**Deliverable:** Current state report with baseline metrics
-
-#### Phase 2: Analysis (Weeks 3-4)
-
-**Week 3: Problem Identification**
-- Identify top 20 problem queries
-- Analyze zero-result queries
-- Review click position patterns
-- Map intent distribution
-
-**Deliverable:** Problem query report with priorities
-
-**Week 4: Quick Wins**
-- Fix top 5 zero-result queries (add synonyms, fix typos)
-- Adjust ranking for obviously misranked results
-- Implement basic intent detection
-- Create content for 2-3 high-demand topics
-
-**Deliverable:** First round of improvements deployed
-
-#### Phase 3: Optimization (Weeks 5-8)
-
-**Week 5: Intent-Based Ranking**
-- Enhance intent detection algorithm
-- Create intent-specific ranking rules
-- Implement intent confidence scoring
-- Test on sample queries
-
-**Week 6: Quality Scoring**
-- Build satisfaction score calculation
-- Implement relevance scoring
-- Create quality metrics dashboard
-- Start tracking trends
-
-**Week 7: Algorithm Tuning**
-- Adjust BM25/FTS parameters based on signals
-- Fine-tune intent-based ranking weights
-- Optimize for high-volume queries
-- Create content for gap areas
-
-**Week 8: Validation**
-- A/B test ranking improvements
-- Measure impact on key metrics
-- Gather user feedback
-- Document improvements and lessons learned
-
-**Deliverable:** Measurably improved search quality (target: +15% satisfaction score)
-
-#### Phase 4: Advanced Features (Month 3+)
-
-**Month 3: Advanced Analytics**
-- Implement personalization (if appropriate)
-- Build reranking pipeline
-- Enhanced dwell time tracking
-- Conversion attribution
-
-**Month 4: Machine Learning**
-- Learning-to-rank experiments
-- Automated intent detection model
-- Semantic search integration
-- Query suggestion system
-
-**Ongoing Maintenance:**
-- Weekly problem query review
-- Monthly deep dive analysis
-- Quarterly strategic reviews
-- Continuous A/B testing
 
 ### Success Metrics
 
@@ -1819,14 +1814,17 @@ Track these month-over-month to measure improvement:
 **Primary Metrics:**
 
 1. **Session Success Rate**
+
    - Target: >70%
    - Measures: Overall search effectiveness
 
 2. **Click-Through Rate**
+
    - Target: >60%
    - Measures: Result relevance and presentation
 
 3. **Average Satisfaction Score**
+
    - Target: >70/100
    - Measures: Aggregate quality
 
@@ -1837,14 +1835,17 @@ Track these month-over-month to measure improvement:
    - Measures: Content coverage
 
 5. **Query Refinement Rate**
+
    - Target: <30%
    - Measures: First-query success
 
 6. **Search-to-Conversion Rate**
+
    - Track improvement
    - Measures: Business impact
 
 7. **Average Time-to-Success**
+
    - Track reduction
    - Measures: Efficiency
 
@@ -1874,8 +1875,6 @@ Month 3 (After BM25 tuning):
 
 Result: 29% improvement in success rate over 3 months
 ```
-
----
 
 ## Key Takeaways
 
@@ -1935,7 +1934,6 @@ As you implement advanced search technologies:
 
 Every advanced search technology you implement should be validated with signals. Never deploy search improvements without measuring their impact.
 
----
 
 ## Conclusion
 
@@ -2049,12 +2047,15 @@ LIMIT 20;
 ### Intent Detection Keywords
 
 **Navigational:**
+
 contact, about, pricing, login, signup, account, dashboard, home, blog, shop, cart, checkout, faq, support, terms, privacy
 
 **Informational:**
+
 how, what, why, when, where, who, guide, tutorial, tips, best practices, learn, explain, difference, compare, vs, versus, review
 
 **Transactional:**
+
 buy, purchase, download, order, subscribe, book, hire, get, install, price, cost, discount, deal, cheap, affordable, free, trial, demo
 
 ### Weekly Analysis Checklist
@@ -2084,34 +2085,37 @@ buy, purchase, download, order, subscribe, book, hire, get, install, price, cost
 Create a dashboard tracking:
 
 1. **Overall Health:**
+
    - Total searches (daily/weekly/monthly)
    - Overall CTR
    - Overall satisfaction score
    - Zero-result rate
 
 2. **Intent Distribution:**
+
    - % Navigational queries
    - % Informational queries
    - % Transactional queries
    - % Unknown intent
 
 3. **Top Lists:**
+
    - Top 10 most searched queries
    - Top 10 zero-result queries
    - Top 10 low-satisfaction queries
    - Top 10 high-converting queries
 
 4. **Trends:**
+
    - CTR over time (line chart)
    - Satisfaction score over time
    - Zero-result rate over time
    - Search volume over time
 
 5. **Conversions:**
+
    - Search-to-conversion rate
    - Revenue from search
    - Top converting queries
-
----
 
 **Remember:** The most important metric is whether users find what they're looking for. All signals should ultimately serve that goal.

@@ -2084,7 +2084,6 @@
 <blockquote>
 <p>TF-IDF gives HIGH scores to words that appear FREQUENTLY in a specific document but RARELY across all documents.</p>
 </blockquote>
-<hr />
 <h2 id="step-by-step_example">Step-by-Step Example<a class="headerlink" href="#step-by-step_example" title="Permanent link">&para;</a></h2>
 <p>Let's search for <strong>"python programming"</strong> across 4 documents:</p>
 <h3 id="documents">Documents:<a class="headerlink" href="#documents" title="Permanent link">&para;</a></h3>
@@ -2094,7 +2093,6 @@
 <li>"Programming is fun. I enjoy coding every day."</li>
 <li>"Python snakes are dangerous reptiles in the wild."</li>
 </ol>
-<hr />
 <h3 id="calculate_for_word_python">Calculate for word: "python"<a class="headerlink" href="#calculate_for_word_python" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1: Calculate TF for each document</strong></p>
 <ul>
@@ -2117,7 +2115,6 @@
 <li>Doc 4: 0.13 × 0.69 = <strong>0.09</strong> ⭐⭐</li>
 </ul>
 <p><strong>Winner:</strong> Doc 1! It's about Python programming! 🏆</p>
-<hr />
 <h3 id="calculate_for_word_the">Calculate for word: "the"<a class="headerlink" href="#calculate_for_word_the" title="Permanent link">&para;</a></h3>
 <p><strong>Step 1: TF for each document</strong></p>
 <ul>
@@ -2139,7 +2136,6 @@
 <li>Doc 4: 0.13 × 0.69 = <strong>0.09</strong></li>
 </ul>
 <p><strong>Result:</strong> Even though "the" appears in Doc 2, its TF-IDF score is LOW because "the" is common!</p>
-<hr />
 <h2 id="visual_comparison">Visual Comparison<a class="headerlink" href="#visual_comparison" title="Permanent link">&para;</a></h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Searching for: &quot;machine learning&quot;
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
@@ -2158,7 +2154,6 @@
 </span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>├─ IDF(machine): MEDIUM ████
 </span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>└─ TF-IDF: MEDIUM ████ ← SOMEWHAT RELEVANT (wrong context!)
 </span></code></pre></div>
-<hr />
 <h2 id="real-world_example_google_search">Real-World Example: Google Search<a class="headerlink" href="#real-world_example_google_search" title="Permanent link">&para;</a></h2>
 <p><strong>You search:</strong> "electric car battery"</p>
 <p><strong>Document Rankings:</strong></p>
@@ -2198,11 +2193,12 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Why Tesla wins:</strong>
-- ✅ All three search terms appear FREQUENTLY (high TF)
-- ✅ All three terms are MEANINGFUL (medium/high IDF)
-- ✅ TF-IDF = Perfect balance!</p>
-<hr />
+<p><strong>Why Tesla wins:</strong></p>
+<ul>
+<li>✅ All three search terms appear FREQUENTLY (high TF)</li>
+<li>✅ All three terms are MEANINGFUL (medium/high IDF)</li>
+<li>✅ TF-IDF = Perfect balance!</li>
+</ul>
 <h2 id="the_magic_formula_breakdown">The Magic Formula Breakdown<a class="headerlink" href="#the_magic_formula_breakdown" title="Permanent link">&para;</a></h2>
 <h3 id="high_tf-idf_score_happens_when">High TF-IDF Score happens when:<a class="headerlink" href="#high_tf-idf_score_happens_when" title="Permanent link">&para;</a></h3>
 <ol>
@@ -2216,7 +2212,6 @@
 <li>Word is super common like "the" (IDF ≈ 0)</li>
 <li>Either one being zero = final score is zero!</li>
 </ol>
-<hr />
 <h2 id="key_insights">Key Insights<a class="headerlink" href="#key_insights" title="Permanent link">&para;</a></h2>
 <p><strong>TF-IDF automatically filters out:</strong></p>
 <ul>
@@ -2230,7 +2225,6 @@
 <li>✅ Documents where key terms appear frequently</li>
 <li>✅ Relevant, high-quality search results</li>
 </ul>
-<hr />
 <h2 id="comparison_table">Comparison Table<a class="headerlink" href="#comparison_table" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -2262,7 +2256,6 @@
 </tr>
 </tbody>
 </table>
-<hr />
 <h2 id="why_search_engines_love_tf-idf">Why Search Engines Love TF-IDF<a class="headerlink" href="#why_search_engines_love_tf-idf" title="Permanent link">&para;</a></h2>
 <p><strong>Before TF-IDF:</strong></p>
 <ul>
@@ -2276,14 +2269,13 @@
 <li>Keyword stuffing doesn't help (IDF stays same)</li>
 <li>Actual relevant content wins! </li>
 </ul>
-<hr />
 <h2 id="quick_summary">Quick Summary<a class="headerlink" href="#quick_summary" title="Permanent link">&para;</a></h2>
-<p><strong>Remember the Formula:</strong>
+<p><strong>Remember the Formula:</strong></p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>TF-IDF = TF × IDF
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>       = (How often word appears in THIS doc) 
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>         × 
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>         (How rare word is ACROSS ALL docs)
-</span></code></pre></div></p>
+</span></code></pre></div>
 <p><strong>The Golden Rules:</strong></p>
 <ol>
 <li>High TF + High IDF = <strong>Very Relevant!</strong> 🌟🌟🌟</li>
@@ -2291,7 +2283,6 @@
 <li>Low TF + High IDF = <strong>Rare word but not in this doc</strong></li>
 <li>Low TF + Low IDF = <strong>Not relevant at all</strong></li>
 </ol>
-<hr />
 <h2 id="think_about_it">Think About It<a class="headerlink" href="#think_about_it" title="Permanent link">&para;</a></h2>
 <p><strong>Question:</strong> Why does TF-IDF work so well?</p>
 <p><strong>Answer:</strong> Because it mimics how humans think!</p>

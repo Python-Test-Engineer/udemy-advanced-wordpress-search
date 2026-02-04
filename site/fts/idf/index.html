@@ -2022,28 +2022,28 @@ IDF fixes this by <strong>down‑weighting common words</strong> and <strong>up�
 <p>The most common formula is:</p>
 <p>The formula for Inverse Document Frequency (IDF) is:</p>
 <p><strong>IDF(t) = log(N / df_t)</strong></p>
-<p>Where:
-- <strong>N</strong> = total number of documents in the corpus
-- <strong>df_t</strong> = number of documents containing term t
-- <strong>log</strong> = logarithm (typically natural log or log base 10)</p>
+<p>Where:</p>
+<ul>
+<li><strong>N</strong> = total number of documents in the corpus</li>
+<li><strong>df_t</strong> = number of documents containing term t</li>
+<li><strong>log</strong> = logarithm (typically natural log or log base 10)</li>
+</ul>
 <p><strong>Common variations:</strong></p>
 <ol>
-<li>
-<p><strong>Smoothed IDF</strong> (most common in practice):
-   <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>IDF(t) = log(N / df_t) + 1
-</span></code></pre></div></p>
-</li>
-<li>
-<p><strong>IDF with smoothing to avoid division by zero</strong>:
-   <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>IDF(t) = log((N + 1) / (df_t + 1)) + 1
-</span></code></pre></div></p>
-</li>
-<li>
-<p><strong>Probabilistic IDF</strong>:
-   <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>IDF(t) = log((N - df_t) / df_t)
-</span></code></pre></div></p>
-</li>
+<li><strong>Smoothed IDF</strong> (most common in practice):</li>
 </ol>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>IDF(t) = log(N / df_t) + 1
+</span></code></pre></div>
+<ol>
+<li><strong>IDF with smoothing to avoid division by zero</strong>:</li>
+</ol>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>IDF(t) = log((N + 1) / (df_t + 1)) + 1
+</span></code></pre></div>
+<ol>
+<li><strong>Probabilistic IDF</strong>:</li>
+</ol>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>IDF(t) = log((N - df_t) / df_t)
+</span></code></pre></div>
 <p><strong>Key insight:</strong> IDF increases for rare terms (low df_t) and decreases for common terms (high df_t). When combined with term frequency (TF), you get TF-IDF weighting:</p>
 <p><strong>TF-IDF(t, d) = TF(t, d) × IDF(t)</strong></p>
 <p>This smoothing ensures that terms appearing in all documents don't get zero weight and prevents division by zero for edge cases.</p>
@@ -2086,11 +2086,11 @@ IDF fixes this by <strong>down‑weighting common words</strong> and <strong>up�
 </ul>
 <h2 id="why_idf_is_important">Why IDF Is Important<a class="headerlink" href="#why_idf_is_important" title="Permanent link">&para;</a></h2>
 <h3 id="1_it_filters_out_noise">1. It filters out noise<a class="headerlink" href="#1_it_filters_out_noise" title="Permanent link">&para;</a></h3>
-<p>Common words don’t help distinguish one document from another.<br />
-IDF ensures they don’t dominate search results.</p>
+<p>Common words don’t help distinguish one document from another. </p>
+<p>IDF ensures they don’t dominate search results.</p>
 <h3 id="2_it_highlights_meaningful_terms">2. It highlights meaningful terms<a class="headerlink" href="#2_it_highlights_meaningful_terms" title="Permanent link">&para;</a></h3>
-<p>Rare terms often carry the <em>actual</em> meaning of a query.<br />
-IDF boosts these so search engines can rank documents more intelligently.</p>
+<p>Rare terms often carry the <em>actual</em> meaning of a query.  </p>
+<p>IDF boosts these so search engines can rank documents more intelligently.</p>
 <h3 id="3_it_improves_relevance">3. It improves relevance<a class="headerlink" href="#3_it_improves_relevance" title="Permanent link">&para;</a></h3>
 <p>TF‑IDF (Term Frequency × IDF) combines:</p>
 <ul>
@@ -2106,8 +2106,8 @@ IDF boosts these so search engines can rank documents more intelligently.</p>
 <li>appears in ranking models like BM25  </li>
 </ul>
 <h2 id="putting_it_all_together">Putting It All Together<a class="headerlink" href="#putting_it_all_together" title="Permanent link">&para;</a></h2>
-<p>IDF is essentially a <em>discriminator</em>:<br />
-It helps a search engine decide which words actually help identify the right documents.</p>
+<p>IDF is essentially a <em>discriminator</em>:  </p>
+<p>It helps a search engine decide which words actually help identify the right documents.</p>
 <ul>
 <li><strong>Common words → low IDF → low importance</strong>  </li>
 <li><strong>Rare words → high IDF → high importance</strong></li>

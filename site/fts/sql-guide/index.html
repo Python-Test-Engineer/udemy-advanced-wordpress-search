@@ -2607,13 +2607,14 @@
 </span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">products</span><span class="w"> </span>
 </span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="k">ADD</span><span class="w"> </span><span class="n">FULLTEXT</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_product_search</span><span class="p">(</span><span class="n">product_name</span><span class="p">,</span><span class="w"> </span><span class="n">description</span><span class="p">);</span>
 </span></code></pre></div>
-<p><strong>Important Notes:</strong>
-- FULLTEXT indexes only work with InnoDB (MySQL 5.6+) and MyISAM engines
-- Can be created on CHAR, VARCHAR, or TEXT columns
-- Multiple columns can be included in a single FULLTEXT index</p>
+<p><strong>Important Notes:</strong></p>
+<ul>
+<li>FULLTEXT indexes only work with InnoDB (MySQL 5.6+) and MyISAM engines</li>
+<li>Can be created on CHAR, VARCHAR, or TEXT columns</li>
+<li>Multiple columns can be included in a single FULLTEXT index</li>
+</ul>
 <h2 id="the_three_search_modes">The Three Search Modes<a class="headerlink" href="#the_three_search_modes" title="Permanent link">&para;</a></h2>
 <p>MySQL offers three full text search modes, each with different behaviors and use cases.</p>
-<hr />
 <h2 id="1_natural_language_mode_default">1. Natural Language Mode (Default)<a class="headerlink" href="#1_natural_language_mode_default" title="Permanent link">&para;</a></h2>
 <p>Natural language mode ranks results by relevance and filters out words that appear in more than 50% of rows.</p>
 <h3 id="basic_syntax">Basic Syntax<a class="headerlink" href="#basic_syntax" title="Permanent link">&para;</a></h3>
@@ -2674,7 +2675,6 @@
 <li><strong>Case Insensitive</strong>: Searches are not case-sensitive</li>
 <li><strong>No Operators</strong>: Cannot use boolean operators like +, -, *</li>
 </ul>
-<hr />
 <h2 id="2_boolean_mode">2. Boolean Mode<a class="headerlink" href="#2_boolean_mode" title="Permanent link">&para;</a></h2>
 <p>Boolean mode provides fine-grained control over search queries using operators. No 50% threshold applies.</p>
 <h3 id="basic_syntax_1">Basic Syntax<a class="headerlink" href="#basic_syntax_1" title="Permanent link">&para;</a></h3>
@@ -2824,7 +2824,6 @@
 <li><strong>Minimum Length Still Applies</strong>: Words must meet minimum length requirement</li>
 <li><strong>Can Search Without Index</strong>: Boolean mode works even without FULLTEXT index (but much slower)</li>
 </ul>
-<hr />
 <h2 id="3_query_expansion_mode">3. Query Expansion Mode<a class="headerlink" href="#3_query_expansion_mode" title="Permanent link">&para;</a></h2>
 <p>Query expansion performs a two-pass search: first finds relevant documents, then searches again using terms from those documents to find more results.</p>
 <h3 id="basic_syntax_2">Basic Syntax<a class="headerlink" href="#basic_syntax_2" title="Permanent link">&para;</a></h3>
@@ -2913,7 +2912,6 @@
 <li><strong>Best for Short Queries</strong>: Works well with 1-3 word searches</li>
 <li><strong>Blind Expansion</strong>: Uses terms even if not semantically related</li>
 </ul>
-<hr />
 <h2 id="comparison_table">Comparison Table<a class="headerlink" href="#comparison_table" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -3049,7 +3047,6 @@
 </span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">similarity</span><span class="w"> </span><span class="k">DESC</span>
 </span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="k">LIMIT</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
 </span></code></pre></div>
-<hr />
 <h2 id="performance_tips">Performance Tips<a class="headerlink" href="#performance_tips" title="Permanent link">&para;</a></h2>
 <h3 id="1_index_strategy">1. Index Strategy<a class="headerlink" href="#1_index_strategy" title="Permanent link">&para;</a></h3>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="c1">-- Index only columns you&#39;ll search together</span>
@@ -3080,42 +3077,40 @@
 </span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="c1">-- After changing, rebuild indexes:</span>
 </span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="c1">-- REPAIR TABLE products QUICK;</span>
 </span></code></pre></div>
-<hr />
 <h2 id="common_pitfalls_and_solutions">Common Pitfalls and Solutions<a class="headerlink" href="#common_pitfalls_and_solutions" title="Permanent link">&para;</a></h2>
 <h3 id="problem_no_results_found">Problem: No Results Found<a class="headerlink" href="#problem_no_results_found" title="Permanent link">&para;</a></h3>
-<p><strong>Cause</strong>: Word too short (&lt; 4 characters by default)
+<p><strong>Cause</strong>: Word too short (&lt; 4 characters by default)</p>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1">-- Won&#39;t work with default settings</span>
 </span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="p">(</span><span class="n">product_name</span><span class="p">)</span><span class="w"> </span><span class="n">AGAINST</span><span class="p">(</span><span class="s1">&#39;USB&#39;</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">MODE</span><span class="p">)</span>
 </span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>
 </span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="c1">-- Solution: Lower ft_min_word_len or use wildcards</span>
 </span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="p">(</span><span class="n">product_name</span><span class="p">)</span><span class="w"> </span><span class="n">AGAINST</span><span class="p">(</span><span class="s1">&#39;USB*&#39;</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">MODE</span><span class="p">)</span>
-</span></code></pre></div></p>
+</span></code></pre></div>
 <h3 id="problem_common_words_ignored">Problem: Common Words Ignored<a class="headerlink" href="#problem_common_words_ignored" title="Permanent link">&para;</a></h3>
-<p><strong>Cause</strong>: Word appears in &gt;50% of rows (Natural Language Mode)
+<p><strong>Cause</strong>: Word appears in &gt;50% of rows (Natural Language Mode)</p>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="c1">-- &quot;the&quot; might be ignored</span>
 </span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="p">(</span><span class="n">post_content</span><span class="p">)</span><span class="w"> </span><span class="n">AGAINST</span><span class="p">(</span><span class="s1">&#39;the best laptop&#39;</span><span class="p">)</span>
 </span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
 </span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="c1">-- Solution: Use Boolean Mode</span>
 </span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="p">(</span><span class="n">post_content</span><span class="p">)</span><span class="w"> </span><span class="n">AGAINST</span><span class="p">(</span><span class="s1">&#39;+best +laptop&#39;</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">MODE</span><span class="p">)</span>
-</span></code></pre></div></p>
+</span></code></pre></div>
 <h3 id="problem_slow_queries">Problem: Slow Queries<a class="headerlink" href="#problem_slow_queries" title="Permanent link">&para;</a></h3>
-<p><strong>Cause</strong>: Not using FULLTEXT index properly
+<p><strong>Cause</strong>: Not using FULLTEXT index properly</p>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1">-- Slow: MATCH columns don&#39;t match index</span>
 </span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="n">FULLTEXT</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">products</span><span class="p">(</span><span class="n">product_name</span><span class="p">);</span>
 </span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="p">(</span><span class="n">description</span><span class="p">)</span><span class="w"> </span><span class="n">AGAINST</span><span class="p">(</span><span class="s1">&#39;laptop&#39;</span><span class="p">);</span><span class="w">  </span><span class="c1">-- Won&#39;t use index!</span>
 </span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>
 </span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="c1">-- Fast: Match index definition</span>
 </span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="p">(</span><span class="n">product_name</span><span class="p">)</span><span class="w"> </span><span class="n">AGAINST</span><span class="p">(</span><span class="s1">&#39;laptop&#39;</span><span class="p">);</span>
-</span></code></pre></div></p>
+</span></code></pre></div>
 <h3 id="problem_special_characters_ignored">Problem: Special Characters Ignored<a class="headerlink" href="#problem_special_characters_ignored" title="Permanent link">&para;</a></h3>
-<p><strong>Cause</strong>: MySQL treats special chars as word separators
+<p><strong>Cause</strong>: MySQL treats special chars as word separators</p>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="c1">-- &quot;C++&quot; becomes &quot;C&quot;</span>
 </span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="p">(</span><span class="n">post_content</span><span class="p">)</span><span class="w"> </span><span class="n">AGAINST</span><span class="p">(</span><span class="s1">&#39;C++&#39;</span><span class="p">)</span>
 </span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>
 </span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="c1">-- Solution: Use exact phrase in Boolean Mode</span>
 </span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="p">(</span><span class="n">post_content</span><span class="p">)</span><span class="w"> </span><span class="n">AGAINST</span><span class="p">(</span><span class="s1">&#39;&quot;C++&quot;&#39;</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">MODE</span><span class="p">)</span>
-</span></code></pre></div></p>
-<hr />
+</span></code></pre></div>
 <h2 id="configuration_variables">Configuration Variables<a class="headerlink" href="#configuration_variables" title="Permanent link">&para;</a></h2>
 <p>Key MySQL variables affecting Full Text Search:</p>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1">-- View current settings</span>
@@ -3128,23 +3123,28 @@
 </span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="c1">-- ft_boolean_syntax: Boolean operators (default: + -&gt;&lt;()~*:&quot;&quot;&amp;|)</span>
 </span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="c1">-- innodb_ft_min_token_size: InnoDB minimum word length (default: 3)</span>
 </span></code></pre></div>
-<hr />
 <h2 id="summary">Summary<a class="headerlink" href="#summary" title="Permanent link">&para;</a></h2>
-<p><strong>Use Natural Language Mode when:</strong>
-- You want automatic relevance ranking
-- Searching general content (blog posts, articles)
-- Users enter natural search queries
-- Simplicity is important</p>
-<p><strong>Use Boolean Mode when:</strong>
-- You need precise control over search terms
-- Implementing advanced search features
-- Handling technical content with abbreviations
-- Users are power users who understand operators</p>
-<p><strong>Use Query Expansion when:</strong>
-- Finding related content ("You might also like")
-- User search terms are very specific but you want broad results
-- Building discovery features
-- Improving recall at the cost of precision</p>
+<p><strong>Use Natural Language Mode when:</strong></p>
+<ul>
+<li>You want automatic relevance ranking</li>
+<li>Searching general content (blog posts, articles)</li>
+<li>Users enter natural search queries</li>
+<li>Simplicity is important</li>
+</ul>
+<p><strong>Use Boolean Mode when:</strong></p>
+<ul>
+<li>You need precise control over search terms</li>
+<li>Implementing advanced search features</li>
+<li>Handling technical content with abbreviations</li>
+<li>Users are power users who understand operators</li>
+</ul>
+<p><strong>Use Query Expansion when:</strong></p>
+<ul>
+<li>Finding related content ("You might also like")</li>
+<li>User search terms are very specific but you want broad results</li>
+<li>Building discovery features</li>
+<li>Improving recall at the cost of precision</li>
+</ul>
 <p>For most e-commerce products and WordPress searches, <strong>Boolean Mode</strong> offers the best balance of control and functionality, while <strong>Natural Language Mode</strong> is perfect for simple search boxes.</p>
 <p><br></p>
 

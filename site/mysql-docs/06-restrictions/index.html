@@ -1620,37 +1620,45 @@
 <p>Full-text searches are <strong>not supported</strong> on partitioned tables. If you need partitioning, you cannot use FULLTEXT indexes on those tables.</p>
 <h2 id="character_set_and_language_support">Character Set and Language Support<a class="headerlink" href="#character_set_and_language_support" title="Permanent link">&para;</a></h2>
 <h3 id="supported_character_sets">Supported Character Sets<a class="headerlink" href="#supported_character_sets" title="Permanent link">&para;</a></h3>
-<p><strong>Unicode Support:</strong>
-- <strong>utf8mb3</strong> - Supported ✓
-- <strong>utf8mb4</strong> - Supported ✓
-- <strong>ucs2</strong> - Not supported for FULLTEXT indexes ✗
-- <strong>utf16</strong> - Not supported for FULLTEXT indexes ✗
-- <strong>utf16le</strong> - Not supported for FULLTEXT indexes ✗
-- <strong>utf32</strong> - Not supported for FULLTEXT indexes ✗</p>
-<p><strong>Important Exception:</strong>
-You can perform <code>IN BOOLEAN MODE</code> searches on ucs2 columns even without a FULLTEXT index, though performance will be slower.</p>
+<p><strong>Unicode Support:</strong></p>
+<ul>
+<li><strong>utf8mb3</strong> - Supported ✓</li>
+<li><strong>utf8mb4</strong> - Supported ✓</li>
+<li><strong>ucs2</strong> - Not supported for FULLTEXT indexes ✗</li>
+<li><strong>utf16</strong> - Not supported for FULLTEXT indexes ✗</li>
+<li><strong>utf16le</strong> - Not supported for FULLTEXT indexes ✗</li>
+<li><strong>utf32</strong> - Not supported for FULLTEXT indexes ✗</li>
+</ul>
+<p><strong>Important Exception:</strong></p>
+<p>You can perform <code>IN BOOLEAN MODE</code> searches on ucs2 columns even without a FULLTEXT index, though performance will be slower.</p>
 <h3 id="same_character_set_required">Same Character Set Required<a class="headerlink" href="#same_character_set_required" title="Permanent link">&para;</a></h3>
-<p>All columns in a single FULLTEXT index must use:
-- The same character set
-- The same collation</p>
+<p>All columns in a single FULLTEXT index must use:</p>
+<ul>
+<li>The same character set</li>
+<li>The same collation</li>
+</ul>
 <p>You cannot mix different character sets within one FULLTEXT index.</p>
 <h2 id="ideographic_language_support">Ideographic Language Support<a class="headerlink" href="#ideographic_language_support" title="Permanent link">&para;</a></h2>
 <h3 id="the_challenge">The Challenge<a class="headerlink" href="#the_challenge" title="Permanent link">&para;</a></h3>
 <p>Languages like Chinese, Japanese, and Korean (CJK) don't use spaces to separate words. This creates problems for the built-in full-text parser, which relies on word delimiters.</p>
-<p><strong>Example:</strong>
+<p><strong>Example:</strong></p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>English:   &quot;machine learning tutorial&quot;  (clear word boundaries)
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Chinese:   &quot;机器学习教程&quot;                  (no spaces between concepts)
-</span></code></pre></div></p>
+</span></code></pre></div>
 <h3 id="solutions">Solutions<a class="headerlink" href="#solutions" title="Permanent link">&para;</a></h3>
 <p>MySQL provides specialized parsers for these languages:</p>
-<p><strong>1. ngram Parser (Character-based)</strong>
-- Supports: Chinese, Japanese, Korean
-- Works with: InnoDB and MyISAM
-- Approach: Breaks text into fixed-length character sequences</p>
-<p><strong>2. MeCab Parser (Word-based)</strong>
-- Supports: Japanese only
-- Works with: InnoDB and MyISAM
-- Approach: Uses dictionary-based word segmentation</p>
+<p><strong>1. ngram Parser (Character-based)</strong></p>
+<ul>
+<li>Supports: Chinese, Japanese, Korean</li>
+<li>Works with: InnoDB and MyISAM</li>
+<li>Approach: Breaks text into fixed-length character sequences</li>
+</ul>
+<p><strong>2. MeCab Parser (Word-based)</strong></p>
+<ul>
+<li>Supports: Japanese only</li>
+<li>Works with: InnoDB and MyISAM</li>
+<li>Approach: Uses dictionary-based word segmentation</li>
+</ul>
 <h2 id="query_restrictions">Query Restrictions<a class="headerlink" href="#query_restrictions" title="Permanent link">&para;</a></h2>
 <h3 id="match_column_list_rules">MATCH() Column List Rules<a class="headerlink" href="#match_column_list_rules" title="Permanent link">&para;</a></h3>
 <p>The columns specified in <code>MATCH()</code> must exactly match a FULLTEXT index definition.</p>
@@ -1696,12 +1704,12 @@ MyISAM tables can use <code>IN BOOLEAN MODE</code> on non-indexed columns, but p
 </span></code></pre></div>
 <h2 id="index_hints_limitation">Index Hints Limitation<a class="headerlink" href="#index_hints_limitation" title="Permanent link">&para;</a></h2>
 <p>Index hints (like <code>USE INDEX</code>, <code>FORCE INDEX</code>, <code>IGNORE INDEX</code>) are more limited with FULLTEXT searches compared to regular indexes.</p>
-<p><strong>What this means:</strong>
-You have less control over query optimization when using full-text searches. MySQL's query optimizer makes most decisions automatically.</p>
+<p><strong>What this means:</strong></p>
+<p>You have less control over query optimization when using full-text searches. MySQL's query optimizer makes most decisions automatically.</p>
 <h2 id="innodb_transaction_behavior">InnoDB Transaction Behavior<a class="headerlink" href="#innodb_transaction_behavior" title="Permanent link">&para;</a></h2>
 <h3 id="dml_operations_processed_at_commit_time">DML Operations Processed at Commit Time<a class="headerlink" href="#dml_operations_processed_at_commit_time" title="Permanent link">&para;</a></h3>
 <p>For InnoDB tables, full-text index updates happen when transactions commit, not immediately.</p>
-<p><strong>How it works:</strong>
+<p><strong>How it works:</strong></p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>1. You INSERT a row with text
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>   ↓
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>2. Text is tokenized into individual words
@@ -1709,7 +1717,7 @@ You have less control over query optimization when using full-text searches. MyS
 </span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>3. Words are added to FULLTEXT index tables
 </span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>   ↓
 </span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>4. BUT this only happens when you COMMIT
-</span></code></pre></div></p>
+</span></code></pre></div>
 <p><strong>Important Implications:</strong></p>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">BEGIN</span><span class="p">;</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">articles</span><span class="w"> </span><span class="p">(</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">content</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span>
@@ -1734,16 +1742,16 @@ You have less control over query optimization when using full-text searches. MyS
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1">-- ✓ CORRECT: Use the asterisk wildcard in BOOLEAN MODE</span>
 </span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="p">(</span><span class="n">title</span><span class="p">)</span><span class="w"> </span><span class="n">AGAINST</span><span class="p">(</span><span class="s1">&#39;machine*&#39;</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">MODE</span><span class="p">)</span>
 </span></code></pre></div>
-<p><strong>Available Wildcard:</strong>
-Only the asterisk (<code>*</code>) works as a wildcard in <code>IN BOOLEAN MODE</code>:</p>
+<p><strong>Available Wildcard:</strong></p>
+<p>Only the asterisk (<code>*</code>) works as a wildcard in <code>IN BOOLEAN MODE</code>:</p>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1">-- Finds: machine, machines, machinery, etc.</span>
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="p">(</span><span class="n">content</span><span class="p">)</span><span class="w"> </span><span class="n">AGAINST</span><span class="p">(</span><span class="s1">&#39;machin*&#39;</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">MODE</span><span class="p">)</span>
 </span></code></pre></div>
 <h2 id="quick_reference_common_mistakes">Quick Reference: Common Mistakes<a class="headerlink" href="#quick_reference_common_mistakes" title="Permanent link">&para;</a></h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>┌─────────────────────────────────────────────────────────────────┐
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>│                    Common Mistakes to Avoid                      │
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>│                    Common Mistakes to Avoid                     │
 </span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>├─────────────────────────────────────────────────────────────────┤
-</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>│                                                                  │
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>│                                                                 │
 </span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>│ ✗ Using with partitioned tables                                 │
 </span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>│ ✗ Mixing character sets in one FULLTEXT index                   │
 </span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>│ ✗ MATCH() columns not matching an index exactly                 │
@@ -1751,7 +1759,7 @@ Only the asterisk (<code>*</code>) works as a wildcard in <code>IN BOOLEAN MODE<
 </span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>│ ✗ Using &#39;%&#39; as a wildcard                                       │
 </span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>│ ✗ Expecting uncommitted data to be searchable (InnoDB)          │
 </span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>│ ✗ Using ucs2/utf16/utf32 without understanding the limitations  │
-</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>│                                                                  │
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>│                                                                 │
 </span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>└─────────────────────────────────────────────────────────────────┘
 </span></code></pre></div>
 <h2 id="best_practices">Best Practices<a class="headerlink" href="#best_practices" title="Permanent link">&para;</a></h2>

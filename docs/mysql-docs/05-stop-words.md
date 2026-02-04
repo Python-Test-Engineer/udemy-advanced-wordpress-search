@@ -79,6 +79,7 @@ INSERT INTO my_stopwords(value) VALUES ('Ishmael');
 ```
 Query OK, 1 row affected (0.00 sec)
 ```
+
 ```sql
 -- Create the table
 CREATE TABLE opening_lines (
@@ -91,6 +92,7 @@ title VARCHAR(200)
 ```
 Query OK, 0 rows affected (0.01 sec)
 ```
+
 ```sql
 -- Insert data into the table
 INSERT INTO opening_lines(opening_line,author,title) VALUES
@@ -103,22 +105,26 @@ INSERT INTO opening_lines(opening_line,author,title) VALUES
 ('Mrs. Dalloway said she would buy the flowers herself.','Virginia Woolf','Mrs. Dalloway'),
 ('It was a pleasure to burn.','Ray Bradbury','Fahrenheit 451');
 ```
+
 ```
 Query OK, 8 rows affected (0.00 sec)
 Records: 8  Duplicates: 0  Warnings: 0
 ```
+
 ```sql
 -- Set the innodb_ft_server_stopword_table option to the new stopword table
 SET GLOBAL innodb_ft_server_stopword_table = 'test/my_stopwords';
 ```
+
 ```
 Query OK, 0 rows affected (0.00 sec)
-``
+```
 
 ```sql
 -- Create the full-text index (which rebuilds the table if no FTS_DOC_ID column is defined)
 CREATE FULLTEXT INDEX idx ON opening_lines(opening_line);
 ```
+
 ```
 Query OK, 0 rows affected, 1 warning (1.17 sec)
 Records: 0  Duplicates: 0  Warnings: 1
@@ -141,6 +147,7 @@ Query OK, 0 rows affected (0.00 sec)
 ```sql
 SELECT word FROM INFORMATION_SCHEMA.INNODB_FT_INDEX_TABLE LIMIT 15;
 ```
+
 ```
 +-----------+
 | word      |

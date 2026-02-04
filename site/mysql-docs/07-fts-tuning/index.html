@@ -1552,6 +1552,45 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7_rebuilding_full-text_indexes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Rebuilding Full-Text Indexes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Rebuilding Full-Text Indexes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when_to_rebuild" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Rebuild
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#php_example_-_complete_rebuild_process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PHP Example - Complete Rebuild Process
+      
+    </span>
+  </a>
+  
+</li>
+        
           <li class="md-nav__item">
   <a href="#php_example_-_rebuilding_multiple_indexes" class="md-nav__link">
     <span class="md-ellipsis">
@@ -1596,6 +1635,34 @@
     <span class="md-ellipsis">
       
         PHP Example - Search with Pagination
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9_common_issues_and_solutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Common Issues and Solutions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Common Issues and Solutions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issue_1_search_returns_no_results_for_short_words" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue 1: Search Returns No Results for Short Words
       
     </span>
   </a>
@@ -2746,6 +2813,45 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7_rebuilding_full-text_indexes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Rebuilding Full-Text Indexes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Rebuilding Full-Text Indexes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when_to_rebuild" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When to Rebuild
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#php_example_-_complete_rebuild_process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PHP Example - Complete Rebuild Process
+      
+    </span>
+  </a>
+  
+</li>
+        
           <li class="md-nav__item">
   <a href="#php_example_-_rebuilding_multiple_indexes" class="md-nav__link">
     <span class="md-ellipsis">
@@ -2790,6 +2896,34 @@
     <span class="md-ellipsis">
       
         PHP Example - Search with Pagination
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9_common_issues_and_solutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Common Issues and Solutions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Common Issues and Solutions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#issue_1_search_returns_no_results_for_short_words" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Issue 1: Search Returns No Results for Short Words
       
     </span>
   </a>
@@ -2953,12 +3087,16 @@
 <h3 id="what_it_does">What It Does<a class="headerlink" href="#what_it_does" title="Permanent link">&para;</a></h3>
 <p>Controls which words get indexed based on their length. By default, very short words (like "a", "in") and extremely long words are excluded from the index.</p>
 <h3 id="configuration_variables">Configuration Variables<a class="headerlink" href="#configuration_variables" title="Permanent link">&para;</a></h3>
-<p><strong>For InnoDB tables:</strong>
-- <code>innodb_ft_min_token_size</code> - Minimum word length (default: 3)
-- <code>innodb_ft_max_token_size</code> - Maximum word length (default: 84)</p>
-<p><strong>For MyISAM tables:</strong>
-- <code>ft_min_word_len</code> - Minimum word length (default: 4)
-- <code>ft_max_word_len</code> - Maximum word length (default: 84)</p>
+<p><strong>For InnoDB tables:</strong></p>
+<ul>
+<li><code>innodb_ft_min_token_size</code> - Minimum word length (default: 3)</li>
+<li><code>innodb_ft_max_token_size</code> - Maximum word length (default: 84)</li>
+</ul>
+<p><strong>For MyISAM tables:</strong></p>
+<ul>
+<li><code>ft_min_word_len</code> - Minimum word length (default: 4)</li>
+<li><code>ft_max_word_len</code> - Maximum word length (default: 84)</li>
+</ul>
 <h3 id="example_use_case">Example Use Case<a class="headerlink" href="#example_use_case" title="Permanent link">&para;</a></h3>
 <p>If you need to search for two-letter words like "AI" or "UK", you'd need to lower the minimum token size.</p>
 <h3 id="how_to_configure">How to Configure<a class="headerlink" href="#how_to_configure" title="Permanent link">&para;</a></h3>
@@ -2967,9 +3105,11 @@
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="na">innodb_ft_min_token_size</span><span class="o">=</span><span class="s">2</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="na">ft_min_word_len</span><span class="o">=</span><span class="s">2</span>
 </span></code></pre></div>
-<p><strong>Important:</strong> After changing these settings:
-1. Restart the MySQL server
-2. Rebuild all FULLTEXT indexes (see Rebuilding Indexes section)</p>
+<p><strong>Important:</strong> After changing these settings:</p>
+<ol>
+<li>Restart the MySQL server</li>
+<li>Rebuild all FULLTEXT indexes (see Rebuilding Indexes section)</li>
+</ol>
 <h3 id="php_example_-_rebuilding_index_after_configuration_change">PHP Example - Rebuilding Index After Configuration Change<a class="headerlink" href="#php_example_-_rebuilding_index_after_configuration_change" title="Permanent link">&para;</a></h3>
 <div class="language-php highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cp">&lt;?php</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1">// Connect to MySQL</span>
@@ -3026,12 +3166,16 @@
 <h3 id="what_it_does_1">What It Does<a class="headerlink" href="#what_it_does_1" title="Permanent link">&para;</a></h3>
 <p>Stopwords are common words (like "the", "and", "is") that are excluded from the search index because they appear so frequently they're not useful for searching.</p>
 <h3 id="configuration_variables_1">Configuration Variables<a class="headerlink" href="#configuration_variables_1" title="Permanent link">&para;</a></h3>
-<p><strong>For InnoDB:</strong>
-- <code>innodb_ft_enable_stopword</code> - Enable/disable stopword filtering (default: ON)
-- <code>innodb_ft_server_stopword_table</code> - Custom server-level stopword table
-- <code>innodb_ft_user_stopword_table</code> - Custom session-level stopword table</p>
-<p><strong>For MyISAM:</strong>
-- <code>ft_stopword_file</code> - Path to custom stopword file</p>
+<p><strong>For InnoDB:</strong></p>
+<ul>
+<li><code>innodb_ft_enable_stopword</code> - Enable/disable stopword filtering (default: ON)</li>
+<li><code>innodb_ft_server_stopword_table</code> - Custom server-level stopword table</li>
+<li><code>innodb_ft_user_stopword_table</code> - Custom session-level stopword table</li>
+</ul>
+<p><strong>For MyISAM:</strong></p>
+<ul>
+<li><code>ft_stopword_file</code> - Path to custom stopword file</li>
+</ul>
 <h3 id="example_use_case_1">Example Use Case<a class="headerlink" href="#example_use_case_1" title="Permanent link">&para;</a></h3>
 <p>If you're building a search engine for legal documents where words like "the" and "and" might be significant, you might want to disable stopwords or create a custom list.</p>
 <h3 id="php_example_-_creating_custom_stopword_table_innodb">PHP Example - Creating Custom Stopword Table (InnoDB)<a class="headerlink" href="#php_example_-_creating_custom_stopword_table_innodb" title="Permanent link">&para;</a></h3>
@@ -3139,8 +3283,8 @@
 </span><span id="__span-5-31"><a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a><span class="cp">?&gt;</span>
 </span></code></pre></div>
 <h3 id="php_example_-_using_boolean_mode_to_bypass_threshold">PHP Example - Using Boolean Mode to Bypass Threshold<a class="headerlink" href="#php_example_-_using_boolean_mode_to_bypass_threshold" title="Permanent link">&para;</a></h3>
-<p><strong>Option 1: Boolean Mode Search</strong> (Recommended)
-Boolean mode doesn't apply the 50% threshold:</p>
+<p><strong>Option 1: Boolean Mode Search</strong> (Recommended)</p>
+<p>Boolean mode doesn't apply the 50% threshold:</p>
 <div class="language-php highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="cp">&lt;?php</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nv">$mysqli</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mysqli</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="s2">&quot;root&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="s2">&quot;mydb&quot;</span><span class="p">);</span>
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
@@ -3362,379 +3506,370 @@ Boolean mode doesn't apply the 50% threshold:</p>
 </span><span id="__span-11-21"><a id="__codelineno-11-21" name="__codelineno-11-21" href="#__codelineno-11-21"></a>
 </span><span id="__span-11-22"><a id="__codelineno-11-22" name="__codelineno-11-22" href="#__codelineno-11-22"></a><span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
 </span><span id="__span-11-23"><a id="__codelineno-11-23" name="__codelineno-11-23" href="#__codelineno-11-23"></a><span class="cp">?&gt;</span>
-</span><span id="__span-11-24"><a id="__codelineno-11-24" name="__codelineno-11-24" href="#__codelineno-11-24"></a><span class="x">``</span>
-</span><span id="__span-11-25"><a id="__codelineno-11-25" name="__codelineno-11-25" href="#__codelineno-11-25"></a>
-</span><span id="__span-11-26"><a id="__codelineno-11-26" name="__codelineno-11-26" href="#__codelineno-11-26"></a><span class="x">## 7. Rebuilding Full-Text Indexes</span>
-</span><span id="__span-11-27"><a id="__codelineno-11-27" name="__codelineno-11-27" href="#__codelineno-11-27"></a>
-</span><span id="__span-11-28"><a id="__codelineno-11-28" name="__codelineno-11-28" href="#__codelineno-11-28"></a><span class="x">### When to Rebuild</span>
-</span><span id="__span-11-29"><a id="__codelineno-11-29" name="__codelineno-11-29" href="#__codelineno-11-29"></a><span class="x">You must rebuild FULLTEXT indexes after changing:</span>
-</span><span id="__span-11-30"><a id="__codelineno-11-30" name="__codelineno-11-30" href="#__codelineno-11-30"></a><span class="x">- `innodb_ft_min_token_size` or `ft_min_word_len`</span>
-</span><span id="__span-11-31"><a id="__codelineno-11-31" name="__codelineno-11-31" href="#__codelineno-11-31"></a><span class="x">- `innodb_ft_max_token_size` or `ft_max_word_len`</span>
-</span><span id="__span-11-32"><a id="__codelineno-11-32" name="__codelineno-11-32" href="#__codelineno-11-32"></a><span class="x">- `innodb_ft_server_stopword_table` or `innodb_ft_user_stopword_table`</span>
-</span><span id="__span-11-33"><a id="__codelineno-11-33" name="__codelineno-11-33" href="#__codelineno-11-33"></a><span class="x">- `innodb_ft_enable_stopword` or `ft_stopword_file`</span>
-</span><span id="__span-11-34"><a id="__codelineno-11-34" name="__codelineno-11-34" href="#__codelineno-11-34"></a><span class="x">- `ngram_token_size`</span>
-</span><span id="__span-11-35"><a id="__codelineno-11-35" name="__codelineno-11-35" href="#__codelineno-11-35"></a>
-</span><span id="__span-11-36"><a id="__codelineno-11-36" name="__codelineno-11-36" href="#__codelineno-11-36"></a><span class="x">### PHP Example - Complete Rebuild Process</span>
-</span><span id="__span-11-37"><a id="__codelineno-11-37" name="__codelineno-11-37" href="#__codelineno-11-37"></a>
-</span><span id="__span-11-38"><a id="__codelineno-11-38" name="__codelineno-11-38" href="#__codelineno-11-38"></a><span class="x">```php</span>
-</span><span id="__span-11-39"><a id="__codelineno-11-39" name="__codelineno-11-39" href="#__codelineno-11-39"></a><span class="cp">&lt;?php</span>
-</span><span id="__span-11-40"><a id="__codelineno-11-40" name="__codelineno-11-40" href="#__codelineno-11-40"></a><span class="nv">$mysqli</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mysqli</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="s2">&quot;root&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="s2">&quot;mydb&quot;</span><span class="p">);</span>
-</span><span id="__span-11-41"><a id="__codelineno-11-41" name="__codelineno-11-41" href="#__codelineno-11-41"></a>
-</span><span id="__span-11-42"><a id="__codelineno-11-42" name="__codelineno-11-42" href="#__codelineno-11-42"></a><span class="k">if</span> <span class="p">(</span><span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">connect_error</span><span class="p">)</span> <span class="p">{</span>
-</span><span id="__span-11-43"><a id="__codelineno-11-43" name="__codelineno-11-43" href="#__codelineno-11-43"></a>    <span class="k">die</span><span class="p">(</span><span class="s2">&quot;Connection failed: &quot;</span> <span class="o">.</span> <span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">connect_error</span><span class="p">);</span>
-</span><span id="__span-11-44"><a id="__codelineno-11-44" name="__codelineno-11-44" href="#__codelineno-11-44"></a><span class="p">}</span>
-</span><span id="__span-11-45"><a id="__codelineno-11-45" name="__codelineno-11-45" href="#__codelineno-11-45"></a>
-</span><span id="__span-11-46"><a id="__codelineno-11-46" name="__codelineno-11-46" href="#__codelineno-11-46"></a><span class="nv">$table</span> <span class="o">=</span> <span class="s2">&quot;articles&quot;</span><span class="p">;</span>
-</span><span id="__span-11-47"><a id="__codelineno-11-47" name="__codelineno-11-47" href="#__codelineno-11-47"></a><span class="nv">$column</span> <span class="o">=</span> <span class="s2">&quot;content&quot;</span><span class="p">;</span>
-</span><span id="__span-11-48"><a id="__codelineno-11-48" name="__codelineno-11-48" href="#__codelineno-11-48"></a><span class="nv">$index_name</span> <span class="o">=</span> <span class="s2">&quot;content_idx&quot;</span><span class="p">;</span>
-</span><span id="__span-11-49"><a id="__codelineno-11-49" name="__codelineno-11-49" href="#__codelineno-11-49"></a>
-</span><span id="__span-11-50"><a id="__codelineno-11-50" name="__codelineno-11-50" href="#__codelineno-11-50"></a><span class="k">echo</span> <span class="s2">&quot;Starting index rebuild process...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-</span><span id="__span-11-51"><a id="__codelineno-11-51" name="__codelineno-11-51" href="#__codelineno-11-51"></a>
-</span><span id="__span-11-52"><a id="__codelineno-11-52" name="__codelineno-11-52" href="#__codelineno-11-52"></a><span class="c1">// Step 1: Drop the existing FULLTEXT index</span>
-</span><span id="__span-11-53"><a id="__codelineno-11-53" name="__codelineno-11-53" href="#__codelineno-11-53"></a><span class="k">echo</span> <span class="s2">&quot;Dropping existing index...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-</span><span id="__span-11-54"><a id="__codelineno-11-54" name="__codelineno-11-54" href="#__codelineno-11-54"></a><span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;ALTER TABLE </span><span class="si">$table</span><span class="s2"> DROP INDEX </span><span class="si">$index_name</span><span class="s2">&quot;</span><span class="p">;</span>
-</span><span id="__span-11-55"><a id="__codelineno-11-55" name="__codelineno-11-55" href="#__codelineno-11-55"></a><span class="k">if</span> <span class="p">(</span><span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$sql</span><span class="p">))</span> <span class="p">{</span>
-</span><span id="__span-11-56"><a id="__codelineno-11-56" name="__codelineno-11-56" href="#__codelineno-11-56"></a>    <span class="k">echo</span> <span class="s2">&quot;✓ Index dropped successfully.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-</span><span id="__span-11-57"><a id="__codelineno-11-57" name="__codelineno-11-57" href="#__codelineno-11-57"></a><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-</span><span id="__span-11-58"><a id="__codelineno-11-58" name="__codelineno-11-58" href="#__codelineno-11-58"></a>    <span class="k">echo</span> <span class="s2">&quot;✗ Error dropping index: &quot;</span> <span class="o">.</span> <span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">error</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-</span><span id="__span-11-59"><a id="__codelineno-11-59" name="__codelineno-11-59" href="#__codelineno-11-59"></a>    <span class="k">exit</span><span class="p">;</span>
-</span><span id="__span-11-60"><a id="__codelineno-11-60" name="__codelineno-11-60" href="#__codelineno-11-60"></a><span class="p">}</span>
-</span><span id="__span-11-61"><a id="__codelineno-11-61" name="__codelineno-11-61" href="#__codelineno-11-61"></a>
-</span><span id="__span-11-62"><a id="__codelineno-11-62" name="__codelineno-11-62" href="#__codelineno-11-62"></a><span class="c1">// Step 2: Recreate the FULLTEXT index</span>
-</span><span id="__span-11-63"><a id="__codelineno-11-63" name="__codelineno-11-63" href="#__codelineno-11-63"></a><span class="k">echo</span> <span class="s2">&quot;Creating new index...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-</span><span id="__span-11-64"><a id="__codelineno-11-64" name="__codelineno-11-64" href="#__codelineno-11-64"></a><span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;ALTER TABLE </span><span class="si">$table</span><span class="s2"> ADD FULLTEXT INDEX </span><span class="si">$index_name</span><span class="s2"> (</span><span class="si">$column</span><span class="s2">)&quot;</span><span class="p">;</span>
-</span><span id="__span-11-65"><a id="__codelineno-11-65" name="__codelineno-11-65" href="#__codelineno-11-65"></a><span class="k">if</span> <span class="p">(</span><span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$sql</span><span class="p">))</span> <span class="p">{</span>
-</span><span id="__span-11-66"><a id="__codelineno-11-66" name="__codelineno-11-66" href="#__codelineno-11-66"></a>    <span class="k">echo</span> <span class="s2">&quot;✓ Index created successfully.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-</span><span id="__span-11-67"><a id="__codelineno-11-67" name="__codelineno-11-67" href="#__codelineno-11-67"></a><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-</span><span id="__span-11-68"><a id="__codelineno-11-68" name="__codelineno-11-68" href="#__codelineno-11-68"></a>    <span class="k">echo</span> <span class="s2">&quot;✗ Error creating index: &quot;</span> <span class="o">.</span> <span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">error</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-</span><span id="__span-11-69"><a id="__codelineno-11-69" name="__codelineno-11-69" href="#__codelineno-11-69"></a>    <span class="k">exit</span><span class="p">;</span>
-</span><span id="__span-11-70"><a id="__codelineno-11-70" name="__codelineno-11-70" href="#__codelineno-11-70"></a><span class="p">}</span>
-</span><span id="__span-11-71"><a id="__codelineno-11-71" name="__codelineno-11-71" href="#__codelineno-11-71"></a>
-</span><span id="__span-11-72"><a id="__codelineno-11-72" name="__codelineno-11-72" href="#__codelineno-11-72"></a><span class="k">echo</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Index rebuild complete!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-</span><span id="__span-11-73"><a id="__codelineno-11-73" name="__codelineno-11-73" href="#__codelineno-11-73"></a>
-</span><span id="__span-11-74"><a id="__codelineno-11-74" name="__codelineno-11-74" href="#__codelineno-11-74"></a><span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
-</span><span id="__span-11-75"><a id="__codelineno-11-75" name="__codelineno-11-75" href="#__codelineno-11-75"></a><span class="cp">?&gt;</span>
 </span></code></pre></div>
-<h3 id="php_example_-_rebuilding_multiple_indexes">PHP Example - Rebuilding Multiple Indexes<a class="headerlink" href="#php_example_-_rebuilding_multiple_indexes" title="Permanent link">&para;</a></h3>
+<h2 id="7_rebuilding_full-text_indexes">7. Rebuilding Full-Text Indexes<a class="headerlink" href="#7_rebuilding_full-text_indexes" title="Permanent link">&para;</a></h2>
+<h3 id="when_to_rebuild">When to Rebuild<a class="headerlink" href="#when_to_rebuild" title="Permanent link">&para;</a></h3>
+<p>You must rebuild FULLTEXT indexes after changing:</p>
+<ul>
+<li><code>innodb_ft_min_token_size</code> or <code>ft_min_word_len</code></li>
+<li><code>innodb_ft_max_token_size</code> or <code>ft_max_word_len</code></li>
+<li><code>innodb_ft_server_stopword_table</code> or <code>innodb_ft_user_stopword_table</code></li>
+<li><code>innodb_ft_enable_stopword</code> or <code>ft_stopword_file</code></li>
+<li><code>ngram_token_size</code></li>
+</ul>
+<h3 id="php_example_-_complete_rebuild_process">PHP Example - Complete Rebuild Process<a class="headerlink" href="#php_example_-_complete_rebuild_process" title="Permanent link">&para;</a></h3>
 <div class="language-php highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="cp">&lt;?php</span>
 </span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nv">$mysqli</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mysqli</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="s2">&quot;root&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="s2">&quot;mydb&quot;</span><span class="p">);</span>
 </span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
-</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1">// Define all tables and indexes that need rebuilding</span>
-</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="nv">$indexes</span> <span class="o">=</span> <span class="p">[</span>
-</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>    <span class="p">[</span><span class="s1">&#39;table&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;articles&#39;</span><span class="p">,</span> <span class="s1">&#39;index&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;content_idx&#39;</span><span class="p">,</span> <span class="s1">&#39;columns&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;title, content&#39;</span><span class="p">],</span>
-</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>    <span class="p">[</span><span class="s1">&#39;table&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;blog_posts&#39;</span><span class="p">,</span> <span class="s1">&#39;index&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;post_idx&#39;</span><span class="p">,</span> <span class="s1">&#39;columns&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;body&#39;</span><span class="p">],</span>
-</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>    <span class="p">[</span><span class="s1">&#39;table&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;products&#39;</span><span class="p">,</span> <span class="s1">&#39;index&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;description_idx&#39;</span><span class="p">,</span> <span class="s1">&#39;columns&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;description&#39;</span><span class="p">]</span>
-</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="p">];</span>
-</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>
-</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="k">foreach</span> <span class="p">(</span><span class="nv">$indexes</span> <span class="k">as</span> <span class="nv">$idx</span><span class="p">)</span> <span class="p">{</span>
-</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>    <span class="k">echo</span> <span class="s2">&quot;Processing </span><span class="si">{</span><span class="nv">$idx</span><span class="p">[</span><span class="s1">&#39;table&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="k">if</span> <span class="p">(</span><span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">connect_error</span><span class="p">)</span> <span class="p">{</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>    <span class="k">die</span><span class="p">(</span><span class="s2">&quot;Connection failed: &quot;</span> <span class="o">.</span> <span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">connect_error</span><span class="p">);</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="p">}</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="nv">$table</span> <span class="o">=</span> <span class="s2">&quot;articles&quot;</span><span class="p">;</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="nv">$column</span> <span class="o">=</span> <span class="s2">&quot;content&quot;</span><span class="p">;</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="nv">$index_name</span> <span class="o">=</span> <span class="s2">&quot;content_idx&quot;</span><span class="p">;</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="k">echo</span> <span class="s2">&quot;Starting index rebuild process...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
 </span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>
-</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>    <span class="c1">// Drop index</span>
-</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>    <span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;ALTER TABLE </span><span class="si">{</span><span class="nv">$idx</span><span class="p">[</span><span class="s1">&#39;table&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> DROP INDEX </span><span class="si">{</span><span class="nv">$idx</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span>
-</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>    <span class="k">if</span> <span class="p">(</span><span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$sql</span><span class="p">))</span> <span class="p">{</span>
-</span><span id="__span-12-17"><a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>        <span class="k">echo</span> <span class="s2">&quot;  ✓ Dropped </span><span class="si">{</span><span class="nv">$idx</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-</span><span id="__span-12-18"><a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-</span><span id="__span-12-19"><a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a>        <span class="k">echo</span> <span class="s2">&quot;  ✗ Error: &quot;</span> <span class="o">.</span> <span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">error</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-</span><span id="__span-12-20"><a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a>        <span class="k">continue</span><span class="p">;</span>
-</span><span id="__span-12-21"><a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a>    <span class="p">}</span>
-</span><span id="__span-12-22"><a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a>
-</span><span id="__span-12-23"><a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a>    <span class="c1">// Recreate index</span>
-</span><span id="__span-12-24"><a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a>    <span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;ALTER TABLE </span><span class="si">{</span><span class="nv">$idx</span><span class="p">[</span><span class="s1">&#39;table&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> ADD FULLTEXT INDEX </span><span class="si">{</span><span class="nv">$idx</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="nv">$idx</span><span class="p">[</span><span class="s1">&#39;columns&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">;</span>
-</span><span id="__span-12-25"><a id="__codelineno-12-25" name="__codelineno-12-25" href="#__codelineno-12-25"></a>    <span class="k">if</span> <span class="p">(</span><span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$sql</span><span class="p">))</span> <span class="p">{</span>
-</span><span id="__span-12-26"><a id="__codelineno-12-26" name="__codelineno-12-26" href="#__codelineno-12-26"></a>        <span class="k">echo</span> <span class="s2">&quot;  ✓ Created </span><span class="si">{</span><span class="nv">$idx</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-</span><span id="__span-12-27"><a id="__codelineno-12-27" name="__codelineno-12-27" href="#__codelineno-12-27"></a>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-</span><span id="__span-12-28"><a id="__codelineno-12-28" name="__codelineno-12-28" href="#__codelineno-12-28"></a>        <span class="k">echo</span> <span class="s2">&quot;  ✗ Error: &quot;</span> <span class="o">.</span> <span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">error</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-</span><span id="__span-12-29"><a id="__codelineno-12-29" name="__codelineno-12-29" href="#__codelineno-12-29"></a>    <span class="p">}</span>
-</span><span id="__span-12-30"><a id="__codelineno-12-30" name="__codelineno-12-30" href="#__codelineno-12-30"></a>
-</span><span id="__span-12-31"><a id="__codelineno-12-31" name="__codelineno-12-31" href="#__codelineno-12-31"></a>    <span class="k">echo</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a><span class="c1">// Step 1: Drop the existing FULLTEXT index</span>
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a><span class="k">echo</span> <span class="s2">&quot;Dropping existing index...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a><span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;ALTER TABLE </span><span class="si">$table</span><span class="s2"> DROP INDEX </span><span class="si">$index_name</span><span class="s2">&quot;</span><span class="p">;</span>
+</span><span id="__span-12-17"><a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a><span class="k">if</span> <span class="p">(</span><span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$sql</span><span class="p">))</span> <span class="p">{</span>
+</span><span id="__span-12-18"><a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a>    <span class="k">echo</span> <span class="s2">&quot;✓ Index dropped successfully.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+</span><span id="__span-12-19"><a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span id="__span-12-20"><a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a>    <span class="k">echo</span> <span class="s2">&quot;✗ Error dropping index: &quot;</span> <span class="o">.</span> <span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">error</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+</span><span id="__span-12-21"><a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a>    <span class="k">exit</span><span class="p">;</span>
+</span><span id="__span-12-22"><a id="__codelineno-12-22" name="__codelineno-12-22" href="#__codelineno-12-22"></a><span class="p">}</span>
+</span><span id="__span-12-23"><a id="__codelineno-12-23" name="__codelineno-12-23" href="#__codelineno-12-23"></a>
+</span><span id="__span-12-24"><a id="__codelineno-12-24" name="__codelineno-12-24" href="#__codelineno-12-24"></a><span class="c1">// Step 2: Recreate the FULLTEXT index</span>
+</span><span id="__span-12-25"><a id="__codelineno-12-25" name="__codelineno-12-25" href="#__codelineno-12-25"></a><span class="k">echo</span> <span class="s2">&quot;Creating new index...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+</span><span id="__span-12-26"><a id="__codelineno-12-26" name="__codelineno-12-26" href="#__codelineno-12-26"></a><span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;ALTER TABLE </span><span class="si">$table</span><span class="s2"> ADD FULLTEXT INDEX </span><span class="si">$index_name</span><span class="s2"> (</span><span class="si">$column</span><span class="s2">)&quot;</span><span class="p">;</span>
+</span><span id="__span-12-27"><a id="__codelineno-12-27" name="__codelineno-12-27" href="#__codelineno-12-27"></a><span class="k">if</span> <span class="p">(</span><span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$sql</span><span class="p">))</span> <span class="p">{</span>
+</span><span id="__span-12-28"><a id="__codelineno-12-28" name="__codelineno-12-28" href="#__codelineno-12-28"></a>    <span class="k">echo</span> <span class="s2">&quot;✓ Index created successfully.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+</span><span id="__span-12-29"><a id="__codelineno-12-29" name="__codelineno-12-29" href="#__codelineno-12-29"></a><span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span id="__span-12-30"><a id="__codelineno-12-30" name="__codelineno-12-30" href="#__codelineno-12-30"></a>    <span class="k">echo</span> <span class="s2">&quot;✗ Error creating index: &quot;</span> <span class="o">.</span> <span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">error</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+</span><span id="__span-12-31"><a id="__codelineno-12-31" name="__codelineno-12-31" href="#__codelineno-12-31"></a>    <span class="k">exit</span><span class="p">;</span>
 </span><span id="__span-12-32"><a id="__codelineno-12-32" name="__codelineno-12-32" href="#__codelineno-12-32"></a><span class="p">}</span>
 </span><span id="__span-12-33"><a id="__codelineno-12-33" name="__codelineno-12-33" href="#__codelineno-12-33"></a>
-</span><span id="__span-12-34"><a id="__codelineno-12-34" name="__codelineno-12-34" href="#__codelineno-12-34"></a><span class="k">echo</span> <span class="s2">&quot;All indexes rebuilt!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+</span><span id="__span-12-34"><a id="__codelineno-12-34" name="__codelineno-12-34" href="#__codelineno-12-34"></a><span class="k">echo</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Index rebuild complete!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
 </span><span id="__span-12-35"><a id="__codelineno-12-35" name="__codelineno-12-35" href="#__codelineno-12-35"></a>
 </span><span id="__span-12-36"><a id="__codelineno-12-36" name="__codelineno-12-36" href="#__codelineno-12-36"></a><span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
 </span><span id="__span-12-37"><a id="__codelineno-12-37" name="__codelineno-12-37" href="#__codelineno-12-37"></a><span class="cp">?&gt;</span>
 </span></code></pre></div>
+<h3 id="php_example_-_rebuilding_multiple_indexes">PHP Example - Rebuilding Multiple Indexes<a class="headerlink" href="#php_example_-_rebuilding_multiple_indexes" title="Permanent link">&para;</a></h3>
+<div class="language-php highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="cp">&lt;?php</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nv">$mysqli</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mysqli</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="s2">&quot;root&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="s2">&quot;mydb&quot;</span><span class="p">);</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="c1">// Define all tables and indexes that need rebuilding</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="nv">$indexes</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>    <span class="p">[</span><span class="s1">&#39;table&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;articles&#39;</span><span class="p">,</span> <span class="s1">&#39;index&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;content_idx&#39;</span><span class="p">,</span> <span class="s1">&#39;columns&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;title, content&#39;</span><span class="p">],</span>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>    <span class="p">[</span><span class="s1">&#39;table&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;blog_posts&#39;</span><span class="p">,</span> <span class="s1">&#39;index&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;post_idx&#39;</span><span class="p">,</span> <span class="s1">&#39;columns&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;body&#39;</span><span class="p">],</span>
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>    <span class="p">[</span><span class="s1">&#39;table&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;products&#39;</span><span class="p">,</span> <span class="s1">&#39;index&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;description_idx&#39;</span><span class="p">,</span> <span class="s1">&#39;columns&#39;</span> <span class="o">=&gt;</span> <span class="s1">&#39;description&#39;</span><span class="p">]</span>
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a><span class="p">];</span>
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="k">foreach</span> <span class="p">(</span><span class="nv">$indexes</span> <span class="k">as</span> <span class="nv">$idx</span><span class="p">)</span> <span class="p">{</span>
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>    <span class="k">echo</span> <span class="s2">&quot;Processing </span><span class="si">{</span><span class="nv">$idx</span><span class="p">[</span><span class="s1">&#39;table&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>    <span class="c1">// Drop index</span>
+</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>    <span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;ALTER TABLE </span><span class="si">{</span><span class="nv">$idx</span><span class="p">[</span><span class="s1">&#39;table&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> DROP INDEX </span><span class="si">{</span><span class="nv">$idx</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">;</span>
+</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>    <span class="k">if</span> <span class="p">(</span><span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$sql</span><span class="p">))</span> <span class="p">{</span>
+</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a>        <span class="k">echo</span> <span class="s2">&quot;  ✓ Dropped </span><span class="si">{</span><span class="nv">$idx</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+</span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a>        <span class="k">echo</span> <span class="s2">&quot;  ✗ Error: &quot;</span> <span class="o">.</span> <span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">error</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+</span><span id="__span-13-20"><a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a>        <span class="k">continue</span><span class="p">;</span>
+</span><span id="__span-13-21"><a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a>    <span class="p">}</span>
+</span><span id="__span-13-22"><a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a>
+</span><span id="__span-13-23"><a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a>    <span class="c1">// Recreate index</span>
+</span><span id="__span-13-24"><a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a>    <span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;ALTER TABLE </span><span class="si">{</span><span class="nv">$idx</span><span class="p">[</span><span class="s1">&#39;table&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> ADD FULLTEXT INDEX </span><span class="si">{</span><span class="nv">$idx</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="nv">$idx</span><span class="p">[</span><span class="s1">&#39;columns&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">;</span>
+</span><span id="__span-13-25"><a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a>    <span class="k">if</span> <span class="p">(</span><span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">query</span><span class="p">(</span><span class="nv">$sql</span><span class="p">))</span> <span class="p">{</span>
+</span><span id="__span-13-26"><a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a>        <span class="k">echo</span> <span class="s2">&quot;  ✓ Created </span><span class="si">{</span><span class="nv">$idx</span><span class="p">[</span><span class="s1">&#39;index&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+</span><span id="__span-13-27"><a id="__codelineno-13-27" name="__codelineno-13-27" href="#__codelineno-13-27"></a>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span id="__span-13-28"><a id="__codelineno-13-28" name="__codelineno-13-28" href="#__codelineno-13-28"></a>        <span class="k">echo</span> <span class="s2">&quot;  ✗ Error: &quot;</span> <span class="o">.</span> <span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">error</span> <span class="o">.</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+</span><span id="__span-13-29"><a id="__codelineno-13-29" name="__codelineno-13-29" href="#__codelineno-13-29"></a>    <span class="p">}</span>
+</span><span id="__span-13-30"><a id="__codelineno-13-30" name="__codelineno-13-30" href="#__codelineno-13-30"></a>
+</span><span id="__span-13-31"><a id="__codelineno-13-31" name="__codelineno-13-31" href="#__codelineno-13-31"></a>    <span class="k">echo</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+</span><span id="__span-13-32"><a id="__codelineno-13-32" name="__codelineno-13-32" href="#__codelineno-13-32"></a><span class="p">}</span>
+</span><span id="__span-13-33"><a id="__codelineno-13-33" name="__codelineno-13-33" href="#__codelineno-13-33"></a>
+</span><span id="__span-13-34"><a id="__codelineno-13-34" name="__codelineno-13-34" href="#__codelineno-13-34"></a><span class="k">echo</span> <span class="s2">&quot;All indexes rebuilt!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+</span><span id="__span-13-35"><a id="__codelineno-13-35" name="__codelineno-13-35" href="#__codelineno-13-35"></a>
+</span><span id="__span-13-36"><a id="__codelineno-13-36" name="__codelineno-13-36" href="#__codelineno-13-36"></a><span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+</span><span id="__span-13-37"><a id="__codelineno-13-37" name="__codelineno-13-37" href="#__codelineno-13-37"></a><span class="cp">?&gt;</span>
+</span></code></pre></div>
 <h2 id="8_practical_full-text_search_examples">8. Practical Full-Text Search Examples<a class="headerlink" href="#8_practical_full-text_search_examples" title="Permanent link">&para;</a></h2>
 <h3 id="php_example_-_building_a_simple_search_function">PHP Example - Building a Simple Search Function<a class="headerlink" href="#php_example_-_building_a_simple_search_function" title="Permanent link">&para;</a></h3>
-<div class="language-php highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="cp">&lt;?php</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="k">class</span> <span class="nc">FullTextSearch</span> <span class="p">{</span>
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>    <span class="k">private</span> <span class="nv">$mysqli</span><span class="p">;</span>
-</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
-</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nv">$host</span><span class="p">,</span> <span class="nv">$user</span><span class="p">,</span> <span class="nv">$pass</span><span class="p">,</span> <span class="nv">$db</span><span class="p">)</span> <span class="p">{</span>
-</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">mysqli</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mysqli</span><span class="p">(</span><span class="nv">$host</span><span class="p">,</span> <span class="nv">$user</span><span class="p">,</span> <span class="nv">$pass</span><span class="p">,</span> <span class="nv">$db</span><span class="p">);</span>
-</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">mysqli</span><span class="o">-&gt;</span><span class="na">connect_error</span><span class="p">)</span> <span class="p">{</span>
-</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>            <span class="k">die</span><span class="p">(</span><span class="s2">&quot;Connection failed: &quot;</span> <span class="o">.</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">mysqli</span><span class="o">-&gt;</span><span class="na">connect_error</span><span class="p">);</span>
-</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>        <span class="p">}</span>
-</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>    <span class="p">}</span>
-</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>
-</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>    <span class="sd">/**</span>
-</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a><span class="sd">     * Natural language search</span>
-</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a><span class="sd">     */</span>
-</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">naturalSearch</span><span class="p">(</span><span class="nv">$query</span><span class="p">,</span> <span class="nv">$table</span><span class="p">,</span> <span class="nv">$columns</span><span class="p">)</span> <span class="p">{</span>
-</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>        <span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT *, </span>
-</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a><span class="s2">                MATCH(</span><span class="si">$columns</span><span class="s2">) AGAINST(? IN NATURAL LANGUAGE MODE) AS relevance </span>
-</span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a><span class="s2">                FROM </span><span class="si">$table</span><span class="s2"> </span>
-</span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a><span class="s2">                WHERE MATCH(</span><span class="si">$columns</span><span class="s2">) AGAINST(? IN NATURAL LANGUAGE MODE)</span>
-</span><span id="__span-13-20"><a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a><span class="s2">                ORDER BY relevance DESC&quot;</span><span class="p">;</span>
-</span><span id="__span-13-21"><a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a>
-</span><span id="__span-13-22"><a id="__codelineno-13-22" name="__codelineno-13-22" href="#__codelineno-13-22"></a>        <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">mysqli</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
-</span><span id="__span-13-23"><a id="__codelineno-13-23" name="__codelineno-13-23" href="#__codelineno-13-23"></a>        <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bind_param</span><span class="p">(</span><span class="s2">&quot;ss&quot;</span><span class="p">,</span> <span class="nv">$query</span><span class="p">,</span> <span class="nv">$query</span><span class="p">);</span>
-</span><span id="__span-13-24"><a id="__codelineno-13-24" name="__codelineno-13-24" href="#__codelineno-13-24"></a>        <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
-</span><span id="__span-13-25"><a id="__codelineno-13-25" name="__codelineno-13-25" href="#__codelineno-13-25"></a>        <span class="k">return</span> <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">get_result</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">fetch_all</span><span class="p">(</span><span class="nx">MYSQLI_ASSOC</span><span class="p">);</span>
-</span><span id="__span-13-26"><a id="__codelineno-13-26" name="__codelineno-13-26" href="#__codelineno-13-26"></a>    <span class="p">}</span>
-</span><span id="__span-13-27"><a id="__codelineno-13-27" name="__codelineno-13-27" href="#__codelineno-13-27"></a>
-</span><span id="__span-13-28"><a id="__codelineno-13-28" name="__codelineno-13-28" href="#__codelineno-13-28"></a>    <span class="sd">/**</span>
-</span><span id="__span-13-29"><a id="__codelineno-13-29" name="__codelineno-13-29" href="#__codelineno-13-29"></a><span class="sd">     * Boolean search with operators</span>
-</span><span id="__span-13-30"><a id="__codelineno-13-30" name="__codelineno-13-30" href="#__codelineno-13-30"></a><span class="sd">     */</span>
-</span><span id="__span-13-31"><a id="__codelineno-13-31" name="__codelineno-13-31" href="#__codelineno-13-31"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">booleanSearch</span><span class="p">(</span><span class="nv">$query</span><span class="p">,</span> <span class="nv">$table</span><span class="p">,</span> <span class="nv">$columns</span><span class="p">)</span> <span class="p">{</span>
-</span><span id="__span-13-32"><a id="__codelineno-13-32" name="__codelineno-13-32" href="#__codelineno-13-32"></a>        <span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT *, </span>
-</span><span id="__span-13-33"><a id="__codelineno-13-33" name="__codelineno-13-33" href="#__codelineno-13-33"></a><span class="s2">                MATCH(</span><span class="si">$columns</span><span class="s2">) AGAINST(? IN BOOLEAN MODE) AS relevance </span>
-</span><span id="__span-13-34"><a id="__codelineno-13-34" name="__codelineno-13-34" href="#__codelineno-13-34"></a><span class="s2">                FROM </span><span class="si">$table</span><span class="s2"> </span>
-</span><span id="__span-13-35"><a id="__codelineno-13-35" name="__codelineno-13-35" href="#__codelineno-13-35"></a><span class="s2">                WHERE MATCH(</span><span class="si">$columns</span><span class="s2">) AGAINST(? IN BOOLEAN MODE)</span>
-</span><span id="__span-13-36"><a id="__codelineno-13-36" name="__codelineno-13-36" href="#__codelineno-13-36"></a><span class="s2">                ORDER BY relevance DESC&quot;</span><span class="p">;</span>
-</span><span id="__span-13-37"><a id="__codelineno-13-37" name="__codelineno-13-37" href="#__codelineno-13-37"></a>
-</span><span id="__span-13-38"><a id="__codelineno-13-38" name="__codelineno-13-38" href="#__codelineno-13-38"></a>        <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">mysqli</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
-</span><span id="__span-13-39"><a id="__codelineno-13-39" name="__codelineno-13-39" href="#__codelineno-13-39"></a>        <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bind_param</span><span class="p">(</span><span class="s2">&quot;ss&quot;</span><span class="p">,</span> <span class="nv">$query</span><span class="p">,</span> <span class="nv">$query</span><span class="p">);</span>
-</span><span id="__span-13-40"><a id="__codelineno-13-40" name="__codelineno-13-40" href="#__codelineno-13-40"></a>        <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
-</span><span id="__span-13-41"><a id="__codelineno-13-41" name="__codelineno-13-41" href="#__codelineno-13-41"></a>        <span class="k">return</span> <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">get_result</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">fetch_all</span><span class="p">(</span><span class="nx">MYSQLI_ASSOC</span><span class="p">);</span>
-</span><span id="__span-13-42"><a id="__codelineno-13-42" name="__codelineno-13-42" href="#__codelineno-13-42"></a>    <span class="p">}</span>
-</span><span id="__span-13-43"><a id="__codelineno-13-43" name="__codelineno-13-43" href="#__codelineno-13-43"></a>
-</span><span id="__span-13-44"><a id="__codelineno-13-44" name="__codelineno-13-44" href="#__codelineno-13-44"></a>    <span class="sd">/**</span>
-</span><span id="__span-13-45"><a id="__codelineno-13-45" name="__codelineno-13-45" href="#__codelineno-13-45"></a><span class="sd">     * Search with query expansion (finds related terms)</span>
-</span><span id="__span-13-46"><a id="__codelineno-13-46" name="__codelineno-13-46" href="#__codelineno-13-46"></a><span class="sd">     */</span>
-</span><span id="__span-13-47"><a id="__codelineno-13-47" name="__codelineno-13-47" href="#__codelineno-13-47"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">queryExpansion</span><span class="p">(</span><span class="nv">$query</span><span class="p">,</span> <span class="nv">$table</span><span class="p">,</span> <span class="nv">$columns</span><span class="p">)</span> <span class="p">{</span>
-</span><span id="__span-13-48"><a id="__codelineno-13-48" name="__codelineno-13-48" href="#__codelineno-13-48"></a>        <span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT *, </span>
-</span><span id="__span-13-49"><a id="__codelineno-13-49" name="__codelineno-13-49" href="#__codelineno-13-49"></a><span class="s2">                MATCH(</span><span class="si">$columns</span><span class="s2">) AGAINST(? WITH QUERY EXPANSION) AS relevance </span>
-</span><span id="__span-13-50"><a id="__codelineno-13-50" name="__codelineno-13-50" href="#__codelineno-13-50"></a><span class="s2">                FROM </span><span class="si">$table</span><span class="s2"> </span>
-</span><span id="__span-13-51"><a id="__codelineno-13-51" name="__codelineno-13-51" href="#__codelineno-13-51"></a><span class="s2">                WHERE MATCH(</span><span class="si">$columns</span><span class="s2">) AGAINST(? WITH QUERY EXPANSION)</span>
-</span><span id="__span-13-52"><a id="__codelineno-13-52" name="__codelineno-13-52" href="#__codelineno-13-52"></a><span class="s2">                ORDER BY relevance DESC&quot;</span><span class="p">;</span>
-</span><span id="__span-13-53"><a id="__codelineno-13-53" name="__codelineno-13-53" href="#__codelineno-13-53"></a>
-</span><span id="__span-13-54"><a id="__codelineno-13-54" name="__codelineno-13-54" href="#__codelineno-13-54"></a>        <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">mysqli</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
-</span><span id="__span-13-55"><a id="__codelineno-13-55" name="__codelineno-13-55" href="#__codelineno-13-55"></a>        <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bind_param</span><span class="p">(</span><span class="s2">&quot;ss&quot;</span><span class="p">,</span> <span class="nv">$query</span><span class="p">,</span> <span class="nv">$query</span><span class="p">);</span>
-</span><span id="__span-13-56"><a id="__codelineno-13-56" name="__codelineno-13-56" href="#__codelineno-13-56"></a>        <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
-</span><span id="__span-13-57"><a id="__codelineno-13-57" name="__codelineno-13-57" href="#__codelineno-13-57"></a>        <span class="k">return</span> <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">get_result</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">fetch_all</span><span class="p">(</span><span class="nx">MYSQLI_ASSOC</span><span class="p">);</span>
-</span><span id="__span-13-58"><a id="__codelineno-13-58" name="__codelineno-13-58" href="#__codelineno-13-58"></a>    <span class="p">}</span>
-</span><span id="__span-13-59"><a id="__codelineno-13-59" name="__codelineno-13-59" href="#__codelineno-13-59"></a>
-</span><span id="__span-13-60"><a id="__codelineno-13-60" name="__codelineno-13-60" href="#__codelineno-13-60"></a>    <span class="sd">/**</span>
-</span><span id="__span-13-61"><a id="__codelineno-13-61" name="__codelineno-13-61" href="#__codelineno-13-61"></a><span class="sd">     * Get search relevance score without filtering</span>
-</span><span id="__span-13-62"><a id="__codelineno-13-62" name="__codelineno-13-62" href="#__codelineno-13-62"></a><span class="sd">     */</span>
-</span><span id="__span-13-63"><a id="__codelineno-13-63" name="__codelineno-13-63" href="#__codelineno-13-63"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">getRelevanceScores</span><span class="p">(</span><span class="nv">$query</span><span class="p">,</span> <span class="nv">$table</span><span class="p">,</span> <span class="nv">$columns</span><span class="p">,</span> <span class="nv">$limit</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
-</span><span id="__span-13-64"><a id="__codelineno-13-64" name="__codelineno-13-64" href="#__codelineno-13-64"></a>        <span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT *, </span>
-</span><span id="__span-13-65"><a id="__codelineno-13-65" name="__codelineno-13-65" href="#__codelineno-13-65"></a><span class="s2">                MATCH(</span><span class="si">$columns</span><span class="s2">) AGAINST(? IN NATURAL LANGUAGE MODE) AS relevance </span>
-</span><span id="__span-13-66"><a id="__codelineno-13-66" name="__codelineno-13-66" href="#__codelineno-13-66"></a><span class="s2">                FROM </span><span class="si">$table</span><span class="s2"> </span>
-</span><span id="__span-13-67"><a id="__codelineno-13-67" name="__codelineno-13-67" href="#__codelineno-13-67"></a><span class="s2">                ORDER BY relevance DESC </span>
-</span><span id="__span-13-68"><a id="__codelineno-13-68" name="__codelineno-13-68" href="#__codelineno-13-68"></a><span class="s2">                LIMIT ?&quot;</span><span class="p">;</span>
-</span><span id="__span-13-69"><a id="__codelineno-13-69" name="__codelineno-13-69" href="#__codelineno-13-69"></a>
-</span><span id="__span-13-70"><a id="__codelineno-13-70" name="__codelineno-13-70" href="#__codelineno-13-70"></a>        <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">mysqli</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
-</span><span id="__span-13-71"><a id="__codelineno-13-71" name="__codelineno-13-71" href="#__codelineno-13-71"></a>        <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bind_param</span><span class="p">(</span><span class="s2">&quot;si&quot;</span><span class="p">,</span> <span class="nv">$query</span><span class="p">,</span> <span class="nv">$limit</span><span class="p">);</span>
-</span><span id="__span-13-72"><a id="__codelineno-13-72" name="__codelineno-13-72" href="#__codelineno-13-72"></a>        <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
-</span><span id="__span-13-73"><a id="__codelineno-13-73" name="__codelineno-13-73" href="#__codelineno-13-73"></a>        <span class="k">return</span> <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">get_result</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">fetch_all</span><span class="p">(</span><span class="nx">MYSQLI_ASSOC</span><span class="p">);</span>
-</span><span id="__span-13-74"><a id="__codelineno-13-74" name="__codelineno-13-74" href="#__codelineno-13-74"></a>    <span class="p">}</span>
-</span><span id="__span-13-75"><a id="__codelineno-13-75" name="__codelineno-13-75" href="#__codelineno-13-75"></a>
-</span><span id="__span-13-76"><a id="__codelineno-13-76" name="__codelineno-13-76" href="#__codelineno-13-76"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">close</span><span class="p">()</span> <span class="p">{</span>
-</span><span id="__span-13-77"><a id="__codelineno-13-77" name="__codelineno-13-77" href="#__codelineno-13-77"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">mysqli</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
-</span><span id="__span-13-78"><a id="__codelineno-13-78" name="__codelineno-13-78" href="#__codelineno-13-78"></a>    <span class="p">}</span>
-</span><span id="__span-13-79"><a id="__codelineno-13-79" name="__codelineno-13-79" href="#__codelineno-13-79"></a><span class="p">}</span>
-</span><span id="__span-13-80"><a id="__codelineno-13-80" name="__codelineno-13-80" href="#__codelineno-13-80"></a>
-</span><span id="__span-13-81"><a id="__codelineno-13-81" name="__codelineno-13-81" href="#__codelineno-13-81"></a><span class="c1">// Usage example</span>
-</span><span id="__span-13-82"><a id="__codelineno-13-82" name="__codelineno-13-82" href="#__codelineno-13-82"></a><span class="nv">$search</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FullTextSearch</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="s2">&quot;root&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="s2">&quot;mydb&quot;</span><span class="p">);</span>
-</span><span id="__span-13-83"><a id="__codelineno-13-83" name="__codelineno-13-83" href="#__codelineno-13-83"></a>
-</span><span id="__span-13-84"><a id="__codelineno-13-84" name="__codelineno-13-84" href="#__codelineno-13-84"></a><span class="c1">// Natural language search</span>
-</span><span id="__span-13-85"><a id="__codelineno-13-85" name="__codelineno-13-85" href="#__codelineno-13-85"></a><span class="nv">$results</span> <span class="o">=</span> <span class="nv">$search</span><span class="o">-&gt;</span><span class="na">naturalSearch</span><span class="p">(</span><span class="s2">&quot;mysql database optimization&quot;</span><span class="p">,</span> <span class="s2">&quot;articles&quot;</span><span class="p">,</span> <span class="s2">&quot;title, content&quot;</span><span class="p">);</span>
-</span><span id="__span-13-86"><a id="__codelineno-13-86" name="__codelineno-13-86" href="#__codelineno-13-86"></a><span class="k">echo</span> <span class="s2">&quot;&lt;h2&gt;Natural Language Results:&lt;/h2&gt;&quot;</span><span class="p">;</span>
-</span><span id="__span-13-87"><a id="__codelineno-13-87" name="__codelineno-13-87" href="#__codelineno-13-87"></a><span class="k">foreach</span> <span class="p">(</span><span class="nv">$results</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span> <span class="p">{</span>
-</span><span id="__span-13-88"><a id="__codelineno-13-88" name="__codelineno-13-88" href="#__codelineno-13-88"></a>    <span class="k">echo</span> <span class="s2">&quot;&lt;div&gt;&quot;</span><span class="p">;</span>
-</span><span id="__span-13-89"><a id="__codelineno-13-89" name="__codelineno-13-89" href="#__codelineno-13-89"></a>    <span class="k">echo</span> <span class="s2">&quot;&lt;h3&gt;&quot;</span> <span class="o">.</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">])</span> <span class="o">.</span> <span class="s2">&quot;&lt;/h3&gt;&quot;</span><span class="p">;</span>
-</span><span id="__span-13-90"><a id="__codelineno-13-90" name="__codelineno-13-90" href="#__codelineno-13-90"></a>    <span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;Relevance: &quot;</span> <span class="o">.</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;relevance&#39;</span><span class="p">]</span> <span class="o">.</span> <span class="s2">&quot;&lt;/p&gt;&quot;</span><span class="p">;</span>
-</span><span id="__span-13-91"><a id="__codelineno-13-91" name="__codelineno-13-91" href="#__codelineno-13-91"></a>    <span class="k">echo</span> <span class="s2">&quot;&lt;/div&gt;&quot;</span><span class="p">;</span>
-</span><span id="__span-13-92"><a id="__codelineno-13-92" name="__codelineno-13-92" href="#__codelineno-13-92"></a><span class="p">}</span>
-</span><span id="__span-13-93"><a id="__codelineno-13-93" name="__codelineno-13-93" href="#__codelineno-13-93"></a>
-</span><span id="__span-13-94"><a id="__codelineno-13-94" name="__codelineno-13-94" href="#__codelineno-13-94"></a><span class="c1">// Boolean search</span>
-</span><span id="__span-13-95"><a id="__codelineno-13-95" name="__codelineno-13-95" href="#__codelineno-13-95"></a><span class="nv">$results</span> <span class="o">=</span> <span class="nv">$search</span><span class="o">-&gt;</span><span class="na">booleanSearch</span><span class="p">(</span><span class="s2">&quot;+mysql +performance -oracle&quot;</span><span class="p">,</span> <span class="s2">&quot;articles&quot;</span><span class="p">,</span> <span class="s2">&quot;title, content&quot;</span><span class="p">);</span>
-</span><span id="__span-13-96"><a id="__codelineno-13-96" name="__codelineno-13-96" href="#__codelineno-13-96"></a><span class="k">echo</span> <span class="s2">&quot;&lt;h2&gt;Boolean Search Results:&lt;/h2&gt;&quot;</span><span class="p">;</span>
-</span><span id="__span-13-97"><a id="__codelineno-13-97" name="__codelineno-13-97" href="#__codelineno-13-97"></a><span class="k">foreach</span> <span class="p">(</span><span class="nv">$results</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span> <span class="p">{</span>
-</span><span id="__span-13-98"><a id="__codelineno-13-98" name="__codelineno-13-98" href="#__codelineno-13-98"></a>    <span class="k">echo</span> <span class="s2">&quot;&lt;div&gt;&quot;</span><span class="p">;</span>
-</span><span id="__span-13-99"><a id="__codelineno-13-99" name="__codelineno-13-99" href="#__codelineno-13-99"></a>    <span class="k">echo</span> <span class="s2">&quot;&lt;h3&gt;&quot;</span> <span class="o">.</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">])</span> <span class="o">.</span> <span class="s2">&quot;&lt;/h3&gt;&quot;</span><span class="p">;</span>
-</span><span id="__span-13-100"><a id="__codelineno-13-100" name="__codelineno-13-100" href="#__codelineno-13-100"></a>    <span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;Relevance: &quot;</span> <span class="o">.</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;relevance&#39;</span><span class="p">]</span> <span class="o">.</span> <span class="s2">&quot;&lt;/p&gt;&quot;</span><span class="p">;</span>
-</span><span id="__span-13-101"><a id="__codelineno-13-101" name="__codelineno-13-101" href="#__codelineno-13-101"></a>    <span class="k">echo</span> <span class="s2">&quot;&lt;/div&gt;&quot;</span><span class="p">;</span>
-</span><span id="__span-13-102"><a id="__codelineno-13-102" name="__codelineno-13-102" href="#__codelineno-13-102"></a><span class="p">}</span>
-</span><span id="__span-13-103"><a id="__codelineno-13-103" name="__codelineno-13-103" href="#__codelineno-13-103"></a>
-</span><span id="__span-13-104"><a id="__codelineno-13-104" name="__codelineno-13-104" href="#__codelineno-13-104"></a><span class="nv">$search</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
-</span><span id="__span-13-105"><a id="__codelineno-13-105" name="__codelineno-13-105" href="#__codelineno-13-105"></a><span class="cp">?&gt;</span>
+<div class="language-php highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="cp">&lt;?php</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">class</span> <span class="nc">FullTextSearch</span> <span class="p">{</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="k">private</span> <span class="nv">$mysqli</span><span class="p">;</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>    <span class="k">public</span> <span class="k">function</span> <span class="fm">__construct</span><span class="p">(</span><span class="nv">$host</span><span class="p">,</span> <span class="nv">$user</span><span class="p">,</span> <span class="nv">$pass</span><span class="p">,</span> <span class="nv">$db</span><span class="p">)</span> <span class="p">{</span>
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">mysqli</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mysqli</span><span class="p">(</span><span class="nv">$host</span><span class="p">,</span> <span class="nv">$user</span><span class="p">,</span> <span class="nv">$pass</span><span class="p">,</span> <span class="nv">$db</span><span class="p">);</span>
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>        <span class="k">if</span> <span class="p">(</span><span class="nv">$this</span><span class="o">-&gt;</span><span class="na">mysqli</span><span class="o">-&gt;</span><span class="na">connect_error</span><span class="p">)</span> <span class="p">{</span>
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>            <span class="k">die</span><span class="p">(</span><span class="s2">&quot;Connection failed: &quot;</span> <span class="o">.</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">mysqli</span><span class="o">-&gt;</span><span class="na">connect_error</span><span class="p">);</span>
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>        <span class="p">}</span>
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>    <span class="p">}</span>
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>    <span class="sd">/**</span>
+</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a><span class="sd">     * Natural language search</span>
+</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a><span class="sd">     */</span>
+</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">naturalSearch</span><span class="p">(</span><span class="nv">$query</span><span class="p">,</span> <span class="nv">$table</span><span class="p">,</span> <span class="nv">$columns</span><span class="p">)</span> <span class="p">{</span>
+</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a>        <span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT *, </span>
+</span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="s2">                MATCH(</span><span class="si">$columns</span><span class="s2">) AGAINST(? IN NATURAL LANGUAGE MODE) AS relevance </span>
+</span><span id="__span-14-18"><a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a><span class="s2">                FROM </span><span class="si">$table</span><span class="s2"> </span>
+</span><span id="__span-14-19"><a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a><span class="s2">                WHERE MATCH(</span><span class="si">$columns</span><span class="s2">) AGAINST(? IN NATURAL LANGUAGE MODE)</span>
+</span><span id="__span-14-20"><a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a><span class="s2">                ORDER BY relevance DESC&quot;</span><span class="p">;</span>
+</span><span id="__span-14-21"><a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a>
+</span><span id="__span-14-22"><a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a>        <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">mysqli</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
+</span><span id="__span-14-23"><a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a>        <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bind_param</span><span class="p">(</span><span class="s2">&quot;ss&quot;</span><span class="p">,</span> <span class="nv">$query</span><span class="p">,</span> <span class="nv">$query</span><span class="p">);</span>
+</span><span id="__span-14-24"><a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a>        <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+</span><span id="__span-14-25"><a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a>        <span class="k">return</span> <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">get_result</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">fetch_all</span><span class="p">(</span><span class="nx">MYSQLI_ASSOC</span><span class="p">);</span>
+</span><span id="__span-14-26"><a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a>    <span class="p">}</span>
+</span><span id="__span-14-27"><a id="__codelineno-14-27" name="__codelineno-14-27" href="#__codelineno-14-27"></a>
+</span><span id="__span-14-28"><a id="__codelineno-14-28" name="__codelineno-14-28" href="#__codelineno-14-28"></a>    <span class="sd">/**</span>
+</span><span id="__span-14-29"><a id="__codelineno-14-29" name="__codelineno-14-29" href="#__codelineno-14-29"></a><span class="sd">     * Boolean search with operators</span>
+</span><span id="__span-14-30"><a id="__codelineno-14-30" name="__codelineno-14-30" href="#__codelineno-14-30"></a><span class="sd">     */</span>
+</span><span id="__span-14-31"><a id="__codelineno-14-31" name="__codelineno-14-31" href="#__codelineno-14-31"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">booleanSearch</span><span class="p">(</span><span class="nv">$query</span><span class="p">,</span> <span class="nv">$table</span><span class="p">,</span> <span class="nv">$columns</span><span class="p">)</span> <span class="p">{</span>
+</span><span id="__span-14-32"><a id="__codelineno-14-32" name="__codelineno-14-32" href="#__codelineno-14-32"></a>        <span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT *, </span>
+</span><span id="__span-14-33"><a id="__codelineno-14-33" name="__codelineno-14-33" href="#__codelineno-14-33"></a><span class="s2">                MATCH(</span><span class="si">$columns</span><span class="s2">) AGAINST(? IN BOOLEAN MODE) AS relevance </span>
+</span><span id="__span-14-34"><a id="__codelineno-14-34" name="__codelineno-14-34" href="#__codelineno-14-34"></a><span class="s2">                FROM </span><span class="si">$table</span><span class="s2"> </span>
+</span><span id="__span-14-35"><a id="__codelineno-14-35" name="__codelineno-14-35" href="#__codelineno-14-35"></a><span class="s2">                WHERE MATCH(</span><span class="si">$columns</span><span class="s2">) AGAINST(? IN BOOLEAN MODE)</span>
+</span><span id="__span-14-36"><a id="__codelineno-14-36" name="__codelineno-14-36" href="#__codelineno-14-36"></a><span class="s2">                ORDER BY relevance DESC&quot;</span><span class="p">;</span>
+</span><span id="__span-14-37"><a id="__codelineno-14-37" name="__codelineno-14-37" href="#__codelineno-14-37"></a>
+</span><span id="__span-14-38"><a id="__codelineno-14-38" name="__codelineno-14-38" href="#__codelineno-14-38"></a>        <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">mysqli</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
+</span><span id="__span-14-39"><a id="__codelineno-14-39" name="__codelineno-14-39" href="#__codelineno-14-39"></a>        <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bind_param</span><span class="p">(</span><span class="s2">&quot;ss&quot;</span><span class="p">,</span> <span class="nv">$query</span><span class="p">,</span> <span class="nv">$query</span><span class="p">);</span>
+</span><span id="__span-14-40"><a id="__codelineno-14-40" name="__codelineno-14-40" href="#__codelineno-14-40"></a>        <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+</span><span id="__span-14-41"><a id="__codelineno-14-41" name="__codelineno-14-41" href="#__codelineno-14-41"></a>        <span class="k">return</span> <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">get_result</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">fetch_all</span><span class="p">(</span><span class="nx">MYSQLI_ASSOC</span><span class="p">);</span>
+</span><span id="__span-14-42"><a id="__codelineno-14-42" name="__codelineno-14-42" href="#__codelineno-14-42"></a>    <span class="p">}</span>
+</span><span id="__span-14-43"><a id="__codelineno-14-43" name="__codelineno-14-43" href="#__codelineno-14-43"></a>
+</span><span id="__span-14-44"><a id="__codelineno-14-44" name="__codelineno-14-44" href="#__codelineno-14-44"></a>    <span class="sd">/**</span>
+</span><span id="__span-14-45"><a id="__codelineno-14-45" name="__codelineno-14-45" href="#__codelineno-14-45"></a><span class="sd">     * Search with query expansion (finds related terms)</span>
+</span><span id="__span-14-46"><a id="__codelineno-14-46" name="__codelineno-14-46" href="#__codelineno-14-46"></a><span class="sd">     */</span>
+</span><span id="__span-14-47"><a id="__codelineno-14-47" name="__codelineno-14-47" href="#__codelineno-14-47"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">queryExpansion</span><span class="p">(</span><span class="nv">$query</span><span class="p">,</span> <span class="nv">$table</span><span class="p">,</span> <span class="nv">$columns</span><span class="p">)</span> <span class="p">{</span>
+</span><span id="__span-14-48"><a id="__codelineno-14-48" name="__codelineno-14-48" href="#__codelineno-14-48"></a>        <span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT *, </span>
+</span><span id="__span-14-49"><a id="__codelineno-14-49" name="__codelineno-14-49" href="#__codelineno-14-49"></a><span class="s2">                MATCH(</span><span class="si">$columns</span><span class="s2">) AGAINST(? WITH QUERY EXPANSION) AS relevance </span>
+</span><span id="__span-14-50"><a id="__codelineno-14-50" name="__codelineno-14-50" href="#__codelineno-14-50"></a><span class="s2">                FROM </span><span class="si">$table</span><span class="s2"> </span>
+</span><span id="__span-14-51"><a id="__codelineno-14-51" name="__codelineno-14-51" href="#__codelineno-14-51"></a><span class="s2">                WHERE MATCH(</span><span class="si">$columns</span><span class="s2">) AGAINST(? WITH QUERY EXPANSION)</span>
+</span><span id="__span-14-52"><a id="__codelineno-14-52" name="__codelineno-14-52" href="#__codelineno-14-52"></a><span class="s2">                ORDER BY relevance DESC&quot;</span><span class="p">;</span>
+</span><span id="__span-14-53"><a id="__codelineno-14-53" name="__codelineno-14-53" href="#__codelineno-14-53"></a>
+</span><span id="__span-14-54"><a id="__codelineno-14-54" name="__codelineno-14-54" href="#__codelineno-14-54"></a>        <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">mysqli</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
+</span><span id="__span-14-55"><a id="__codelineno-14-55" name="__codelineno-14-55" href="#__codelineno-14-55"></a>        <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bind_param</span><span class="p">(</span><span class="s2">&quot;ss&quot;</span><span class="p">,</span> <span class="nv">$query</span><span class="p">,</span> <span class="nv">$query</span><span class="p">);</span>
+</span><span id="__span-14-56"><a id="__codelineno-14-56" name="__codelineno-14-56" href="#__codelineno-14-56"></a>        <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+</span><span id="__span-14-57"><a id="__codelineno-14-57" name="__codelineno-14-57" href="#__codelineno-14-57"></a>        <span class="k">return</span> <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">get_result</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">fetch_all</span><span class="p">(</span><span class="nx">MYSQLI_ASSOC</span><span class="p">);</span>
+</span><span id="__span-14-58"><a id="__codelineno-14-58" name="__codelineno-14-58" href="#__codelineno-14-58"></a>    <span class="p">}</span>
+</span><span id="__span-14-59"><a id="__codelineno-14-59" name="__codelineno-14-59" href="#__codelineno-14-59"></a>
+</span><span id="__span-14-60"><a id="__codelineno-14-60" name="__codelineno-14-60" href="#__codelineno-14-60"></a>    <span class="sd">/**</span>
+</span><span id="__span-14-61"><a id="__codelineno-14-61" name="__codelineno-14-61" href="#__codelineno-14-61"></a><span class="sd">     * Get search relevance score without filtering</span>
+</span><span id="__span-14-62"><a id="__codelineno-14-62" name="__codelineno-14-62" href="#__codelineno-14-62"></a><span class="sd">     */</span>
+</span><span id="__span-14-63"><a id="__codelineno-14-63" name="__codelineno-14-63" href="#__codelineno-14-63"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">getRelevanceScores</span><span class="p">(</span><span class="nv">$query</span><span class="p">,</span> <span class="nv">$table</span><span class="p">,</span> <span class="nv">$columns</span><span class="p">,</span> <span class="nv">$limit</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+</span><span id="__span-14-64"><a id="__codelineno-14-64" name="__codelineno-14-64" href="#__codelineno-14-64"></a>        <span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT *, </span>
+</span><span id="__span-14-65"><a id="__codelineno-14-65" name="__codelineno-14-65" href="#__codelineno-14-65"></a><span class="s2">                MATCH(</span><span class="si">$columns</span><span class="s2">) AGAINST(? IN NATURAL LANGUAGE MODE) AS relevance </span>
+</span><span id="__span-14-66"><a id="__codelineno-14-66" name="__codelineno-14-66" href="#__codelineno-14-66"></a><span class="s2">                FROM </span><span class="si">$table</span><span class="s2"> </span>
+</span><span id="__span-14-67"><a id="__codelineno-14-67" name="__codelineno-14-67" href="#__codelineno-14-67"></a><span class="s2">                ORDER BY relevance DESC </span>
+</span><span id="__span-14-68"><a id="__codelineno-14-68" name="__codelineno-14-68" href="#__codelineno-14-68"></a><span class="s2">                LIMIT ?&quot;</span><span class="p">;</span>
+</span><span id="__span-14-69"><a id="__codelineno-14-69" name="__codelineno-14-69" href="#__codelineno-14-69"></a>
+</span><span id="__span-14-70"><a id="__codelineno-14-70" name="__codelineno-14-70" href="#__codelineno-14-70"></a>        <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">mysqli</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
+</span><span id="__span-14-71"><a id="__codelineno-14-71" name="__codelineno-14-71" href="#__codelineno-14-71"></a>        <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bind_param</span><span class="p">(</span><span class="s2">&quot;si&quot;</span><span class="p">,</span> <span class="nv">$query</span><span class="p">,</span> <span class="nv">$limit</span><span class="p">);</span>
+</span><span id="__span-14-72"><a id="__codelineno-14-72" name="__codelineno-14-72" href="#__codelineno-14-72"></a>        <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+</span><span id="__span-14-73"><a id="__codelineno-14-73" name="__codelineno-14-73" href="#__codelineno-14-73"></a>        <span class="k">return</span> <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">get_result</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">fetch_all</span><span class="p">(</span><span class="nx">MYSQLI_ASSOC</span><span class="p">);</span>
+</span><span id="__span-14-74"><a id="__codelineno-14-74" name="__codelineno-14-74" href="#__codelineno-14-74"></a>    <span class="p">}</span>
+</span><span id="__span-14-75"><a id="__codelineno-14-75" name="__codelineno-14-75" href="#__codelineno-14-75"></a>
+</span><span id="__span-14-76"><a id="__codelineno-14-76" name="__codelineno-14-76" href="#__codelineno-14-76"></a>    <span class="k">public</span> <span class="k">function</span> <span class="nf">close</span><span class="p">()</span> <span class="p">{</span>
+</span><span id="__span-14-77"><a id="__codelineno-14-77" name="__codelineno-14-77" href="#__codelineno-14-77"></a>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">mysqli</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+</span><span id="__span-14-78"><a id="__codelineno-14-78" name="__codelineno-14-78" href="#__codelineno-14-78"></a>    <span class="p">}</span>
+</span><span id="__span-14-79"><a id="__codelineno-14-79" name="__codelineno-14-79" href="#__codelineno-14-79"></a><span class="p">}</span>
+</span><span id="__span-14-80"><a id="__codelineno-14-80" name="__codelineno-14-80" href="#__codelineno-14-80"></a>
+</span><span id="__span-14-81"><a id="__codelineno-14-81" name="__codelineno-14-81" href="#__codelineno-14-81"></a><span class="c1">// Usage example</span>
+</span><span id="__span-14-82"><a id="__codelineno-14-82" name="__codelineno-14-82" href="#__codelineno-14-82"></a><span class="nv">$search</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FullTextSearch</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="s2">&quot;root&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="s2">&quot;mydb&quot;</span><span class="p">);</span>
+</span><span id="__span-14-83"><a id="__codelineno-14-83" name="__codelineno-14-83" href="#__codelineno-14-83"></a>
+</span><span id="__span-14-84"><a id="__codelineno-14-84" name="__codelineno-14-84" href="#__codelineno-14-84"></a><span class="c1">// Natural language search</span>
+</span><span id="__span-14-85"><a id="__codelineno-14-85" name="__codelineno-14-85" href="#__codelineno-14-85"></a><span class="nv">$results</span> <span class="o">=</span> <span class="nv">$search</span><span class="o">-&gt;</span><span class="na">naturalSearch</span><span class="p">(</span><span class="s2">&quot;mysql database optimization&quot;</span><span class="p">,</span> <span class="s2">&quot;articles&quot;</span><span class="p">,</span> <span class="s2">&quot;title, content&quot;</span><span class="p">);</span>
+</span><span id="__span-14-86"><a id="__codelineno-14-86" name="__codelineno-14-86" href="#__codelineno-14-86"></a><span class="k">echo</span> <span class="s2">&quot;&lt;h2&gt;Natural Language Results:&lt;/h2&gt;&quot;</span><span class="p">;</span>
+</span><span id="__span-14-87"><a id="__codelineno-14-87" name="__codelineno-14-87" href="#__codelineno-14-87"></a><span class="k">foreach</span> <span class="p">(</span><span class="nv">$results</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span> <span class="p">{</span>
+</span><span id="__span-14-88"><a id="__codelineno-14-88" name="__codelineno-14-88" href="#__codelineno-14-88"></a>    <span class="k">echo</span> <span class="s2">&quot;&lt;div&gt;&quot;</span><span class="p">;</span>
+</span><span id="__span-14-89"><a id="__codelineno-14-89" name="__codelineno-14-89" href="#__codelineno-14-89"></a>    <span class="k">echo</span> <span class="s2">&quot;&lt;h3&gt;&quot;</span> <span class="o">.</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">])</span> <span class="o">.</span> <span class="s2">&quot;&lt;/h3&gt;&quot;</span><span class="p">;</span>
+</span><span id="__span-14-90"><a id="__codelineno-14-90" name="__codelineno-14-90" href="#__codelineno-14-90"></a>    <span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;Relevance: &quot;</span> <span class="o">.</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;relevance&#39;</span><span class="p">]</span> <span class="o">.</span> <span class="s2">&quot;&lt;/p&gt;&quot;</span><span class="p">;</span>
+</span><span id="__span-14-91"><a id="__codelineno-14-91" name="__codelineno-14-91" href="#__codelineno-14-91"></a>    <span class="k">echo</span> <span class="s2">&quot;&lt;/div&gt;&quot;</span><span class="p">;</span>
+</span><span id="__span-14-92"><a id="__codelineno-14-92" name="__codelineno-14-92" href="#__codelineno-14-92"></a><span class="p">}</span>
+</span><span id="__span-14-93"><a id="__codelineno-14-93" name="__codelineno-14-93" href="#__codelineno-14-93"></a>
+</span><span id="__span-14-94"><a id="__codelineno-14-94" name="__codelineno-14-94" href="#__codelineno-14-94"></a><span class="c1">// Boolean search</span>
+</span><span id="__span-14-95"><a id="__codelineno-14-95" name="__codelineno-14-95" href="#__codelineno-14-95"></a><span class="nv">$results</span> <span class="o">=</span> <span class="nv">$search</span><span class="o">-&gt;</span><span class="na">booleanSearch</span><span class="p">(</span><span class="s2">&quot;+mysql +performance -oracle&quot;</span><span class="p">,</span> <span class="s2">&quot;articles&quot;</span><span class="p">,</span> <span class="s2">&quot;title, content&quot;</span><span class="p">);</span>
+</span><span id="__span-14-96"><a id="__codelineno-14-96" name="__codelineno-14-96" href="#__codelineno-14-96"></a><span class="k">echo</span> <span class="s2">&quot;&lt;h2&gt;Boolean Search Results:&lt;/h2&gt;&quot;</span><span class="p">;</span>
+</span><span id="__span-14-97"><a id="__codelineno-14-97" name="__codelineno-14-97" href="#__codelineno-14-97"></a><span class="k">foreach</span> <span class="p">(</span><span class="nv">$results</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span> <span class="p">{</span>
+</span><span id="__span-14-98"><a id="__codelineno-14-98" name="__codelineno-14-98" href="#__codelineno-14-98"></a>    <span class="k">echo</span> <span class="s2">&quot;&lt;div&gt;&quot;</span><span class="p">;</span>
+</span><span id="__span-14-99"><a id="__codelineno-14-99" name="__codelineno-14-99" href="#__codelineno-14-99"></a>    <span class="k">echo</span> <span class="s2">&quot;&lt;h3&gt;&quot;</span> <span class="o">.</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">])</span> <span class="o">.</span> <span class="s2">&quot;&lt;/h3&gt;&quot;</span><span class="p">;</span>
+</span><span id="__span-14-100"><a id="__codelineno-14-100" name="__codelineno-14-100" href="#__codelineno-14-100"></a>    <span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;Relevance: &quot;</span> <span class="o">.</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;relevance&#39;</span><span class="p">]</span> <span class="o">.</span> <span class="s2">&quot;&lt;/p&gt;&quot;</span><span class="p">;</span>
+</span><span id="__span-14-101"><a id="__codelineno-14-101" name="__codelineno-14-101" href="#__codelineno-14-101"></a>    <span class="k">echo</span> <span class="s2">&quot;&lt;/div&gt;&quot;</span><span class="p">;</span>
+</span><span id="__span-14-102"><a id="__codelineno-14-102" name="__codelineno-14-102" href="#__codelineno-14-102"></a><span class="p">}</span>
+</span><span id="__span-14-103"><a id="__codelineno-14-103" name="__codelineno-14-103" href="#__codelineno-14-103"></a>
+</span><span id="__span-14-104"><a id="__codelineno-14-104" name="__codelineno-14-104" href="#__codelineno-14-104"></a><span class="nv">$search</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+</span><span id="__span-14-105"><a id="__codelineno-14-105" name="__codelineno-14-105" href="#__codelineno-14-105"></a><span class="cp">?&gt;</span>
 </span></code></pre></div>
 <h3 id="php_example_-_search_with_pagination">PHP Example - Search with Pagination<a class="headerlink" href="#php_example_-_search_with_pagination" title="Permanent link">&para;</a></h3>
-<div class="language-php highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="cp">&lt;?php</span>
-</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">function</span> <span class="nf">paginatedSearch</span><span class="p">(</span><span class="nv">$mysqli</span><span class="p">,</span> <span class="nv">$query</span><span class="p">,</span> <span class="nv">$page</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">$per_page</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
-</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>    <span class="nv">$offset</span> <span class="o">=</span> <span class="p">(</span><span class="nv">$page</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="nv">$per_page</span><span class="p">;</span>
-</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>
-</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>    <span class="c1">// Get total count</span>
-</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>    <span class="nv">$count_sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT COUNT(*) as total FROM articles </span>
-</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a><span class="s2">                  WHERE MATCH(title, content) AGAINST(? IN BOOLEAN MODE)&quot;</span><span class="p">;</span>
-</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>    <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="nv">$count_sql</span><span class="p">);</span>
-</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bind_param</span><span class="p">(</span><span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="nv">$query</span><span class="p">);</span>
-</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
-</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>    <span class="nv">$total</span> <span class="o">=</span> <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">get_result</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">fetch_assoc</span><span class="p">()[</span><span class="s1">&#39;total&#39;</span><span class="p">];</span>
-</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
-</span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>
-</span><span id="__span-14-14"><a id="__codelineno-14-14" name="__codelineno-14-14" href="#__codelineno-14-14"></a>    <span class="c1">// Get paginated results</span>
-</span><span id="__span-14-15"><a id="__codelineno-14-15" name="__codelineno-14-15" href="#__codelineno-14-15"></a>    <span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT *, </span>
-</span><span id="__span-14-16"><a id="__codelineno-14-16" name="__codelineno-14-16" href="#__codelineno-14-16"></a><span class="s2">            MATCH(title, content) AGAINST(? IN BOOLEAN MODE) AS relevance </span>
-</span><span id="__span-14-17"><a id="__codelineno-14-17" name="__codelineno-14-17" href="#__codelineno-14-17"></a><span class="s2">            FROM articles </span>
-</span><span id="__span-14-18"><a id="__codelineno-14-18" name="__codelineno-14-18" href="#__codelineno-14-18"></a><span class="s2">            WHERE MATCH(title, content) AGAINST(? IN BOOLEAN MODE)</span>
-</span><span id="__span-14-19"><a id="__codelineno-14-19" name="__codelineno-14-19" href="#__codelineno-14-19"></a><span class="s2">            ORDER BY relevance DESC</span>
-</span><span id="__span-14-20"><a id="__codelineno-14-20" name="__codelineno-14-20" href="#__codelineno-14-20"></a><span class="s2">            LIMIT ? OFFSET ?&quot;</span><span class="p">;</span>
-</span><span id="__span-14-21"><a id="__codelineno-14-21" name="__codelineno-14-21" href="#__codelineno-14-21"></a>
-</span><span id="__span-14-22"><a id="__codelineno-14-22" name="__codelineno-14-22" href="#__codelineno-14-22"></a>    <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
-</span><span id="__span-14-23"><a id="__codelineno-14-23" name="__codelineno-14-23" href="#__codelineno-14-23"></a>    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bind_param</span><span class="p">(</span><span class="s2">&quot;ssii&quot;</span><span class="p">,</span> <span class="nv">$query</span><span class="p">,</span> <span class="nv">$query</span><span class="p">,</span> <span class="nv">$per_page</span><span class="p">,</span> <span class="nv">$offset</span><span class="p">);</span>
-</span><span id="__span-14-24"><a id="__codelineno-14-24" name="__codelineno-14-24" href="#__codelineno-14-24"></a>    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
-</span><span id="__span-14-25"><a id="__codelineno-14-25" name="__codelineno-14-25" href="#__codelineno-14-25"></a>    <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">get_result</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">fetch_all</span><span class="p">(</span><span class="nx">MYSQLI_ASSOC</span><span class="p">);</span>
-</span><span id="__span-14-26"><a id="__codelineno-14-26" name="__codelineno-14-26" href="#__codelineno-14-26"></a>    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
-</span><span id="__span-14-27"><a id="__codelineno-14-27" name="__codelineno-14-27" href="#__codelineno-14-27"></a>
-</span><span id="__span-14-28"><a id="__codelineno-14-28" name="__codelineno-14-28" href="#__codelineno-14-28"></a>    <span class="k">return</span> <span class="p">[</span>
-</span><span id="__span-14-29"><a id="__codelineno-14-29" name="__codelineno-14-29" href="#__codelineno-14-29"></a>        <span class="s1">&#39;results&#39;</span> <span class="o">=&gt;</span> <span class="nv">$results</span><span class="p">,</span>
-</span><span id="__span-14-30"><a id="__codelineno-14-30" name="__codelineno-14-30" href="#__codelineno-14-30"></a>        <span class="s1">&#39;total&#39;</span> <span class="o">=&gt;</span> <span class="nv">$total</span><span class="p">,</span>
-</span><span id="__span-14-31"><a id="__codelineno-14-31" name="__codelineno-14-31" href="#__codelineno-14-31"></a>        <span class="s1">&#39;page&#39;</span> <span class="o">=&gt;</span> <span class="nv">$page</span><span class="p">,</span>
-</span><span id="__span-14-32"><a id="__codelineno-14-32" name="__codelineno-14-32" href="#__codelineno-14-32"></a>        <span class="s1">&#39;per_page&#39;</span> <span class="o">=&gt;</span> <span class="nv">$per_page</span><span class="p">,</span>
-</span><span id="__span-14-33"><a id="__codelineno-14-33" name="__codelineno-14-33" href="#__codelineno-14-33"></a>        <span class="s1">&#39;total_pages&#39;</span> <span class="o">=&gt;</span> <span class="nb">ceil</span><span class="p">(</span><span class="nv">$total</span> <span class="o">/</span> <span class="nv">$per_page</span><span class="p">)</span>
-</span><span id="__span-14-34"><a id="__codelineno-14-34" name="__codelineno-14-34" href="#__codelineno-14-34"></a>    <span class="p">];</span>
-</span><span id="__span-14-35"><a id="__codelineno-14-35" name="__codelineno-14-35" href="#__codelineno-14-35"></a><span class="p">}</span>
-</span><span id="__span-14-36"><a id="__codelineno-14-36" name="__codelineno-14-36" href="#__codelineno-14-36"></a>
-</span><span id="__span-14-37"><a id="__codelineno-14-37" name="__codelineno-14-37" href="#__codelineno-14-37"></a><span class="c1">// Usage</span>
-</span><span id="__span-14-38"><a id="__codelineno-14-38" name="__codelineno-14-38" href="#__codelineno-14-38"></a><span class="nv">$mysqli</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mysqli</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="s2">&quot;root&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="s2">&quot;mydb&quot;</span><span class="p">);</span>
-</span><span id="__span-14-39"><a id="__codelineno-14-39" name="__codelineno-14-39" href="#__codelineno-14-39"></a><span class="nv">$search_query</span> <span class="o">=</span> <span class="s2">&quot;+mysql +performance&quot;</span><span class="p">;</span>
-</span><span id="__span-14-40"><a id="__codelineno-14-40" name="__codelineno-14-40" href="#__codelineno-14-40"></a><span class="nv">$page</span> <span class="o">=</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;page&#39;</span><span class="p">])</span> <span class="o">?</span> <span class="p">(</span><span class="nx">int</span><span class="p">)</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;page&#39;</span><span class="p">]</span> <span class="o">:</span> <span class="mi">1</span><span class="p">;</span>
-</span><span id="__span-14-41"><a id="__codelineno-14-41" name="__codelineno-14-41" href="#__codelineno-14-41"></a>
-</span><span id="__span-14-42"><a id="__codelineno-14-42" name="__codelineno-14-42" href="#__codelineno-14-42"></a><span class="nv">$data</span> <span class="o">=</span> <span class="nx">paginatedSearch</span><span class="p">(</span><span class="nv">$mysqli</span><span class="p">,</span> <span class="nv">$search_query</span><span class="p">,</span> <span class="nv">$page</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
-</span><span id="__span-14-43"><a id="__codelineno-14-43" name="__codelineno-14-43" href="#__codelineno-14-43"></a>
-</span><span id="__span-14-44"><a id="__codelineno-14-44" name="__codelineno-14-44" href="#__codelineno-14-44"></a><span class="k">echo</span> <span class="s2">&quot;&lt;h2&gt;Search Results (Page </span><span class="si">{</span><span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;page&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;total_pages&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&lt;/h2&gt;&quot;</span><span class="p">;</span>
-</span><span id="__span-14-45"><a id="__codelineno-14-45" name="__codelineno-14-45" href="#__codelineno-14-45"></a><span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;Found </span><span class="si">{</span><span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;total&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> results&lt;/p&gt;&quot;</span><span class="p">;</span>
-</span><span id="__span-14-46"><a id="__codelineno-14-46" name="__codelineno-14-46" href="#__codelineno-14-46"></a>
-</span><span id="__span-14-47"><a id="__codelineno-14-47" name="__codelineno-14-47" href="#__codelineno-14-47"></a><span class="k">foreach</span> <span class="p">(</span><span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">]</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span> <span class="p">{</span>
-</span><span id="__span-14-48"><a id="__codelineno-14-48" name="__codelineno-14-48" href="#__codelineno-14-48"></a>    <span class="k">echo</span> <span class="s2">&quot;&lt;div&gt;&quot;</span><span class="p">;</span>
-</span><span id="__span-14-49"><a id="__codelineno-14-49" name="__codelineno-14-49" href="#__codelineno-14-49"></a>    <span class="k">echo</span> <span class="s2">&quot;&lt;h3&gt;&quot;</span> <span class="o">.</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">])</span> <span class="o">.</span> <span class="s2">&quot;&lt;/h3&gt;&quot;</span><span class="p">;</span>
-</span><span id="__span-14-50"><a id="__codelineno-14-50" name="__codelineno-14-50" href="#__codelineno-14-50"></a>    <span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;&quot;</span> <span class="o">.</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nb">substr</span><span class="p">(</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span> <span class="o">.</span> <span class="s2">&quot;...&lt;/p&gt;&quot;</span><span class="p">;</span>
-</span><span id="__span-14-51"><a id="__codelineno-14-51" name="__codelineno-14-51" href="#__codelineno-14-51"></a>    <span class="k">echo</span> <span class="s2">&quot;&lt;small&gt;Relevance: &quot;</span> <span class="o">.</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;relevance&#39;</span><span class="p">]</span> <span class="o">.</span> <span class="s2">&quot;&lt;/small&gt;&quot;</span><span class="p">;</span>
-</span><span id="__span-14-52"><a id="__codelineno-14-52" name="__codelineno-14-52" href="#__codelineno-14-52"></a>    <span class="k">echo</span> <span class="s2">&quot;&lt;/div&gt;&lt;hr&gt;&quot;</span><span class="p">;</span>
-</span><span id="__span-14-53"><a id="__codelineno-14-53" name="__codelineno-14-53" href="#__codelineno-14-53"></a><span class="p">}</span>
-</span><span id="__span-14-54"><a id="__codelineno-14-54" name="__codelineno-14-54" href="#__codelineno-14-54"></a>
-</span><span id="__span-14-55"><a id="__codelineno-14-55" name="__codelineno-14-55" href="#__codelineno-14-55"></a><span class="c1">// Pagination links</span>
-</span><span id="__span-14-56"><a id="__codelineno-14-56" name="__codelineno-14-56" href="#__codelineno-14-56"></a><span class="k">echo</span> <span class="s2">&quot;&lt;div&gt;&quot;</span><span class="p">;</span>
-</span><span id="__span-14-57"><a id="__codelineno-14-57" name="__codelineno-14-57" href="#__codelineno-14-57"></a><span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;=</span> <span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;total_pages&#39;</span><span class="p">];</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span><span id="__span-14-58"><a id="__codelineno-14-58" name="__codelineno-14-58" href="#__codelineno-14-58"></a>    <span class="k">if</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">==</span> <span class="nv">$page</span><span class="p">)</span> <span class="p">{</span>
-</span><span id="__span-14-59"><a id="__codelineno-14-59" name="__codelineno-14-59" href="#__codelineno-14-59"></a>        <span class="k">echo</span> <span class="s2">&quot;&lt;strong&gt;</span><span class="si">$i</span><span class="s2">&lt;/strong&gt; &quot;</span><span class="p">;</span>
-</span><span id="__span-14-60"><a id="__codelineno-14-60" name="__codelineno-14-60" href="#__codelineno-14-60"></a>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-</span><span id="__span-14-61"><a id="__codelineno-14-61" name="__codelineno-14-61" href="#__codelineno-14-61"></a>        <span class="k">echo</span> <span class="s2">&quot;&lt;a href=&#39;?page=</span><span class="si">$i</span><span class="s2">&#39;&gt;</span><span class="si">$i</span><span class="s2">&lt;/a&gt; &quot;</span><span class="p">;</span>
-</span><span id="__span-14-62"><a id="__codelineno-14-62" name="__codelineno-14-62" href="#__codelineno-14-62"></a>    <span class="p">}</span>
-</span><span id="__span-14-63"><a id="__codelineno-14-63" name="__codelineno-14-63" href="#__codelineno-14-63"></a><span class="p">}</span>
-</span><span id="__span-14-64"><a id="__codelineno-14-64" name="__codelineno-14-64" href="#__codelineno-14-64"></a><span class="k">echo</span> <span class="s2">&quot;&lt;/div&gt;&quot;</span><span class="p">;</span>
-</span><span id="__span-14-65"><a id="__codelineno-14-65" name="__codelineno-14-65" href="#__codelineno-14-65"></a>
-</span><span id="__span-14-66"><a id="__codelineno-14-66" name="__codelineno-14-66" href="#__codelineno-14-66"></a><span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
-</span><span id="__span-14-67"><a id="__codelineno-14-67" name="__codelineno-14-67" href="#__codelineno-14-67"></a><span class="cp">?&gt;</span>
-</span><span id="__span-14-68"><a id="__codelineno-14-68" name="__codelineno-14-68" href="#__codelineno-14-68"></a><span class="x">``</span>
-</span><span id="__span-14-69"><a id="__codelineno-14-69" name="__codelineno-14-69" href="#__codelineno-14-69"></a>
-</span><span id="__span-14-70"><a id="__codelineno-14-70" name="__codelineno-14-70" href="#__codelineno-14-70"></a><span class="x">## 9. Common Issues and Solutions</span>
-</span><span id="__span-14-71"><a id="__codelineno-14-71" name="__codelineno-14-71" href="#__codelineno-14-71"></a>
-</span><span id="__span-14-72"><a id="__codelineno-14-72" name="__codelineno-14-72" href="#__codelineno-14-72"></a><span class="x">### Issue 1: Search Returns No Results for Short Words</span>
-</span><span id="__span-14-73"><a id="__codelineno-14-73" name="__codelineno-14-73" href="#__codelineno-14-73"></a>
-</span><span id="__span-14-74"><a id="__codelineno-14-74" name="__codelineno-14-74" href="#__codelineno-14-74"></a><span class="x">**Problem:** Searching for &quot;AI&quot; or &quot;UK&quot; returns nothing.</span>
-</span><span id="__span-14-75"><a id="__codelineno-14-75" name="__codelineno-14-75" href="#__codelineno-14-75"></a>
-</span><span id="__span-14-76"><a id="__codelineno-14-76" name="__codelineno-14-76" href="#__codelineno-14-76"></a><span class="x">**Solution:** Lower the minimum token size (requires server restart and index rebuild).</span>
-</span><span id="__span-14-77"><a id="__codelineno-14-77" name="__codelineno-14-77" href="#__codelineno-14-77"></a>
-</span><span id="__span-14-78"><a id="__codelineno-14-78" name="__codelineno-14-78" href="#__codelineno-14-78"></a><span class="x">```php</span>
-</span><span id="__span-14-79"><a id="__codelineno-14-79" name="__codelineno-14-79" href="#__codelineno-14-79"></a><span class="x">// After configuration change, rebuild index</span>
-</span><span id="__span-14-80"><a id="__codelineno-14-80" name="__codelineno-14-80" href="#__codelineno-14-80"></a><span class="x">$mysqli-&gt;query(&quot;ALTER TABLE articles DROP INDEX content_idx&quot;);</span>
-</span><span id="__span-14-81"><a id="__codelineno-14-81" name="__codelineno-14-81" href="#__codelineno-14-81"></a><span class="x">$mysqli-&gt;query(&quot;ALTER TABLE articles ADD FULLTEXT INDEX content_idx (content)&quot;);</span>
+<div class="language-php highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="cp">&lt;?php</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="k">function</span> <span class="nf">paginatedSearch</span><span class="p">(</span><span class="nv">$mysqli</span><span class="p">,</span> <span class="nv">$query</span><span class="p">,</span> <span class="nv">$page</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">$per_page</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="p">{</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    <span class="nv">$offset</span> <span class="o">=</span> <span class="p">(</span><span class="nv">$page</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="nv">$per_page</span><span class="p">;</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>    <span class="c1">// Get total count</span>
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>    <span class="nv">$count_sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT COUNT(*) as total FROM articles </span>
+</span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="s2">                  WHERE MATCH(title, content) AGAINST(? IN BOOLEAN MODE)&quot;</span><span class="p">;</span>
+</span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>    <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="nv">$count_sql</span><span class="p">);</span>
+</span><span id="__span-15-9"><a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bind_param</span><span class="p">(</span><span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="nv">$query</span><span class="p">);</span>
+</span><span id="__span-15-10"><a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+</span><span id="__span-15-11"><a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>    <span class="nv">$total</span> <span class="o">=</span> <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">get_result</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">fetch_assoc</span><span class="p">()[</span><span class="s1">&#39;total&#39;</span><span class="p">];</span>
+</span><span id="__span-15-12"><a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+</span><span id="__span-15-13"><a id="__codelineno-15-13" name="__codelineno-15-13" href="#__codelineno-15-13"></a>
+</span><span id="__span-15-14"><a id="__codelineno-15-14" name="__codelineno-15-14" href="#__codelineno-15-14"></a>    <span class="c1">// Get paginated results</span>
+</span><span id="__span-15-15"><a id="__codelineno-15-15" name="__codelineno-15-15" href="#__codelineno-15-15"></a>    <span class="nv">$sql</span> <span class="o">=</span> <span class="s2">&quot;SELECT *, </span>
+</span><span id="__span-15-16"><a id="__codelineno-15-16" name="__codelineno-15-16" href="#__codelineno-15-16"></a><span class="s2">            MATCH(title, content) AGAINST(? IN BOOLEAN MODE) AS relevance </span>
+</span><span id="__span-15-17"><a id="__codelineno-15-17" name="__codelineno-15-17" href="#__codelineno-15-17"></a><span class="s2">            FROM articles </span>
+</span><span id="__span-15-18"><a id="__codelineno-15-18" name="__codelineno-15-18" href="#__codelineno-15-18"></a><span class="s2">            WHERE MATCH(title, content) AGAINST(? IN BOOLEAN MODE)</span>
+</span><span id="__span-15-19"><a id="__codelineno-15-19" name="__codelineno-15-19" href="#__codelineno-15-19"></a><span class="s2">            ORDER BY relevance DESC</span>
+</span><span id="__span-15-20"><a id="__codelineno-15-20" name="__codelineno-15-20" href="#__codelineno-15-20"></a><span class="s2">            LIMIT ? OFFSET ?&quot;</span><span class="p">;</span>
+</span><span id="__span-15-21"><a id="__codelineno-15-21" name="__codelineno-15-21" href="#__codelineno-15-21"></a>
+</span><span id="__span-15-22"><a id="__codelineno-15-22" name="__codelineno-15-22" href="#__codelineno-15-22"></a>    <span class="nv">$stmt</span> <span class="o">=</span> <span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">prepare</span><span class="p">(</span><span class="nv">$sql</span><span class="p">);</span>
+</span><span id="__span-15-23"><a id="__codelineno-15-23" name="__codelineno-15-23" href="#__codelineno-15-23"></a>    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">bind_param</span><span class="p">(</span><span class="s2">&quot;ssii&quot;</span><span class="p">,</span> <span class="nv">$query</span><span class="p">,</span> <span class="nv">$query</span><span class="p">,</span> <span class="nv">$per_page</span><span class="p">,</span> <span class="nv">$offset</span><span class="p">);</span>
+</span><span id="__span-15-24"><a id="__codelineno-15-24" name="__codelineno-15-24" href="#__codelineno-15-24"></a>    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+</span><span id="__span-15-25"><a id="__codelineno-15-25" name="__codelineno-15-25" href="#__codelineno-15-25"></a>    <span class="nv">$results</span> <span class="o">=</span> <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">get_result</span><span class="p">()</span><span class="o">-&gt;</span><span class="na">fetch_all</span><span class="p">(</span><span class="nx">MYSQLI_ASSOC</span><span class="p">);</span>
+</span><span id="__span-15-26"><a id="__codelineno-15-26" name="__codelineno-15-26" href="#__codelineno-15-26"></a>    <span class="nv">$stmt</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+</span><span id="__span-15-27"><a id="__codelineno-15-27" name="__codelineno-15-27" href="#__codelineno-15-27"></a>
+</span><span id="__span-15-28"><a id="__codelineno-15-28" name="__codelineno-15-28" href="#__codelineno-15-28"></a>    <span class="k">return</span> <span class="p">[</span>
+</span><span id="__span-15-29"><a id="__codelineno-15-29" name="__codelineno-15-29" href="#__codelineno-15-29"></a>        <span class="s1">&#39;results&#39;</span> <span class="o">=&gt;</span> <span class="nv">$results</span><span class="p">,</span>
+</span><span id="__span-15-30"><a id="__codelineno-15-30" name="__codelineno-15-30" href="#__codelineno-15-30"></a>        <span class="s1">&#39;total&#39;</span> <span class="o">=&gt;</span> <span class="nv">$total</span><span class="p">,</span>
+</span><span id="__span-15-31"><a id="__codelineno-15-31" name="__codelineno-15-31" href="#__codelineno-15-31"></a>        <span class="s1">&#39;page&#39;</span> <span class="o">=&gt;</span> <span class="nv">$page</span><span class="p">,</span>
+</span><span id="__span-15-32"><a id="__codelineno-15-32" name="__codelineno-15-32" href="#__codelineno-15-32"></a>        <span class="s1">&#39;per_page&#39;</span> <span class="o">=&gt;</span> <span class="nv">$per_page</span><span class="p">,</span>
+</span><span id="__span-15-33"><a id="__codelineno-15-33" name="__codelineno-15-33" href="#__codelineno-15-33"></a>        <span class="s1">&#39;total_pages&#39;</span> <span class="o">=&gt;</span> <span class="nb">ceil</span><span class="p">(</span><span class="nv">$total</span> <span class="o">/</span> <span class="nv">$per_page</span><span class="p">)</span>
+</span><span id="__span-15-34"><a id="__codelineno-15-34" name="__codelineno-15-34" href="#__codelineno-15-34"></a>    <span class="p">];</span>
+</span><span id="__span-15-35"><a id="__codelineno-15-35" name="__codelineno-15-35" href="#__codelineno-15-35"></a><span class="p">}</span>
+</span><span id="__span-15-36"><a id="__codelineno-15-36" name="__codelineno-15-36" href="#__codelineno-15-36"></a>
+</span><span id="__span-15-37"><a id="__codelineno-15-37" name="__codelineno-15-37" href="#__codelineno-15-37"></a><span class="c1">// Usage</span>
+</span><span id="__span-15-38"><a id="__codelineno-15-38" name="__codelineno-15-38" href="#__codelineno-15-38"></a><span class="nv">$mysqli</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">mysqli</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="s2">&quot;root&quot;</span><span class="p">,</span> <span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="s2">&quot;mydb&quot;</span><span class="p">);</span>
+</span><span id="__span-15-39"><a id="__codelineno-15-39" name="__codelineno-15-39" href="#__codelineno-15-39"></a><span class="nv">$search_query</span> <span class="o">=</span> <span class="s2">&quot;+mysql +performance&quot;</span><span class="p">;</span>
+</span><span id="__span-15-40"><a id="__codelineno-15-40" name="__codelineno-15-40" href="#__codelineno-15-40"></a><span class="nv">$page</span> <span class="o">=</span> <span class="nb">isset</span><span class="p">(</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;page&#39;</span><span class="p">])</span> <span class="o">?</span> <span class="p">(</span><span class="nx">int</span><span class="p">)</span><span class="nv">$_GET</span><span class="p">[</span><span class="s1">&#39;page&#39;</span><span class="p">]</span> <span class="o">:</span> <span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-15-41"><a id="__codelineno-15-41" name="__codelineno-15-41" href="#__codelineno-15-41"></a>
+</span><span id="__span-15-42"><a id="__codelineno-15-42" name="__codelineno-15-42" href="#__codelineno-15-42"></a><span class="nv">$data</span> <span class="o">=</span> <span class="nx">paginatedSearch</span><span class="p">(</span><span class="nv">$mysqli</span><span class="p">,</span> <span class="nv">$search_query</span><span class="p">,</span> <span class="nv">$page</span><span class="p">,</span> <span class="mi">10</span><span class="p">);</span>
+</span><span id="__span-15-43"><a id="__codelineno-15-43" name="__codelineno-15-43" href="#__codelineno-15-43"></a>
+</span><span id="__span-15-44"><a id="__codelineno-15-44" name="__codelineno-15-44" href="#__codelineno-15-44"></a><span class="k">echo</span> <span class="s2">&quot;&lt;h2&gt;Search Results (Page </span><span class="si">{</span><span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;page&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> of </span><span class="si">{</span><span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;total_pages&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&lt;/h2&gt;&quot;</span><span class="p">;</span>
+</span><span id="__span-15-45"><a id="__codelineno-15-45" name="__codelineno-15-45" href="#__codelineno-15-45"></a><span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;Found </span><span class="si">{</span><span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;total&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> results&lt;/p&gt;&quot;</span><span class="p">;</span>
+</span><span id="__span-15-46"><a id="__codelineno-15-46" name="__codelineno-15-46" href="#__codelineno-15-46"></a>
+</span><span id="__span-15-47"><a id="__codelineno-15-47" name="__codelineno-15-47" href="#__codelineno-15-47"></a><span class="k">foreach</span> <span class="p">(</span><span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;results&#39;</span><span class="p">]</span> <span class="k">as</span> <span class="nv">$row</span><span class="p">)</span> <span class="p">{</span>
+</span><span id="__span-15-48"><a id="__codelineno-15-48" name="__codelineno-15-48" href="#__codelineno-15-48"></a>    <span class="k">echo</span> <span class="s2">&quot;&lt;div&gt;&quot;</span><span class="p">;</span>
+</span><span id="__span-15-49"><a id="__codelineno-15-49" name="__codelineno-15-49" href="#__codelineno-15-49"></a>    <span class="k">echo</span> <span class="s2">&quot;&lt;h3&gt;&quot;</span> <span class="o">.</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">])</span> <span class="o">.</span> <span class="s2">&quot;&lt;/h3&gt;&quot;</span><span class="p">;</span>
+</span><span id="__span-15-50"><a id="__codelineno-15-50" name="__codelineno-15-50" href="#__codelineno-15-50"></a>    <span class="k">echo</span> <span class="s2">&quot;&lt;p&gt;&quot;</span> <span class="o">.</span> <span class="nb">htmlspecialchars</span><span class="p">(</span><span class="nb">substr</span><span class="p">(</span><span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;content&#39;</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span> <span class="o">.</span> <span class="s2">&quot;...&lt;/p&gt;&quot;</span><span class="p">;</span>
+</span><span id="__span-15-51"><a id="__codelineno-15-51" name="__codelineno-15-51" href="#__codelineno-15-51"></a>    <span class="k">echo</span> <span class="s2">&quot;&lt;small&gt;Relevance: &quot;</span> <span class="o">.</span> <span class="nv">$row</span><span class="p">[</span><span class="s1">&#39;relevance&#39;</span><span class="p">]</span> <span class="o">.</span> <span class="s2">&quot;&lt;/small&gt;&quot;</span><span class="p">;</span>
+</span><span id="__span-15-52"><a id="__codelineno-15-52" name="__codelineno-15-52" href="#__codelineno-15-52"></a>    <span class="k">echo</span> <span class="s2">&quot;&lt;/div&gt;&lt;hr&gt;&quot;</span><span class="p">;</span>
+</span><span id="__span-15-53"><a id="__codelineno-15-53" name="__codelineno-15-53" href="#__codelineno-15-53"></a><span class="p">}</span>
+</span><span id="__span-15-54"><a id="__codelineno-15-54" name="__codelineno-15-54" href="#__codelineno-15-54"></a>
+</span><span id="__span-15-55"><a id="__codelineno-15-55" name="__codelineno-15-55" href="#__codelineno-15-55"></a><span class="c1">// Pagination links</span>
+</span><span id="__span-15-56"><a id="__codelineno-15-56" name="__codelineno-15-56" href="#__codelineno-15-56"></a><span class="k">echo</span> <span class="s2">&quot;&lt;div&gt;&quot;</span><span class="p">;</span>
+</span><span id="__span-15-57"><a id="__codelineno-15-57" name="__codelineno-15-57" href="#__codelineno-15-57"></a><span class="k">for</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nv">$i</span> <span class="o">&lt;=</span> <span class="nv">$data</span><span class="p">[</span><span class="s1">&#39;total_pages&#39;</span><span class="p">];</span> <span class="nv">$i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+</span><span id="__span-15-58"><a id="__codelineno-15-58" name="__codelineno-15-58" href="#__codelineno-15-58"></a>    <span class="k">if</span> <span class="p">(</span><span class="nv">$i</span> <span class="o">==</span> <span class="nv">$page</span><span class="p">)</span> <span class="p">{</span>
+</span><span id="__span-15-59"><a id="__codelineno-15-59" name="__codelineno-15-59" href="#__codelineno-15-59"></a>        <span class="k">echo</span> <span class="s2">&quot;&lt;strong&gt;</span><span class="si">$i</span><span class="s2">&lt;/strong&gt; &quot;</span><span class="p">;</span>
+</span><span id="__span-15-60"><a id="__codelineno-15-60" name="__codelineno-15-60" href="#__codelineno-15-60"></a>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span><span id="__span-15-61"><a id="__codelineno-15-61" name="__codelineno-15-61" href="#__codelineno-15-61"></a>        <span class="k">echo</span> <span class="s2">&quot;&lt;a href=&#39;?page=</span><span class="si">$i</span><span class="s2">&#39;&gt;</span><span class="si">$i</span><span class="s2">&lt;/a&gt; &quot;</span><span class="p">;</span>
+</span><span id="__span-15-62"><a id="__codelineno-15-62" name="__codelineno-15-62" href="#__codelineno-15-62"></a>    <span class="p">}</span>
+</span><span id="__span-15-63"><a id="__codelineno-15-63" name="__codelineno-15-63" href="#__codelineno-15-63"></a><span class="p">}</span>
+</span><span id="__span-15-64"><a id="__codelineno-15-64" name="__codelineno-15-64" href="#__codelineno-15-64"></a><span class="k">echo</span> <span class="s2">&quot;&lt;/div&gt;&quot;</span><span class="p">;</span>
+</span><span id="__span-15-65"><a id="__codelineno-15-65" name="__codelineno-15-65" href="#__codelineno-15-65"></a>
+</span><span id="__span-15-66"><a id="__codelineno-15-66" name="__codelineno-15-66" href="#__codelineno-15-66"></a><span class="nv">$mysqli</span><span class="o">-&gt;</span><span class="na">close</span><span class="p">();</span>
+</span><span id="__span-15-67"><a id="__codelineno-15-67" name="__codelineno-15-67" href="#__codelineno-15-67"></a><span class="cp">?&gt;</span>
+</span></code></pre></div>
+<h2 id="9_common_issues_and_solutions">9. Common Issues and Solutions<a class="headerlink" href="#9_common_issues_and_solutions" title="Permanent link">&para;</a></h2>
+<h3 id="issue_1_search_returns_no_results_for_short_words">Issue 1: Search Returns No Results for Short Words<a class="headerlink" href="#issue_1_search_returns_no_results_for_short_words" title="Permanent link">&para;</a></h3>
+<p><strong>Problem:</strong> Searching for "AI" or "UK" returns nothing.</p>
+<p><strong>Solution:</strong> Lower the minimum token size (requires server restart and index rebuild).</p>
+<div class="language-php highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="x">// After configuration change, rebuild index</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="x">$mysqli-&gt;query(&quot;ALTER TABLE articles DROP INDEX content_idx&quot;);</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="x">$mysqli-&gt;query(&quot;ALTER TABLE articles ADD FULLTEXT INDEX content_idx (content)&quot;);</span>
 </span></code></pre></div>
 <h3 id="issue_2_common_words_are_ignored">Issue 2: Common Words Are Ignored<a class="headerlink" href="#issue_2_common_words_are_ignored" title="Permanent link">&para;</a></h3>
 <p><strong>Problem:</strong> Searching for "the best database" ignores "the" and "best".</p>
 <p><strong>Solution:</strong> Use boolean mode or create custom stopword list.</p>
-<div class="language-php highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="x">// Use boolean mode</span>
-</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="x">$query = &quot;+the +best +database&quot;;</span>
-</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="x">$sql = &quot;SELECT * FROM articles </span>
-</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="x">        WHERE MATCH(content) AGAINST(? IN BOOLEAN MODE)&quot;;</span>
+<div class="language-php highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="x">// Use boolean mode</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="x">$query = &quot;+the +best +database&quot;;</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="x">$sql = &quot;SELECT * FROM articles </span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="x">        WHERE MATCH(content) AGAINST(? IN BOOLEAN MODE)&quot;;</span>
 </span></code></pre></div>
 <h3 id="issue_3_50_threshold_blocks_results_myisam">Issue 3: 50% Threshold Blocks Results (MyISAM)<a class="headerlink" href="#issue_3_50_threshold_blocks_results_myisam" title="Permanent link">&para;</a></h3>
 <p><strong>Problem:</strong> Word appears in too many documents and is ignored.</p>
 <p><strong>Solution:</strong> Always use IN BOOLEAN MODE for common terms.</p>
-<div class="language-php highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="x">// Boolean mode bypasses the 50% threshold</span>
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="x">$sql = &quot;SELECT * FROM articles </span>
-</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="x">        WHERE MATCH(content) AGAINST(? IN BOOLEAN MODE)&quot;;</span>
+<div class="language-php highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="x">// Boolean mode bypasses the 50% threshold</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="x">$sql = &quot;SELECT * FROM articles </span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="x">        WHERE MATCH(content) AGAINST(? IN BOOLEAN MODE)&quot;;</span>
 </span></code></pre></div>
 <h3 id="issue_4_slow_search_performance">Issue 4: Slow Search Performance<a class="headerlink" href="#issue_4_slow_search_performance" title="Permanent link">&para;</a></h3>
 <p><strong>Problem:</strong> Full-text searches are slow on large tables.</p>
 <p><strong>Solution:</strong> Optimize the full-text index regularly.</p>
-<div class="language-php highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="x">$mysqli-&gt;query(&quot;SET GLOBAL innodb_optimize_fulltext_only = ON&quot;);</span>
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="x">$mysqli-&gt;query(&quot;OPTIMIZE TABLE articles&quot;);</span>
-</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="x">$mysqli-&gt;query(&quot;SET GLOBAL innodb_optimize_fulltext_only = OFF&quot;);</span>
+<div class="language-php highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="x">$mysqli-&gt;query(&quot;SET GLOBAL innodb_optimize_fulltext_only = ON&quot;);</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="x">$mysqli-&gt;query(&quot;OPTIMIZE TABLE articles&quot;);</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="x">$mysqli-&gt;query(&quot;SET GLOBAL innodb_optimize_fulltext_only = OFF&quot;);</span>
 </span></code></pre></div>
 <h2 id="10_best_practices">10. Best Practices<a class="headerlink" href="#10_best_practices" title="Permanent link">&para;</a></h2>
 <h3 id="1_always_use_prepared_statements">1. Always Use Prepared Statements<a class="headerlink" href="#1_always_use_prepared_statements" title="Permanent link">&para;</a></h3>
-<div class="language-php highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="x">// ✓ GOOD - Protected against SQL injection</span>
-</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="x">$stmt = $mysqli-&gt;prepare(&quot;SELECT * FROM articles </span>
-</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="x">                          WHERE MATCH(content) AGAINST(? IN BOOLEAN MODE)&quot;);</span>
-</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="x">$stmt-&gt;bind_param(&quot;s&quot;, $user_input);</span>
-</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="x">$stmt-&gt;execute();</span>
-</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>
-</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="x">// ✗ BAD - Vulnerable to SQL injection</span>
-</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="x">$sql = &quot;SELECT * FROM articles </span>
-</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="x">        WHERE MATCH(content) AGAINST(&#39;$user_input&#39; IN BOOLEAN MODE)&quot;;</span>
+<div class="language-php highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="x">// ✓ GOOD - Protected against SQL injection</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="x">$stmt = $mysqli-&gt;prepare(&quot;SELECT * FROM articles </span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="x">                          WHERE MATCH(content) AGAINST(? IN BOOLEAN MODE)&quot;);</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="x">$stmt-&gt;bind_param(&quot;s&quot;, $user_input);</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="x">$stmt-&gt;execute();</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="x">// ✗ BAD - Vulnerable to SQL injection</span>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="x">$sql = &quot;SELECT * FROM articles </span>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="x">        WHERE MATCH(content) AGAINST(&#39;$user_input&#39; IN BOOLEAN MODE)&quot;;</span>
 </span></code></pre></div>
 <h3 id="2_sanitize_boolean_operators_from_user_input">2. Sanitize Boolean Operators from User Input<a class="headerlink" href="#2_sanitize_boolean_operators_from_user_input" title="Permanent link">&para;</a></h3>
-<div class="language-php highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="x">function sanitizeBooleanQuery($query) {</span>
-</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="x">    // Remove potentially problematic characters</span>
-</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="x">    // while keeping valid boolean operators</span>
-</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="x">    $query = preg_replace(&#39;/[^\w\s+\-&quot;*()]/&#39;, &#39;&#39;, $query);</span>
-</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="x">    return trim($query);</span>
-</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="x">}</span>
-</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>
-</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="x">$user_query = sanitizeBooleanQuery($_GET[&#39;q&#39;]);</span>
+<div class="language-php highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="x">function sanitizeBooleanQuery($query) {</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="x">    // Remove potentially problematic characters</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="x">    // while keeping valid boolean operators</span>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="x">    $query = preg_replace(&#39;/[^\w\s+\-&quot;*()]/&#39;, &#39;&#39;, $query);</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="x">    return trim($query);</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="x">}</span>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="x">$user_query = sanitizeBooleanQuery($_GET[&#39;q&#39;]);</span>
 </span></code></pre></div>
 <h3 id="3_add_minimum_query_length">3. Add Minimum Query Length<a class="headerlink" href="#3_add_minimum_query_length" title="Permanent link">&para;</a></h3>
-<div class="language-php highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="x">function search($query) {</span>
-</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="x">    // Require at least 2 characters</span>
-</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="x">    if (strlen($query) &lt; 2) {</span>
-</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="x">        return [&#39;error&#39; =&gt; &#39;Query too short. Minimum 2 characters.&#39;];</span>
-</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="x">    }</span>
-</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>
-</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="x">    // Perform search...</span>
-</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="x">}</span>
+<div class="language-php highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="x">function search($query) {</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="x">    // Require at least 2 characters</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="x">    if (strlen($query) &lt; 2) {</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="x">        return [&#39;error&#39; =&gt; &#39;Query too short. Minimum 2 characters.&#39;];</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="x">    }</span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="x">    // Perform search...</span>
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="x">}</span>
 </span></code></pre></div>
 <h3 id="4_cache_search_results">4. Cache Search Results<a class="headerlink" href="#4_cache_search_results" title="Permanent link">&para;</a></h3>
-<div class="language-php highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="x">function cachedSearch($mysqli, $query, $cache_time = 300) {</span>
-</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="x">    $cache_key = &#39;search_&#39; . md5($query);</span>
-</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="x">    $cache_file = &quot;/tmp/$cache_key&quot;;</span>
-</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>
-</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="x">    // Check if cache exists and is fresh</span>
-</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a><span class="x">    if (file_exists($cache_file) &amp;&amp; (time() - filemtime($cache_file)) &lt; $cache_time) {</span>
-</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="x">        return unserialize(file_get_contents($cache_file));</span>
-</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="x">    }</span>
-</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>
-</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="x">    // Perform actual search</span>
-</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="x">    $stmt = $mysqli-&gt;prepare(&quot;SELECT * FROM articles </span>
-</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a><span class="x">                              WHERE MATCH(content) AGAINST(? IN BOOLEAN MODE)&quot;);</span>
-</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a><span class="x">    $stmt-&gt;bind_param(&quot;s&quot;, $query);</span>
-</span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a><span class="x">    $stmt-&gt;execute();</span>
-</span><span id="__span-21-15"><a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a><span class="x">    $results = $stmt-&gt;get_result()-&gt;fetch_all(MYSQLI_ASSOC);</span>
-</span><span id="__span-21-16"><a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a><span class="x">    $stmt-&gt;close();</span>
-</span><span id="__span-21-17"><a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a>
-</span><span id="__span-21-18"><a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a><span class="x">    // Cache results</span>
-</span><span id="__span-21-19"><a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a><span class="x">    file_put_contents($cache_file, serialize($results));</span>
-</span><span id="__span-21-20"><a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a>
-</span><span id="__span-21-21"><a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a><span class="x">    return $results;</span>
-</span><span id="__span-21-22"><a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a><span class="x">}</span>
+<div class="language-php highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="x">function cachedSearch($mysqli, $query, $cache_time = 300) {</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="x">    $cache_key = &#39;search_&#39; . md5($query);</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="x">    $cache_file = &quot;/tmp/$cache_key&quot;;</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="x">    // Check if cache exists and is fresh</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="x">    if (file_exists($cache_file) &amp;&amp; (time() - filemtime($cache_file)) &lt; $cache_time) {</span>
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="x">        return unserialize(file_get_contents($cache_file));</span>
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="x">    }</span>
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="x">    // Perform actual search</span>
+</span><span id="__span-23-11"><a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a><span class="x">    $stmt = $mysqli-&gt;prepare(&quot;SELECT * FROM articles </span>
+</span><span id="__span-23-12"><a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a><span class="x">                              WHERE MATCH(content) AGAINST(? IN BOOLEAN MODE)&quot;);</span>
+</span><span id="__span-23-13"><a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a><span class="x">    $stmt-&gt;bind_param(&quot;s&quot;, $query);</span>
+</span><span id="__span-23-14"><a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a><span class="x">    $stmt-&gt;execute();</span>
+</span><span id="__span-23-15"><a id="__codelineno-23-15" name="__codelineno-23-15" href="#__codelineno-23-15"></a><span class="x">    $results = $stmt-&gt;get_result()-&gt;fetch_all(MYSQLI_ASSOC);</span>
+</span><span id="__span-23-16"><a id="__codelineno-23-16" name="__codelineno-23-16" href="#__codelineno-23-16"></a><span class="x">    $stmt-&gt;close();</span>
+</span><span id="__span-23-17"><a id="__codelineno-23-17" name="__codelineno-23-17" href="#__codelineno-23-17"></a>
+</span><span id="__span-23-18"><a id="__codelineno-23-18" name="__codelineno-23-18" href="#__codelineno-23-18"></a><span class="x">    // Cache results</span>
+</span><span id="__span-23-19"><a id="__codelineno-23-19" name="__codelineno-23-19" href="#__codelineno-23-19"></a><span class="x">    file_put_contents($cache_file, serialize($results));</span>
+</span><span id="__span-23-20"><a id="__codelineno-23-20" name="__codelineno-23-20" href="#__codelineno-23-20"></a>
+</span><span id="__span-23-21"><a id="__codelineno-23-21" name="__codelineno-23-21" href="#__codelineno-23-21"></a><span class="x">    return $results;</span>
+</span><span id="__span-23-22"><a id="__codelineno-23-22" name="__codelineno-23-22" href="#__codelineno-23-22"></a><span class="x">}</span>
 </span></code></pre></div>
 <h3 id="5_log_slow_queries">5. Log Slow Queries<a class="headerlink" href="#5_log_slow_queries" title="Permanent link">&para;</a></h3>
-<div class="language-php highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="x">function logSlowQuery($query, $execution_time) {</span>
-</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="x">    if ($execution_time &gt; 1.0) { // Log queries taking more than 1 second</span>
-</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="x">        $log_entry = date(&#39;Y-m-d H:i:s&#39;) . &quot; - Slow query ($execution_time s): $query\n&quot;;</span>
-</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="x">        file_put_contents(&#39;/var/log/mysql_slow_searches.log&#39;, $log_entry, FILE_APPEND);</span>
-</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="x">    }</span>
-</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="x">}</span>
-</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>
-</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="x">$start = microtime(true);</span>
-</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="x">// ... perform search ...</span>
-</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="x">$execution_time = microtime(true) - $start;</span>
-</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="x">logSlowQuery($search_query, $execution_time);</span>
+<div class="language-php highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="x">function logSlowQuery($query, $execution_time) {</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="x">    if ($execution_time &gt; 1.0) { // Log queries taking more than 1 second</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="x">        $log_entry = date(&#39;Y-m-d H:i:s&#39;) . &quot; - Slow query ($execution_time s): $query\n&quot;;</span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="x">        file_put_contents(&#39;/var/log/mysql_slow_searches.log&#39;, $log_entry, FILE_APPEND);</span>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="x">    }</span>
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="x">}</span>
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a><span class="x">$start = microtime(true);</span>
+</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a><span class="x">// ... perform search ...</span>
+</span><span id="__span-24-10"><a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a><span class="x">$execution_time = microtime(true) - $start;</span>
+</span><span id="__span-24-11"><a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a><span class="x">logSlowQuery($search_query, $execution_time);</span>
 </span></code></pre></div>
 <h2 id="11_summary_checklist">11. Summary Checklist<a class="headerlink" href="#11_summary_checklist" title="Permanent link">&para;</a></h2>
 <p>Before making changes to FTS configuration:</p>

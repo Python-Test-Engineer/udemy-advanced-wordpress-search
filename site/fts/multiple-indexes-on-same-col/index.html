@@ -2022,7 +2022,6 @@ If you duplicate them:</p>
 </ul>
 <p>MySQL’s index‑selection logic is surprisingly smart, but also very predictable once you know how the optimizer thinks. When multiple indexes <em>could</em> be used, MySQL runs a cost‑based decision process to choose the one that will return the result <strong>fastest</strong>.</p>
 <p>Here’s a clear breakdown of how it decides.</p>
-<hr />
 <h2 id="how_mysql_chooses_between_multiple_indexes">How MySQL chooses between multiple indexes<a class="headerlink" href="#how_mysql_chooses_between_multiple_indexes" title="Permanent link">&para;</a></h2>
 <h3 id="1_it_estimates_cost_for_each_possible_index">1. It estimates “cost” for each possible index<a class="headerlink" href="#1_it_estimates_cost_for_each_possible_index" title="Permanent link">&para;</a></h3>
 <p>MySQL’s optimizer evaluates:</p>
@@ -2071,9 +2070,8 @@ Because it matches the column list exactly.</p>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="p">(</span><span class="n">product_name</span><span class="p">,</span><span class="w"> </span><span class="n">product_short_description</span><span class="p">,</span><span class="w"> </span><span class="n">expanded_description</span><span class="p">)</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">      </span><span class="n">AGAINST</span><span class="p">(</span><span class="s1">&#39;red dress&#39;</span><span class="p">);</span>
 </span></code></pre></div>
-<p><strong>Chosen index:</strong> <code>FULLTEXT(product_name, product_short_description, expanded_description)</code><br />
-Because it’s the only one that covers all columns.</p>
-<hr />
+<p><strong>Chosen index:</strong> <code>FULLTEXT(product_name, product_short_description, expanded_description)</code>  </p>
+<p>Because it’s the only one that covers all columns.</p>
 <h2 id="want_to_see_what_mysql_is_doing">Want to see what MySQL is doing?<a class="headerlink" href="#want_to_see_what_mysql_is_doing" title="Permanent link">&para;</a></h2>
 <p>Use:</p>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">EXPLAIN</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="p">...</span>

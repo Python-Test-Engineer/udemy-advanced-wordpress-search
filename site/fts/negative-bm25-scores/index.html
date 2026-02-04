@@ -2130,8 +2130,8 @@
 <blockquote>
 <p><strong>Given a query, how relevant is each document?</strong></p>
 </blockquote>
-<p>But BM25 doesn’t care about absolute numbers.<br />
-It only cares about <strong>relative ranking</strong>.</p>
+<p>But BM25 doesn’t care about absolute numbers.  </p>
+<p>It only cares about <strong>relative ranking</strong>.</p>
 <p>Think of BM25 like a judge in a talent show:</p>
 <ul>
 <li>It doesn’t matter whether the judge scores contestants 1–10 or -10–0  </li>
@@ -2139,8 +2139,8 @@ It only cares about <strong>relative ranking</strong>.</p>
 </ul>
 <p>This is why <strong>negative scores are not a problem</strong> — they’re just part of the math.</p>
 <h2 id="negative_scores_are_normal">Negative Scores Are Normal<a class="headerlink" href="#negative_scores_are_normal" title="Permanent link">&para;</a></h2>
-<p>BM25 scores can be <strong>positive, negative, or zero</strong>.<br />
-The only rule that matters:</p>
+<p>BM25 scores can be <strong>positive, negative, or zero</strong>.  </p>
+<p>The only rule that matters:</p>
 <blockquote>
 <p><strong>Higher scores = better matches (even if they’re negative)</strong></p>
 </blockquote>
@@ -2250,22 +2250,28 @@ The only rule that matters:</p>
 </ul>
 <h2 id="practical_experiments">Practical Experiments<a class="headerlink" href="#practical_experiments" title="Permanent link">&para;</a></h2>
 <h3 id="1_positive_score_experiment">1. Positive Score Experiment<a class="headerlink" href="#1_positive_score_experiment" title="Permanent link">&para;</a></h3>
-<p>Documents:<br />
-- “Python is great”<br />
-- “Java is fast”<br />
-- “C++ is powerful”  </p>
+<p>Documents:  </p>
+<ul>
+<li>“Python is great”  </li>
+<li>“Java is fast”  </li>
+<li>“C++ is powerful”  </li>
+</ul>
 <p>Query: <strong>python</strong> → positive score</p>
 <h3 id="2_negative_score_experiment">2. Negative Score Experiment<a class="headerlink" href="#2_negative_score_experiment" title="Permanent link">&para;</a></h3>
-<p>Documents:<br />
-- “Programming in Python”<br />
-- “Programming in Java”<br />
-- “Programming in C++”  </p>
+<p>Documents:  </p>
+<ul>
+<li>“Programming in Python”  </li>
+<li>“Programming in Java”  </li>
+<li>“Programming in C++”  </li>
+</ul>
 <p>Query: <strong>programming</strong> → negative scores</p>
 <h3 id="3_zero_score_experiment">3. Zero Score Experiment<a class="headerlink" href="#3_zero_score_experiment" title="Permanent link">&para;</a></h3>
-<p>Documents:<br />
-- “Python programming”<br />
-- “Java coding”<br />
-- “C++ development”  </p>
+<p>Documents:  </p>
+<ul>
+<li>“Python programming”  </li>
+<li>“Java coding”  </li>
+<li>“C++ development”  </li>
+</ul>
 <p>Query: <strong>cooking recipes</strong> → zero</p>
 <h2 id="bm25_vs_tfidf">BM25 vs TF‑IDF<a class="headerlink" href="#bm25_vs_tfidf" title="Permanent link">&para;</a></h2>
 <p>Students often ask this, so it’s worth adding:</p>

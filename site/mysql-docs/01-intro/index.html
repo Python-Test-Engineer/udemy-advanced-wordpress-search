@@ -2658,12 +2658,14 @@
 </span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>└─────────────────────────────────────────┘
 </span></code></pre></div>
 <h3 id="supported_column_types">Supported Column Types<a class="headerlink" href="#supported_column_types" title="Permanent link">&para;</a></h3>
-<p>Full-text indexes work only with text columns:
-- <strong>CHAR</strong> - Fixed-length strings
-- <strong>VARCHAR</strong> - Variable-length strings (most common)
-- <strong>TEXT</strong> - Large text fields</p>
+<p>Full-text indexes work only with text columns:</p>
+<ul>
+<li><strong>CHAR</strong> - Fixed-length strings</li>
+<li><strong>VARCHAR</strong> - Variable-length strings (most common)</li>
+<li><strong>TEXT</strong> - Large text fields</li>
+</ul>
 <h3 id="creating_a_fulltext_index">Creating a FULLTEXT Index<a class="headerlink" href="#creating_a_fulltext_index" title="Permanent link">&para;</a></h3>
-<p><strong>Option 1: During table creation</strong>
+<p><strong>Option 1: During table creation</strong></p>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">articles</span><span class="w"> </span><span class="p">(</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">AUTO_INCREMENT</span><span class="p">,</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="n">title</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">),</span>
@@ -2671,8 +2673,8 @@
 </span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="n">author</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">100</span><span class="p">),</span>
 </span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="n">FULLTEXT</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">ft_title_content</span><span class="w"> </span><span class="p">(</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">content</span><span class="p">)</span>
 </span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="p">);</span>
-</span></code></pre></div></p>
-<p><strong>Option 2: Add to existing table</strong>
+</span></code></pre></div>
+<p><strong>Option 2: Add to existing table</strong></p>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">-- Using ALTER TABLE</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">articles</span><span class="w"> </span>
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">ADD</span><span class="w"> </span><span class="n">FULLTEXT</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">ft_title_content</span><span class="w"> </span><span class="p">(</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">content</span><span class="p">);</span>
@@ -2680,7 +2682,7 @@
 </span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1">-- Or using CREATE INDEX</span>
 </span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="k">CREATE</span><span class="w"> </span><span class="n">FULLTEXT</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">ft_title_content</span><span class="w"> </span>
 </span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="k">ON</span><span class="w"> </span><span class="n">articles</span><span class="p">(</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">content</span><span class="p">);</span>
-</span></code></pre></div></p>
+</span></code></pre></div>
 <h3 id="performance_tip_loading_data">Performance Tip: Loading Data<a class="headerlink" href="#performance_tip_loading_data" title="Permanent link">&para;</a></h3>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Best Practice for Large Datasets:
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>┌─────────────────────────────────────────────────┐
@@ -2720,7 +2722,6 @@
 </span><span id="__span-7-20"><a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a>│                  │                                             │
 </span><span id="__span-7-21"><a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a>└──────────────────┴─────────────────────────────────────────────┘
 </span></code></pre></div>
-<hr />
 <h3 id="mode_1_natural_language_search_default">Mode 1: Natural Language Search (Default)<a class="headerlink" href="#mode_1_natural_language_search_default" title="Permanent link">&para;</a></h3>
 <p>This is the simplest and most common mode. It treats your search string as plain text, just like you'd type into Google.</p>
 <p><strong>How it works:</strong>
@@ -2740,12 +2741,14 @@
 </span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">articles</span><span class="w"> </span>
 </span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="p">(</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">content</span><span class="p">)</span><span class="w"> </span><span class="n">AGAINST</span><span class="p">(</span><span class="s1">&#39;machine learning&#39;</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="k">NATURAL</span><span class="w"> </span><span class="k">LANGUAGE</span><span class="w"> </span><span class="k">MODE</span><span class="p">);</span>
 </span></code></pre></div></p>
-<p><strong>Features:</strong>
-- Double quotes create phrase searches: <code>"machine learning"</code> finds that exact phrase
-- Stopwords (common words like "the", "a", "is") are automatically ignored
-- Results are automatically ranked by relevance
-- Simple and user-friendly</p>
-<p><strong>Example Use Case:</strong>
+<p><strong>Features:</strong></p>
+<ul>
+<li>Double quotes create phrase searches: <code>"machine learning"</code> finds that exact phrase</li>
+<li>Stopwords (common words like "the", "a", "is") are automatically ignored</li>
+<li>Results are automatically ranked by relevance</li>
+<li>Simple and user-friendly</li>
+</ul>
+<p><strong>Example Use Case:</strong></p>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1">-- Find articles about Python programming</span>
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">content</span><span class="p">,</span><span class="w"> </span>
 </span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">       </span><span class="k">MATCH</span><span class="p">(</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">content</span><span class="p">)</span><span class="w"> </span><span class="n">AGAINST</span><span class="p">(</span><span class="s1">&#39;Python programming&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">relevance</span>
@@ -2753,15 +2756,14 @@
 </span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="p">(</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">content</span><span class="p">)</span><span class="w"> </span><span class="n">AGAINST</span><span class="p">(</span><span class="s1">&#39;Python programming&#39;</span><span class="p">)</span>
 </span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">relevance</span><span class="w"> </span><span class="k">DESC</span>
 </span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
-</span></code></pre></div></p>
-<hr />
+</span></code></pre></div>
 <h3 id="mode_2_boolean_search">Mode 2: Boolean Search<a class="headerlink" href="#mode_2_boolean_search" title="Permanent link">&para;</a></h3>
 <p>Boolean mode gives you precise control using special operators. It's like using advanced search filters.</p>
-<p><strong>Syntax:</strong>
+<p><strong>Syntax:</strong></p>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">articles</span><span class="w"> </span>
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="p">(</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">content</span><span class="p">)</span><span class="w"> </span>
 </span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">AGAINST</span><span class="p">(</span><span class="s1">&#39;+machine +learning -neural&#39;</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">MODE</span><span class="p">);</span>
-</span></code></pre></div></p>
+</span></code></pre></div>
 <p><strong>Boolean Operators:</strong></p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>┌──────────────────────────────────────────────────────────────┐
 </span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>│                   Boolean Search Operators                    │
@@ -2790,15 +2792,17 @@
 </span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a><span class="c1">-- Exact phrase with importance boost</span>
 </span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a><span class="n">AGAINST</span><span class="p">(</span><span class="s1">&#39;&quot;machine learning&quot; &gt;Python&#39;</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">MODE</span><span class="p">)</span>
 </span></code></pre></div>
-<p><strong>When to use Boolean mode:</strong>
-- Advanced search interfaces
-- When users need precise control
-- Filtering out unwanted content
-- Combining multiple search criteria</p>
+<p><strong>When to use Boolean mode:</strong></p>
+<ul>
+<li>Advanced search interfaces</li>
+<li>When users need precise control</li>
+<li>Filtering out unwanted content</li>
+<li>Combining multiple search criteria</li>
+</ul>
 <hr />
 <h3 id="mode_3_query_expansion">Mode 3: Query Expansion<a class="headerlink" href="#mode_3_query_expansion" title="Permanent link">&para;</a></h3>
 <p>Query expansion is like having MySQL help you find related content. It performs the search twice, using results from the first search to improve the second.</p>
-<p><strong>How it works:</strong>
+<p><strong>How it works:</strong></p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>Step 1: Search for &quot;SQL&quot;
 </span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>        ↓
 </span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>        Finds top matches
@@ -2809,8 +2813,8 @@
 </span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>Step 3: Searches again with expanded terms
 </span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>        ↓
 </span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>        Returns results from second search
-</span></code></pre></div></p>
-<p><strong>Syntax:</strong>
+</span></code></pre></div>
+<p><strong>Syntax:</strong></p>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1">-- Both of these work:</span>
 </span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">articles</span><span class="w"> </span>
 </span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="p">(</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">content</span><span class="p">)</span><span class="w"> </span>
@@ -2819,7 +2823,7 @@
 </span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">articles</span><span class="w"> </span>
 </span><span id="__span-15-7"><a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="p">(</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">content</span><span class="p">)</span><span class="w"> </span>
 </span><span id="__span-15-8"><a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a><span class="n">AGAINST</span><span class="p">(</span><span class="s1">&#39;SQL&#39;</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="k">NATURAL</span><span class="w"> </span><span class="k">LANGUAGE</span><span class="w"> </span><span class="k">MODE</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="n">EXPANSION</span><span class="p">);</span>
-</span></code></pre></div></p>
+</span></code></pre></div>
 <p><strong>Visual Example:</strong></p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>Original Search: &quot;database&quot;
 </span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>        ↓
@@ -2976,10 +2980,12 @@
 <li><strong>Column types:</strong> Only CHAR, VARCHAR, and TEXT columns can be indexed</li>
 </ul>
 <h3 id="stopwords">Stopwords<a class="headerlink" href="#stopwords" title="Permanent link">&para;</a></h3>
-<p>Common words (called "stopwords") are ignored in searches:
-- Examples: "the", "a", "an", "is", "at", "which"
-- These are filtered out automatically to improve performance
-- You can customize the stopword list if needed</p>
+<p>Common words (called "stopwords") are ignored in searches:</p>
+<ul>
+<li>Examples: "the", "a", "an", "is", "at", "which"</li>
+<li>These are filtered out automatically to improve performance</li>
+<li>You can customize the stopword list if needed</li>
+</ul>
 <h2 id="international_language_support">International Language Support<a class="headerlink" href="#international_language_support" title="Permanent link">&para;</a></h2>
 <p>MySQL provides specialized parsers for different languages:</p>
 <h3 id="ngram_parser_chinese_japanese_korean">ngram Parser (Chinese, Japanese, Korean)<a class="headerlink" href="#ngram_parser_chinese_japanese_korean" title="Permanent link">&para;</a></h3>

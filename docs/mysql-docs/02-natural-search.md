@@ -2,7 +2,7 @@
 
 By default or with the IN NATURAL LANGUAGE MODE modifier, the MATCH() function performs a natural language search for a string against a text collection. A collection is a set of one or more columns included in a FULLTEXT index. The search string is given as the argument to AGAINST(). For each row in the table, MATCH() returns a relevance value; that is, a similarity measure between the search string and the text in that row in the columns named in the MATCH() list.
 
-```
+```sql
 CREATE TABLE articles (
  id INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
  title VARCHAR(200),
@@ -13,7 +13,7 @@ CREATE TABLE articles (
 
 Query OK, 0 rows affected (0.08 sec)
 
-```
+```sql
 INSERT INTO articles (title,body) VALUES
  ('MySQL Tutorial','DBMS stands for DataBase ...'),
  ('How To Use MySQL Well','After you went through a ...'),
@@ -28,7 +28,7 @@ Query OK, 6 rows affected (0.01 sec)
 
 Records: 6  Duplicates: 0  Warnings: 0
 
-```
+```sql
 SELECT * FROM articles
 WHERE MATCH (title,body)
 AGAINST ('database' IN NATURAL LANGUAGE MODE);
@@ -59,15 +59,17 @@ Given the conditions just listed, it is usually less effort to specify using ORD
 Relevance values are nonnegative floating-point numbers. Zero relevance means no similarity. Relevance is computed based on the number of words in the row (document), the number of unique words in the row, the total number of words in the collection, and the number of rows that contain a particular word.
 
 Note
+
 The term “document” may be used interchangeably with the term “row”, and both terms refer to the indexed part of the row. The term “collection” refers to the indexed columns and encompasses all rows.
 
 To simply count matches, you could use a query like this:
 
-```
+```sql
 SELECT COUNT(*) FROM articles
 WHERE MATCH (title,body)
 AGAINST ('database' IN NATURAL LANGUAGE MODE);
 ```
+
 ```
 +----------+
 | COUNT(*) |
@@ -78,12 +80,13 @@ AGAINST ('database' IN NATURAL LANGUAGE MODE);
 ```
 You might find it quicker to rewrite the query as follows:
 
-```
+```sql
 SELECT
 COUNT(IF(MATCH (title,body) AGAINST ('database' IN NATURAL LANGUAGE MODE), 1, NULL))
 AS count
 FROM articles;
 ```
+
 ```
 +-------+
 | count |
@@ -92,6 +95,7 @@ FROM articles;
 +-------+
 1 row in set (0.03 sec)
 ```
+
 The first query does some extra work (sorting the results by relevance) but also can use an index lookup based on the WHERE clause. The index lookup might make the first query faster if the search matches few rows. The second query performs a full table scan, which might be faster than the index lookup if the search term was present in most rows.
 
 For natural-language full-text searches, the columns named in the MATCH() function must be the same columns included in some FULLTEXT index in your table. For the preceding query, note that the columns named in the MATCH() function (title and body) are the same as those named in the definition of the article table's FULLTEXT index. To search the title or body separately, you would create separate FULLTEXT indexes for each column.
@@ -102,11 +106,12 @@ A full-text search that uses an index can name columns only from a single table 
 
 The preceding example is a basic illustration that shows how to use the MATCH() function where rows are returned in order of decreasing relevance. The next example shows how to retrieve the relevance values explicitly. Returned rows are not ordered because the SELECT statement includes neither WHERE nor ORDER BY clauses:
 
-```
+```sql
 SELECT id, MATCH (title,body)
 AGAINST ('Tutorial' IN NATURAL LANGUAGE MODE) AS score
 FROM articles;
 ```
+
 ```
 +----+---------------------+
 | id | score               |
@@ -123,7 +128,7 @@ FROM articles;
 
 The following example is more complex. The query returns the relevance values and it also sorts the rows in order of decreasing relevance. To achieve this result, specify MATCH() twice: once in the SELECT list and once in the WHERE clause. This causes no additional overhead, because the MySQL optimizer notices that the two MATCH() calls are identical and invokes the full-text search code only once.
 
-```
+```sql
 SELECT id, body, MATCH (title,body)
 AGAINST ('Security implications of running MySQL as root'
 IN NATURAL LANGUAGE MODE) AS score
@@ -132,6 +137,7 @@ WHERE MATCH (title,body)
 AGAINST('Security implications of running MySQL as root'
 IN NATURAL LANGUAGE MODE);
 ```
+
 ```
 +----+-------------------------------------+-----------------+
 | id | body                                | score           |
@@ -155,6 +161,7 @@ Some words are ignored in full-text searches:
 Any word that is too short is ignored. The default minimum length of words that are found by full-text searches is three characters for InnoDB search indexes, or four characters for MyISAM. You can control the cutoff by setting a configuration option before creating the index: innodb_ft_min_token_size configuration option for InnoDB search indexes, or ft_min_word_len for MyISAM.
 
 Note
+
 This behavior does not apply to FULLTEXT indexes that use the ngram parser. For the ngram parser, token length is defined by the ngram_token_size option.
 
 Words in the stopword list are ignored. A stopword is a word such as “the” or “some” that is so common that it is considered to have zero semantic value. There is a built-in stopword list, but it can be overridden by a user-defined list. The stopword lists and related configuration options are different for InnoDB search indexes and MyISAM ones. Stopword processing is controlled by the configuration options innodb_ft_enable_stopword, innodb_ft_server_stopword_table, and innodb_ft_user_stopword_table for InnoDB search indexes, and ft_stopword_file for MyISAM ones.
@@ -166,7 +173,7 @@ Every correct word in the collection and in the query is weighted according to i
 MyISAM Limitation
 For very small tables, word distribution does not adequately reflect their semantic value, and this model may sometimes produce bizarre results for search indexes on MyISAM tables. For example, although the word “MySQL” is present in every row of the articles table shown earlier, a search for the word in a MyISAM search index produces no results:
 
-```
+```sql
 SELECT * FROM articles
 WHERE MATCH (title,body)
 AGAINST ('MySQL' IN NATURAL LANGUAGE MODE);

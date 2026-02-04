@@ -1,6 +1,5 @@
 # Examples 
 
-
 **The columns specified in MATCH() must exactly match a FULLTEXT index definition.**
 
 If you have `post_title`, `post_content` in your query ther emust be an FTS index built on these two columns and not two indexes of just one column.
@@ -20,13 +19,9 @@ Each section now includes:
 - Explanation of why each query behaves the way it does  
 - Notes on how WordPress developers might use it  
 
----
-
 # Natural Language Mode  
 Natural language mode is MySQL’s “Google‑like” search.  
 It ranks results by relevance using TF‑IDF‑style scoring.
-
----
 
 ## Scenario: Searching blog posts about WordPress performance
 
@@ -56,7 +51,6 @@ ORDER BY score DESC;
 - Computes relevance based on frequency  
 - Posts heavily discussing caching rank highest  
 
----
 
 ### Example B — Ranking titles higher than content
 ```sql
@@ -71,7 +65,6 @@ ORDER BY relevance DESC;
 - Titles often signal intent  
 - Weighted scoring improves result quality  
 
----
 
 ### Example C — Searching long‑form content
 
@@ -86,8 +79,6 @@ ORDER BY score DESC;
 **Use case:**  
 Great for documentation sites or long tutorials.
 
----
-
 ### Example D — Natural language with stopwords
 ```sql
 SELECT ID, post_title
@@ -99,20 +90,15 @@ WHERE MATCH(post_title, post_content)
 **Note:**  
 Words like *how*, *to*, *a* are ignored unless you customize stopwords.
 
----
-
 # Boolean Mode  
 Boolean mode gives you **precision control** using operators.
 
 Perfect for admin dashboards, advanced search pages, or custom WP search endpoints.
 
----
-
 ## Scenario: Searching a knowledge base with strict rules
 
----
-
 ### Example A — Required + excluded terms
+
 ```sql
 SELECT ID, post_title
 FROM wp_posts
@@ -127,9 +113,8 @@ WHERE MATCH(post_title, post_content)
 
 Useful when users want to avoid plugin‑related results.
 
----
-
 ### Example B — Prefix matching
+
 ```sql
 SELECT ID, post_title
 FROM wp_posts
@@ -146,9 +131,8 @@ Matches:
 
 Great for autocomplete or “search as you type.”
 
----
-
 ### Example C — Exact phrase search
+
 ```sql
 SELECT ID, post_title
 FROM wp_posts
@@ -157,11 +141,13 @@ WHERE MATCH(post_title, post_content)
 ```
 
 **Use case:**  
+
 When users want precise technical terms.
 
----
+
 
 ### Example D — Combining phrase + required terms
+
 ```sql
 SELECT ID, post_title
 FROM wp_posts
@@ -170,6 +156,7 @@ WHERE MATCH(post_title, post_content)
 ```
 
 **Meaning:**  
+
 - Must contain the exact phrase “object cache”  
 - Must contain “redis”  
 - Must NOT contain “memcached”  
@@ -177,6 +164,7 @@ WHERE MATCH(post_title, post_content)
 ---
 
 ### **Example E — Boosting relevance with tilde (~)**
+
 ```sql
 SELECT ID, post_title
 FROM wp_posts
@@ -185,12 +173,14 @@ WHERE MATCH(post_title, post_content)
 ```
 
 **Interpretation:**  
+
 - “cache” is required  
 - “redis” is optional but increases relevance  
 
 ---
 
 # Query Expansion Mode  
+
 Query expansion is MySQL’s “find related topics” mode.
 
 It performs:
@@ -200,11 +190,9 @@ It performs:
 3. Expands the query  
 4. Runs a second search  
 
----
 
 ## Scenario: A user searches for “SEO” but your content uses synonyms like “search ranking,” “organic traffic,” etc.
 
----
 
 ### **Example A — Basic query expansion**
 ```sql
@@ -216,6 +204,7 @@ ORDER BY score DESC;
 ```
 
 **What happens:**  
+
 MySQL may expand “seo” to include:
 
 - search engine  
@@ -223,8 +212,6 @@ MySQL may expand “seo” to include:
 - organic  
 - traffic  
 - optimization  
-
----
 
 ### **Example B — Multi‑word query expansion**
 ```sql
@@ -242,9 +229,8 @@ ORDER BY score DESC;
 - hardening  
 - login protection  
 
----
-
 ### **Example C — Discovering related topics**
+
 ```sql
 SELECT ID, post_title,
        MATCH(post_title, post_content)
@@ -253,6 +239,7 @@ FROM wp_posts;
 ```
 
 **Why this is useful:**  
+
 If your content uses synonyms like:
 
 - performance  
@@ -265,6 +252,7 @@ MySQL will find them.
 ---
 
 ### Example D — Query expansion on product reviews
+
 ```sql
 SELECT ID, post_title
 FROM wp_posts
@@ -273,6 +261,7 @@ WHERE MATCH(post_title, post_content)
 ```
 
 **Possible expansions:**  
+
 - uptime  
 - bandwidth  
 - shared hosting  
@@ -280,8 +269,6 @@ WHERE MATCH(post_title, post_content)
 - CDN  
 
 This is powerful for e‑commerce or affiliate sites.
-
----
 
 # Summary Table
 

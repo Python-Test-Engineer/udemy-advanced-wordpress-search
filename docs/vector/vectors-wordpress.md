@@ -6,8 +6,6 @@ B = (6, 4)
 
 This version focuses on how each metric behaves when used inside a WordPress search plugin, a custom MySQL table, or a hybrid search pipeline (e.g., TF‑IDF + embeddings).
 
----
-
 ## **Why WordPress Developers Should Care**
 
 When you add vector search to WordPress — whether via a plugin, a custom table, or an external vector DB — you need to choose a **distance metric**.  
@@ -19,8 +17,6 @@ This choice affects:
 - how expensive queries are in MySQL or external services  
 
 Different metrics produce very different results, even on the same embeddings.
-
----
 
 # **The Metrics (with diagrams)**
 
@@ -46,8 +42,6 @@ Good when vector magnitude matters — e.g., embeddings where “stronger meanin
 - Custom MySQL vector tables  
 - External vector DBs that default to L2  
 
----
-
 ## **Manhattan Distance (L1)**  
 Grid‑based movement.
 
@@ -69,8 +63,6 @@ Useful if your embeddings are sparse (rare in NLP, common in bag‑of‑words ve
 **Typical use:**  
 - Rare for semantic embeddings  
 - Useful for custom scoring experiments  
-
----
 
 ## **Cosine Distance**  
 Angle between vectors, ignoring length.
@@ -96,8 +88,6 @@ Perfect when using sentence embeddings (e.g., OpenAI, Cohere, local models).
 - Hybrid search (BM25 + embeddings)  
 - Most vector DBs default to cosine for text  
 
----
-
 ## **Dot Product**  
 Alignment × magnitude.
 
@@ -118,8 +108,6 @@ Some embedding models are trained specifically for dot‑product scoring.
 - Recommender systems (products, posts, related content)  
 - Models where magnitude matters  
 
----
-
 ## **Chebyshev Distance**  
 Largest single‑dimension difference.
 
@@ -134,15 +122,15 @@ Largest single‑dimension difference.
    +---------------------------- x
 ```
 
-**WordPress/MySQL relevance meaning:**  
-Not used for semantic search.  
-Useful only in niche cases where you care about the worst‑case deviation.
+**WordPress/MySQL relevance meaning:** 
+ 
+- Not used for semantic search.  
+- Useful only in niche cases where you care about the worst‑case deviation.
 
 **Typical use:**  
+
 - Outlier detection  
 - Quality‑control pipelines  
-
----
 
 ## **Hamming Distance**  
 Counts mismatched positions.
@@ -159,14 +147,14 @@ Hamming distance = 2
 ```
 
 **WordPress/MySQL relevance meaning:**  
-Not used for embeddings.  
-Useful only for binary vectors (e.g., hashed fingerprints).
+
+- Not used for embeddings.  
+- Useful only for binary vectors (e.g., hashed fingerprints).
 
 **Typical use:**  
+
 - Duplicate detection  
 - Hash‑based similarity  
-
----
 
 # **Summary Table (WordPress/MySQL Context)**
 
@@ -179,26 +167,33 @@ Useful only for binary vectors (e.g., hashed fingerprints).
 | Chebyshev | Largest coordinate difference | Outlier detection | Data validation, anomaly detection |
 | Hamming | Count of mismatches | Binary vectors | Duplicate detection, hashing |
 
----
 
 # **How This Fits Into WordPress Search Architecture**
 
 ### **1. Classic WordPress Search (LIKE queries)**  
+
 No vector search. No distance metrics.
 
 ### **2. MySQL Full‑Text Search (MATCH AGAINST)**  
+
 Still lexical — no vectors.
 
 ### **3. Hybrid Search (BM25 + Embeddings)**  
+
 You combine:  
+
 - BM25 from MySQL  
 - Cosine similarity from embeddings  
 
 This is where **cosine distance** shines.
 
 ### **4. Full Vector Search in MySQL**  
-If you store embeddings in a custom table (e.g., `FLOAT[]` or JSON), you can compute:  
+
+If you store embeddings in a custom table (e.g., `FLOAT[]` or JSON), you can compute: 
+
 - Euclidean  
 - Manhattan  
 - Dot product  
 - Cosine (with normalization)
+
+<br>

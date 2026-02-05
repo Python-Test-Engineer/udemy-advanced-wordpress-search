@@ -1,6 +1,8 @@
 # 14.9.3 Full-Text Searches with Query Expansion
 
-Full-text search supports query expansion (and in particular, its variant “blind query expansion”). This is generally useful when a search phrase is too short, which often means that the user is relying on implied knowledge that the full-text search engine lacks. 
+Full-text search supports query expansion (and in particular, its variant “blind query expansion”). 
+
+This is generally useful when a search phrase is too short, which often means that the user is relying on implied knowledge that the full-text search engine lacks. 
 
 For example, a user searching for “database” may really mean that “MySQL”, “Oracle”, “DB2”, and “RDBMS” all are phrases that should match “databases” and should be returned, too. This is implied knowledge.
 
@@ -47,7 +49,9 @@ AGAINST ('database' WITH QUERY EXPANSION);
 6 rows in set (0.00 sec)
 ```
 
-Another example could be searching for books by Georges Simenon about Maigret, when a user is not sure how to spell “Maigret”. A search for “Megre and the reluctant witnesses” finds only “Maigret and the Reluctant Witnesses” without query expansion. A search with query expansion finds all books with the word “Maigret” on the second pass.
+Another example could be searching for books by Georges Simenon about Maigret, when a user is not sure how to spell “Maigret”. 
+
+A search for “Megre and the reluctant witnesses” finds only “Maigret and the Reluctant Witnesses” without query expansion. A search with query expansion finds all books with the word “Maigret” on the second pass.
 
 ### Note
 

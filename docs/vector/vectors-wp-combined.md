@@ -12,13 +12,12 @@ This document gives you a complete, developer‑friendly walkthrough of:
 - How different distance metrics behave  
 - How all of this fits into WordPress and MySQL search architecture  
 
----
-
 ## 1. What Is Vector Search?
 
 Traditional search engines (like WordPress’s default search or MySQL’s MATCH AGAINST) match **exact words**.
 
 ### Example  
+
 Query: **“car”**  
 Keyword search finds documents containing “car” — but misses:
 
@@ -30,6 +29,7 @@ Keyword search finds documents containing “car” — but misses:
 Vector search understands **concepts**, not just words.
 
 ### Vector Search  
+
 Query: **“car”**  
 Matches documents about:
 
@@ -67,51 +67,52 @@ Embeddings convert text into vectors — numerical coordinates in a multi‑dime
 ```
 
 **Key idea:**  
-Similar meanings → close together  
-Different meanings → far apart  
+
+- Similar meanings → close together  
+- Different meanings → far apart  
 
 Real embeddings have **384–1536 dimensions**, but the principle is identical.
-
-
 
 ## 3. What Is a Vector?
 
 A vector is simply a list of numbers.
 
 ### 2D Example  
+
 ```
 "car" = [4.2, 4.8]
 "dog" = [1.3, 1.1]
 ```
 
 ### Real Embedding Example (768 dimensions)  
+
 ```
 "car" = [0.23, -0.45, 0.12, 0.89, ...]
 ```
 
 Each dimension encodes some semantic feature (vehicle‑ness, speed, size, etc.).
 
-
-
 ## 4. How Vector Search Works
 
 ### Step 1 — Convert Documents to Vectors
+
 Each document is embedded into a vector.
 
 ### Step 2 — Convert Query to Vector
+
 The user’s query is embedded the same way.
 
 ### Step 3 — Compare Vectors
+
 Using a **distance metric** (cosine, Euclidean, dot product, etc.).
 
 ### Step 4 — Rank by Similarity
+
 Closest vectors = most relevant results.
 
 This is where **distance metrics** become critical.
 
-
-
-##5. Cosine Similarity (The Semantic Search Standard)
+## 5. Cosine Similarity (The Semantic Search Standard)
 
 Cosine similarity measures the **angle** between vectors — ignoring length.
 
@@ -125,7 +126,6 @@ Cosine similarity measures the **angle** between vectors — ignoring length.
 
 Cosine is the **default** for semantic search because it focuses on meaning, not magnitude.
 
-
 ## 6. Distance Metrics (WordPress & MySQL Context)
 
 When implementing vector search in WordPress — via a plugin, custom table, or external vector DB — you must choose a **distance metric**.
@@ -134,8 +134,8 @@ Different metrics produce different rankings.
 
 Below is a unified explanation of each metric, with diagrams and WordPress‑specific guidance.
 
-
 ## 6.1 Euclidean Distance (L2)  
+
 Straight‑line distance.
 
 ```
@@ -149,20 +149,21 @@ Straight‑line distance.
    +---------------------------- x
 ```
 
-**Meaning:**  
-Measures literal geometric distance.
+**Meaning:**  Measures literal geometric distance.
 
 **Best for:**  
+
 - Embeddings where magnitude encodes meaning  
 - General vector search  
 
 **WordPress use:**  
+
 - Custom MySQL tables  
 - External vector DBs that default to L2  
 
----
 
-## 6.2 Manhattan Distance (L1)  
+## 6.2 Manhattan Distance (L1) 
+
 Grid‑based movement.
 
 ```
@@ -177,15 +178,16 @@ Grid‑based movement.
 ```
 
 **Meaning:**  
+
 Sum of absolute differences.
 
 **Best for:**  
+
 - Sparse vectors (rare in NLP)  
 
 **WordPress use:**  
-- Experimental scoring only  
 
----
+- Experimental scoring only  
 
 ## 6.3 Cosine Distance
 Angle between vectors.
@@ -203,20 +205,22 @@ Origin
 ```
 
 **Meaning:**  
+
 Measures similarity of direction.
 
 **Best for:**  
+
 - Semantic search  
 - Sentence embeddings  
 
 **WordPress use:**  
+
 - Hybrid search (BM25 + embeddings)  
 - Most semantic search plugins  
 - Recommended default  
 
----
-
 ## 6.4 Dot Product
+
 Alignment × magnitude.
 
 ```
@@ -229,18 +233,22 @@ Origin
 ```
 
 **Meaning:**  
+
 Rewards vectors that point the same way *and* have large magnitude.
 
 **Best for:**  
+
 - Recommender systems  
 - Models trained for dot‑product scoring  
 
 **WordPress use:**  
+
 - Related posts  
 - Product recommendations  
 
 
 ## 6.5 Chebyshev Distance
+
 Largest single‑dimension difference.
 
 ```
@@ -255,9 +263,11 @@ Largest single‑dimension difference.
 ```
 
 **Meaning:**  
+
 “How bad is the worst mismatch?”
 
 **WordPress use:**  
+
 - Outlier detection  
 - Quality control  
 
@@ -265,6 +275,7 @@ Not used for semantic search.
 
 
 ## 6.6 Hamming Distance
+
 Counts mismatched positions.
 
 ```
@@ -279,14 +290,15 @@ Hamming distance = 2
 ```
 
 **Meaning:**  
+
 Only for binary vectors.
 
 **WordPress use:**  
+
 - Duplicate detection  
 - Hash fingerprints  
 
 Not used for embeddings.
-
 
 # 7. Summary Table
 

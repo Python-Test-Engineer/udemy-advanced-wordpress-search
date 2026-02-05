@@ -2,7 +2,9 @@
 
 ## Introduction
 
-Search signals are the data points and behavioral patterns that help you understand how users interact with your WordPress search functionality. By tracking and analyzing these signals, you can continuously improve search relevance, user experience, and ultimately, conversions.
+Search signals are the data points and behavioral patterns that help you understand how users interact with your WordPress search functionality. 
+
+By tracking and analyzing these signals, you can continuously improve search relevance, user experience, and ultimately, conversions.
 
 This guide covers three critical signal categories: User Intent, User Actions, and Response Quality.
 
@@ -149,6 +151,7 @@ User actions reveal whether your search results are actually meeting user needs.
 - Clicks on irrelevant results (indicates poor ranking)
 
 #### Click Position Analysis
+
 **What it measures:** Which result positions receive the most engagement.
 
 **Key Insights:**
@@ -402,6 +405,7 @@ Where Successful Session =
 **Value Assignment:**
 
 Queries that lead to conversions are more valuable. Assign value weights:
+
 - Direct conversion query: High value (prioritize optimization)
 - Assisted conversion query: Medium value
 - Informational query: Low value (but still important for user experience)

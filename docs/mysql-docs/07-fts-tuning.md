@@ -2,13 +2,18 @@
 
 ## Introduction
 
-Full-Text Search (FTS) in MySQL allows you to efficiently search text content in your database. While the default settings work well for most applications, MySQL provides several configuration options to optimize search behavior for your specific needs.
+Full-Text Search (FTS) in MySQL allows you to efficiently search text content in your database. 
 
-**Important Note:** MySQL's FTS is already well-tuned out of the box. Only modify these settings if you have a specific reason and understand the implications. Most changes require rebuilding your FULLTEXT indexes and restarting the server.
+While the default settings work well for most applications, MySQL provides several configuration options to optimize search behavior for your specific needs.
+
+**Important Note:** 
+
+MySQL's FTS is already well-tuned out of the box. Only modify these settings if you have a specific reason and understand the implications. Most changes require rebuilding your FULLTEXT indexes and restarting the server.
 
 ## 1. Word Length Configuration
 
 ### What It Does
+
 Controls which words get indexed based on their length. By default, very short words (like "a", "in") and extremely long words are excluded from the index.
 
 ### Configuration Variables
@@ -951,6 +956,8 @@ Configuration changes that don't require restart:
 - InnoDB Full-Text Indexes: https://dev.mysql.com/doc/refman/8.4/en/innodb-fulltext-index.html
 
 
-**Remember:** Full-text search is powerful, but it's not a replacement for specialized search engines like Elasticsearch or Solr for very large datasets or complex search requirements. Use FTS for moderate-sized applications where you want search functionality without additional infrastructure.
+**Remember:** 
+
+Full-text search is powerful, but it's not a replacement for specialized search engines like Elasticsearch or Solr for very large datasets or complex search requirements. Use FTS for moderate-sized applications where you want search functionality without additional infrastructure.
 
 <br>

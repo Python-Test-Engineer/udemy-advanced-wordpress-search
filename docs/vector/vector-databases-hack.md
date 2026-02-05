@@ -106,6 +106,7 @@ Where:
 ## Limitations & When to Upgrade
 
 ### This Approach is Slow When:
+
 - You have 10,000+ vectors (loads all into PHP memory)
 - You need sub-second search times
 - Vector dimensions are very large (1000+)

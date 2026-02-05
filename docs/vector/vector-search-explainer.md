@@ -5,10 +5,12 @@
 Imagine if instead of matching **exact words**, search engines could understand **meanings and concepts**! That's vector search!
 
 **Traditional Search (BM25):**
+
 - Query: "car" → Matches documents with word "car"
 - Misses: "automobile", "vehicle", "sedan"
 
 **Vector Search:**
+
 - Query: "car" → Understands the CONCEPT
 - Matches: "automobile", "vehicle", "sedan", "SUV", "truck"
 - **It gets the MEANING!** 
@@ -39,17 +41,17 @@ Instead of treating words as text, we represent them as **numbers in space** (ve
 ```
 
 **Key Insight:** Similar things are CLOSE together in space!
+
 - Car, SUV, taxi are all near each other (similar meanings)
 - Dog and cat are near each other (also similar)
 - Cars and dogs are FAR apart (different meanings)
-
----
 
 ## What is a Vector?
 
 A **vector** is just a list of numbers representing a position in space.
 
 ### 2D Vector Example:
+
 ```
 "car" = [4.2, 4.8]
          │    │
@@ -63,6 +65,7 @@ A **vector** is just a list of numbers representing a position in space.
 ```
 
 ### Real Vector Example (768 dimensions!):
+
 ```
 "car" = [0.23, -0.45, 0.12, 0.89, -0.34, ... 763 more numbers]
 ```
@@ -123,8 +126,6 @@ Results:
 
 **Magic!** Even though the query was "automobile" (not "car"), it found the car document! 🎉
 
----
-
 ## Step-by-Step Calculation: Cosine Similarity
 
 Let's calculate similarity between vectors using **cosine similarity** - the most common method.
@@ -155,8 +156,6 @@ Doc 2:  "Dogs are great" = [0.20, 0.10, 0.90]
   X-axis
 ```
 
----
-
 ## Cosine Similarity Formula
 
 ```
@@ -169,8 +168,6 @@ Where:
 ```
 
 **In plain English:** How much do the vectors point in the same direction?
-
----
 
 ## STEP 1: Calculate Dot Product (A · B)
 
@@ -205,14 +202,13 @@ Dot Product = (0.75 × 0.20) + (0.85 × 0.10) + (0.25 × 0.90)
 ```
 
 **Visual representation:**
+
 ```
 Dimension 1:  0.75 ████████  ×  0.20 ██        = 0.150
 Dimension 2:  0.85 █████████ ×  0.10 █         = 0.085
 Dimension 3:  0.25 ███       ×  0.90 █████████ = 0.225
                                         Total: 0.460
 ```
-
----
 
 ## STEP 2: Calculate Magnitudes
 
@@ -264,8 +260,6 @@ Doc 2 = [0.20, 0.10, 0.90]
           = 0.927
 ```
 
----
-
 ## STEP 3: Calculate Cosine Similarity
 
 ### Query vs Doc 1:
@@ -306,8 +300,6 @@ Score: 0.427 out of 1.0 ⭐⭐
 Large angle = Low similarity!
 ```
 
----
-
 ## FINAL RANKING
 
 ```
@@ -326,7 +318,6 @@ Large angle = Low similarity!
 
 **Perfect!** The car document scored highest even though we searched for "automobile"! 
 
----
 
 ## Visualizing Semantic Space
 
@@ -358,11 +349,11 @@ Large angle = Low similarity!
 ```
 
 **Distance represents semantic similarity:**
+
 - Car, truck, bike → Close together (vehicles)
 - Cat, dog, bird → Close together (pets)
 - Vehicles and pets → Far apart (different concepts)
 
----
 
 ## Understanding Vector Dimensions
 
@@ -408,6 +399,7 @@ Dimension 768: Abstract concept X  [█████░░░░░] 0.5
 ```
 
 **Popular embedding models:**
+
 - Sentence-BERT
 - OpenAI Ada-002
 - Google Universal Sentence Encoder
@@ -420,6 +412,7 @@ Dimension 768: Abstract concept X  [█████░░░░░] 0.5
 ### Example Query: "How to fix a broken vehicle"
 
 #### Keyword Search (BM25):
+
 ```
 ✓ Matches: "vehicle", "fix", "broken"
 ✗ Misses:  "repair car", "automobile troubleshooting"
@@ -430,6 +423,7 @@ Results:
 ```
 
 #### Vector Search:
+
 ```
 ✓ Understands: repair = fix, car = vehicle
 ✓ Finds concepts: maintenance, troubleshooting, repair
@@ -469,6 +463,7 @@ Results:
 ### Scenario: User searches for "comfortable shoes for running"
 
 #### Traditional Keyword Search:
+
 ```
 Document Scores (BM25):
 
@@ -486,6 +481,7 @@ Document Scores (BM25):
 ```
 
 #### Vector Search:
+
 ```
 Semantic Similarity:
 
@@ -508,7 +504,6 @@ Semantic Similarity:
 - "cushioned" ≈ "comfortable"
 - "chairs" ≠ "shoes" (different category)
 
----
 
 ## Similarity Score Ranges
 
@@ -540,8 +535,6 @@ Cosine Similarity Scale:
 
 **Typical cutoff:** Return results with similarity > 0.7
 
----
-
 ## Multi-language Magic
 
 Vector search works across languages!
@@ -564,9 +557,7 @@ Documents:
      Similarity: 0.98 ⭐⭐⭐⭐⭐
 ```
 
-**Same meaning = Similar vectors, regardless of language!** 🌍
-
----
+**Same meaning = Similar vectors, regardless of language!** 
 
 ## The Full Process Visualized
 
@@ -609,8 +600,6 @@ Rank by similarity:
 └──────────────────────────────┘
 ```
 
----
-
 ## Key Advantages of Vector Search
 
 ```
@@ -633,8 +622,6 @@ Rank by similarity:
    Can't game the system by repeating words
 ```
 
----
-
 ## Limitations
 
 ```
@@ -654,24 +641,28 @@ Rank by similarity:
    Sometimes you WANT exact word matching
 ```
 
----
-
-
 ## Quick Summary
 
 **Vector Search in 5 Points:**
 
 1. **Convert text → numbers (vectors)** 
+
    Similar meanings = similar numbers
 
 2. **Calculate similarity** 
+
    Cosine similarity = angle between vectors
 
 3. **Rank by closeness** 
+
    Closest vectors = best matches
 
 4. **Understands meaning** 
+
    Not just matching words, but concepts!
 
 5. **Works across languages**
+
    Universal semantic representation
+
+<br>

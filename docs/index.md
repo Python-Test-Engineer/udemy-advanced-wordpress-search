@@ -12,20 +12,17 @@ Full Text Search, (FTS), using BM25, is an industry standard and the course look
 
 We will cover the three types - Natural Language, Boolean Expression and Query Expansion.
 
-
 ## Semantic Search
 
 We build our own custom Vector Database and Vector Search. We do this because our hosting service for MySQL may not have the available Vector Field, as in the case of mine, (Siteground).
 
 This enables Hybrid Search - getting results based on what the user enters, (lexical) and what the user means, (semantic).
 
-
 ## Hybrid Search
 
 FTS is what the users says, Semantic search is what the user means.
 
 We combine the results of both in a normalised way and have the ability to weight one more than the other.
-
 
 ## RAG
 

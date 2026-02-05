@@ -704,6 +704,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#unfortunately_mysql_does_not_enable_k1_and_b_tuning_for_our_wordpress_sites_if_it_did_then" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unfortunately, MySQL does not enable k1 and b tuning for our WordPress sites. If it did then...
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#higher_k1_eg_k1_20" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -757,17 +768,6 @@
     <span class="md-ellipsis">
       
         Key Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#whats_next" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What's Next?
       
     </span>
   </a>
@@ -910,6 +910,34 @@
     
   
     SQL Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../what-fts-does/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MySQL FTS
   
 
     
@@ -1870,6 +1898,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#unfortunately_mysql_does_not_enable_k1_and_b_tuning_for_our_wordpress_sites_if_it_did_then" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unfortunately, MySQL does not enable k1 and b tuning for our WordPress sites. If it did then...
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#higher_k1_eg_k1_20" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1929,17 +1968,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#whats_next" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What's Next?
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1959,24 +1987,50 @@
 
 <h1 id="bm25">BM25<a class="headerlink" href="#bm25" title="Permanent link">&para;</a></h1>
 <h2 id="what_is_bm25">What is BM25?<a class="headerlink" href="#what_is_bm25" title="Permanent link">&para;</a></h2>
-<p><strong>BM25</strong> (Best Matching 25th Iteration) is like TF-IDF's <strong>smarter, more sophisticated cousin</strong>. It's the algorithm that powers most modern search engines, including Elasticsearch and many parts of Google!</p>
+<p><strong>BM25</strong> (Best Matching 25th Iteration) an advancement on TF-IDF</p>
 <p><strong>Why is it better than TF-IDF?</strong></p>
 <ul>
-<li>It has <strong>diminishing returns</strong> - Adding the 10th "cat" doesn't help as much as adding the 2nd "cat"</li>
-<li>It considers <strong>document length</strong> - Longer docs aren't automatically penalized</li>
-<li>It has <strong>tuning knobs</strong> - You can adjust it for different use cases!</li>
+<li>It has <strong>diminishing returns</strong> - Adding the 10th query term doesn't help as much as adding the 2nd "caquery term".</li>
+<li>It considers <strong>document length</strong> - Longer docs aren't automatically penalized. </li>
+<li>It has <strong>tuning knobs</strong> - You can adjust it for different use cases with <code>k1</code> for key word saturation and <code>b</code> for document length.</li>
 </ul>
 <h2 id="the_bm25_formula">The BM25 Formula<a class="headerlink" href="#the_bm25_formula" title="Permanent link">&para;</a></h2>
+<p>A helpful infographic:</p>
 <p><img alt="bm25" src="../../images/bm25.png" /></p>
 <h2 id="the_formula_breakdown">The Formula Breakdown<a class="headerlink" href="#the_formula_breakdown" title="Permanent link">&para;</a></h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>BM25 = IDF × [(f × (k1 + 1)) / (f + k1 × (1 - b + b × |D| / avgdl))]
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>       │      │                  │
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>       │      │                  └─ Denominator (normalization)
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>       │      └─ Numerator (boosted frequency)
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>       └─ How rare is this term?
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>Where each query term contributes its own score, then we sum them all up!
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>BM25(D, Q) = Σ IDF(qi) × (f(qi, D) × (k1 + 1)) / (f(qi, D) + k1 × (1 - b + b × |D| / avgdl))
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Where:
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>- D = Document being scored
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>- Q = Query (search terms)
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>- qi = Each term in the query
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>- f(qi, D) = Frequency of term qi in document D
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>- |D| = Length of document D (word count)
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>- avgdl = Average document length in collection
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>- k1 = Term frequency saturation parameter (usually 1.2 to 2.0)
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>- b = Length normalization parameter (usually 0.75)
 </span></code></pre></div>
+<p>BM25 is a ranking formula that scores how well a document matches a search query.</p>
+<p><strong>The core idea:</strong> For each word in your query, BM25 calculates a score based on:</p>
+<ol>
+<li>
+<p><strong>IDF (Inverse Document Frequency)</strong> - How rare/important the word is across all documents. Rare words get higher scores.</p>
+</li>
+<li>
+<p><strong>Term frequency with diminishing returns</strong> - How often the word appears in this document, but with a ceiling. The formula <code>(f × (k1 + 1)) / (f + k1)</code> means the 1st occurrence matters a lot, the 10th occurrence barely matters.</p>
+</li>
+<li>
+<p><strong>Length normalization</strong> - Longer documents get penalized (controlled by <code>b</code>), because they naturally contain more words. The <code>(1 - b + b × |D| / avgdl)</code> part adjusts for document length.</p>
+</li>
+</ol>
+<p><strong>Example:</strong> Searching "php tutorial"</p>
+<ul>
+<li>"php" appears in 1000 docs → low IDF</li>
+<li>"tutorial" appears in 100 docs → higher IDF  </li>
+<li>A short doc with "tutorial" mentioned 3 times scores higher than a long doc with it mentioned 20 times</li>
+</ul>
+<p>The final score is the sum of scores for each query term. Documents with the highest BM25 scores are ranked first.</p>
 <p><strong>Remember:</strong></p>
 <ul>
 <li>IDF: How special is this word?</li>
@@ -1984,51 +2038,34 @@
 <li>Denominator: Normalize for document length and saturation</li>
 <li>Result: A score that balances everything perfectly!</li>
 </ul>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>BM25(D, Q) = Σ IDF(qi) × (f(qi, D) × (k1 + 1)) / (f(qi, D) + k1 × (1 - b + b × |D| / avgdl))
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Where:
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>- D = Document being scored
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>- Q = Query (search terms)
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>- qi = Each term in the query
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>- f(qi, D) = Frequency of term qi in document D
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>- |D| = Length of document D (word count)
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>- avgdl = Average document length in collection
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>- k1 = Term frequency saturation parameter (usually 1.2 to 2.0)
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>- b = Length normalization parameter (usually 0.75)
-</span></code></pre></div>
-<p><strong>Don't panic!</strong> We'll break this down step by step! 🧩</p>
 <h2 id="understanding_the_parameters">Understanding the Parameters<a class="headerlink" href="#understanding_the_parameters" title="Permanent link">&para;</a></h2>
 <h3 id="k1_term_frequency_saturation">k1 (Term Frequency Saturation)<a class="headerlink" href="#k1_term_frequency_saturation" title="Permanent link">&para;</a></h3>
+<p><img alt="idf" src="../../images/fts/k1.png" /></p>
 <p><strong>Default: 1.2-2.0</strong></p>
 <p>Controls how quickly we stop caring about additional word occurrences.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Word &quot;cat&quot; appears:
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>- 1 time: Very important! ⭐⭐⭐⭐⭐
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>- 2 times: More important! ⭐⭐⭐⭐⭐⭐
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>- 5 times: Somewhat more important ⭐⭐⭐⭐⭐⭐⭐
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>- 50 times: Not much more important (saturated) ⭐⭐⭐⭐⭐⭐⭐⭐
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Word &quot;php&quot; appears:
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>- 1 time: Very important! ⭐⭐⭐⭐⭐
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>- 2 times: More important! ⭐⭐⭐⭐⭐⭐
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>- 5 times: Somewhat more important ⭐⭐⭐⭐⭐⭐⭐
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>- 50 times: Not much more important (saturated) ⭐⭐⭐⭐⭐⭐⭐⭐
 </span></code></pre></div>
 <p><strong>Higher k1</strong> = More weight to term frequency  </p>
 <p><strong>Lower k1</strong> = Less weight to term frequency</p>
 <h3 id="b_length_normalization">b (Length Normalization)<a class="headerlink" href="#b_length_normalization" title="Permanent link">&para;</a></h3>
+<p><img alt="idf" src="../../images/fts/b.png" /></p>
+<p><img alt="idf" src="../../images/fts/length-normalisation.png" /></p>
 <p><strong>Default: 0.75</strong></p>
 <p>Controls how much document length affects the score.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>b = 0: Document length doesn&#39;t matter at all
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>b = 0.5: Document length matters somewhat
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>b = 0.75: Document length matters a good amount (default)
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>b = 1.0: Document length matters completely
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>b = 0: Document length doesn&#39;t matter at all
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>b = 0.5: Document length matters somewhat
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>b = 0.75: Document length matters a good amount (default)
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>b = 1.0: Document length matters completely
 </span></code></pre></div>
 <p><strong>Higher b</strong> = Longer docs penalized more  </p>
 <p><strong>Lower b</strong> = Longer docs penalized less</p>
-<p><img alt="idf" src="../../images/fts/bm25-calc-slide.png" />
-<img alt="idf" src="../../images/fts/bm25-formula.png" />
-<img alt="idf" src="../../images/fts/b.png" />
-<img alt="idf" src="../../images/fts/length-normalisation.png" />
-<img alt="idf" src="../../images/fts/k1.png" />
-<img alt="idf" src="../../images/fts/k1-b.png" />
-<img alt="idf" src="../../images/fts/tf-idf-v-bm25.png" /></p>
 <h2 id="tuning_parameters_for_different_use_cases">Tuning Parameters for Different Use Cases<a class="headerlink" href="#tuning_parameters_for_different_use_cases" title="Permanent link">&para;</a></h2>
+<h3 id="unfortunately_mysql_does_not_enable_k1_and_b_tuning_for_our_wordpress_sites_if_it_did_then"><em>Unfortunately, MySQL does not enable k1 and b tuning for our WordPress sites. If it did then...</em><a class="headerlink" href="#unfortunately_mysql_does_not_enable_k1_and_b_tuning_for_our_wordpress_sites_if_it_did_then" title="Permanent link">&para;</a></h3>
 <h3 id="higher_k1_eg_k1_20">Higher k1 (e.g., k1 = 2.0):<a class="headerlink" href="#higher_k1_eg_k1_20" title="Permanent link">&para;</a></h3>
 <p><strong>Use when:</strong></p>
 <ul>
@@ -2039,22 +2076,28 @@
 </ul>
 <p><strong>Effect:</strong> More emphasis on how often terms appear</p>
 <h3 id="lower_k1_eg_k1_10">Lower k1 (e.g., k1 = 1.0):<a class="headerlink" href="#lower_k1_eg_k1_10" title="Permanent link">&para;</a></h3>
-<p><strong>Use when:</strong>
-- Short documents (tweets, titles)
-- Presence matters more than frequency
-- News headlines</p>
+<p><strong>Use when:</strong></p>
+<ul>
+<li>Short documents (tweets, titles)</li>
+<li>Presence matters more than frequency</li>
+<li>News headlines</li>
+</ul>
 <p><strong>Effect:</strong> Less emphasis on repetition</p>
 <h3 id="higher_b_eg_b_10">Higher b (e.g., b = 1.0):<a class="headerlink" href="#higher_b_eg_b_10" title="Permanent link">&para;</a></h3>
-<p><strong>Use when:</strong>
-- Document lengths vary widely
-- Shorter docs should be favored
-- Blog posts vs. books</p>
+<p><strong>Use when:</strong></p>
+<ul>
+<li>Document lengths vary widely</li>
+<li>Shorter docs should be favored</li>
+<li>Blog posts vs. books</li>
+</ul>
 <p><strong>Effect:</strong> Strong length normalization</p>
 <h3 id="lower_b_eg_b_05">Lower b (e.g., b = 0.5):<a class="headerlink" href="#lower_b_eg_b_05" title="Permanent link">&para;</a></h3>
-<p><strong>Use when:</strong>
-- All documents are similar length
-- Length shouldn't matter much
-- Academic papers (all ~8 pages)</p>
+<p><strong>Use when:</strong></p>
+<ul>
+<li>All documents are similar length</li>
+<li>Length shouldn't matter much</li>
+<li>Academic papers (all ~8 pages)</li>
+</ul>
 <p><strong>Effect:</strong> Weak length normalization</p>
 <h2 id="key_takeaways">Key Takeaways<a class="headerlink" href="#key_takeaways" title="Permanent link">&para;</a></h2>
 <p><strong>BM25 is smarter than TF-IDF because:</strong></p>
@@ -2098,16 +2141,6 @@
 <li>Used by Elasticsearch, Lucene, Solr</li>
 <li>Industry standard for good reason!</li>
 </ol>
-<p><img alt="idf" src="../../images/fts/bm25-takeaways.png" /></p>
-<h2 id="whats_next">What's Next?<a class="headerlink" href="#whats_next" title="Permanent link">&para;</a></h2>
-<p>BM25 is still widely used today, but modern search also includes:</p>
-<ul>
-<li><strong>BM25+</strong> - Handles term frequency = 0 better</li>
-<li><strong>BM25F</strong> - Multi-field version (title, body, tags)</li>
-<li><strong>Neural Search</strong> - BERT, sentence transformers</li>
-<li><strong>Hybrid Search</strong> - BM25 + neural embeddings combined!</li>
-</ul>
-<p><strong>But BM25 remains the gold standard for lexical search!</strong> </p>
 <p><br></p>
 
 

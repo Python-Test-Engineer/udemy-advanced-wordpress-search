@@ -719,6 +719,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fts/what-fts-does/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MySQL FTS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2586,11 +2614,13 @@
 </ol>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <p>Full-text search is a powerful MySQL feature that allows you to search through large amounts of text data efficiently. Unlike simple <code>LIKE</code> queries that scan every row, full-text search uses specialized indexes to find relevant matches quickly—even in tables with millions of rows.</p>
-<p><strong>When should you use full-text search?</strong>
-- Searching blog posts, articles, or product descriptions
-- Building search functionality for websites
-- Finding relevant documents in large databases
-- Implementing features like autocomplete or "related content"</p>
+<p><strong>When should you use full-text search?</strong></p>
+<ul>
+<li>Searching blog posts, articles, or product descriptions</li>
+<li>Building search functionality for websites</li>
+<li>Finding relevant documents in large databases</li>
+<li>Implementing features like autocomplete or "related content"</li>
+</ul>
 <h2 id="what_is_full-text_search">What is Full-Text Search?<a class="headerlink" href="#what_is_full-text_search" title="Permanent link">&para;</a></h2>
 <p>Think of full-text search like the search feature in your word processor or web browser. Instead of looking for exact character-by-character matches, it understands words and can find relevant results even when the exact phrase doesn't appear.</p>
 <h3 id="traditional_search_vs_full-text_search">Traditional Search vs Full-Text Search<a class="headerlink" href="#traditional_search_vs_full-text_search" title="Permanent link">&para;</a></h3>
@@ -2598,7 +2628,7 @@
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>┌───────────────────────────────────────┐
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│ WHERE description LIKE &#39;%database%&#39;   │
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│                                       │
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│ ❌ Scans every single row             │
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│ ❌ Scans every single row            │
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│ ❌ Slow on large tables              │
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│ ❌ No relevance ranking              │
 </span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>└───────────────────────────────────────┘
@@ -2701,7 +2731,7 @@
 <p>MySQL offers three different ways to perform full-text searches, each with its own strengths.</p>
 <h3 id="overview_comparison">Overview Comparison<a class="headerlink" href="#overview_comparison" title="Permanent link">&para;</a></h3>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>┌────────────────────────────────────────────────────────────────┐
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>│                    Search Mode Comparison                       │
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>│                    Search Mode Comparison                      │
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>├──────────────────┬─────────────────────────────────────────────┤
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>│                  │                                             │
 </span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>│  Natural         │  Simple, human-friendly searching           │
@@ -2733,14 +2763,14 @@
 </span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>                    ↓
 </span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>Most relevant documents appear first
 </span></code></pre></div></p>
-<p><strong>Syntax:</strong>
+<p><strong>Syntax:</strong></p>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1">-- These two queries are identical:</span>
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">articles</span><span class="w"> </span>
 </span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="p">(</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">content</span><span class="p">)</span><span class="w"> </span><span class="n">AGAINST</span><span class="p">(</span><span class="s1">&#39;machine learning&#39;</span><span class="p">);</span>
 </span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
 </span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">articles</span><span class="w"> </span>
 </span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="p">(</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">content</span><span class="p">)</span><span class="w"> </span><span class="n">AGAINST</span><span class="p">(</span><span class="s1">&#39;machine learning&#39;</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="k">NATURAL</span><span class="w"> </span><span class="k">LANGUAGE</span><span class="w"> </span><span class="k">MODE</span><span class="p">);</span>
-</span></code></pre></div></p>
+</span></code></pre></div>
 <p><strong>Features:</strong></p>
 <ul>
 <li>Double quotes create phrase searches: <code>"machine learning"</code> finds that exact phrase</li>
@@ -2766,7 +2796,7 @@
 </span></code></pre></div>
 <p><strong>Boolean Operators:</strong></p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>┌──────────────────────────────────────────────────────────────┐
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>│                   Boolean Search Operators                    │
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>│                   Boolean Search Operators                   │
 </span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>├──────────┬───────────────────────────────────────────────────┤
 </span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>│ Operator │ Meaning                         │ Example         │
 </span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>├──────────┼─────────────────────────────────┼─────────────────┤
@@ -2845,13 +2875,14 @@
 </span><span id="__span-16-18"><a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a>├─ &quot;MySQL Performance Tuning&quot;
 </span><span id="__span-16-19"><a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a>└─ &quot;Database Design Principles&quot;
 </span></code></pre></div>
-<p><strong>When to use Query Expansion:</strong>
-- "More like this" features
-- When users might not know the best search terms
-- Finding related content
-- Exploratory searches</p>
+<p><strong>When to use Query Expansion:</strong></p>
+<ul>
+<li>"More like this" features</li>
+<li>When users might not know the best search terms</li>
+<li>Finding related content</li>
+<li>Exploratory searches</li>
+</ul>
 <p><strong>⚠️ Warning:</strong> Query expansion can sometimes return less relevant results if your initial search matches poor-quality documents. Use with caution.</p>
-<hr />
 <h2 id="practical_examples">Practical Examples<a class="headerlink" href="#practical_examples" title="Permanent link">&para;</a></h2>
 <p>Let's see full-text search in action with a realistic scenario.</p>
 <h3 id="setup_creating_a_blog_database">Setup: Creating a Blog Database<a class="headerlink" href="#setup_creating_a_blog_database" title="Permanent link">&para;</a></h3>

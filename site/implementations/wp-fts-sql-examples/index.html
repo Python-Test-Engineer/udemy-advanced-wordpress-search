@@ -719,6 +719,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../fts/what-fts-does/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MySQL FTS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1637,10 +1665,12 @@ It ranks results by relevance using TF‑IDF‑style scoring.</p>
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">      </span><span class="n">AGAINST</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;wordpress performance caching&#39;</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="k">NATURAL</span><span class="w"> </span><span class="k">LANGUAGE</span><span class="w"> </span><span class="k">MODE</span><span class="p">)</span>
 </span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
 </span></code></pre></div>
-<p><strong>What happens:</strong><br />
-- MySQL breaks the query into words<br />
-- Computes relevance based on frequency<br />
-- Posts heavily discussing caching rank highest  </p>
+<p><strong>What happens:</strong>  </p>
+<ul>
+<li>MySQL breaks the query into words  </li>
+<li>Computes relevance based on frequency  </li>
+<li>Posts heavily discussing caching rank highest  </li>
+</ul>
 <h3 id="example_b_ranking_titles_higher_than_content">Example B — Ranking titles higher than content<a class="headerlink" href="#example_b_ranking_titles_higher_than_content" title="Permanent link">&para;</a></h3>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">post_title</span><span class="p">,</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">       </span><span class="p">(</span><span class="k">MATCH</span><span class="p">(</span><span class="n">post_title</span><span class="p">)</span><span class="w"> </span><span class="n">AGAINST</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;performance tuning&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">+</span>
@@ -1648,9 +1678,11 @@ It ranks results by relevance using TF‑IDF‑style scoring.</p>
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">FROM</span><span class="w"> </span><span class="n">wp_posts</span>
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">relevance</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
 </span></code></pre></div>
-<p><strong>Why this matters:</strong><br />
-- Titles often signal intent<br />
-- Weighted scoring improves result quality  </p>
+<p><strong>Why this matters:</strong>  </p>
+<ul>
+<li>Titles often signal intent  </li>
+<li>Weighted scoring improves result quality  </li>
+</ul>
 <h3 id="example_c_searching_longform_content">Example C — Searching long‑form content<a class="headerlink" href="#example_c_searching_longform_content" title="Permanent link">&para;</a></h3>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">post_title</span><span class="p">,</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">       </span><span class="k">MATCH</span><span class="p">(</span><span class="n">post_content</span><span class="p">)</span>
@@ -1658,8 +1690,8 @@ It ranks results by relevance using TF‑IDF‑style scoring.</p>
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">FROM</span><span class="w"> </span><span class="n">wp_posts</span>
 </span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
 </span></code></pre></div>
-<p><strong>Use case:</strong><br />
-Great for documentation sites or long tutorials.</p>
+<p><strong>Use case:</strong>  </p>
+<p>Great for documentation sites or long tutorials.</p>
 <h3 id="example_d_natural_language_with_stopwords">Example D — Natural language with stopwords<a class="headerlink" href="#example_d_natural_language_with_stopwords" title="Permanent link">&para;</a></h3>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">post_title</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">wp_posts</span>
@@ -1678,10 +1710,12 @@ Words like <em>how</em>, <em>to</em>, <em>a</em> are ignored unless you customiz
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="p">(</span><span class="n">post_title</span><span class="p">,</span><span class="w"> </span><span class="n">post_content</span><span class="p">)</span>
 </span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">      </span><span class="n">AGAINST</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;+wordpress +cache -plugin&#39;</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">MODE</span><span class="p">);</span>
 </span></code></pre></div>
-<p><strong>Meaning:</strong><br />
-- Must contain “wordpress”<br />
-- Must contain “cache”<br />
-- Must NOT contain “plugin”  </p>
+<p><strong>Meaning:</strong>  </p>
+<ul>
+<li>Must contain “wordpress”  </li>
+<li>Must contain “cache”  </li>
+<li>Must NOT contain “plugin”  </li>
+</ul>
 <p>Useful when users want to avoid plugin‑related results.</p>
 <h3 id="example_b_prefix_matching">Example B — Prefix matching<a class="headerlink" href="#example_b_prefix_matching" title="Permanent link">&para;</a></h3>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">post_title</span>
@@ -1717,7 +1751,6 @@ Words like <em>how</em>, <em>to</em>, <em>a</em> are ignored unless you customiz
 <li>Must contain “redis”  </li>
 <li>Must NOT contain “memcached”  </li>
 </ul>
-<hr />
 <h3 id="example_e_boosting_relevance_with_tilde"><strong>Example E — Boosting relevance with tilde (~)</strong><a class="headerlink" href="#example_e_boosting_relevance_with_tilde" title="Permanent link">&para;</a></h3>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">post_title</span>
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">wp_posts</span>
@@ -1729,7 +1762,6 @@ Words like <em>how</em>, <em>to</em>, <em>a</em> are ignored unless you customiz
 <li>“cache” is required  </li>
 <li>“redis” is optional but increases relevance  </li>
 </ul>
-<hr />
 <h1 id="query_expansion_mode">Query Expansion Mode<a class="headerlink" href="#query_expansion_mode" title="Permanent link">&para;</a></h1>
 <p>Query expansion is MySQL’s “find related topics” mode.</p>
 <p>It performs:</p>
@@ -1784,7 +1816,6 @@ Words like <em>how</em>, <em>to</em>, <em>a</em> are ignored unless you customiz
 <li>TTFB  </li>
 </ul>
 <p>MySQL will find them.</p>
-<hr />
 <h3 id="example_d_query_expansion_on_product_reviews">Example D — Query expansion on product reviews<a class="headerlink" href="#example_d_query_expansion_on_product_reviews" title="Permanent link">&para;</a></h3>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">post_title</span>
 </span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">wp_posts</span>

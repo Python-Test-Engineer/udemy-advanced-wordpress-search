@@ -79,6 +79,8 @@ nav:
   - "Stop Words": "fts/stop-words.md"
   - "COLS with many indexes": "fts/multiple-indexes-on-same-col.md"
   - "SQL Guide": "fts/sql-guide.md"
+  - "MySQL FTS": "fts/what-fts-does.md"
+
 - "Implementations":
   - "MySQL Docs":
     - "Articles": "implementations/fts-docs-articles-example.md"

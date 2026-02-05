@@ -547,60 +547,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#why_do_we_care" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Why Do We Care?
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how_it_works_-_the_simple_formula" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How It Works - The Simple Formula
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="How It Works - The Simple Formula">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#example_time" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example Time!
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#visual_comparison" class="md-nav__link">
     <span class="md-ellipsis">
       
         Visual Comparison
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#real-world_search_example" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Real-World Search Example
       
     </span>
   </a>
@@ -849,6 +799,34 @@
     
   
     SQL Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../what-fts-does/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MySQL FTS
   
 
     
@@ -1736,60 +1714,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#why_do_we_care" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Why Do We Care?
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how_it_works_-_the_simple_formula" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How It Works - The Simple Formula
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="How It Works - The Simple Formula">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#example_time" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Example Time!
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#visual_comparison" class="md-nav__link">
     <span class="md-ellipsis">
       
         Visual Comparison
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#real-world_search_example" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Real-World Search Example
       
     </span>
   </a>
@@ -1837,7 +1765,7 @@
 
 <h1 id="term_frequency_tf">Term Frequency (TF)<a class="headerlink" href="#term_frequency_tf" title="Permanent link">&para;</a></h1>
 <h2 id="what_is_term_frequency">What is Term Frequency?<a class="headerlink" href="#what_is_term_frequency" title="Permanent link">&para;</a></h2>
-<p>Imagine you're looking for your favorite toy in a messy room. The more times you see that toy's name on boxes, the more likely that box has what you want! That's exactly how Term Frequency works in search engines.</p>
+<p>Imagine you're looking for a book article on WordPress. The more WordPress appears in the doucment suggests the more relevant the query term <code>WordPress</code> is.</p>
 <p><strong>Term Frequency (TF)</strong> = How many times a word appears in a document</p>
 <p><strong>Simple Term Frequency:</strong></p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>TF = (number of times term appears in document) / (total number of terms in document)
@@ -1853,21 +1781,6 @@
 <p>Without dividing by total terms, longer documents would always score higher just because they have more words. Normalizing makes it fair - a term appearing 2 times in a 10-word doc (20%) is more significant than 2 times in a 1000-word doc (0.2%).</p>
 <p><strong>Limitation:</strong></p>
 <p>This treats the 1st and 100th occurrence equally. That's why most search systems use something like BM25 instead, which adds diminishing returns.</p>
-<h2 id="why_do_we_care">Why Do We Care?<a class="headerlink" href="#why_do_we_care" title="Permanent link">&para;</a></h2>
-<p>Search engines like Google need to figure out which documents (web pages) are most relevant to your search. If you search for "python programming", a document that mentions "python" 20 times is probably more relevant than one that mentions it only once!</p>
-<h2 id="how_it_works_-_the_simple_formula">How It Works - The Simple Formula<a class="headerlink" href="#how_it_works_-_the_simple_formula" title="Permanent link">&para;</a></h2>
-<p>The basic Term Frequency (TF) formula divides a word's count in a document by the total number of words in that document, representing its relative importance, with variations like raw count, logarithmic scaling, or augmented frequency used to prevent bias towards longer texts.</p>
-<h3 id="example_time">Example Time!<a class="headerlink" href="#example_time" title="Permanent link">&para;</a></h3>
-<p>Let's say we have two documents and we're searching for the word <strong>"cat"</strong>:</p>
-<p><strong>Document 1:</strong> (10 words total)
-"I love cats. Cats are amazing. Cats make me happy."
-- Word "cat" appears: 3 times
-- TF = 3/10 = 0.3</p>
-<p><strong>Document 2:</strong> (15 words total)
-"I have a cat. My pet is nice. I walk my pet daily."
-- Word "cat" appears: 0 times
-- TF = 1/15 = 0.067</p>
-<p><strong>Winner:</strong> Document 1 has higher TF for "cat"! 🏆</p>
 <h2 id="visual_comparison">Visual Comparison<a class="headerlink" href="#visual_comparison" title="Permanent link">&para;</a></h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Document A: &quot;dog dog dog cat&quot;
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>🐕🐕🐕🐱
@@ -1877,25 +1790,8 @@
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>🐕🐱🐱🐱
 </span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>TF(dog) = 3/4 = 0.25
 </span></code></pre></div>
-<h2 id="real-world_search_example">Real-World Search Example<a class="headerlink" href="#real-world_search_example" title="Permanent link">&para;</a></h2>
-<p><strong>Your Search:</strong> "machine learning"</p>
-<p><strong>Document 1:</strong> Blog post about AI</p>
-<ul>
-<li>"machine" appears 5 times</li>
-<li>"learning" appears 5 times</li>
-<li>Total words: 100</li>
-<li>TF(machine) = 0.05, TF(learning) = 0.05</li>
-</ul>
-<p><strong>Document 2:</strong> Tutorial on machine learning</p>
-<ul>
-<li>"machine" appears 25 times</li>
-<li>"learning" appears 30 times</li>
-<li>Total words: 200</li>
-<li>TF(machine) = 0.125, TF(learning) = 0.15</li>
-</ul>
-<p><strong>Result:</strong> Document 2 likely more relevant! ✅</p>
-<p>We can have a weighted formula like TF(machine) x TF(learning) or [TF(machine) + 2 x TF(learning)].</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
+<p>Please note,  the terms k1 and b will be explained fully in BM25. The key for this graphic is we need to avoid 'stuffing' or 'key word satiration' distroting the relevancy - amde for document length with parameter 'b'.</p>
 <p><img alt="tf" src="../../images/fts/tf-saturation.png" /></p>
 <p>What about 'word stuffing'? A good document with a lower TF should rank higher than a poor document with word stuffing.</p>
 <h2 id="quick_summary">Quick Summary<a class="headerlink" href="#quick_summary" title="Permanent link">&para;</a></h2>

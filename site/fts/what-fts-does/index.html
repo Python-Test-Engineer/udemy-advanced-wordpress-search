@@ -11,10 +11,10 @@
       
       
       
-        <link rel="prev" href="../idf/">
+        <link rel="prev" href="../sql-guide/">
       
       
-        <link rel="next" href="../bm25/">
+        <link rel="next" href="../../implementations/fts-docs-articles-example/">
       
       
         
@@ -25,7 +25,7 @@
     
     
       
-        <title>TF-IDF - UDEMY Advanced WP Search</title>
+        <title>MySQL FTS - UDEMY Advanced WP Search</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#tf-idf" class="md-skip">
+        <a href="#query_processing_overview" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              TF-IDF
+              MySQL FTS
             
           </span>
         </div>
@@ -529,37 +529,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    TF-IDF
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../tf-idf/" class="md-nav__link">
         
   
   
@@ -575,120 +548,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#what_is_tf-idf" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What is TF-IDF?
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#how_it_works_-_the_formula" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        How It Works - The Formula
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the_magic_formula_breakdown" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The Magic Formula Breakdown
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="The Magic Formula Breakdown">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#high_tf-idf_score_happens_when" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        High TF-IDF Score happens when:
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#low_tf-idf_score_happens_when" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Low TF-IDF Score happens when:
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key_insights" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Insights
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#quick_summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Quick Summary
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#think_about_it" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Think About It
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -866,10 +725,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../what-fts-does/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MySQL FTS
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -885,6 +771,48 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#process" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Process
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#index_maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Index Maintenance
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1753,10 +1681,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what_is_tf-idf" class="md-nav__link">
+  <a href="#process" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What is TF-IDF?
+        Process
       
     </span>
   </a>
@@ -1764,82 +1692,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#how_it_works_-_the_formula" class="md-nav__link">
+  <a href="#index_maintenance" class="md-nav__link">
     <span class="md-ellipsis">
       
-        How It Works - The Formula
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#the_magic_formula_breakdown" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The Magic Formula Breakdown
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="The Magic Formula Breakdown">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#high_tf-idf_score_happens_when" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        High TF-IDF Score happens when:
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#low_tf-idf_score_happens_when" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Low TF-IDF Score happens when:
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key_insights" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Insights
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#quick_summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Quick Summary
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#think_about_it" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Think About It
+        Index Maintenance
       
     </span>
   </a>
@@ -1863,73 +1719,51 @@
 
 
 
-<h1 id="tf-idf">TF-IDF<a class="headerlink" href="#tf-idf" title="Permanent link">&para;</a></h1>
-<h2 id="what_is_tf-idf">What is TF-IDF?<a class="headerlink" href="#what_is_tf-idf" title="Permanent link">&para;</a></h2>
-<p><strong>TF-IDF</strong> is like having TWO super-smart friends working together to help you find exactly what you're looking for!</p>
+<h1 id="query_processing_overview">Query Processing Overview<a class="headerlink" href="#query_processing_overview" title="Permanent link">&para;</a></h1>
+<p>When MySQL receives a full-text search query, it goes through several stages:</p>
+<h2 id="process">Process<a class="headerlink" href="#process" title="Permanent link">&para;</a></h2>
+<p><strong>1. Query Parsing</strong></p>
+<p>MySQL parses the search string to identify search terms and operators. </p>
+<p>It recognizes special syntax like boolean operators (+, -, &gt;, &lt;, ~, *, ""), stopwords, and phrase searches. </p>
+<p>The parser tokenizes the query string similar to how documents were indexed.</p>
+<p><strong>2. Stopword Filtering</strong></p>
+<p>MySQL filters out stopwords (common words like "the", "is", "at") based on the configured stopword list. </p>
+<p>These are ignored because they appear too frequently to be useful for relevance ranking.</p>
+<p><strong>3. Query Expansion (Natural Language Mode)</strong></p>
+<p>In natural language mode, MySQL may expand the query internally. </p>
+<p>It identifies the search terms that will be used to probe the full-text index.</p>
+<p><strong>4. Index Lookup</strong></p>
+<p>MySQL uses the FULLTEXT index to quickly locate documents containing the search terms. </p>
+<p>The index is typically organized as an inverted index where each word maps to a list of documents (and positions within those documents) where it appears.</p>
+<p><strong>5. Relevance Calculation</strong></p>
+<p>For each matching document, MySQL calculates a relevance score based on:</p>
 <ul>
-<li><strong>Friend 1 (TF):</strong> "This query word appears a lot in this document!"</li>
-<li><strong>Friend 2 (IDF):</strong> "But wait... is this query word actually special or just common everywhere?"</li>
+<li>Term frequency (how often the word appears in the document)</li>
+<li>Inverse document frequency (how rare the word is across all documents)</li>
+<li>Document length normalization</li>
+<li>Word proximity (for phrase searches)</li>
 </ul>
-<p><strong>TF-IDF = TF × IDF</strong></p>
-<p>It's the ULTIMATE combination that makes search engines actually work! </p>
-<h2 id="how_it_works_-_the_formula">How It Works - The Formula<a class="headerlink" href="#how_it_works_-_the_formula" title="Permanent link">&para;</a></h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>TF-IDF = TF × IDF
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>TF = (Word count in document) / (Total words in document)
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>IDF = log(Total documents / Documents containing word)
-</span></code></pre></div>
-<p><strong>In Plain English:</strong></p>
-<blockquote>
-<p>TF-IDF gives HIGH scores to words that appear FREQUENTLY in a specific document but RARELY across all documents.</p>
-</blockquote>
-<h2 id="the_magic_formula_breakdown">The Magic Formula Breakdown<a class="headerlink" href="#the_magic_formula_breakdown" title="Permanent link">&para;</a></h2>
-<h3 id="high_tf-idf_score_happens_when">High TF-IDF Score happens when:<a class="headerlink" href="#high_tf-idf_score_happens_when" title="Permanent link">&para;</a></h3>
-<ol>
-<li><strong>High TF</strong> - Word appears many times in the document</li>
-<li><strong>High IDF</strong> - Word is rare across all documents</li>
-<li><strong>Multiply them</strong> - Both conditions met!</li>
-</ol>
-<h3 id="low_tf-idf_score_happens_when">Low TF-IDF Score happens when:<a class="headerlink" href="#low_tf-idf_score_happens_when" title="Permanent link">&para;</a></h3>
-<ol>
-<li>Word doesn't appear in document (TF = 0)</li>
-<li>Word is super common like "the" (IDF ≈ 0)</li>
-<li>Either one being zero = final score is zero!</li>
-</ol>
-<h2 id="key_insights">Key Insights<a class="headerlink" href="#key_insights" title="Permanent link">&para;</a></h2>
-<p><strong>TF-IDF automatically filters out:</strong></p>
+<p>The formula is similar to TF-IDF (Term Frequency-Inverse Document Frequency).</p>
+<p><strong>6. Boolean Evaluation (Boolean Mode)</strong></p>
+<p>In boolean mode, MySQL applies the boolean operators to determine which documents satisfy the query conditions. </p>
+<p>Required terms (+), excluded terms (-), and optional terms are processed according to boolean logic.</p>
+<p><strong>7. Result Filtering and Sorting</strong></p>
+<p>MySQL filters results based on the WHERE clause conditions (including the MATCH() condition itself) and sorts results by relevance score (or other specified ORDER BY criteria).</p>
+<p><strong>8. Result Return</strong></p>
+<p>Finally, MySQL returns the matching rows with their relevance scores, applying any LIMIT clauses to restrict the result set size.</p>
+<h2 id="index_maintenance">Index Maintenance<a class="headerlink" href="#index_maintenance" title="Permanent link">&para;</a></h2>
+<p><strong>Insert/Update/Delete Operations:</strong></p>
+<p>InnoDB maintains FULLTEXT indexes using auxiliary tables and a document ID system. New content is tokenized and added to in-memory buffers before being flushed to the index. Updates mark old documents as deleted and insert new versions, while deletes flag documents for later cleanup rather than immediate removal.</p>
+<p><strong>Performance Impact:</strong></p>
+<p>High-volume inserts create write overhead as indexes are maintained in real-time. Index fragmentation accumulates from updates and deletes, requiring periodic optimization with <code>OPTIMIZE TABLE</code>.</p>
+<p><strong>Best Practices:</strong></p>
 <ul>
-<li>❌ Common words: "the", "is", "and", "of", "in"</li>
-<li>❌ Irrelevant documents</li>
-<li>❌ Documents that just spam keywords</li>
+<li>Batch inserts in transactions to reduce overhead</li>
+<li>Monitor index size and fragmentation regularly</li>
+<li>Tune configuration parameters like <code>innodb_ft_cache_size</code></li>
+<li>For extreme volumes, consider delayed indexing patterns or external search engines like Elasticsearch</li>
 </ul>
-<p><strong>TF-IDF automatically promotes:</strong></p>
-<ul>
-<li>✅ Meaningful, distinctive words</li>
-<li>✅ Documents where key terms appear frequently</li>
-<li>✅ Relevant, high-quality search results</li>
-</ul>
-<h2 id="quick_summary">Quick Summary<a class="headerlink" href="#quick_summary" title="Permanent link">&para;</a></h2>
-<p><strong>Remember the Formula:</strong></p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>TF-IDF = TF × IDF
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>       = (How often word appears in THIS doc) 
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>         × 
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>         (How rare word is ACROSS ALL docs)
-</span></code></pre></div>
-<p><strong>The Golden Rules:</strong></p>
-<ol>
-<li>High TF + High IDF = <strong>Very Relevant!</strong> 🌟🌟🌟</li>
-<li>High TF + Low IDF = <strong>Probably common word</strong> (the, is, and)</li>
-<li>Low TF + High IDF = <strong>Rare word but not in this doc</strong></li>
-<li>Low TF + Low IDF = <strong>Not relevant at all</strong></li>
-</ol>
-<h2 id="think_about_it">Think About It<a class="headerlink" href="#think_about_it" title="Permanent link">&para;</a></h2>
-<p><strong>Question:</strong> Why does TF-IDF work so well?</p>
-<p><strong>Answer:</strong> Because it mimics how humans think!</p>
-<ul>
-<li>We care about words that appear OFTEN in a specific context (TF)</li>
-<li>We ignore words that appear EVERYWHERE (low IDF)</li>
-<li>We focus on what makes something UNIQUE and RELEVANT</li>
-</ul>
+<p><em>The key tradeoff: better search performance costs write speed.</em></p>
 <p><br></p>
 
 

@@ -6,7 +6,11 @@
 
 ## The Core Idea
 
-Common words like "the" or "is" appear in almost every document, so they're not useful for distinguishing between documents. Rare words like "photosynthesis" or "cryptocurrency" appear in fewer documents and are more informative.
+Common words like "the" or "is" appear in almost every document, so they're not useful for distinguishing between documents. 
+
+Rare words like "photosynthesis" or "cryptocurrency" appear in fewer documents and are more informative.
+
+TF is about 'the document'. IDF is about 'the documents'. Which one's are more relevant compared to the others.
 
 ## The Formula
 
@@ -26,14 +30,6 @@ Say you have 1,000 documents:
 - "the" appears in 999 documents → IDF = log(1000/999) ≈ 0.001 (very low)
 - "quantum" appears in 10 documents → IDF = log(1000/10) = 2 (higher)
 - "riboflavin" appears in 1 document → IDF = log(1000/1) = 3 (highest)
-
-## Why It Matters
-
-When combined with Term Frequency (how often a word appears in a single document), IDF helps identify the most important words for each document. Words that appear frequently in one document but rarely across all documents get the highest TF-IDF scores.
-
-This is fundamental to search engines, document classification, and information retrieval systems.
-
-It’s a core ingredient in **TF‑IDF**, one of the most widely used scoring methods in search engines, information retrieval, and text mining.
 
 ## What IDF Tries to Solve
 
@@ -87,9 +83,7 @@ Where:
    IDF(t) = log((N - df_t) / df_t)
    ```
 
-**Key insight:** IDF increases for rare terms (low df_t) and decreases for common terms (high df_t). When combined with term frequency (TF), you get TF-IDF weighting:
-
-**TF-IDF(t, d) = TF(t, d) × IDF(t)**
+**Key insight:** IDF increases for rare terms (low df_t) and decreases for common terms (high df_t). 
 
 This smoothing ensures that terms appearing in all documents don't get zero weight and prevents division by zero for edge cases.
 

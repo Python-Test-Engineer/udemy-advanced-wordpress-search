@@ -20,6 +20,7 @@ Each section now includes:
 - Notes on how WordPress developers might use it  
 
 # Natural Language Mode  
+
 Natural language mode is MySQL’s “Google‑like” search.  
 It ranks results by relevance using TF‑IDF‑style scoring.
 
@@ -47,6 +48,7 @@ ORDER BY score DESC;
 ```
 
 **What happens:**  
+
 - MySQL breaks the query into words  
 - Computes relevance based on frequency  
 - Posts heavily discussing caching rank highest  
@@ -62,6 +64,7 @@ ORDER BY relevance DESC;
 ```
 
 **Why this matters:**  
+
 - Titles often signal intent  
 - Weighted scoring improves result quality  
 
@@ -77,9 +80,11 @@ ORDER BY score DESC;
 ```
 
 **Use case:**  
+
 Great for documentation sites or long tutorials.
 
 ### Example D — Natural language with stopwords
+
 ```sql
 SELECT ID, post_title
 FROM wp_posts
@@ -91,6 +96,7 @@ WHERE MATCH(post_title, post_content)
 Words like *how*, *to*, *a* are ignored unless you customize stopwords.
 
 # Boolean Mode  
+
 Boolean mode gives you **precision control** using operators.
 
 Perfect for admin dashboards, advanced search pages, or custom WP search endpoints.
@@ -107,6 +113,7 @@ WHERE MATCH(post_title, post_content)
 ```
 
 **Meaning:**  
+
 - Must contain “wordpress”  
 - Must contain “cache”  
 - Must NOT contain “plugin”  
@@ -144,8 +151,6 @@ WHERE MATCH(post_title, post_content)
 
 When users want precise technical terms.
 
-
-
 ### Example D — Combining phrase + required terms
 
 ```sql
@@ -161,8 +166,6 @@ WHERE MATCH(post_title, post_content)
 - Must contain “redis”  
 - Must NOT contain “memcached”  
 
----
-
 ### **Example E — Boosting relevance with tilde (~)**
 
 ```sql
@@ -176,8 +179,6 @@ WHERE MATCH(post_title, post_content)
 
 - “cache” is required  
 - “redis” is optional but increases relevance  
-
----
 
 # Query Expansion Mode  
 
@@ -248,8 +249,6 @@ If your content uses synonyms like:
 - TTFB  
 
 MySQL will find them.
-
----
 
 ### Example D — Query expansion on product reviews
 

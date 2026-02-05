@@ -3,6 +3,7 @@
 Rewritten and formatted by AI
 
 ## Table of Contents
+
 1. [Introduction](#introduction)
 2. [What is Full-Text Search?](#what-is-full-text-search)
 3. [Basic Syntax](#basic-syntax)
@@ -18,6 +19,7 @@ Rewritten and formatted by AI
 Full-text search is a powerful MySQL feature that allows you to search through large amounts of text data efficiently. Unlike simple `LIKE` queries that scan every row, full-text search uses specialized indexes to find relevant matches quickly—even in tables with millions of rows.
 
 **When should you use full-text search?**
+
 - Searching blog posts, articles, or product descriptions
 - Building search functionality for websites
 - Finding relevant documents in large databases
@@ -35,7 +37,7 @@ Traditional LIKE Search:
 ┌───────────────────────────────────────┐
 │ WHERE description LIKE '%database%'   │
 │                                       │
-│ ❌ Scans every single row             │
+│ ❌ Scans every single row            │
 │ ❌ Slow on large tables              │
 │ ❌ No relevance ranking              │
 └───────────────────────────────────────┘
@@ -169,7 +171,7 @@ MySQL offers three different ways to perform full-text searches, each with its o
 
 ```
 ┌────────────────────────────────────────────────────────────────┐
-│                    Search Mode Comparison                       │
+│                    Search Mode Comparison                      │
 ├──────────────────┬─────────────────────────────────────────────┤
 │                  │                                             │
 │  Natural         │  Simple, human-friendly searching           │
@@ -207,6 +209,7 @@ Most relevant documents appear first
 ```
 
 **Syntax:**
+
 ```sql
 -- These two queries are identical:
 SELECT * FROM articles 
@@ -251,7 +254,7 @@ AGAINST('+machine +learning -neural' IN BOOLEAN MODE);
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│                   Boolean Search Operators                    │
+│                   Boolean Search Operators                   │
 ├──────────┬───────────────────────────────────────────────────┤
 │ Operator │ Meaning                         │ Example         │
 ├──────────┼─────────────────────────────────┼─────────────────┤
@@ -347,14 +350,13 @@ Second Pass (Final Results):
 ```
 
 **When to use Query Expansion:**
+
 - "More like this" features
 - When users might not know the best search terms
 - Finding related content
 - Exploratory searches
 
 **⚠️ Warning:** Query expansion can sometimes return less relevant results if your initial search matches poor-quality documents. Use with caution.
-
----
 
 ## Practical Examples
 
@@ -438,8 +440,6 @@ WHERE MATCH(title, content) AGAINST('Python')
 ORDER BY relevance DESC;
 ```
 
-
-
 ## Performance Tips
 
 ### Tip 1: Index Creation Timing
@@ -477,8 +477,6 @@ LIMIT 20;
 ```
 
 MySQL calculates relevance scores automatically—use them to show the best matches first!
-
-
 
 ## Important Restrictions
 
@@ -537,8 +535,6 @@ Common words (called "stopwords") are ignored in searches:
 - Examples: "the", "a", "an", "is", "at", "which"
 - These are filtered out automatically to improve performance
 - You can customize the stopword list if needed
-
-
 
 ## International Language Support
 

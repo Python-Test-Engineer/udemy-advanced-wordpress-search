@@ -3109,8 +3109,10 @@
 
 <h1 id="mysql_full-text_search_fts_fine-tuning_guide">MySQL Full-Text Search (FTS) Fine-Tuning Guide<a class="headerlink" href="#mysql_full-text_search_fts_fine-tuning_guide" title="Permanent link">&para;</a></h1>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
-<p>Full-Text Search (FTS) in MySQL allows you to efficiently search text content in your database. While the default settings work well for most applications, MySQL provides several configuration options to optimize search behavior for your specific needs.</p>
-<p><strong>Important Note:</strong> MySQL's FTS is already well-tuned out of the box. Only modify these settings if you have a specific reason and understand the implications. Most changes require rebuilding your FULLTEXT indexes and restarting the server.</p>
+<p>Full-Text Search (FTS) in MySQL allows you to efficiently search text content in your database. </p>
+<p>While the default settings work well for most applications, MySQL provides several configuration options to optimize search behavior for your specific needs.</p>
+<p><strong>Important Note:</strong> </p>
+<p>MySQL's FTS is already well-tuned out of the box. Only modify these settings if you have a specific reason and understand the implications. Most changes require rebuilding your FULLTEXT indexes and restarting the server.</p>
 <h2 id="1_word_length_configuration">1. Word Length Configuration<a class="headerlink" href="#1_word_length_configuration" title="Permanent link">&para;</a></h2>
 <h3 id="what_it_does">What It Does<a class="headerlink" href="#what_it_does" title="Permanent link">&para;</a></h3>
 <p>Controls which words get indexed based on their length. By default, very short words (like "a", "in") and extremely long words are excluded from the index.</p>
@@ -3923,7 +3925,8 @@
 <li>MySQL 8.4 Fine-Tuning Guide: https://dev.mysql.com/doc/refman/8.4/en/fulltext-fine-tuning.html</li>
 <li>InnoDB Full-Text Indexes: https://dev.mysql.com/doc/refman/8.4/en/innodb-fulltext-index.html</li>
 </ul>
-<p><strong>Remember:</strong> Full-text search is powerful, but it's not a replacement for specialized search engines like Elasticsearch or Solr for very large datasets or complex search requirements. Use FTS for moderate-sized applications where you want search functionality without additional infrastructure.</p>
+<p><strong>Remember:</strong> </p>
+<p>Full-text search is powerful, but it's not a replacement for specialized search engines like Elasticsearch or Solr for very large datasets or complex search requirements. Use FTS for moderate-sized applications where you want search functionality without additional infrastructure.</p>
 <p><br></p>
 
 

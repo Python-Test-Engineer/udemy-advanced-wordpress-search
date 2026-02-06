@@ -1768,8 +1768,9 @@
 <p>Imagine you're looking for a book article on WordPress. The more WordPress appears in the doucment suggests the more relevant the query term <code>WordPress</code> is.</p>
 <p><strong>Term Frequency (TF)</strong> = How many times a word appears in a document</p>
 <p><strong>Simple Term Frequency:</strong></p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>TF = (number of times term appears in document) / (total number of terms in document)
-</span></code></pre></div>
+<blockquote>
+<p>TF = (number of times term appears in document) / (total number of terms in document)</p>
+</blockquote>
 <p><strong>Example:</strong></p>
 <p>Document: "the cat sat on the mat"</p>
 <ul>
@@ -1782,13 +1783,13 @@
 <p><strong>Limitation:</strong></p>
 <p>This treats the 1st and 100th occurrence equally. That's why most search systems use something like BM25 instead, which adds diminishing returns.</p>
 <h2 id="visual_comparison">Visual Comparison<a class="headerlink" href="#visual_comparison" title="Permanent link">&para;</a></h2>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Document A: &quot;dog dog dog cat&quot;
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>🐕🐕🐕🐱
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>TF(dog) = 3/4 = 0.75
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>Document B: &quot;dog cat cat cat&quot;  
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>🐕🐱🐱🐱
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>TF(dog) = 3/4 = 0.25
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Document A: &quot;dog dog dog cat&quot;
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>🐕🐕🐕🐱
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>TF(dog) = 3/4 = 0.75
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>Document B: &quot;dog cat cat cat&quot;  
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>🐕🐱🐱🐱
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>TF(dog) = 3/4 = 0.25
 </span></code></pre></div>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Please note,  the terms k1 and b will be explained fully in BM25. The key for this graphic is we need to avoid 'stuffing' or 'key word satiration' distroting the relevancy - amde for document length with parameter 'b'.</p>

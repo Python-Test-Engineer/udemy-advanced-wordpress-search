@@ -1778,10 +1778,12 @@
 
 
 <h1 id="1494_full-text_stopwords">14.9.4 Full-Text Stopwords<a class="headerlink" href="#1494_full-text_stopwords" title="Permanent link">&para;</a></h1>
-<p>The stopword list is loaded and searched for full-text queries using the server character set and collation (the values of the character_set_server and collation_server system variables). False hits or misses might occur for stopword lookups if the stopword file or columns used for full-text indexing or searches have a character set or collation different from character_set_server or collation_server.</p>
+<p>The stopword list is loaded and searched for full-text queries using the server character set and collation (the values of the character_set_server and collation_server system variables). </p>
+<p>False hits or misses might occur for stopword lookups if the stopword file or columns used for full-text indexing or searches have a character set or collation different from character_set_server or collation_server.</p>
 <p>Case sensitivity of stopword lookups depends on the server collation. For example, lookups are case-insensitive if the collation is utf8mb4_0900_ai_ci, whereas lookups are case-sensitive if the collation is utf8mb4_0900_as_cs or utf8mb4_bin.</p>
 <h2 id="stopwords_for_innodb_search_indexes">Stopwords for InnoDB Search Indexes<a class="headerlink" href="#stopwords_for_innodb_search_indexes" title="Permanent link">&para;</a></h2>
-<p>InnoDB has a relatively short list of default stopwords, because documents from technical, literary, and other sources often use short words as keywords or in significant phrases. For example, you might search for "to be or not to be" and expect to get a sensible result, rather than having all those words ignored.</p>
+<p>InnoDB has a relatively short list of default stopwords, because documents from technical, literary, and other sources often use short words as keywords or in significant phrases. </p>
+<p>For example, you might search for "to be or not to be" and expect to get a sensible result, rather than having all those words ignored.</p>
 <p>To see the default InnoDB stopword list, query the Information Schema INNODB_FT_DEFAULT_STOPWORD table.</p>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">INFORMATION_SCHEMA</span><span class="p">.</span><span class="n">INNODB_FT_DEFAULT_STOPWORD</span><span class="p">;</span>
 </span></code></pre></div>
@@ -1877,7 +1879,8 @@
 <p>Verify that the specified stopword ('Ishmael') does not appear by querying the Information Schema INNODB_FT_INDEX_TABLE table.</p>
 <h3 id="note">Note<a class="headerlink" href="#note" title="Permanent link">&para;</a></h3>
 <p>By default, words less than 3 characters in length or greater than 84 characters in length do not appear in an InnoDB full-text search index. </p>
-<p>Maximum and minimum word length values are configurable using the innodb_ft_max_token_size and innodb_ft_min_token_size variables. This default behavior does not apply to the ngram parser plugin. ngram token size is defined by the ngram_token_size option.</p>
+<p>Maximum and minimum word length values are configurable using the innodb_ft_max_token_size and innodb_ft_min_token_size variables. </p>
+<p>This default behavior does not apply to the ngram parser plugin. ngram token size is defined by the ngram_token_size option.</p>
 <p><div class="language-sql highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">SET</span><span class="w"> </span><span class="k">GLOBAL</span><span class="w"> </span><span class="n">innodb_ft_aux_table</span><span class="o">=</span><span class="s1">&#39;test/opening_lines&#39;</span><span class="p">;</span>
 </span></code></pre></div>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>Query OK, 0 rows affected (0.00 sec)
@@ -1910,7 +1913,9 @@
 <p>The stopword file is loaded and searched using latin1 if character_set_server is ucs2, utf16, utf16le, or utf32.</p>
 <p>To override the default stopword list for MyISAM tables, set the ft_stopword_file system variable. (See Section 7.1.8, "Server System Variables".) The variable value should be the path name of the file containing the stopword list, or the empty string to disable stopword filtering. The server looks for the file in the data directory unless an absolute path name is given to specify a different directory. </p>
 <p>After changing the value of this variable or the contents of the stopword file, restart the server and rebuild your FULLTEXT indexes.</p>
-<p>The stopword list is free-form, separating stopwords with any nonalphanumeric character such as newline, space, or comma. Exceptions are the underscore character (_) and a single apostrophe (') which are treated as part of a word. The character set of the stopword list is the server's default character set; see Section 12.3.2, "Server Character Set and Collation".</p>
+<p>The stopword list is free-form, separating stopwords with any nonalphanumeric character such as newline, space, or comma. </p>
+<p>Exceptions are the underscore character (_) and a single apostrophe (') which are treated as part of a word. </p>
+<p>The character set of the stopword list is the server's default character set; see Section 12.3.2, "Server Character Set and Collation".</p>
 <p>The following list shows the default stopwords for MyISAM search indexes. In a MySQL source distribution, you can find this list in the storage/myisam/ft_static.c file.</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>a&#39;s           able          about         above         according
 </span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>accordingly   across        actually      after         afterwards

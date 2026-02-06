@@ -2170,13 +2170,17 @@
 <h1 id="vector_search">Vector Search<a class="headerlink" href="#vector_search" title="Permanent link">&para;</a></h1>
 <h2 id="what_is_vector_search">What is Vector Search?<a class="headerlink" href="#what_is_vector_search" title="Permanent link">&para;</a></h2>
 <p>Imagine if instead of matching <strong>exact words</strong>, search engines could understand <strong>meanings and concepts</strong>! That's vector search!</p>
-<p><strong>Traditional Search (BM25):</strong>
-- Query: "car" → Matches documents with word "car"
-- Misses: "automobile", "vehicle", "sedan"</p>
-<p><strong>Vector Search:</strong>
-- Query: "car" → Understands the CONCEPT
-- Matches: "automobile", "vehicle", "sedan", "SUV", "truck"
-- <strong>It gets the MEANING!</strong> </p>
+<p><strong>Traditional Search (BM25):</strong></p>
+<ul>
+<li>Query: "car" → Matches documents with word "car"</li>
+<li>Misses: "automobile", "vehicle", "sedan"</li>
+</ul>
+<p><strong>Vector Search:</strong></p>
+<ul>
+<li>Query: "car" → Understands the CONCEPT</li>
+<li>Matches: "automobile", "vehicle", "sedan", "SUV", "truck"</li>
+<li><strong>It gets the MEANING!</strong> </li>
+</ul>
 <hr />
 <h2 id="the_big_idea_words_as_points_in_space">The Big Idea: Words as Points in Space<a class="headerlink" href="#the_big_idea_words_as_points_in_space" title="Permanent link">&para;</a></h2>
 <p>Instead of treating words as text, we represent them as <strong>numbers in space</strong> (vectors).</p>
@@ -2196,11 +2200,12 @@
 </span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    0   └─────────────────────── X-axis (Animal vs Vehicle)
 </span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        0   1   2   3   4   5
 </span></code></pre></div>
-<p><strong>Key Insight:</strong> Similar things are CLOSE together in space!
-- Car, SUV, taxi are all near each other (similar meanings)
-- Dog and cat are near each other (also similar)
-- Cars and dogs are FAR apart (different meanings)</p>
-<hr />
+<p><strong>Key Insight:</strong> Similar things are CLOSE together in space!</p>
+<ul>
+<li>Car, SUV, taxi are all near each other (similar meanings)</li>
+<li>Dog and cat are near each other (also similar)</li>
+<li>Cars and dogs are FAR apart (different meanings)</li>
+</ul>
 <h2 id="what_is_a_vector">What is a Vector?<a class="headerlink" href="#what_is_a_vector" title="Permanent link">&para;</a></h2>
 <p>A <strong>vector</strong> is just a list of numbers representing a position in space.</p>
 <h3 id="2d_vector_example">2D Vector Example:<a class="headerlink" href="#2d_vector_example" title="Permanent link">&para;</a></h3>
@@ -2267,7 +2272,6 @@
 </span><span id="__span-3-45"><a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a>  #3 🥉 Doc 2: &quot;Dogs are great pets&quot; (0.12)
 </span></code></pre></div>
 <p><strong>Magic!</strong> Even though the query was "automobile" (not "car"), it found the car document! 🎉</p>
-<hr />
 <h2 id="step-by-step_calculation_cosine_similarity">Step-by-Step Calculation: Cosine Similarity<a class="headerlink" href="#step-by-step_calculation_cosine_similarity" title="Permanent link">&para;</a></h2>
 <p>Let's calculate similarity between vectors using <strong>cosine similarity</strong> - the most common method.</p>
 <h3 id="our_vectors_simplified_to_3d">Our Vectors (simplified to 3D):<a class="headerlink" href="#our_vectors_simplified_to_3d" title="Permanent link">&para;</a></h3>
@@ -2290,7 +2294,6 @@
 </span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>   /    │
 </span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>  X-axis
 </span></code></pre></div>
-<hr />
 <h2 id="cosine_similarity_formula">Cosine Similarity Formula<a class="headerlink" href="#cosine_similarity_formula" title="Permanent link">&para;</a></h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Cosine Similarity = (A · B) / (||A|| × ||B||)
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
@@ -2300,7 +2303,6 @@
 </span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>- ||B|| = Magnitude (length) of vector B
 </span></code></pre></div>
 <p><strong>In plain English:</strong> How much do the vectors point in the same direction?</p>
-<hr />
 <h2 id="step_1_calculate_dot_product_a_b">STEP 1: Calculate Dot Product (A · B)<a class="headerlink" href="#step_1_calculate_dot_product_a_b" title="Permanent link">&para;</a></h2>
 <h3 id="query_vs_doc_1">Query vs Doc 1:<a class="headerlink" href="#query_vs_doc_1" title="Permanent link">&para;</a></h3>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Query = [0.75, 0.85, 0.25]
@@ -2324,13 +2326,12 @@
 </span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>            = 0.15 + 0.085 + 0.225
 </span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>            = 0.46
 </span></code></pre></div>
-<p><strong>Visual representation:</strong>
+<p><strong>Visual representation:</strong></p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Dimension 1:  0.75 ████████  ×  0.20 ██        = 0.150
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>Dimension 2:  0.85 █████████ ×  0.10 █         = 0.085
 </span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>Dimension 3:  0.25 ███       ×  0.90 █████████ = 0.225
 </span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>                                        Total: 0.460
-</span></code></pre></div></p>
-<hr />
+</span></code></pre></div>
 <h2 id="step_2_calculate_magnitudes">STEP 2: Calculate Magnitudes<a class="headerlink" href="#step_2_calculate_magnitudes" title="Permanent link">&para;</a></h2>
 <h3 id="magnitude_formula">Magnitude Formula:<a class="headerlink" href="#magnitude_formula" title="Permanent link">&para;</a></h3>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>||A|| = √(a₁² + a₂² + a₃²)
@@ -2367,7 +2368,6 @@
 </span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>          = √0.86
 </span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>          = 0.927
 </span></code></pre></div>
-<hr />
 <h2 id="step_3_calculate_cosine_similarity">STEP 3: Calculate Cosine Similarity<a class="headerlink" href="#step_3_calculate_cosine_similarity" title="Permanent link">&para;</a></h2>
 <h3 id="query_vs_doc_3">Query vs Doc 1:<a class="headerlink" href="#query_vs_doc_3" title="Permanent link">&para;</a></h3>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>Cosine Similarity = Dot Product / (||Query|| × ||Doc 1||)
@@ -2396,7 +2396,6 @@
 </span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>
 </span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>Large angle = Low similarity!
 </span></code></pre></div></p>
-<hr />
 <h2 id="final_ranking">FINAL RANKING<a class="headerlink" href="#final_ranking" title="Permanent link">&para;</a></h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>┌─────────────────────────────────────────────────┐
 </span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>│  Query: &quot;automobile&quot;                            │
@@ -2411,7 +2410,6 @@
 </span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>└─────────────────────────────────────────────────┘
 </span></code></pre></div>
 <p><strong>Perfect!</strong> The car document scored highest even though we searched for "automobile"! </p>
-<hr />
 <h2 id="visualizing_semantic_space">Visualizing Semantic Space<a class="headerlink" href="#visualizing_semantic_space" title="Permanent link">&para;</a></h2>
 <h3 id="2d_semantic_map_example">2D Semantic Map Example:<a class="headerlink" href="#2d_semantic_map_example" title="Permanent link">&para;</a></h3>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>                    Transportation
@@ -2437,11 +2435,12 @@
 </span><span id="__span-20-21"><a id="__codelineno-20-21" name="__codelineno-20-21" href="#__codelineno-20-21"></a>                    │         │
 </span><span id="__span-20-22"><a id="__codelineno-20-22" name="__codelineno-20-22" href="#__codelineno-20-22"></a>                  Animals
 </span></code></pre></div>
-<p><strong>Distance represents semantic similarity:</strong>
-- Car, truck, bike → Close together (vehicles)
-- Cat, dog, bird → Close together (pets)
-- Vehicles and pets → Far apart (different concepts)</p>
-<hr />
+<p><strong>Distance represents semantic similarity:</strong></p>
+<ul>
+<li>Car, truck, bike → Close together (vehicles)</li>
+<li>Cat, dog, bird → Close together (pets)</li>
+<li>Vehicles and pets → Far apart (different concepts)</li>
+</ul>
 <h2 id="understanding_vector_dimensions">Understanding Vector Dimensions<a class="headerlink" href="#understanding_vector_dimensions" title="Permanent link">&para;</a></h2>
 <p>Real embeddings have 768 dimensions! Each dimension captures different semantic features:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>Dimension 1:   Vehicle-ness        [████████░░] 0.8
@@ -2475,11 +2474,13 @@
 </span><span id="__span-22-17"><a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a>│  [0.23, -0.45, 0.12, 0.89, ..., 0.34]          │
 </span><span id="__span-22-18"><a id="__codelineno-22-18" name="__codelineno-22-18" href="#__codelineno-22-18"></a>└──────────────────────────────────────────────────┘
 </span></code></pre></div>
-<p><strong>Popular embedding models:</strong>
-- Sentence-BERT
-- OpenAI Ada-002
-- Google Universal Sentence Encoder
-- Cohere Embeddings</p>
+<p><strong>Popular embedding models:</strong></p>
+<ul>
+<li>Sentence-BERT</li>
+<li>OpenAI Ada-002</li>
+<li>Google Universal Sentence Encoder</li>
+<li>Cohere Embeddings</li>
+</ul>
 <hr />
 <h2 id="comparison_keyword_vs_vector_search">Comparison: Keyword vs Vector Search<a class="headerlink" href="#comparison_keyword_vs_vector_search" title="Permanent link">&para;</a></h2>
 <h3 id="example_query_how_to_fix_a_broken_vehicle">Example Query: "How to fix a broken vehicle"<a class="headerlink" href="#example_query_how_to_fix_a_broken_vehicle" title="Permanent link">&para;</a></h3>
@@ -2557,7 +2558,6 @@
 - "athletic" ≈ "running"
 - "cushioned" ≈ "comfortable"
 - "chairs" ≠ "shoes" (different category)</p>
-<hr />
 <h2 id="similarity_score_ranges">Similarity Score Ranges<a class="headerlink" href="#similarity_score_ranges" title="Permanent link">&para;</a></h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>Cosine Similarity Scale:
 </span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a>
@@ -2584,7 +2584,6 @@
 </span><span id="__span-28-23"><a id="__codelineno-28-23" name="__codelineno-28-23" href="#__codelineno-28-23"></a>0.0 │ ░░░░░░░░░░░░ Completely unrelated
 </span></code></pre></div>
 <p><strong>Typical cutoff:</strong> Return results with similarity &gt; 0.7</p>
-<hr />
 <h2 id="multi-language_magic">Multi-language Magic<a class="headerlink" href="#multi-language_magic" title="Permanent link">&para;</a></h2>
 <p>Vector search works across languages!</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>Query (English): &quot;cat&quot;
@@ -2603,8 +2602,7 @@
 </span><span id="__span-29-14"><a id="__codelineno-29-14" name="__codelineno-29-14" href="#__codelineno-29-14"></a>     Vector: [0.82, 0.18, 0.90, ...]
 </span><span id="__span-29-15"><a id="__codelineno-29-15" name="__codelineno-29-15" href="#__codelineno-29-15"></a>     Similarity: 0.98 ⭐⭐⭐⭐⭐
 </span></code></pre></div>
-<p><strong>Same meaning = Similar vectors, regardless of language!</strong> 🌍</p>
-<hr />
+<p><strong>Same meaning = Similar vectors, regardless of language!</strong> </p>
 <h2 id="the_full_process_visualized">The Full Process Visualized<a class="headerlink" href="#the_full_process_visualized" title="Permanent link">&para;</a></h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>┌─────────────────────────────────────────────────┐
 </span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>│  1. INDEX TIME (Done once)                      │
@@ -2643,7 +2641,6 @@
 </span><span id="__span-30-35"><a id="__codelineno-30-35" name="__codelineno-30-35" href="#__codelineno-30-35"></a>│  #3 Doc 2 (0.15)            │
 </span><span id="__span-30-36"><a id="__codelineno-30-36" name="__codelineno-30-36" href="#__codelineno-30-36"></a>└──────────────────────────────┘
 </span></code></pre></div>
-<hr />
 <h2 id="key_advantages_of_vector_search">Key Advantages of Vector Search<a class="headerlink" href="#key_advantages_of_vector_search" title="Permanent link">&para;</a></h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>✅ Semantic Understanding
 </span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>   &quot;car&quot; finds &quot;automobile&quot;, &quot;vehicle&quot;, &quot;sedan&quot;
@@ -2663,7 +2660,6 @@
 </span><span id="__span-31-16"><a id="__codelineno-31-16" name="__codelineno-31-16" href="#__codelineno-31-16"></a>✅ No Keyword Stuffing
 </span><span id="__span-31-17"><a id="__codelineno-31-17" name="__codelineno-31-17" href="#__codelineno-31-17"></a>   Can&#39;t game the system by repeating words
 </span></code></pre></div>
-<hr />
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>❌ Slower than keyword search
 </span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>   Need to calculate many similarities
@@ -2680,31 +2676,29 @@
 </span><span id="__span-32-13"><a id="__codelineno-32-13" name="__codelineno-32-13" href="#__codelineno-32-13"></a>❌ May miss exact matches
 </span><span id="__span-32-14"><a id="__codelineno-32-14" name="__codelineno-32-14" href="#__codelineno-32-14"></a>   Sometimes you WANT exact word matching
 </span></code></pre></div>
-<hr />
 <h2 id="quick_summary">Quick Summary<a class="headerlink" href="#quick_summary" title="Permanent link">&para;</a></h2>
 <p><strong>Vector Search in 5 Points:</strong></p>
 <ol>
-<li>
-<p><strong>Convert text → numbers (vectors)</strong> 
-   Similar meanings = similar numbers</p>
-</li>
-<li>
-<p><strong>Calculate similarity</strong> 
-   Cosine similarity = angle between vectors</p>
-</li>
-<li>
-<p><strong>Rank by closeness</strong> 
-   Closest vectors = best matches</p>
-</li>
-<li>
-<p><strong>Understands meaning</strong> 
-   Not just matching words, but concepts!</p>
-</li>
-<li>
-<p><strong>Works across languages</strong>
-   Universal semantic representation</p>
-</li>
+<li><strong>Convert text → numbers (vectors)</strong> </li>
 </ol>
+<p>Similar meanings = similar numbers</p>
+<ol>
+<li><strong>Calculate similarity</strong> </li>
+</ol>
+<p>Cosine similarity = angle between vectors</p>
+<ol>
+<li><strong>Rank by closeness</strong> </li>
+</ol>
+<p>Closest vectors = best matches</p>
+<ol>
+<li><strong>Understands meaning</strong> </li>
+</ol>
+<p>Not just matching words, but concepts!</p>
+<ol>
+<li><strong>Works across languages</strong></li>
+</ol>
+<p>Universal semantic representation</p>
+<p><br></p>
 
 
 

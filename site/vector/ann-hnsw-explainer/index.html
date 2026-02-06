@@ -2199,11 +2199,14 @@
 
 <h1 id="ann_and_hnsw">ANN and HNSW<a class="headerlink" href="#ann_and_hnsw" title="Permanent link">&para;</a></h1>
 <h2 id="what_is_approximate_nearest_neighbor_ann">What is Approximate Nearest Neighbor (ANN)?<a class="headerlink" href="#what_is_approximate_nearest_neighbor_ann" title="Permanent link">&para;</a></h2>
-<p>ANN is a fast method for finding vectors that are <em>close enough</em> to a query point — without scanning the entire database. It’s widely used in search engines, recommendation systems, and vector databases.</p>
-<p>Instead of checking every vector, ANN algorithms:
-- Divide the space into <strong>partitions</strong> (like clusters or cells)
-- Search only within the partition where the query lands
-- Return the closest match <em>within that partition</em></p>
+<p>ANN is a fast method for finding vectors that are <em>close enough</em> to a query point — without scanning the entire database. </p>
+<p>It’s widely used in search engines, recommendation systems, and vector databases.</p>
+<p>Instead of checking every vector, ANN algorithms:</p>
+<ul>
+<li>Divide the space into <strong>partitions</strong> (like clusters or cells)</li>
+<li>Search only within the partition where the query lands</li>
+<li>Return the closest match <em>within that partition</em></li>
+</ul>
 <p>This makes ANN fast — but not always accurate.</p>
 <p>When you run vector search, you’re essentially asking:</p>
 <blockquote>
@@ -2214,8 +2217,8 @@ If you have <strong>100,000+ vectors</strong>, brute‑force becomes painfully s
 If you have <strong>millions</strong>, it’s impossible to do real‑time search without optimization.</p>
 <p>That’s where <strong>ANN</strong> comes in.</p>
 <h2 id="what_ann_does">What ANN Does<a class="headerlink" href="#what_ann_does" title="Permanent link">&para;</a></h2>
-<p>ANN algorithms <strong>don’t search every vector</strong>.<br />
-Instead, they use clever indexing structures to find vectors that are <em>very close</em> to the true nearest neighbours — but <strong>much faster</strong>.</p>
+<p>ANN algorithms <strong>don’t search every vector</strong>.  </p>
+<p>Instead, they use clever indexing structures to find vectors that are <em>very close</em> to the true nearest neighbours — but <strong>much faster</strong>.</p>
 <p>You trade <strong>tiny accuracy loss</strong> for <strong>massive speed gains</strong>.</p>
 <h2 id="ann_in_practice">ANN in Practice<a class="headerlink" href="#ann_in_practice" title="Permanent link">&para;</a></h2>
 <p>Most vector databases use ANN under the hood:</p>
@@ -2229,20 +2232,26 @@ Instead, they use clever indexing structures to find vectors that are <em>very c
 </span></code></pre></div>
 <p>If you use any of these with WordPress, you’re already using ANN — even if you don’t know it.</p>
 <h3 id="the_border_problem">The Border Problem<a class="headerlink" href="#the_border_problem" title="Permanent link">&para;</a></h3>
-<p>When a query lands <strong>near the edge of a partition</strong>, ANN might:
-- Search only inside its assigned partition (e.g. Partition A)
-- Return a vector that’s farther away
-- <strong>Miss closer vectors</strong> in a neighboring partition (e.g. Partition B)</p>
+<p>When a query lands <strong>near the edge of a partition</strong>, ANN might:</p>
+<ul>
+<li>Search only inside its assigned partition (e.g. Partition A)</li>
+<li>Return a vector that’s farther away</li>
+<li><strong>Miss closer vectors</strong> in a neighboring partition (e.g. Partition B)</li>
+</ul>
 <h3 id="why_it_matters">Why It Matters<a class="headerlink" href="#why_it_matters" title="Permanent link">&para;</a></h3>
-<p>This border issue can cause:
-- Lower recall (missing relevant results)
-- Poor recommendations or search matches
-- Confusion in edge cases (e.g. similar products or documents)</p>
+<p>This border issue can cause:</p>
+<ul>
+<li>Lower recall (missing relevant results)</li>
+<li>Poor recommendations or search matches</li>
+<li>Confusion in edge cases (e.g. similar products or documents)</li>
+</ul>
 <h3 id="how_to_fix_it">How to Fix It<a class="headerlink" href="#how_to_fix_it" title="Permanent link">&para;</a></h3>
-<p>Advanced techniques like:
-- <strong>Multi-probe search</strong> (check nearby partitions)
-- <strong>Reranking</strong> (re-evaluate top candidates)
-- <strong>HNSW graphs</strong> (link across partitions)</p>
+<p>Advanced techniques like:</p>
+<ul>
+<li><strong>Multi-probe search</strong> (check nearby partitions)</li>
+<li><strong>Reranking</strong> (re-evaluate top candidates)</li>
+<li><strong>HNSW graphs</strong> (link across partitions)</li>
+</ul>
 <p>…can reduce border errors and improve accuracy.</p>
 <p><img alt="border" src="../../images/vectors/ann-nearest-neighbour-slide.png" /></p>
 <h2 id="hierarchical_navigable_small_world_hnsw">Hierarchical Navigable Small World (HNSW)<a class="headerlink" href="#hierarchical_navigable_small_world_hnsw" title="Permanent link">&para;</a></h2>

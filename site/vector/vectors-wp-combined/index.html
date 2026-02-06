@@ -2196,7 +2196,6 @@
 <li>How different distance metrics behave  </li>
 <li>How all of this fits into WordPress and MySQL search architecture  </li>
 </ul>
-<hr />
 <h2 id="1_what_is_vector_search">1. What Is Vector Search?<a class="headerlink" href="#1_what_is_vector_search" title="Permanent link">&para;</a></h2>
 <p>Traditional search engines (like WordPress’s default search or MySQL’s MATCH AGAINST) match <strong>exact words</strong>.</p>
 <h3 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h3>
@@ -2239,9 +2238,11 @@ Matches documents about:</p>
 </span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    0   └─────────────────────── X-axis (Animal vs Vehicle)
 </span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>        0   1   2   3   4   5
 </span></code></pre></div>
-<p><strong>Key idea:</strong><br />
-Similar meanings → close together<br />
-Different meanings → far apart  </p>
+<p><strong>Key idea:</strong>  </p>
+<ul>
+<li>Similar meanings → close together  </li>
+<li>Different meanings → far apart  </li>
+</ul>
 <p>Real embeddings have <strong>384–1536 dimensions</strong>, but the principle is identical.</p>
 <h2 id="3_what_is_a_vector">3. What Is a Vector?<a class="headerlink" href="#3_what_is_a_vector" title="Permanent link">&para;</a></h2>
 <p>A vector is simply a list of numbers.</p>
@@ -2289,15 +2290,17 @@ Different meanings → far apart  </p>
 </span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>   |
 </span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>   +---------------------------- x
 </span></code></pre></div>
-<p><strong>Meaning:</strong><br />
-Measures literal geometric distance.</p>
-<p><strong>Best for:</strong><br />
-- Embeddings where magnitude encodes meaning<br />
-- General vector search  </p>
-<p><strong>WordPress use:</strong><br />
-- Custom MySQL tables<br />
-- External vector DBs that default to L2  </p>
-<hr />
+<p><strong>Meaning:</strong>  Measures literal geometric distance.</p>
+<p><strong>Best for:</strong>  </p>
+<ul>
+<li>Embeddings where magnitude encodes meaning  </li>
+<li>General vector search  </li>
+</ul>
+<p><strong>WordPress use:</strong>  </p>
+<ul>
+<li>Custom MySQL tables  </li>
+<li>External vector DBs that default to L2  </li>
+</ul>
 <h2 id="62_manhattan_distance_l1">6.2 Manhattan Distance (L1)<a class="headerlink" href="#62_manhattan_distance_l1" title="Permanent link">&para;</a></h2>
 <p>Grid‑based movement.</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>   y
@@ -2309,13 +2312,16 @@ Measures literal geometric distance.</p>
 </span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>   |
 </span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>   +---------------------------- x
 </span></code></pre></div>
-<p><strong>Meaning:</strong><br />
-Sum of absolute differences.</p>
-<p><strong>Best for:</strong><br />
-- Sparse vectors (rare in NLP)  </p>
-<p><strong>WordPress use:</strong><br />
-- Experimental scoring only  </p>
-<hr />
+<p><strong>Meaning:</strong>  </p>
+<p>Sum of absolute differences.</p>
+<p><strong>Best for:</strong>  </p>
+<ul>
+<li>Sparse vectors (rare in NLP)  </li>
+</ul>
+<p><strong>WordPress use:</strong>  </p>
+<ul>
+<li>Experimental scoring only  </li>
+</ul>
 <h2 id="63_cosine_distance">6.3 Cosine Distance<a class="headerlink" href="#63_cosine_distance" title="Permanent link">&para;</a></h2>
 <p>Angle between vectors.</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Origin
@@ -2328,16 +2334,19 @@ Sum of absolute differences.</p>
 </span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>        \
 </span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>         B
 </span></code></pre></div>
-<p><strong>Meaning:</strong><br />
-Measures similarity of direction.</p>
-<p><strong>Best for:</strong><br />
-- Semantic search<br />
-- Sentence embeddings  </p>
-<p><strong>WordPress use:</strong><br />
-- Hybrid search (BM25 + embeddings)<br />
-- Most semantic search plugins<br />
-- Recommended default  </p>
-<hr />
+<p><strong>Meaning:</strong>  </p>
+<p>Measures similarity of direction.</p>
+<p><strong>Best for:</strong>  </p>
+<ul>
+<li>Semantic search  </li>
+<li>Sentence embeddings  </li>
+</ul>
+<p><strong>WordPress use:</strong>  </p>
+<ul>
+<li>Hybrid search (BM25 + embeddings)  </li>
+<li>Most semantic search plugins  </li>
+<li>Recommended default  </li>
+</ul>
 <h2 id="64_dot_product">6.4 Dot Product<a class="headerlink" href="#64_dot_product" title="Permanent link">&para;</a></h2>
 <p>Alignment × magnitude.</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Origin
@@ -2347,14 +2356,18 @@ Measures similarity of direction.</p>
 </span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>  | /
 </span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>  |/___________ →→ B (longer)
 </span></code></pre></div>
-<p><strong>Meaning:</strong><br />
-Rewards vectors that point the same way <em>and</em> have large magnitude.</p>
-<p><strong>Best for:</strong><br />
-- Recommender systems<br />
-- Models trained for dot‑product scoring  </p>
-<p><strong>WordPress use:</strong><br />
-- Related posts<br />
-- Product recommendations  </p>
+<p><strong>Meaning:</strong>  </p>
+<p>Rewards vectors that point the same way <em>and</em> have large magnitude.</p>
+<p><strong>Best for:</strong>  </p>
+<ul>
+<li>Recommender systems  </li>
+<li>Models trained for dot‑product scoring  </li>
+</ul>
+<p><strong>WordPress use:</strong>  </p>
+<ul>
+<li>Related posts  </li>
+<li>Product recommendations  </li>
+</ul>
 <h2 id="65_chebyshev_distance">6.5 Chebyshev Distance<a class="headerlink" href="#65_chebyshev_distance" title="Permanent link">&para;</a></h2>
 <p>Largest single‑dimension difference.</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>   y
@@ -2366,11 +2379,13 @@ Rewards vectors that point the same way <em>and</em> have large magnitude.</p>
 </span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>   |
 </span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>   +---------------------------- x
 </span></code></pre></div>
-<p><strong>Meaning:</strong><br />
-“How bad is the worst mismatch?”</p>
-<p><strong>WordPress use:</strong><br />
-- Outlier detection<br />
-- Quality control  </p>
+<p><strong>Meaning:</strong>  </p>
+<p>“How bad is the worst mismatch?”</p>
+<p><strong>WordPress use:</strong>  </p>
+<ul>
+<li>Outlier detection  </li>
+<li>Quality control  </li>
+</ul>
 <p>Not used for semantic search.</p>
 <h2 id="66_hamming_distance">6.6 Hamming Distance<a class="headerlink" href="#66_hamming_distance" title="Permanent link">&para;</a></h2>
 <p>Counts mismatched positions.</p>
@@ -2383,11 +2398,13 @@ Rewards vectors that point the same way <em>and</em> have large magnitude.</p>
 </span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
 </span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>Hamming distance = 2
 </span></code></pre></div>
-<p><strong>Meaning:</strong><br />
-Only for binary vectors.</p>
-<p><strong>WordPress use:</strong><br />
-- Duplicate detection<br />
-- Hash fingerprints  </p>
+<p><strong>Meaning:</strong>  </p>
+<p>Only for binary vectors.</p>
+<p><strong>WordPress use:</strong>  </p>
+<ul>
+<li>Duplicate detection  </li>
+<li>Hash fingerprints  </li>
+</ul>
 <p>Not used for embeddings.</p>
 <h1 id="7_summary_table">7. Summary Table<a class="headerlink" href="#7_summary_table" title="Permanent link">&para;</a></h1>
 <!-- | Metric | Measures | Best For | WordPress Use |

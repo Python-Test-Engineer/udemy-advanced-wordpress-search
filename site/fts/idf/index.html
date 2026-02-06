@@ -1986,8 +1986,9 @@
 
 
 <h1 id="inverse_document_frequency_idf">Inverse Document Frequency (IDF)<a class="headerlink" href="#inverse_document_frequency_idf" title="Permanent link">&para;</a></h1>
-<p><img alt="idf" src="../../images/fts/idf2.png" /></p>
+<p><img alt="idf" src="../../images/fts/idf.png" /></p>
 <p><strong>IDF</strong> measures how rare or unique a term is across a collection of documents. It's the "inverted" part of TF-IDF (Term Frequency-Inverse Document Frequency).</p>
+<p>We can see that for a search query having 'FTS', documents 2 and 3 are highly relevant. If we have a query 'FTS and SEO Plugins', documents 2 and 3 are most relevant, with 1 being behind them and more relevant than the others.</p>
 <h2 id="the_core_idea">The Core Idea<a class="headerlink" href="#the_core_idea" title="Permanent link">&para;</a></h2>
 <p>Common words like "the" or "is" appear in almost every document, so they're not useful for distinguishing between documents. </p>
 <p>Rare words like "photosynthesis" or "cryptocurrency" appear in fewer documents and are more informative.</p>

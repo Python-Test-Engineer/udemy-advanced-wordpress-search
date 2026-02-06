@@ -10,7 +10,11 @@ Full Text Search, (FTS), using BM25, is an industry standard and the course look
 
 ## FTS modes
 
-We will cover the three types - Natural Language, Boolean Expression and Query Expansion.
+We will cover the three types:
+
+- Natural Language
+- Boolean Expression 
+- Query Expansion.
 
 ## Semantic Search
 
@@ -20,7 +24,7 @@ This enables Hybrid Search - getting results based on what the user enters, (lex
 
 ## Hybrid Search
 
-FTS is what the users says, Semantic search is what the user means.
+> *FTS is what the users says, Semantic search is what the user means.*
 
 We combine the results of both in a normalised way and have the ability to weight one more than the other.
 
@@ -29,7 +33,5 @@ We combine the results of both in a normalised way and have the ability to weigh
 This then gives us the tradionaly search results but it can also be used to combine the restults to give comprehensive context for Retrieval Augmented Generation, (RAG).
 
 To do this, we create a context of information based on the result set and ask an LLM to generate a response to the user query based on the context retrieved along with an explanation of why it gave its final answer.
-
-This can lead to Agentic RAG, explained more fully here [https://advanced-wordpress-search.netlify.app/rag/agentic-rag/](https://advanced-wordpress-search.netlify.app/rag/agentic-rag/).
 
 <br>

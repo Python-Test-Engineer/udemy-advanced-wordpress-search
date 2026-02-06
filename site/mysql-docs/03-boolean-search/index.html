@@ -1822,7 +1822,10 @@
 
 
 <h1 id="1492_boolean_full-text_searches">14.9.2 Boolean Full-Text Searches<a class="headerlink" href="#1492_boolean_full-text_searches" title="Permanent link">&para;</a></h1>
-<p>MySQL can perform boolean full-text searches using the IN BOOLEAN MODE modifier. With this modifier, certain characters have special meaning at the beginning or end of words in the search string. In the following query, the + and - operators indicate that a word must be present or absent, respectively, for a match to occur. Thus, the query retrieves all the rows that contain the word “MySQL” but that do not contain the word “YourSQL”:</p>
+<p>MySQL can perform boolean full-text searches using the IN BOOLEAN MODE modifier. </p>
+<p>With this modifier, certain characters have special meaning at the beginning or end of words in the search string. </p>
+<p>In the following query, the + and - operators indicate that a word must be present or absent, respectively, for a match to occur. </p>
+<p>Thus, the query retrieves all the rows that contain the word “MySQL” but that do not contain the word “YourSQL”:</p>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">articles</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="w"> </span><span class="p">(</span><span class="n">title</span><span class="p">,</span><span class="n">body</span><span class="p">)</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">AGAINST</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;+MySQL -YourSQL&#39;</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">MODE</span><span class="p">);</span>
 </span></code></pre></div>
@@ -1967,9 +1970,12 @@
 </span><span id="__span-3-38"><a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a><span class="c1">-- Doesn&#39;t match: &quot;tutorial for MySQL&quot; (wrong order)</span>
 </span></code></pre></div>
 <p>The wildcarded word is considered as a prefix that must be present at the start of one or more words. If the minimum word length is 4, a search for '+word +the*' could return fewer rows than a search for '+word +the', because the second query ignores the too-short search term the.</p>
-<p>InnoDB uses a variation of the “term frequency-inverse document frequency” (TF-IDF) weighting system to rank a document's relevance for a given full-text search query. The TF-IDF weighting is based on how frequently a word appears in a document, offset by how frequently the word appears in all documents in the collection. In other words, the more frequently a word appears in a document, and the less frequently the word appears in the document collection, the higher the document is ranked.</p>
+<p>InnoDB uses a variation of the “term frequency-inverse document frequency” (TF-IDF) weighting system to rank a document's relevance for a given full-text search query. </p>
+<p>The TF-IDF weighting is based on how frequently a word appears in a document, offset by how frequently the word appears in all documents in the collection. </p>
+<p>In other words, the more frequently a word appears in a document, and the less frequently the word appears in the document collection, the higher the document is ranked.</p>
 <h2 id="how_relevancy_ranking_is_calculated">How Relevancy Ranking is Calculated<a class="headerlink" href="#how_relevancy_ranking_is_calculated" title="Permanent link">&para;</a></h2>
-<p>The term frequency (TF) value is the number of times that a word appears in a document. The inverse document frequency (IDF) value of a word is calculated using the following formula, where total_records is the number of records in the collection, and matching_records is the number of records that the search term appears in.</p>
+<p>The term frequency (TF) value is the number of times that a word appears in a document. </p>
+<p>The inverse document frequency (IDF) value of a word is calculated using the following formula, where total_records is the number of records in the collection, and matching_records is the number of records that the search term appears in.</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>${IDF} = log10( ${total_records} / ${matching_records} )
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>When a document contains a word multiple times, the IDF value is multiplied by the TF value:
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
@@ -2020,7 +2026,9 @@ Records: 8  Duplicates: 0  Warnings: 0</p>
 </span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>+----+------------------------------+-------------------------------------+---------------------+
 </span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>8 rows in set (0.00 sec)
 </span></code></pre></div>
-<p>There are 8 records in total, with 3 that match the “database” search term. The first record (id 6) contains the search term 6 times and has a relevancy ranking of 1.0886961221694946. This ranking value is calculated using a TF value of 6 (the “database” search term appears 6 times in record id 6) and an IDF value of 0.42596873216370745, which is calculated as follows (where 8 is the total number of records and 3 is the number of records that the search term appears in):</p>
+<p>There are 8 records in total, with 3 that match the “database” search term. </p>
+<p>The first record (id 6) contains the search term 6 times and has a relevancy ranking of 1.0886961221694946. </p>
+<p>This ranking value is calculated using a TF value of 6 (the “database” search term appears 6 times in record id 6) and an IDF value of 0.42596873216370745, which is calculated as follows (where 8 is the total number of records and 3 is the number of records that the search term appears in):</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>${IDF} = LOG10( 8 / 3 ) = 0.42596873216370745
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>The TF and IDF values are then entered into the ranking formula:
 </span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
@@ -2037,7 +2045,8 @@ Records: 8  Duplicates: 0  Warnings: 0</p>
 </span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>1 row in set (0.00 sec)
 </span></code></pre></div>
 <p>Note</p>
-<p>You may notice a slight difference in the ranking values returned by the SELECT ... MATCH ... AGAINST statement and the MySQL command-line client (1.0886961221694946 versus 1.088696164686938). The difference is due to how the casts between integers and floats/doubles are performed internally by InnoDB (along with related precision and rounding decisions), and how they are performed elsewhere, such as in the MySQL command-line client or other types of calculators.</p>
+<p>You may notice a slight difference in the ranking values returned by the SELECT ... MATCH ... AGAINST statement and the MySQL command-line client (1.0886961221694946 versus 1.088696164686938). </p>
+<p>The difference is due to how the casts between integers and floats/doubles are performed internally by InnoDB (along with related precision and rounding decisions), and how they are performed elsewhere, such as in the MySQL command-line client or other types of calculators.</p>
 <h2 id="relevancy_ranking_for_a_multiple_word_search">Relevancy Ranking for a Multiple Word Search<a class="headerlink" href="#relevancy_ranking_for_a_multiple_word_search" title="Permanent link">&para;</a></h2>
 <p>This example demonstrates the relevancy ranking calculation for a multiple-word full-text search based on the articles table and data used in the previous example.</p>
 <p>If you search on more than one word, the relevancy ranking value is a sum of the relevancy ranking value for each word, as shown in this formula:</p>
@@ -2062,7 +2071,8 @@ Records: 8  Duplicates: 0  Warnings: 0</p>
 </span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>+----+------------------------------+-------------------------------------+----------------------+
 </span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>8 rows in set (0.00 sec)
 </span></code></pre></div>
-<p>In the first record (id 8), 'mysql' appears once and 'tutorial' appears twice. There are six matching records for 'mysql' and two matching records for 'tutorial'. The MySQL command-line client returns the expected ranking value when inserting these values into the ranking formula for a multiple word search:</p>
+<p>In the first record (id 8), 'mysql' appears once and 'tutorial' appears twice. There are six matching records for 'mysql' and two matching records for 'tutorial'. </p>
+<p>The MySQL command-line client returns the expected ranking value when inserting these values into the ranking formula for a multiple word search:</p>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="n">log10</span><span class="p">(</span><span class="mi">8</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span><span class="o">*</span><span class="n">log10</span><span class="p">(</span><span class="mi">8</span><span class="o">/</span><span class="mi">6</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">log10</span><span class="p">(</span><span class="mi">8</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">log10</span><span class="p">(</span><span class="mi">8</span><span class="o">/</span><span class="mi">2</span><span class="p">));</span>
 </span></code></pre></div>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>+-------------------------------------------------------+

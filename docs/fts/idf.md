@@ -1,8 +1,10 @@
 # Inverse Document Frequency (IDF)
 
-![idf](../images/fts/idf2.png)
+![idf](../images/fts/idf.png)
 
 **IDF** measures how rare or unique a term is across a collection of documents. It's the "inverted" part of TF-IDF (Term Frequency-Inverse Document Frequency).
+
+We can see that for a search query having 'FTS', documents 2 and 3 are highly relevant. If we have a query 'FTS and SEO Plugins', documents 2 and 3 are most relevant, with 1 being behind them and more relevant than the others.
 
 ## The Core Idea
 

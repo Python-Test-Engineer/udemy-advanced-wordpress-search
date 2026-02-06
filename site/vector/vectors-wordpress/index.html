@@ -1638,7 +1638,6 @@
 A = (2, 1)<br />
 B = (6, 4)</p>
 <p>This version focuses on how each metric behaves when used inside a WordPress search plugin, a custom MySQL table, or a hybrid search pipeline (e.g., TF‑IDF + embeddings).</p>
-<hr />
 <h2 id="why_wordpress_developers_should_care"><strong>Why WordPress Developers Should Care</strong><a class="headerlink" href="#why_wordpress_developers_should_care" title="Permanent link">&para;</a></h2>
 <p>When you add vector search to WordPress — whether via a plugin, a custom table, or an external vector DB — you need to choose a <strong>distance metric</strong>.<br />
 This choice affects:</p>
@@ -1649,7 +1648,6 @@ This choice affects:</p>
 <li>how expensive queries are in MySQL or external services  </li>
 </ul>
 <p>Different metrics produce very different results, even on the same embeddings.</p>
-<hr />
 <h1 id="the_metrics_with_diagrams"><strong>The Metrics (with diagrams)</strong><a class="headerlink" href="#the_metrics_with_diagrams" title="Permanent link">&para;</a></h1>
 <h2 id="euclidean_distance"><strong>Euclidean Distance</strong><a class="headerlink" href="#euclidean_distance" title="Permanent link">&para;</a></h2>
 <p>Straight‑line distance between A and B.</p>
@@ -1668,7 +1666,6 @@ Good when vector magnitude matters — e.g., embeddings where “stronger meanin
 <p><strong>Typical use:</strong><br />
 - Custom MySQL vector tables<br />
 - External vector DBs that default to L2  </p>
-<hr />
 <h2 id="manhattan_distance_l1"><strong>Manhattan Distance (L1)</strong><a class="headerlink" href="#manhattan_distance_l1" title="Permanent link">&para;</a></h2>
 <p>Grid‑based movement.</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>   y
@@ -1686,7 +1683,6 @@ Useful if your embeddings are sparse (rare in NLP, common in bag‑of‑words ve
 <p><strong>Typical use:</strong><br />
 - Rare for semantic embeddings<br />
 - Useful for custom scoring experiments  </p>
-<hr />
 <h2 id="cosine_distance"><strong>Cosine Distance</strong><a class="headerlink" href="#cosine_distance" title="Permanent link">&para;</a></h2>
 <p>Angle between vectors, ignoring length.</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Origin
@@ -1706,7 +1702,6 @@ Perfect when using sentence embeddings (e.g., OpenAI, Cohere, local models).</p>
 - WordPress semantic search plugins<br />
 - Hybrid search (BM25 + embeddings)<br />
 - Most vector DBs default to cosine for text  </p>
-<hr />
 <h2 id="dot_product"><strong>Dot Product</strong><a class="headerlink" href="#dot_product" title="Permanent link">&para;</a></h2>
 <p>Alignment × magnitude.</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Origin
@@ -1722,7 +1717,6 @@ Some embedding models are trained specifically for dot‑product scoring.</p>
 <p><strong>Typical use:</strong><br />
 - Recommender systems (products, posts, related content)<br />
 - Models where magnitude matters  </p>
-<hr />
 <h2 id="chebyshev_distance"><strong>Chebyshev Distance</strong><a class="headerlink" href="#chebyshev_distance" title="Permanent link">&para;</a></h2>
 <p>Largest single‑dimension difference.</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>   y
@@ -1734,13 +1728,16 @@ Some embedding models are trained specifically for dot‑product scoring.</p>
 </span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>   |
 </span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>   +---------------------------- x
 </span></code></pre></div>
-<p><strong>WordPress/MySQL relevance meaning:</strong><br />
-Not used for semantic search.<br />
-Useful only in niche cases where you care about the worst‑case deviation.</p>
-<p><strong>Typical use:</strong><br />
-- Outlier detection<br />
-- Quality‑control pipelines  </p>
-<hr />
+<p><strong>WordPress/MySQL relevance meaning:</strong> </p>
+<ul>
+<li>Not used for semantic search.  </li>
+<li>Useful only in niche cases where you care about the worst‑case deviation.</li>
+</ul>
+<p><strong>Typical use:</strong>  </p>
+<ul>
+<li>Outlier detection  </li>
+<li>Quality‑control pipelines  </li>
+</ul>
 <h2 id="hamming_distance"><strong>Hamming Distance</strong><a class="headerlink" href="#hamming_distance" title="Permanent link">&para;</a></h2>
 <p>Counts mismatched positions.</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>A = (2,1)
@@ -1752,13 +1749,16 @@ Useful only in niche cases where you care about the worst‑case deviation.</p>
 </span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
 </span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>Hamming distance = 2
 </span></code></pre></div>
-<p><strong>WordPress/MySQL relevance meaning:</strong><br />
-Not used for embeddings.<br />
-Useful only for binary vectors (e.g., hashed fingerprints).</p>
-<p><strong>Typical use:</strong><br />
-- Duplicate detection<br />
-- Hash‑based similarity  </p>
-<hr />
+<p><strong>WordPress/MySQL relevance meaning:</strong>  </p>
+<ul>
+<li>Not used for embeddings.  </li>
+<li>Useful only for binary vectors (e.g., hashed fingerprints).</li>
+</ul>
+<p><strong>Typical use:</strong>  </p>
+<ul>
+<li>Duplicate detection  </li>
+<li>Hash‑based similarity  </li>
+</ul>
 <h1 id="summary_table_wordpressmysql_context"><strong>Summary Table (WordPress/MySQL Context)</strong><a class="headerlink" href="#summary_table_wordpressmysql_context" title="Permanent link">&para;</a></h1>
 <table>
 <thead>
@@ -1808,23 +1808,27 @@ Useful only for binary vectors (e.g., hashed fingerprints).</p>
 </tr>
 </tbody>
 </table>
-<hr />
 <h1 id="how_this_fits_into_wordpress_search_architecture"><strong>How This Fits Into WordPress Search Architecture</strong><a class="headerlink" href="#how_this_fits_into_wordpress_search_architecture" title="Permanent link">&para;</a></h1>
 <h3 id="1_classic_wordpress_search_like_queries"><strong>1. Classic WordPress Search (LIKE queries)</strong><a class="headerlink" href="#1_classic_wordpress_search_like_queries" title="Permanent link">&para;</a></h3>
 <p>No vector search. No distance metrics.</p>
 <h3 id="2_mysql_fulltext_search_match_against"><strong>2. MySQL Full‑Text Search (MATCH AGAINST)</strong><a class="headerlink" href="#2_mysql_fulltext_search_match_against" title="Permanent link">&para;</a></h3>
 <p>Still lexical — no vectors.</p>
 <h3 id="3_hybrid_search_bm25_embeddings"><strong>3. Hybrid Search (BM25 + Embeddings)</strong><a class="headerlink" href="#3_hybrid_search_bm25_embeddings" title="Permanent link">&para;</a></h3>
-<p>You combine:<br />
-- BM25 from MySQL<br />
-- Cosine similarity from embeddings  </p>
+<p>You combine:  </p>
+<ul>
+<li>BM25 from MySQL  </li>
+<li>Cosine similarity from embeddings  </li>
+</ul>
 <p>This is where <strong>cosine distance</strong> shines.</p>
 <h3 id="4_full_vector_search_in_mysql"><strong>4. Full Vector Search in MySQL</strong><a class="headerlink" href="#4_full_vector_search_in_mysql" title="Permanent link">&para;</a></h3>
-<p>If you store embeddings in a custom table (e.g., <code>FLOAT[]</code> or JSON), you can compute:<br />
-- Euclidean<br />
-- Manhattan<br />
-- Dot product<br />
-- Cosine (with normalization)</p>
+<p>If you store embeddings in a custom table (e.g., <code>FLOAT[]</code> or JSON), you can compute: </p>
+<ul>
+<li>Euclidean  </li>
+<li>Manhattan  </li>
+<li>Dot product  </li>
+<li>Cosine (with normalization)</li>
+</ul>
+<p><br></p>
 
 
 

@@ -41,13 +41,13 @@ IDF = log(Total documents / Documents containing word)
 
 ## Key Insights
 
-**TF-IDF automatically filters out:**
+### TF-IDF automatically filters out:
 
 - ❌ Common words: "the", "is", "and", "of", "in"
 - ❌ Irrelevant documents
 - ❌ Documents that just spam keywords
 
-**TF-IDF automatically promotes:**
+### TF-IDF automatically promotes:
 
 - ✅ Meaningful, distinctive words
 - ✅ Documents where key terms appear frequently

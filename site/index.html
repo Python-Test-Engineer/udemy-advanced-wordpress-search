@@ -1787,17 +1787,23 @@
 <h2 id="full_text_search">Full text Search<a class="headerlink" href="#full_text_search" title="Permanent link">&para;</a></h2>
 <p>Full Text Search, (FTS), using BM25, is an industry standard and the course looks at what the components of BM25 are, both from theory and with a number of eductational plugins that enable experimentation.</p>
 <h2 id="fts_modes">FTS modes<a class="headerlink" href="#fts_modes" title="Permanent link">&para;</a></h2>
-<p>We will cover the three types - Natural Language, Boolean Expression and Query Expansion.</p>
+<p>We will cover the three types:</p>
+<ul>
+<li>Natural Language</li>
+<li>Boolean Expression </li>
+<li>Query Expansion.</li>
+</ul>
 <h2 id="semantic_search">Semantic Search<a class="headerlink" href="#semantic_search" title="Permanent link">&para;</a></h2>
 <p>We build our own custom Vector Database and Vector Search. We do this because our hosting service for MySQL may not have the available Vector Field, as in the case of mine, (Siteground).</p>
 <p>This enables Hybrid Search - getting results based on what the user enters, (lexical) and what the user means, (semantic).</p>
 <h2 id="hybrid_search">Hybrid Search<a class="headerlink" href="#hybrid_search" title="Permanent link">&para;</a></h2>
-<p>FTS is what the users says, Semantic search is what the user means.</p>
+<blockquote>
+<p><em>FTS is what the users says, Semantic search is what the user means.</em></p>
+</blockquote>
 <p>We combine the results of both in a normalised way and have the ability to weight one more than the other.</p>
 <h2 id="rag">RAG<a class="headerlink" href="#rag" title="Permanent link">&para;</a></h2>
 <p>This then gives us the tradionaly search results but it can also be used to combine the restults to give comprehensive context for Retrieval Augmented Generation, (RAG).</p>
 <p>To do this, we create a context of information based on the result set and ask an LLM to generate a response to the user query based on the context retrieved along with an explanation of why it gave its final answer.</p>
-<p>This can lead to Agentic RAG, explained more fully here <a href="https://advanced-wordpress-search.netlify.app/rag/agentic-rag/">https://advanced-wordpress-search.netlify.app/rag/agentic-rag/</a>.</p>
 <p><br></p>
 
 

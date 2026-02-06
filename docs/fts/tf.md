@@ -8,9 +8,9 @@ Imagine you're looking for a book article on WordPress. The more WordPress appea
 
 **Simple Term Frequency:**
 
-```
-TF = (number of times term appears in document) / (total number of terms in document)
-```
+
+> TF = (number of times term appears in document) / (total number of terms in document)
+
 
 **Example:**
 

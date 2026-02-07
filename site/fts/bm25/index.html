@@ -2050,17 +2050,44 @@
 </span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>- 5 times: Somewhat more important ⭐⭐⭐⭐⭐⭐⭐
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>- 50 times: Not much more important (saturated) ⭐⭐⭐⭐⭐⭐⭐⭐
 </span></code></pre></div>
-<p><strong>Higher k1</strong> = More weight to term frequency  </p>
-<p><strong>Lower k1</strong> = Less weight to term frequency</p>
+<p><strong>Higher k1</strong> = More weight to term frequency </p>
+<p><strong>Lower k1</strong> = Less weight to term frequency - dampens the effect of kew word stuffing so after a certain number it has less effect on the BM25 score.</p>
+<p>To reduce the impact of  <strong>keyword stuffing</strong>, you want a <strong>lower k1</strong>.</p>
+<p>Here's why:</p>
+<p><strong>Lower k1 (e.g., 0.5-1.0)</strong>: Term frequency saturates quickly
+- After a keyword appears a few times, additional repetitions barely increase the score
+- Makes stuffing less effective
+- Better for fighting spam/manipulation</p>
+<p><strong>Higher k1 (e.g., 1.5-2.0)</strong>: Term frequency keeps mattering more
+- Repeated keywords continue boosting the score significantly
+- Rewards documents that mention terms many times
+- Can be exploited by keyword stuffing</p>
+<p><strong>The math intuition:</strong></p>
+<p>BM25's term frequency component looks like:
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>(tf * (k1 + 1)) / (tf + k1)
+</span></code></pre></div></p>
+<p>Let's see what happens with keyword "python" appearing different times:</p>
+<p><strong>With k1 = 2.0 (higher):</strong>
+- 1 occurrence: 0.33
+- 5 occurrences: 0.83
+- 10 occurrences: 0.92
+- 20 occurrences: 0.95</p>
+<p><strong>With k1 = 0.5 (lower):</strong>
+- 1 occurrence: 0.75
+- 5 occurrences: 0.91
+- 10 occurrences: 0.95
+- 20 occurrences: 0.98</p>
+<p>Notice how with lower k1, going from 1→20 occurrences only increases the score from 0.75→0.98, while higher k1 shows more dramatic gains (0.33→0.95).</p>
+<p><strong>Recommendation:</strong> Use <strong>k1 = 1.2</strong> (the common default) or lower if you're dealing with keyword stuffing. Values around <strong>k1 = 0.5-1.0</strong> are very aggressive at diminishing returns from repetition.</p>
 <h3 id="b_length_normalization">b (Length Normalization)<a class="headerlink" href="#b_length_normalization" title="Permanent link">&para;</a></h3>
 <p><img alt="idf" src="../../images/fts/b.png" /></p>
 <p><img alt="idf" src="../../images/fts/length-normalisation.png" /></p>
 <p><strong>Default: 0.75</strong></p>
 <p>Controls how much document length affects the score.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>b = 0: Document length doesn&#39;t matter at all
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>b = 0.5: Document length matters somewhat
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>b = 0.75: Document length matters a good amount (default)
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>b = 1.0: Document length matters completely
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>b = 0: Document length doesn&#39;t matter at all
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>b = 0.5: Document length matters somewhat
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>b = 0.75: Document length matters a good amount (default)
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>b = 1.0: Document length matters completely
 </span></code></pre></div>
 <p><strong>Higher b</strong> = Longer docs penalized more  </p>
 <p><strong>Lower b</strong> = Longer docs penalized less</p>

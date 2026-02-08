@@ -364,34 +364,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../course/course-screenshots/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Screenshots
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../course/requirements/" class="md-nav__link">
         
   
@@ -680,6 +652,17 @@
     <span class="md-ellipsis">
       
         b (Length Normalization)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#can_b1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Can b&gt;1?
       
     </span>
   </a>
@@ -1880,6 +1863,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#can_b1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Can b&gt;1?
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2089,6 +2083,31 @@
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>b = 0.75: Document length matters a good amount (default)
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>b = 1.0: Document length matters completely
 </span></code></pre></div>
+<h3 id="can_b1">Can b&gt;1?<a class="headerlink" href="#can_b1" title="Permanent link">&para;</a></h3>
+<p>Yes, <code>b</code> in BM25 can technically be greater than 1, though it's unusual and not recommended in practice.</p>
+<p>The parameter <code>b</code> controls document length normalization in BM25:
+- <code>b = 0</code>: no length normalization (document length is ignored)
+- <code>b = 1</code>: full linear normalization (standard setting)
+- <code>b &gt; 1</code>: over-normalization (penalizes longer documents more heavily)</p>
+<p><strong>What happens when b &gt; 1:</strong></p>
+<p>When <code>b &gt; 1</code>, you're applying a stronger penalty to longer documents than the standard normalization. The length normalization term becomes:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>1 - b + b * (doc_length / avg_doc_length)
+</span></code></pre></div>
+<p>For a document longer than average (doc_length &gt; avg_doc_length), values of <code>b &gt; 1</code> will make this denominator larger, further reducing the score.</p>
+<p><strong>Why it's not standard:</strong></p>
+<p>The typical range is <code>b ∈ [0, 1]</code> because:</p>
+<ul>
+<li>BM25 was empirically tuned with <code>b ≈ 0.75</code> as optimal for most collections</li>
+<li>Values &gt; 1 can over-penalize longer documents that are legitimately relevant</li>
+<li>The theoretical justification for BM25's length normalization assumes <code>b ≤ 1</code></li>
+</ul>
+<p><strong>When you might consider b &gt; 1:</strong></p>
+<ul>
+<li>Your collection has verbose/padded documents that aren't proportionally more informative</li>
+<li>You want to strongly favor concise, focused documents</li>
+<li>You're dealing with spam or artificially inflated content</li>
+</ul>
+<p>If you're experimenting with this, I'd suggest testing values like 1.1 or 1.2 first and evaluating against your specific use case, rather than jumping to much higher values.</p>
 <p><strong>Higher b</strong> = Longer docs penalized more  </p>
 <p><strong>Lower b</strong> = Longer docs penalized less</p>
 <h2 id="tuning_parameters_for_different_use_cases">Tuning Parameters for Different Use Cases<a class="headerlink" href="#tuning_parameters_for_different_use_cases" title="Permanent link">&para;</a></h2>

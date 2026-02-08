@@ -364,34 +364,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../course/course-screenshots/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Screenshots
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../course/requirements/" class="md-nav__link">
         
   
@@ -568,34 +540,6 @@
     
   
     BM25
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../bm25-simple-calc/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    BM25 Calc
   
 
     
@@ -795,6 +739,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Process">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stemming" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stemming
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1689,6 +1650,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Process">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stemming" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Stemming
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1726,12 +1704,19 @@
 <p>MySQL parses the search string to identify search terms and operators. </p>
 <p>It recognizes special syntax like boolean operators (+, -, &gt;, &lt;, ~, *, ""), stopwords, and phrase searches. </p>
 <p>The parser tokenizes the query string similar to how documents were indexed.</p>
+<h3 id="stemming">Stemming<a class="headerlink" href="#stemming" title="Permanent link">&para;</a></h3>
+<p>MySQL FTS will treat "bluetooth", "bluetooths" (if that were a word), "run", "running", and "runs" as completely different terms. Stemming would treat "run" and "running" as the same because the 'stem' is the same - "run".</p>
+<p>Use BOOLEAN MODE with wildcards (partial solution)</p>
+<p>sqlMATCH(product_name, product_short_description, expanded_description) 
+AGAINST ('bluetooth<em> run</em>' IN BOOLEAN MODE)</p>
+<p>This matches "bluetooth", "bluetooths", "running", "runs", etc. But it's prefix-only, not true stemming.</p>
 <p><strong>2. Stopword Filtering</strong></p>
 <p>MySQL filters out stopwords (common words like "the", "is", "at") based on the configured stopword list. </p>
 <p>These are ignored because they appear too frequently to be useful for relevance ranking.</p>
 <p><strong>3. Query Expansion (Natural Language Mode)</strong></p>
 <p>In natural language mode, MySQL may expand the query internally. </p>
 <p>It identifies the search terms that will be used to probe the full-text index.</p>
+<p>Query Expansion does not filter out rows that have been specified as 'must not contain' with the '-' operator. It just adjusts the relevancy score accordingly and these rows will appear lower in relevancy than before.</p>
 <p><strong>4. Index Lookup</strong></p>
 <p>MySQL uses the FULLTEXT index to quickly locate documents containing the search terms. </p>
 <p>The index is typically organized as an inverted index where each word maps to a list of documents (and positions within those documents) where it appears.</p>

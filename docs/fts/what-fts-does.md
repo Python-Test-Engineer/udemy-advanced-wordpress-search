@@ -12,6 +12,19 @@ It recognizes special syntax like boolean operators (+, -, >, <, ~, *, ""), stop
 
 The parser tokenizes the query string similar to how documents were indexed.
 
+### Stemming
+
+
+
+MySQL FTS will treat "bluetooth", "bluetooths" (if that were a word), "run", "running", and "runs" as completely different terms. Stemming would treat "run" and "running" as the same because the 'stem' is the same - "run".
+
+Use BOOLEAN MODE with wildcards (partial solution)
+
+sqlMATCH(product_name, product_short_description, expanded_description) 
+AGAINST ('bluetooth* run*' IN BOOLEAN MODE)
+
+This matches "bluetooth", "bluetooths", "running", "runs", etc. But it's prefix-only, not true stemming.
+
 **2. Stopword Filtering**
 
 MySQL filters out stopwords (common words like "the", "is", "at") based on the configured stopword list. 
@@ -23,6 +36,8 @@ These are ignored because they appear too frequently to be useful for relevance 
 In natural language mode, MySQL may expand the query internally. 
 
 It identifies the search terms that will be used to probe the full-text index.
+
+Query Expansion does not filter out rows that have been specified as 'must not contain' with the '-' operator. It just adjusts the relevancy score accordingly and these rows will appear lower in relevancy than before.
 
 **4. Index Lookup**
 

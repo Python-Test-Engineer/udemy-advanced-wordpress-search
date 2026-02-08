@@ -364,34 +364,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../course/course-screenshots/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Screenshots
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../course/requirements/" class="md-nav__link">
         
   
@@ -566,34 +538,6 @@
     
   
     BM25
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../fts/bm25-simple-calc/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    BM25 Calc
   
 
     
@@ -3320,6 +3264,9 @@ Uses specialized full-text indexes</p>
 <h2 id="type_2_boolean_mode">Type 2: BOOLEAN MODE<a class="headerlink" href="#type_2_boolean_mode" title="Permanent link">&para;</a></h2>
 <h3 id="what_it_does_1">What It Does:<a class="headerlink" href="#what_it_does_1" title="Permanent link">&para;</a></h3>
 <p>Gives you <strong>precise control</strong> with special operators!</p>
+<p>It is important to note that when we use the exclusion or other relevant controls, FTS does not filter out non-relevant rows as in a <code>WHERE</code> or <code>IN</code> etc filter.</p>
+<p>It just adjusts the relevancy score accordingly.</p>
+<p>If we excluede a term as in <code>-wifi</code> to say it must not contain <code>wifi</code>, rows with <code>wifi</code> may still be returned - but their scores will be lowered to reflect this.</p>
 <p><strong>Key Features:</strong></p>
 <ul>
 <li>✅ Use operators: <code>+</code> (must have), <code>-</code> (must not have), <code>*</code> (wildcard)</li>

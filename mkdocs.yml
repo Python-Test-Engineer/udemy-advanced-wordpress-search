@@ -66,7 +66,7 @@ nav:
 - "About": "index.md"
 - "Course":
   - "About": "course/intro.md"
-  - "Screenshots": "course/course-screenshots.md"
+  # - "Screenshots": "course/course-screenshots.md"
   - "Requirements": "course/requirements.md"
 
 - "Theory":
@@ -74,7 +74,7 @@ nav:
   - "Inverse Doc Freq": "fts/idf.md"
   - "TF-IDF": "fts/tf-idf.md"
   - "BM25": "fts/bm25.md"
-  - "BM25 Calc": "fts/bm25-simple-calc.md"
+  # - "BM25 Calc": "fts/bm25-simple-calc.md"
   - "Negative Scores": "fts/negative-bm25-scores.md"
   - "Stop Words": "fts/stop-words.md"
   - "COLS with many indexes": "fts/multiple-indexes-on-same-col.md"

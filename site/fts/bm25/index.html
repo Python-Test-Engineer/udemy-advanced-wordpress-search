@@ -14,7 +14,7 @@
         <link rel="prev" href="../tf-idf/">
       
       
-        <link rel="next" href="../bm25-simple-calc/">
+        <link rel="next" href="../negative-bm25-scores/">
       
       
         
@@ -648,6 +648,39 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#what_the_diagram_shows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the diagram shows
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what_k1_does" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What k₁ does
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why_this_matters_-_eliteness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why this matters - "Eliteness"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#b_length_normalization" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -761,34 +794,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../bm25-simple-calc/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    BM25 Calc
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -1853,6 +1858,39 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#what_the_diagram_shows" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What the diagram shows
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#what_k1_does" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What k₁ does
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why_this_matters_-_eliteness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why this matters - "Eliteness"
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#b_length_normalization" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2035,6 +2073,20 @@
 <h2 id="understanding_the_parameters">Understanding the Parameters<a class="headerlink" href="#understanding_the_parameters" title="Permanent link">&para;</a></h2>
 <h3 id="k1_term_frequency_saturation">k1 (Term Frequency Saturation)<a class="headerlink" href="#k1_term_frequency_saturation" title="Permanent link">&para;</a></h3>
 <p><img alt="idf" src="../../images/fts/k1.png" /></p>
+<p>This slide explains how the <strong>k₁ parameter</strong> controls <strong>term frequency saturation</strong> in the BM25 ranking algorithm.</p>
+<h3 id="what_the_diagram_shows">What the diagram shows<a class="headerlink" href="#what_the_diagram_shows" title="Permanent link">&para;</a></h3>
+<p>The graph compares two approaches to scoring documents based on how many times a search term appears:</p>
+<p><strong>Standard TF-IDF (blue line):</strong> Score increases linearly forever. If a term appears 100 times, the score is roughly twice as high as if it appears 50 times. There's no upper limit.</p>
+<p><strong>BM25 with k₁ saturation (orange curve):</strong> Score increases quickly at first, then flattens out. After a certain point, additional mentions of the term barely increase the score.</p>
+<h3 id="what_k1_does">What k₁ does<a class="headerlink" href="#what_k1_does" title="Permanent link">&para;</a></h3>
+<p>The <strong>k₁ parameter</strong> controls how quickly the curve flattens:</p>
+<ul>
+<li><strong>Lower k₁</strong> → curve flattens sooner (more aggressive saturation)</li>
+<li><strong>Higher k₁</strong> → curve stays steeper longer (less saturation, closer to linear)</li>
+</ul>
+<h3 id="why_this_matters_-_eliteness">Why this matters - "Eliteness"<a class="headerlink" href="#why_this_matters_-_eliteness" title="Permanent link">&para;</a></h3>
+<p>The image explains the key insight: once a term appears several times in a document, that document is already "elite" (highly relevant) for that topic. Seeing the term 50 more times doesn't make it 50 times more relevant—it just confirms what you already know.</p>
+<p>For example, if you search for "php" and a document mentions it 5 times versus 500 times in another, the second document isn't necessarily 100x better. BM25's saturation prevents over-rewarding documents that spam keywords.</p>
 <p><strong>Default: 1.2-2.0</strong></p>
 <p>Controls how quickly we stop caring about additional word occurrences.</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Word &quot;php&quot; appears:

@@ -92,15 +92,15 @@ WHERE MATCH(title, body) AGAINST('+MySQL +security >security' IN BOOLEAN MODE);
 
 ## Boolean Operators Summary:
 
-+ - Word MUST be present
-- - Word MUST NOT be present
+- ' + '  Word MUST be present
+- ' - ' Word MUST NOT be present
 (no operator) - Word is optional (increases relevance if present)
-> - Increases word's contribution to relevance
-< - Decreases word's contribution to relevance
-~ - Negates word's contribution (downranks if present)
-* - Wildcard (matches words starting with prefix)
-"..." - Exact phrase match
-() - Group words into subexpressions
+- ' > '  - Increases word's contribution to relevance
+- ' < ' - Decreases word's contribution to relevance
+- ' ~ ' - Negates word's contribution (downranks if present)
+- ' * ' - Wildcard (matches words starting with prefix)
+- " ... " - Exact phrase match
+- () - Group words into subexpressions
 
 InnoDB full-text search does not support the use of the @ symbol in boolean full-text searches. The @ symbol is reserved for use by the @distance proximity search operator.
 

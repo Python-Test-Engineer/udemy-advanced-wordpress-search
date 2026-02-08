@@ -558,34 +558,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fts/bm25-simple-calc/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    BM25 Calc
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../fts/negative-bm25-scores/" class="md-nav__link">
         
   
@@ -1874,31 +1846,15 @@
 </span></code></pre></div>
 <h2 id="boolean_operators_summary">Boolean Operators Summary:<a class="headerlink" href="#boolean_operators_summary" title="Permanent link">&para;</a></h2>
 <ul>
-<li>
-<ul>
-<li>Word MUST be present</li>
-</ul>
-</li>
-<li>
-<ul>
-<li>Word MUST NOT be present
-(no operator) - Word is optional (increases relevance if present)<blockquote>
-<ul>
-<li>Increases word's contribution to relevance
-&lt; - Decreases word's contribution to relevance
-~ - Negates word's contribution (downranks if present)</li>
-</ul>
-</blockquote>
-</li>
-</ul>
-</li>
-<li>
-<ul>
-<li>Wildcard (matches words starting with prefix)
-"..." - Exact phrase match
-() - Group words into subexpressions</li>
-</ul>
-</li>
+<li>' + '  Word MUST be present</li>
+<li>' - ' Word MUST NOT be present
+(no operator) - Word is optional (increases relevance if present)</li>
+<li>' &gt; '  - Increases word's contribution to relevance</li>
+<li>' &lt; ' - Decreases word's contribution to relevance</li>
+<li>' ~ ' - Negates word's contribution (downranks if present)</li>
+<li>' * ' - Wildcard (matches words starting with prefix)</li>
+<li>" ... " - Exact phrase match</li>
+<li>() - Group words into subexpressions</li>
 </ul>
 <p>InnoDB full-text search does not support the use of the @ symbol in boolean full-text searches. The @ symbol is reserved for use by the @distance proximity search operator.</p>
 <h2 id="distance">@distance<a class="headerlink" href="#distance" title="Permanent link">&para;</a></h2>

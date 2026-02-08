@@ -39,9 +39,10 @@ ADD FULLTEXT INDEX ft_product_name (product_name);
 ALTER TABLE wp_products 
 ADD FULLTEXT INDEX ft_short_desc (product_short_description);
 
--- Index on product_short_description only
+-- Index on product_name and product_short_description 
 ALTER TABLE wp_products 
-ADD FULLTEXT INDEX ft_expanded_description (expanded_description);
+ADD FULLTEXT INDEX ft_name_short_desc (product_name, product_short_description);
+
 -- Composite index on multiple columns (recommended for comprehensive search)
 ALTER TABLE wp_products 
 ADD FULLTEXT INDEX ft_product_search (product_name, product_short_description,   expanded_description);
@@ -177,23 +178,23 @@ ORDER BY relevance_score DESC;
 -- ============================================
 -- 3. BOOLEAN MODE QUERIES
 -- ============================================
--- More control with operators: +required -excluded "phrase" *wildcard
+-- More control with operators: +required -excluded "phrase" wildcard
 
 -- Search with required terms (+ operator)
 -- Must contain "smart" AND "LED"
 -- LED is in expanded_description for Smart Indoor Garden Kit
-SELECT id, product_name, product_short_description, expanded_description
+SELECT id, product_name, product_short_description
 FROM wp_products
-WHERE MATCH(product_name, product_short_description, expanded_description) 
+WHERE MATCH(product_name, product_short_description) 
       AGAINST ('+smart +LED' IN BOOLEAN MODE);
 ```
 
 ```sql
 -- Search with excluded terms (- operator)
 -- Contains "speaker" and optionally "bluetooth"
-SELECT id, product_name, product_short_description, expanded_description
+SELECT id, product_name, product_short_description
 FROM wp_products
-WHERE MATCH(product_name, product_short_description, expanded_description) 
+WHERE MATCH(product_name, product_short_description) 
       AGAINST ('+speaker bluetooth' IN BOOLEAN MODE);
 ```
 
@@ -202,16 +203,16 @@ WHERE MATCH(product_name, product_short_description, expanded_description)
 -- Exact phrase "noise cancelling"
 SELECT product_name, product_short_description
 FROM wp_products
-WHERE MATCH(product_name, product_short_description, expanded_description) 
+WHERE MATCH(product_name, product_short_description) 
       AGAINST ('"noise cancelling"' IN BOOLEAN MODE);
 ```
 
 ```sql
 -- Wildcard search (* operator)
 -- Matches "port", "portable", "portability", etc.
-SELECT id, product_name, product_short_description, expanded_description
+SELECT id, product_name, product_short_description
 FROM wp_products
-WHERE MATCH(product_name, product_short_description, expanded_description) 
+WHERE MATCH(product_name, product_short_description) 
       AGAINST ('port*' IN BOOLEAN MODE);
 ```
 
@@ -250,7 +251,7 @@ WHERE MATCH(product_name, product_short_description, expanded_description)
 -- ============================================
 -- Automatically expands search with related terms
 -- Two-pass search: first finds relevant docs, then adds related terms
-
+-- compare by replacing with AGAINST ('search terms' IN NATURAL LANGUAGE MODE) 
 -- Basic query expansion
 -- Finds "bluetooth" and related terms like "wireless", "connectivity", etc.
 SELECT id, product_name, product_short_description, expanded_description,

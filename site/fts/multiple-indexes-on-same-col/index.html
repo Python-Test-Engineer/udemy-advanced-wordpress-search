@@ -560,34 +560,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../bm25-simple-calc/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    BM25 Calc
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../negative-bm25-scores/" class="md-nav__link">
         
   
@@ -702,17 +674,6 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#short_answer" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Short answer
-      
-    </span>
-  </a>
-  
-</li>
       
         <li class="md-nav__item">
   <a href="#but_heres_the_catch" class="md-nav__link">
@@ -1792,17 +1753,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#short_answer" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Short answer
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#but_heres_the_catch" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1970,13 +1920,11 @@
 
 
 <h1 id="columns_with_many_indexes">Columns with many indexes<a class="headerlink" href="#columns_with_many_indexes" title="Permanent link">&para;</a></h1>
-<p>You <em>can</em>, but it’s almost never useful — and MySQL will happily allow it <strong>as long as each index has a different name</strong>.</p>
-<h3 id="short_answer">Short answer<a class="headerlink" href="#short_answer" title="Permanent link">&para;</a></h3>
-<p>Yes, MySQL allows multiple FULLTEXT indexes on the same column(s).<br />
-There’s no technical restriction preventing it.</p>
+<p>MySQL allows multiple FULLTEXT indexes on the same column(s).</p>
+<p>There’s no technical restriction preventing it.</p>
 <h3 id="but_heres_the_catch">But here’s the catch<a class="headerlink" href="#but_heres_the_catch" title="Permanent link">&para;</a></h3>
-<p>Each FULLTEXT index is a <strong>complete inverted index</strong>.<br />
-If you duplicate them:</p>
+<p>Each FULLTEXT index is a <strong>complete inverted index</strong>. </p>
+<p>If you duplicate them:</p>
 <ul>
 <li>You double (or triple…) the storage cost  </li>
 <li>You increase write/update overhead  </li>

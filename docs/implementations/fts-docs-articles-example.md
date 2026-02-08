@@ -225,6 +225,12 @@ Article 5: "Database Design Principles"
 
 Gives you **precise control** with special operators!
 
+It is important to note that when we use the exclusion or other relevant controls, FTS does not filter out non-relevant rows as in a `WHERE` or `IN` etc filter.
+
+It just adjusts the relevancy score accordingly.
+
+If we excluede a term as in `-wifi` to say it must not contain `wifi`, rows with `wifi` may still be returned - but their scores will be lowered to reflect this.
+
 **Key Features:**
 
 - ✅ Use operators: `+` (must have), `-` (must not have), `*` (wildcard)

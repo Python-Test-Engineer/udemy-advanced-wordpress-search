@@ -1,15 +1,13 @@
 # Columns with many indexes
 
-You *can*, but it’s almost never useful — and MySQL will happily allow it **as long as each index has a different name**.
+MySQL allows multiple FULLTEXT indexes on the same column(s).
 
-### Short answer
-
-Yes, MySQL allows multiple FULLTEXT indexes on the same column(s).  
 There’s no technical restriction preventing it.
 
 ### But here’s the catch
 
-Each FULLTEXT index is a **complete inverted index**.  
+Each FULLTEXT index is a **complete inverted index**. 
+ 
 If you duplicate them:
 
 - You double (or triple…) the storage cost  

@@ -11,10 +11,6 @@
       
       
       
-        <link rel="prev" href="../bm25/">
-      
-      
-        <link rel="next" href="../negative-bm25-scores/">
       
       
         
@@ -25,7 +21,7 @@
     
     
       
-        <title>BM25 Calc - UDEMY Advanced WP Search</title>
+        <title>Understanding the BM25 Formula - UDEMY Advanced WP Search</title>
       
     
     
@@ -116,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              BM25 Calc
+              Understanding the BM25 Formula
             
           </span>
         </div>
@@ -396,20 +392,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -430,7 +424,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
@@ -548,275 +542,6 @@
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    BM25 Calc
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    BM25 Calc
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#the_complete_formula" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The Complete Formula
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#what_do_these_symbols_mean" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What Do These Symbols Mean?
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#breaking_it_down_three_key_components" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Breaking It Down: Three Key Components
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Breaking It Down: Three Key Components">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#component_1_idf_inverse_document_frequency" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Component 1: IDF (Inverse Document Frequency)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#component_2_term_frequency_with_saturation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Component 2: Term Frequency with Saturation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#component_3_document_length_normalization" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Component 3: Document Length Normalization
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#putting_it_all_together" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Putting It All Together
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Putting It All Together">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#step_1_calculate_for_php" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 1: Calculate for "php"
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step_2_calculate_for_tutorial" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 2: Calculate for "tutorial"
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#step_3_sum_everything" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 3: Sum Everything
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#what_makes_bm25_smart" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        What Makes BM25 Smart?
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tuning_parameters" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tuning Parameters
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Tuning Parameters">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#k1_term_frequency_saturation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        k1 (Term Frequency Saturation)
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#b_length_normalization" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        b (Length Normalization)
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#common_student_questions" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Common Student Questions
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#key_takeaways" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Key Takeaways
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 

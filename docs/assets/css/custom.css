@@ -8,6 +8,14 @@ blockquote {
     border: 4px solid #ffa500 !important;
 }
 
+table,
+th,
+tr,
+td {
+
+    font-size: 1.1rem;
+}
+
 /* Alternative orange shades you can use: */
 /* 
    #ff8c00 - Dark orange

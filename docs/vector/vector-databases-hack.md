@@ -1,4 +1,4 @@
-# Building Your Own Vector Database in MySQL with PHP (ELI5)
+# Building Your Own Vector Database
 
 ## What's a Vector Database Anyway?
 

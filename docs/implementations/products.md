@@ -324,47 +324,6 @@ ORDER BY relevance_score DESC;
 ```
 
 
-## Performance tips
-
-1. Minimum word length: By default, MySQL ignores words shorter than 4 characters
-
-   - Configure with ft_min_word_len in my.cnf
-   - Rebuild indexes after changing: REPAIR TABLE wp_products QUICK;
-
-2. Stopwords: Common words (the, and, or, etc.) are ignored
-
-   - Configure custom stopword list if needed
-
-3. Boolean operators:
-
-   + : Must contain this word
-   - : Must NOT contain this word
-   > : Increase relevance
-   < : Decrease relevance
-   * : Wildcard (must be at end of word)
-   " : Exact phrase match
-   () : Grouping
-
-4. Query Expansion:
-
-   - Useful for semantic search
-   - Can return more results than expected
-   - Slower than natural/boolean mode
-   - Best for short queries (1-2 words)
-
-5. Performance:
-
-   - Full-text indexes are fast for searching
-   - Can slow down INSERT/UPDATE operations
-   - Consider using separate search table for high-volume sites
-
-6. WordPress Integration:
-
-   - Use prepared statements in wpdb
-   - Example: $wpdb->prepare() with %s for search terms
-   - Sanitize user input before search queries
-
-
 ```sql
 -- Check full-text index status
 SHOW INDEX FROM wp_products WHERE Index_type = 'FULLTEXT';

@@ -1119,17 +1119,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#performance_tips" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Performance tips
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1695,17 +1684,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#performance_tips" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Performance tips
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -2001,69 +1979,6 @@
 </span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">      </span><span class="n">AGAINST</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;+audio +wireless&#39;</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">MODE</span><span class="p">)</span>
 </span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">relevance_score</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
 </span></code></pre></div>
-<h2 id="performance_tips">Performance tips<a class="headerlink" href="#performance_tips" title="Permanent link">&para;</a></h2>
-<ol>
-<li>
-<p>Minimum word length: By default, MySQL ignores words shorter than 4 characters</p>
-</li>
-<li>
-<p>Configure with ft_min_word_len in my.cnf</p>
-</li>
-<li>
-<p>Rebuild indexes after changing: REPAIR TABLE wp_products QUICK;</p>
-</li>
-<li>
-<p>Stopwords: Common words (the, and, or, etc.) are ignored</p>
-</li>
-<li>
-<p>Configure custom stopword list if needed</p>
-</li>
-<li>
-<p>Boolean operators:</p>
-</li>
-<li>
-<p>: Must contain this word</p>
-</li>
-<li>: Must NOT contain this word<blockquote>
-<p>: Increase relevance
-   &lt; : Decrease relevance</p>
-</blockquote>
-</li>
-<li>
-<p>: Wildcard (must be at end of word)
-   " : Exact phrase match
-   () : Grouping</p>
-</li>
-<li>
-<p>Query Expansion:</p>
-</li>
-<li>
-<p>Useful for semantic search</p>
-</li>
-<li>Can return more results than expected</li>
-<li>Slower than natural/boolean mode</li>
-<li>
-<p>Best for short queries (1-2 words)</p>
-</li>
-<li>
-<p>Performance:</p>
-</li>
-<li>
-<p>Full-text indexes are fast for searching</p>
-</li>
-<li>Can slow down INSERT/UPDATE operations</li>
-<li>
-<p>Consider using separate search table for high-volume sites</p>
-</li>
-<li>
-<p>WordPress Integration:</p>
-</li>
-<li>
-<p>Use prepared statements in wpdb</p>
-</li>
-<li>Example: $wpdb-&gt;prepare() with %s for search terms</li>
-<li>Sanitize user input before search queries</li>
-</ol>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1">-- Check full-text index status</span>
 </span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="k">SHOW</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">wp_products</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Index_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;FULLTEXT&#39;</span><span class="p">;</span>
 </span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>

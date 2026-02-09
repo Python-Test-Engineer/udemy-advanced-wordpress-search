@@ -288,11 +288,7 @@ ORDER BY relevance_score DESC;
 ```
 
 ```sql
--- ============================================
--- 5. PRACTICAL WORDPRESS INTEGRATION EXAMPLES
--- ============================================
 
--- Search with pagination (for WordPress product listings)
 SELECT id, product_name, product_short_description, expanded_description,
        MATCH(product_name, product_short_description, expanded_description) 
        AGAINST ('smart home' WITH QUERY EXPANSION) AS relevance_score

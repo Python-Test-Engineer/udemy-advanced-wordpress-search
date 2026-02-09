@@ -28,7 +28,7 @@ The only rule that matters:
 
 > **Higher scores = better matches (even if they’re negative)**
 
-This is the part that confuses beginners, so emphasize it early and often.
+This is can be confusing initially.
 
 ## Interpreting BM25 Scores
 
@@ -153,7 +153,7 @@ Query: **cooking recipes** → zero
 
 ## BM25 vs TF‑IDF 
 
-Students often ask this, so it’s worth adding:
+Developers often ask this, so it’s worth adding:
 
 |     Feature     |       TF‑I       |               BM2               |
 |-----------------|------------------|---------------------------------|

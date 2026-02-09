@@ -43,6 +43,7 @@ Some words appear in *almost every* document:
 - “of”
 
 If a search engine treated these words as highly important, every document would look similar.  
+
 IDF fixes this by **down‑weighting common words** and **up‑weighting rare, meaningful words**.
 
 So if a student searches for:
@@ -99,11 +100,11 @@ The log keeps values nicely scaled.
 
 Imagine a collection of **1,000 documents**:
 
-| Term | Documents Containing Term (\(df_t\)) | IDF |
+| Term | Documents Containing Term ((df_t)) | IDF |
 |------|--------------------------------------|------|
-| “the” | 980 | \( \log(1000/980) \approx 0.009 \) |
-| “photosynthesis” | 12 | \( \log(1000/12) \approx 4.42 \) |
-| “chlorophyll” | 5 | \( \log(1000/5) \approx 5.30 \) |
+| “the” | 980 | log(1000/980) approx 0.009  |
+| “photosynthesis” | 12 |  log(1000/12) approx 4.42  |
+| “chlorophyll” | 5 | log(1000/5) approx 5.30  |
 
 **Interpretation:**
 

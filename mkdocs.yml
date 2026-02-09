@@ -78,7 +78,7 @@ nav:
   - "Negative Scores": "fts/negative-bm25-scores.md"
   - "Stop Words": "fts/stop-words.md"
   - "COLS with many indexes": "fts/multiple-indexes-on-same-col.md"
-  - "SQL Guide": "fts/sql-guide.md"
+  # - "SQL Guide": "fts/sql-guide.md"
   - "MySQL FTS": "fts/what-fts-does.md"
 
 - "Implementations":

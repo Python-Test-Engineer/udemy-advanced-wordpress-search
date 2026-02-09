@@ -22,6 +22,7 @@ Each section now includes:
 # Natural Language Mode  
 
 Natural language mode is MySQL’s “Google‑like” search.  
+
 It ranks results by relevance using TF‑IDF‑style scoring.
 
 ## Scenario: Searching blog posts about WordPress performance
@@ -35,9 +36,13 @@ CREATE FULLTEXT INDEX idx_posts_fulltext
 ON wp_posts(post_title, post_content);
 ```
 
-Quereis... 
+Query is... 
 
 ```sql
+
+ALTER TABLE wp_posts ADD FULLTEXT INDEX idx_title (post_title);
+ALTER TABLE wp_posts ADD FULLTEXT INDEX idx_content (post_content);
+
 SELECT ID, post_title,
        MATCH(post_title, post_content)
        AGAINST ('wordpress performance caching' IN NATURAL LANGUAGE MODE) AS score

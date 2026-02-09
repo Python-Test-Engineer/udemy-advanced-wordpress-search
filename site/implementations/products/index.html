@@ -1811,6 +1811,7 @@
 </span><span id="__span-2-67"><a id="__codelineno-2-67" name="__codelineno-2-67" href="#__codelineno-2-67"></a><span class="k">DROP</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="n">ensure_wp_products_fulltext_indexes</span><span class="p">;</span>
 </span></code></pre></div>
 <h2 id="natural_language_mode">Natural Language Mode<a class="headerlink" href="#natural_language_mode" title="Permanent link">&para;</a></h2>
+<p>The MySQL documentation states that when you use MATCH ... AGAINST in both the WHERE clause and ORDER BY, you don't need to explicitly add ORDER BY because MySQL will automatically sort by relevance. However, having an explicit ORDER BY is not wrong - it just may be redundant in some cases.</p>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">-- ============================================</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1">-- 2. NATURAL LANGUAGE MODE QUERIES</span>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1">-- ============================================</span>

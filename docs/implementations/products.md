@@ -119,6 +119,9 @@ DROP PROCEDURE ensure_wp_products_fulltext_indexes;
 ```
 ## Natural Language Mode 
 
+The MySQL documentation states that when you use MATCH ... AGAINST in both the WHERE clause and ORDER BY, you don't need to explicitly add ORDER BY because MySQL will automatically sort by relevance. However, having an explicit ORDER BY is not wrong - it just may be redundant in some cases.
+
+
 ```sql
 -- ============================================
 -- 2. NATURAL LANGUAGE MODE QUERIES

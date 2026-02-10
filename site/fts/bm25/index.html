@@ -2026,6 +2026,7 @@
 <p>It can be of value to understand <code>k1</code> and <code>b</code> as you may have a different database or have an additonal database for search that enables <code>k1</code> and <code>b</code> fine tuning.</p>
 <h3 id="k1_term_frequency_saturation">k1 (Term Frequency Saturation)<a class="headerlink" href="#k1_term_frequency_saturation" title="Permanent link">&para;</a></h3>
 <h3 id="what_k1_does">What k₁ does<a class="headerlink" href="#what_k1_does" title="Permanent link">&para;</a></h3>
+<p><img alt="various k1" src="../../images/fts/various-k1.png" /></p>
 <p>The <strong>k₁ parameter</strong> controls how quickly the curve flattens:</p>
 <ul>
 <li><strong>Lower k₁</strong> → curve flattens sooner (more aggressive saturation meaning the threshold for 'term stuffing' to be considered is lower so the campening of more terms happens sooner).</li>
@@ -2174,7 +2175,6 @@
 </tr>
 </tbody>
 </table>
-<p><img alt="various k1" src="../../images/fts/various-k1.png" /></p>
 <p>Lower values of k_1 in BM25 favor fewer repeated terms — they dampen the influence of term frequency more aggressively.</p>
 <p>Here's why:</p>
 <p>BM25 uses a saturation function for term frequency:</p>

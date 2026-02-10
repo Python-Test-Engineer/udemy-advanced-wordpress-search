@@ -642,34 +642,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fts/sql-guide/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    SQL Guide
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../fts/what-fts-does/" class="md-nav__link">
         
   
@@ -1141,17 +1113,6 @@
     <span class="md-ellipsis">
       
         Query Expansion Mode
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#performance_tips" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Performance tips
       
     </span>
   </a>
@@ -1723,17 +1684,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#performance_tips" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Performance tips
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1861,6 +1811,7 @@
 </span><span id="__span-2-67"><a id="__codelineno-2-67" name="__codelineno-2-67" href="#__codelineno-2-67"></a><span class="k">DROP</span><span class="w"> </span><span class="k">PROCEDURE</span><span class="w"> </span><span class="n">ensure_wp_products_fulltext_indexes</span><span class="p">;</span>
 </span></code></pre></div>
 <h2 id="natural_language_mode">Natural Language Mode<a class="headerlink" href="#natural_language_mode" title="Permanent link">&para;</a></h2>
+<p>The MySQL documentation states that when you use MATCH ... AGAINST in both the WHERE clause and ORDER BY, you don't need to explicitly add ORDER BY because MySQL will automatically sort by relevance. However, having an explicit ORDER BY is not wrong - it just may be redundant in some cases.</p>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">-- ============================================</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1">-- 2. NATURAL LANGUAGE MODE QUERIES</span>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1">-- ============================================</span>
@@ -2000,19 +1951,14 @@
 </span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">      </span><span class="n">AGAINST</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;yoga&#39;</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="n">EXPANSION</span><span class="p">)</span>
 </span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">relevance_score</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
 </span></code></pre></div>
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1">-- ============================================</span>
-</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="c1">-- 5. PRACTICAL WORDPRESS INTEGRATION EXAMPLES</span>
-</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="c1">-- ============================================</span>
-</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>
-</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="c1">-- Search with pagination (for WordPress product listings)</span>
-</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">product_name</span><span class="p">,</span><span class="w"> </span><span class="n">product_short_description</span><span class="p">,</span><span class="w"> </span><span class="n">expanded_description</span><span class="p">,</span>
-</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">       </span><span class="k">MATCH</span><span class="p">(</span><span class="n">product_name</span><span class="p">,</span><span class="w"> </span><span class="n">product_short_description</span><span class="p">,</span><span class="w"> </span><span class="n">expanded_description</span><span class="p">)</span><span class="w"> </span>
-</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="w">       </span><span class="n">AGAINST</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;smart home&#39;</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="n">EXPANSION</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">relevance_score</span>
-</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="k">FROM</span><span class="w"> </span><span class="n">wp_products</span>
-</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="p">(</span><span class="n">product_name</span><span class="p">,</span><span class="w"> </span><span class="n">product_short_description</span><span class="p">,</span><span class="w"> </span><span class="n">expanded_description</span><span class="p">)</span><span class="w"> </span>
-</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="w">      </span><span class="n">AGAINST</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;smart home&#39;</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="n">EXPANSION</span><span class="p">)</span>
-</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">relevance_score</span><span class="w"> </span><span class="k">DESC</span>
-</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="k">OFFSET</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">product_name</span><span class="p">,</span><span class="w"> </span><span class="n">product_short_description</span><span class="p">,</span><span class="w"> </span><span class="n">expanded_description</span><span class="p">,</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">       </span><span class="k">MATCH</span><span class="p">(</span><span class="n">product_name</span><span class="p">,</span><span class="w"> </span><span class="n">product_short_description</span><span class="p">,</span><span class="w"> </span><span class="n">expanded_description</span><span class="p">)</span><span class="w"> </span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">       </span><span class="n">AGAINST</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;smart home&#39;</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="n">EXPANSION</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">relevance_score</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="k">FROM</span><span class="w"> </span><span class="n">wp_products</span>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="p">(</span><span class="n">product_name</span><span class="p">,</span><span class="w"> </span><span class="n">product_short_description</span><span class="p">,</span><span class="w"> </span><span class="n">expanded_description</span><span class="p">)</span><span class="w"> </span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">      </span><span class="n">AGAINST</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;smart home&#39;</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="n">QUERY</span><span class="w"> </span><span class="n">EXPANSION</span><span class="p">)</span>
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">relevance_score</span><span class="w"> </span><span class="k">DESC</span>
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="k">LIMIT</span><span class="w"> </span><span class="mi">10</span><span class="w"> </span><span class="k">OFFSET</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 </span></code></pre></div>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="c1">-- Search with minimum relevance threshold</span>
 </span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">product_name</span><span class="p">,</span><span class="w"> </span><span class="n">product_short_description</span><span class="p">,</span><span class="w"> </span><span class="n">expanded_description</span><span class="p">,</span>
@@ -2034,69 +1980,6 @@
 </span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">      </span><span class="n">AGAINST</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;+audio +wireless&#39;</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="nb">BOOLEAN</span><span class="w"> </span><span class="k">MODE</span><span class="p">)</span>
 </span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">relevance_score</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
 </span></code></pre></div>
-<h2 id="performance_tips">Performance tips<a class="headerlink" href="#performance_tips" title="Permanent link">&para;</a></h2>
-<ol>
-<li>
-<p>Minimum word length: By default, MySQL ignores words shorter than 4 characters</p>
-</li>
-<li>
-<p>Configure with ft_min_word_len in my.cnf</p>
-</li>
-<li>
-<p>Rebuild indexes after changing: REPAIR TABLE wp_products QUICK;</p>
-</li>
-<li>
-<p>Stopwords: Common words (the, and, or, etc.) are ignored</p>
-</li>
-<li>
-<p>Configure custom stopword list if needed</p>
-</li>
-<li>
-<p>Boolean operators:</p>
-</li>
-<li>
-<p>: Must contain this word</p>
-</li>
-<li>: Must NOT contain this word<blockquote>
-<p>: Increase relevance
-   &lt; : Decrease relevance</p>
-</blockquote>
-</li>
-<li>
-<p>: Wildcard (must be at end of word)
-   " : Exact phrase match
-   () : Grouping</p>
-</li>
-<li>
-<p>Query Expansion:</p>
-</li>
-<li>
-<p>Useful for semantic search</p>
-</li>
-<li>Can return more results than expected</li>
-<li>Slower than natural/boolean mode</li>
-<li>
-<p>Best for short queries (1-2 words)</p>
-</li>
-<li>
-<p>Performance:</p>
-</li>
-<li>
-<p>Full-text indexes are fast for searching</p>
-</li>
-<li>Can slow down INSERT/UPDATE operations</li>
-<li>
-<p>Consider using separate search table for high-volume sites</p>
-</li>
-<li>
-<p>WordPress Integration:</p>
-</li>
-<li>
-<p>Use prepared statements in wpdb</p>
-</li>
-<li>Example: $wpdb-&gt;prepare() with %s for search terms</li>
-<li>Sanitize user input before search queries</li>
-</ol>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="c1">-- Check full-text index status</span>
 </span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="k">SHOW</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">wp_products</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">Index_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;FULLTEXT&#39;</span><span class="p">;</span>
 </span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>

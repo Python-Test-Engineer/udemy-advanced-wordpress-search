@@ -1,4 +1,4 @@
-# Building Your Own Vector Database in MySQL with PHP (ELI5)
+# Building Your Own Vector Database
 
 ## What's a Vector Database Anyway?
 
@@ -129,10 +129,18 @@ Where:
 ## Summary
 
 You just learned how to:
+
 - ✅ Store vectors as comma-separated text in `LONGTEXT`
 - ✅ Calculate cosine similarity in pure PHP
 - ✅ Build a working vector search engine
 - ✅ Integrate with OpenAI embeddings
 - ✅ Optimize with caching and filtering
 
-**The Magic:** MySQL stores the vectors as text, PHP does the math to find similar items. Simple but effective!
+**The Magic:** 
+
+MySQL stores the vectors as text, PHP does the math to find similar items. 
+
+Simple but effective!
+
+
+<br>

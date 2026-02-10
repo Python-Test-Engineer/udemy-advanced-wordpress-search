@@ -1,6 +1,6 @@
 # 14.9 Full-Text Search Functions
 
-Rewritten and formatted by AI
+Edited and formatted by AI for even more readability.
 
 ## Table of Contents
 

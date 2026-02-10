@@ -22,6 +22,7 @@ Each section now includes:
 # Natural Language Mode  
 
 Natural language mode is MySQL’s “Google‑like” search.  
+
 It ranks results by relevance using TF‑IDF‑style scoring.
 
 ## Scenario: Searching blog posts about WordPress performance
@@ -33,11 +34,14 @@ Create index for all the examples
 ```sql
 CREATE FULLTEXT INDEX idx_posts_fulltext 
 ON wp_posts(post_title, post_content);
+
+-- We may just run queries against one column so we need an index on that column.
+ALTER TABLE wp_posts ADD FULLTEXT INDEX idx_title (post_title);
+ALTER TABLE wp_posts ADD FULLTEXT INDEX idx_content (post_content);
 ```
 
-Quereis... 
-
 ```sql
+-- This requires a composite index on the two columns and not two single column indices.
 SELECT ID, post_title,
        MATCH(post_title, post_content)
        AGAINST ('wordpress performance caching' IN NATURAL LANGUAGE MODE) AS score
@@ -56,6 +60,7 @@ ORDER BY score DESC;
 
 ### Example B — Ranking titles higher than content
 ```sql
+-- We need single column indices as we are matching against one column each time.
 SELECT ID, post_title,
        (MATCH(post_title) AGAINST ('performance tuning') * 3 +
         MATCH(post_content) AGAINST ('performance tuning')) AS relevance
@@ -184,6 +189,7 @@ WHERE MATCH(post_title, post_content)
 
 Query expansion is MySQL’s “find related topics” mode.
 
+
 It performs:
 
 1. A first search  
@@ -194,6 +200,7 @@ It performs:
 
 ## Scenario: A user searches for “SEO” but your content uses synonyms like “search ranking,” “organic traffic,” etc.
 
+PLUGIN05 is good to demonstrate this.
 
 ### **Example A — Basic query expansion**
 ```sql

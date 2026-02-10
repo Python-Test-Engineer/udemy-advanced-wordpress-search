@@ -642,34 +642,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fts/sql-guide/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    SQL Guide
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../fts/what-fts-does/" class="md-nav__link">
         
   
@@ -998,23 +970,6 @@
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Relevancy Ranking for a Multiple Word Search">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#note" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Note
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -1729,23 +1684,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Relevancy Ranking for a Multiple Word Search">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#note" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Note
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
@@ -1999,19 +1937,6 @@ Records: 8  Duplicates: 0  Warnings: 0</p>
 </span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>+----+------------------------------+-------------------------------------+----------------------+
 </span><span id="__span-14-13"><a id="__codelineno-14-13" name="__codelineno-14-13" href="#__codelineno-14-13"></a>8 rows in set (0.00 sec)
 </span></code></pre></div>
-<p>In the first record (id 8), 'mysql' appears once and 'tutorial' appears twice. There are six matching records for 'mysql' and two matching records for 'tutorial'. </p>
-<p>The MySQL command-line client returns the expected ranking value when inserting these values into the ranking formula for a multiple word search:</p>
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="o">*</span><span class="n">log10</span><span class="p">(</span><span class="mi">8</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span><span class="o">*</span><span class="n">log10</span><span class="p">(</span><span class="mi">8</span><span class="o">/</span><span class="mi">6</span><span class="p">))</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">log10</span><span class="p">(</span><span class="mi">8</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">log10</span><span class="p">(</span><span class="mi">8</span><span class="o">/</span><span class="mi">2</span><span class="p">));</span>
-</span></code></pre></div>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>+-------------------------------------------------------+
-</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>| (1*log10(8/6)*log10(8/6)) + (2*log10(8/2)*log10(8/2)) |
-</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>+-------------------------------------------------------+
-</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>|                                    0.7405621541938003 |
-</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>+-------------------------------------------------------+
-</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>1 row in set (0.00 sec)
-</span></code></pre></div>
-<h3 id="note">Note<a class="headerlink" href="#note" title="Permanent link">&para;</a></h3>
-<p>The slight difference in the ranking values returned by the SELECT ... MATCH ... AGAINST statement and the MySQL command-line client is explained in the preceding example.</p>
 <p><br></p>
 
 

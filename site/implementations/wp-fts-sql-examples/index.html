@@ -642,34 +642,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../fts/sql-guide/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    SQL Guide
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../fts/what-fts-does/" class="md-nav__link">
         
   
@@ -1592,22 +1564,26 @@
 <li>Notes on how WordPress developers might use it  </li>
 </ul>
 <h1 id="natural_language_mode">Natural Language Mode<a class="headerlink" href="#natural_language_mode" title="Permanent link">&para;</a></h1>
-<p>Natural language mode is MySQL’s “Google‑like” search.<br />
-It ranks results by relevance using TF‑IDF‑style scoring.</p>
+<p>Natural language mode is MySQL’s “Google‑like” search.  </p>
+<p>It ranks results by relevance using TF‑IDF‑style scoring.</p>
 <h2 id="scenario_searching_blog_posts_about_wordpress_performance">Scenario: Searching blog posts about WordPress performance<a class="headerlink" href="#scenario_searching_blog_posts_about_wordpress_performance" title="Permanent link">&para;</a></h2>
 <h3 id="example_a_simple_multiword_search">Example A — Simple multi‑word search<a class="headerlink" href="#example_a_simple_multiword_search" title="Permanent link">&para;</a></h3>
 <p>Create index for all the examples</p>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="n">FULLTEXT</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_posts_fulltext</span><span class="w"> </span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">ON</span><span class="w"> </span><span class="n">wp_posts</span><span class="p">(</span><span class="n">post_title</span><span class="p">,</span><span class="w"> </span><span class="n">post_content</span><span class="p">);</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1">-- We may just run queries against one column so we need an index on that column.</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">wp_posts</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="n">FULLTEXT</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_title</span><span class="w"> </span><span class="p">(</span><span class="n">post_title</span><span class="p">);</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">wp_posts</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="n">FULLTEXT</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">idx_content</span><span class="w"> </span><span class="p">(</span><span class="n">post_content</span><span class="p">);</span>
 </span></code></pre></div>
-<p>Quereis... </p>
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">post_title</span><span class="p">,</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">       </span><span class="k">MATCH</span><span class="p">(</span><span class="n">post_title</span><span class="p">,</span><span class="w"> </span><span class="n">post_content</span><span class="p">)</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">       </span><span class="n">AGAINST</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;wordpress performance caching&#39;</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="k">NATURAL</span><span class="w"> </span><span class="k">LANGUAGE</span><span class="w"> </span><span class="k">MODE</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">score</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">FROM</span><span class="w"> </span><span class="n">wp_posts</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="p">(</span><span class="n">post_title</span><span class="p">,</span><span class="w"> </span><span class="n">post_content</span><span class="p">)</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">      </span><span class="n">AGAINST</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;wordpress performance caching&#39;</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="k">NATURAL</span><span class="w"> </span><span class="k">LANGUAGE</span><span class="w"> </span><span class="k">MODE</span><span class="p">)</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">-- This requires a composite index on the two columns and not two single column indices.</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">post_title</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">       </span><span class="k">MATCH</span><span class="p">(</span><span class="n">post_title</span><span class="p">,</span><span class="w"> </span><span class="n">post_content</span><span class="p">)</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">       </span><span class="n">AGAINST</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;wordpress performance caching&#39;</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="k">NATURAL</span><span class="w"> </span><span class="k">LANGUAGE</span><span class="w"> </span><span class="k">MODE</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">score</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">FROM</span><span class="w"> </span><span class="n">wp_posts</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">WHERE</span><span class="w"> </span><span class="k">MATCH</span><span class="p">(</span><span class="n">post_title</span><span class="p">,</span><span class="w"> </span><span class="n">post_content</span><span class="p">)</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">      </span><span class="n">AGAINST</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;wordpress performance caching&#39;</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="k">NATURAL</span><span class="w"> </span><span class="k">LANGUAGE</span><span class="w"> </span><span class="k">MODE</span><span class="p">)</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
 </span></code></pre></div>
 <p><strong>What happens:</strong>  </p>
 <ul>
@@ -1616,11 +1592,12 @@ It ranks results by relevance using TF‑IDF‑style scoring.</p>
 <li>Posts heavily discussing caching rank highest  </li>
 </ul>
 <h3 id="example_b_ranking_titles_higher_than_content">Example B — Ranking titles higher than content<a class="headerlink" href="#example_b_ranking_titles_higher_than_content" title="Permanent link">&para;</a></h3>
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">post_title</span><span class="p">,</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">       </span><span class="p">(</span><span class="k">MATCH</span><span class="p">(</span><span class="n">post_title</span><span class="p">)</span><span class="w"> </span><span class="n">AGAINST</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;performance tuning&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">+</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">        </span><span class="k">MATCH</span><span class="p">(</span><span class="n">post_content</span><span class="p">)</span><span class="w"> </span><span class="n">AGAINST</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;performance tuning&#39;</span><span class="p">))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">relevance</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">FROM</span><span class="w"> </span><span class="n">wp_posts</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">relevance</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">-- We need single column indices as we are matching against one column each time.</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">post_title</span><span class="p">,</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">       </span><span class="p">(</span><span class="k">MATCH</span><span class="p">(</span><span class="n">post_title</span><span class="p">)</span><span class="w"> </span><span class="n">AGAINST</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;performance tuning&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">+</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">        </span><span class="k">MATCH</span><span class="p">(</span><span class="n">post_content</span><span class="p">)</span><span class="w"> </span><span class="n">AGAINST</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;performance tuning&#39;</span><span class="p">))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">relevance</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">FROM</span><span class="w"> </span><span class="n">wp_posts</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">relevance</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
 </span></code></pre></div>
 <p><strong>Why this matters:</strong>  </p>
 <ul>
@@ -1716,6 +1693,7 @@ Words like <em>how</em>, <em>to</em>, <em>a</em> are ignored unless you customiz
 <li>Runs a second search  </li>
 </ol>
 <h2 id="scenario_a_user_searches_for_seo_but_your_content_uses_synonyms_like_search_ranking_organic_traffic_etc">Scenario: A user searches for “SEO” but your content uses synonyms like “search ranking,” “organic traffic,” etc.<a class="headerlink" href="#scenario_a_user_searches_for_seo_but_your_content_uses_synonyms_like_search_ranking_organic_traffic_etc" title="Permanent link">&para;</a></h2>
+<p>PLUGIN05 is good to demonstrate this.</p>
 <h3 id="example_a_basic_query_expansion"><strong>Example A — Basic query expansion</strong><a class="headerlink" href="#example_a_basic_query_expansion" title="Permanent link">&para;</a></h3>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">ID</span><span class="p">,</span><span class="w"> </span><span class="n">post_title</span><span class="p">,</span>
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">       </span><span class="k">MATCH</span><span class="p">(</span><span class="n">post_title</span><span class="p">,</span><span class="w"> </span><span class="n">post_content</span><span class="p">)</span>

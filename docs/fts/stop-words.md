@@ -5,6 +5,7 @@ Stop words are one of the simplest but most misunderstood parts of MySQL’s ful
 ## What Stop Words Are
 
 Stop words are very common words that MySQL’s full‑text search engine chooses to ignore.  
+
 They typically include everyday terms such as:
 
 - a  

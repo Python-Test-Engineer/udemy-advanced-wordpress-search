@@ -735,34 +735,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../sql-guide/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    SQL Guide
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../what-fts-does/" class="md-nav__link">
         
   
@@ -1712,6 +1684,7 @@
 <p>Imagine you're looking for a book article on WordPress. The more WordPress appears in the doucment suggests the more relevant the query term <code>WordPress</code> is.</p>
 <p><strong>Term Frequency (TF)</strong> = How many times a word appears in a document</p>
 <p><strong>Simple Term Frequency:</strong></p>
+<p><code>term</code> === <code>word</code></p>
 <blockquote>
 <p>TF = (number of times term appears in document) / (total number of terms in document)</p>
 </blockquote>
@@ -1719,13 +1692,15 @@
 <p>Document: "the cat sat on the mat"</p>
 <ul>
 <li>Total terms: 6</li>
-<li>Query term "the" appears: 2 times</li>
-<li>TF("the") = 2/6 = 0.33</li>
+<li>Query term "cat" appears: 1 times</li>
+<li>TF("the") = 1/6 = 0.167S</li>
 </ul>
 <p><strong>Why normalize by document length?</strong></p>
 <p>Without dividing by total terms, longer documents would always score higher just because they have more words. Normalizing makes it fair - a term appearing 2 times in a 10-word doc (20%) is more significant than 2 times in a 1000-word doc (0.2%).</p>
+<p><em>Essentially, we are interested in the desnisty or concentration of term in a document not just the abolute number of times it occurs.</em></p>
 <p><strong>Limitation:</strong></p>
 <p>This treats the 1st and 100th occurrence equally. That's why most search systems use something like BM25 instead, which adds diminishing returns.</p>
+<p>(We will see the <code>k1</code> parameter that dampens key word saturation later).</p>
 <h2 id="visual_comparison">Visual Comparison<a class="headerlink" href="#visual_comparison" title="Permanent link">&para;</a></h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Document A: &quot;dog dog dog cat&quot;
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>🐕🐕🐕🐱
@@ -1736,7 +1711,7 @@
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>TF(dog) = 3/4 = 0.25
 </span></code></pre></div>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
-<p>Please note,  the terms k1 and b will be explained fully in BM25. The key for this graphic is we need to avoid 'stuffing' or 'key word satiration' distroting the relevancy - amde for document length with parameter 'b'.</p>
+<p>Please note,  the terms k1 and b will be explained fully in BM25. The key for this graphic is we need to avoid 'stuffing' or 'key word satiration' distroting the relevancy - and for document length with parameter 'b'.</p>
 <p><img alt="tf" src="../../images/fts/tf-saturation.png" /></p>
 <p>What about 'word stuffing'? A good document with a lower TF should rank higher than a poor document with word stuffing.</p>
 <h2 id="quick_summary">Quick Summary<a class="headerlink" href="#quick_summary" title="Permanent link">&para;</a></h2>

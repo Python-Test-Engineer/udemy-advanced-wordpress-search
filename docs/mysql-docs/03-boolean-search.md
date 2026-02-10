@@ -288,25 +288,4 @@ FROM articles ORDER BY score DESC;
 8 rows in set (0.00 sec)
 ```
 
-In the first record (id 8), 'mysql' appears once and 'tutorial' appears twice. There are six matching records for 'mysql' and two matching records for 'tutorial'. 
-
-The MySQL command-line client returns the expected ranking value when inserting these values into the ranking formula for a multiple word search:
-
-```sql
-SELECT (1*log10(8/6)*log10(8/6)) + (2*log10(8/2)*log10(8/2));
-```
-
-```
-+-------------------------------------------------------+
-| (1*log10(8/6)*log10(8/6)) + (2*log10(8/2)*log10(8/2)) |
-+-------------------------------------------------------+
-|                                    0.7405621541938003 |
-+-------------------------------------------------------+
-1 row in set (0.00 sec)
-```
-
-### Note
-
-The slight difference in the ranking values returned by the SELECT ... MATCH ... AGAINST statement and the MySQL command-line client is explained in the preceding example.
-
 <br>

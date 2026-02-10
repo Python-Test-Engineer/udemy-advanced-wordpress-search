@@ -95,7 +95,8 @@ This is exactly how modern search engines behave.
 
 ## Summary Table
 
-- FTS - Keyword precision - Ensures exact matches and strong lexical signals -
+- Keyword precision 
+- Ensures exact matches and strong lexical signals
 - Vector Search - Semantic understanding - Captures meaning, synonyms, intent -
 - Reranking - Blends both signals - Produces the most relevant final ranking 
 

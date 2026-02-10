@@ -4,7 +4,7 @@
 
 Imagine you're looking for a book article on WordPress. The more WordPress appears in the doucment suggests the more relevant the query term `WordPress` is.
 
-**Term Frequency (TF)** = How many times a word appears in a document
+**Term Frequency (TF)** = How many times a query word appears in a document
 
 **Simple Term Frequency:**
 

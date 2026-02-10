@@ -17,7 +17,14 @@ It's the ULTIMATE combination that makes search engines actually work!
 TF-IDF = TF × IDF
 
 TF = (Word count in document) / (Total words in document)
-IDF = log(Total documents / Documents containing word)
+
+**IDF(t) = log(N / df_t)**
+
+Where:
+
+- **N** = total number of documents in the corpus
+- **df_t** = number of documents containing query term t
+- **log** = logarithm (typically natural log or log base 10)
 ```
 
 **In Plain English:**

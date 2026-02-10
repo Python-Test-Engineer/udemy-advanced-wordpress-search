@@ -1904,11 +1904,12 @@
 <h1 id="inverse_document_frequency_idf">Inverse Document Frequency (IDF)<a class="headerlink" href="#inverse_document_frequency_idf" title="Permanent link">&para;</a></h1>
 <p><img alt="idf" src="../../images/fts/idf.png" /></p>
 <p><strong>IDF</strong> measures how rare or unique a term is across a collection of documents. It's the "inverted" part of TF-IDF (Term Frequency-Inverse Document Frequency).</p>
-<p>We can see that for a search query having 'FTS', documents 2 and 3 are highly relevant. If we have a query 'FTS and SEO Plugins', documents 2 and 3 are most relevant, with 1 being behind them and more relevant than the others.</p>
+<p>We can see that for a search query having the query term 'FTS', documents 2 and 3 are highly relevant. If we have a query 'FTS and SEO Plugins', documents 2 and 3 are most relevant, with 1 being behind them and more relevant than the others.</p>
 <h2 id="the_core_idea">The Core Idea<a class="headerlink" href="#the_core_idea" title="Permanent link">&para;</a></h2>
 <p>Common words like "the" or "is" appear in almost every document, so they're not useful for distinguishing between documents. </p>
-<p>Rare words like "photosynthesis" or "cryptocurrency" appear in fewer documents and are more informative.</p>
-<p>TF is about 'the document'. IDF is about 'the documents'. Which one's are more relevant compared to the others.</p>
+<p>Rare words like "seo performance" or "Yoast" appear in fewer documents and are more informative.</p>
+<p>TF is about 'the document'. </p>
+<p>IDF is about 'the documents' - Which one's are more relevant compared to the others.</p>
 <h2 id="the_formula">The Formula<a class="headerlink" href="#the_formula" title="Permanent link">&para;</a></h2>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>IDF(term) = log(N / df)
 </span></code></pre></div>
@@ -1941,7 +1942,6 @@
 <p>The word <strong>“photosynthesis”</strong> should matter far more than <strong>“process”</strong>.</p>
 <h2 id="how_idf_is_calculated">How IDF Is Calculated<a class="headerlink" href="#how_idf_is_calculated" title="Permanent link">&para;</a></h2>
 <p>The most common formula is:</p>
-<p>The formula for Inverse Document Frequency (IDF) is:</p>
 <p><strong>IDF(t) = log(N / df_t)</strong></p>
 <p>Where:</p>
 <ul>
@@ -1949,22 +1949,6 @@
 <li><strong>df_t</strong> = number of documents containing term t</li>
 <li><strong>log</strong> = logarithm (typically natural log or log base 10)</li>
 </ul>
-<p><strong>Common variations:</strong></p>
-<ol>
-<li><strong>Smoothed IDF</strong> (most common in practice):</li>
-</ol>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>IDF(t) = log(N / df_t) + 1
-</span></code></pre></div>
-<ol>
-<li><strong>IDF with smoothing to avoid division by zero</strong>:</li>
-</ol>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>IDF(t) = log((N + 1) / (df_t + 1)) + 1
-</span></code></pre></div>
-<ol>
-<li><strong>Probabilistic IDF</strong>:</li>
-</ol>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>IDF(t) = log((N - df_t) / df_t)
-</span></code></pre></div>
 <p><strong>Key insight:</strong> IDF increases for rare terms (low df_t) and decreases for common terms (high df_t). </p>
 <p>This smoothing ensures that terms appearing in all documents don't get zero weight and prevents division by zero for edge cases.</p>
 <h3 id="why_the_log">Why the log?<a class="headerlink" href="#why_the_log" title="Permanent link">&para;</a></h3>

@@ -24,7 +24,6 @@ IDF = log(Total documents / Documents containing word)
 
 > TF-IDF gives HIGH scores to words that appear FREQUENTLY in a specific document but RARELY across all documents.
 
-
 ## The Magic Formula Breakdown
 
 ### High TF-IDF Score happens when:
@@ -70,7 +69,6 @@ TF-IDF = TF × IDF
 2. High TF + Low IDF = **Probably common word** (the, is, and)
 3. Low TF + High IDF = **Rare word but not in this doc**
 4. Low TF + Low IDF = **Not relevant at all**
-
 
 ## Think About It
 

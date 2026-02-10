@@ -4,15 +4,17 @@
 
 **IDF** measures how rare or unique a term is across a collection of documents. It's the "inverted" part of TF-IDF (Term Frequency-Inverse Document Frequency).
 
-We can see that for a search query having 'FTS', documents 2 and 3 are highly relevant. If we have a query 'FTS and SEO Plugins', documents 2 and 3 are most relevant, with 1 being behind them and more relevant than the others.
+We can see that for a search query having the query term 'FTS', documents 2 and 3 are highly relevant. If we have a query 'FTS and SEO Plugins', documents 2 and 3 are most relevant, with 1 being behind them and more relevant than the others.
 
 ## The Core Idea
 
 Common words like "the" or "is" appear in almost every document, so they're not useful for distinguishing between documents. 
 
-Rare words like "photosynthesis" or "cryptocurrency" appear in fewer documents and are more informative.
+Rare words like "seo performance" or "Yoast" appear in fewer documents and are more informative.
 
-TF is about 'the document'. IDF is about 'the documents'. Which one's are more relevant compared to the others.
+TF is about 'the document'. 
+
+IDF is about 'the documents' - Which one's are more relevant compared to the others.
 
 ## The Formula
 
@@ -56,8 +58,6 @@ The word **“photosynthesis”** should matter far more than **“process”**.
 
 The most common formula is:
 
-The formula for Inverse Document Frequency (IDF) is:
-
 **IDF(t) = log(N / df_t)**
 
 Where:
@@ -65,26 +65,6 @@ Where:
 - **N** = total number of documents in the corpus
 - **df_t** = number of documents containing term t
 - **log** = logarithm (typically natural log or log base 10)
-
-**Common variations:**
-
-1. **Smoothed IDF** (most common in practice):
-
-   ```
-   IDF(t) = log(N / df_t) + 1
-   ```
-
-2. **IDF with smoothing to avoid division by zero**:
-
-   ```
-   IDF(t) = log((N + 1) / (df_t + 1)) + 1
-   ```
-
-3. **Probabilistic IDF**:
-
-   ```
-   IDF(t) = log((N - df_t) / df_t)
-   ```
 
 **Key insight:** IDF increases for rare terms (low df_t) and decreases for common terms (high df_t). 
 

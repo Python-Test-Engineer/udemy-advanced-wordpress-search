@@ -1974,12 +1974,13 @@
 <ul>
 <li>It has <strong>diminishing returns</strong> - Adding the 10th query term doesn't help as much as adding the 2nd "caquery term".</li>
 <li>It considers <strong>document length</strong> - Longer docs aren't automatically penalized. </li>
-<li>It has <strong>tuning knobs</strong> - You can adjust it for different use cases with <code>k1</code> for key word saturation and <code>b</code> for document length. (MySQL does not allow us to change the settings, but it is useful to know this as we may have a dat.abase that does either instead of MySQL or as an additional content database)</li>
+<li>It has <strong>tuning knobs</strong> - You can adjust it for different use cases with <code>k1</code> for key word saturation and <code>b</code> for document length. (MySQL does not allow us to change the settings, but it is useful to know this as we may have a database that does do this, either instead of MySQL or as an additional content database)</li>
 </ul>
 <h2 id="the_bm25_formula">The BM25 Formula<a class="headerlink" href="#the_bm25_formula" title="Permanent link">&para;</a></h2>
 <p>A helpful infographic:</p>
 <p><img alt="bm25" src="../../images/bm25.png" /></p>
 <h2 id="the_formula_breakdown">The Formula Breakdown<a class="headerlink" href="#the_formula_breakdown" title="Permanent link">&para;</a></h2>
+<p>We don't need to go into detail as it is not necessary. The key takeaways are that k1, (term saturation) and b, (document length normalisation), are introduced to add parameters to fine tune BM25.</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>BM25(D, Q) = Σ IDF(qi) × (f(qi, D) × (k1 + 1)) / (f(qi, D) + k1 × (1 - b + b × |D| / avgdl))
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>Where:
@@ -2021,12 +2022,14 @@
 <li>Result: A score that balances everything perfectly!</li>
 </ul>
 <h2 id="understanding_the_parameters">Understanding the Parameters<a class="headerlink" href="#understanding_the_parameters" title="Permanent link">&para;</a></h2>
+<p>Please note - MySQL does not let us change these parameters.</p>
+<p>It can be of value to understand <code>k1</code> and <code>b</code> as you may have a different database or have an additonal database for search that enables <code>k1</code> and <code>b</code> fine tuning.</p>
 <h3 id="k1_term_frequency_saturation">k1 (Term Frequency Saturation)<a class="headerlink" href="#k1_term_frequency_saturation" title="Permanent link">&para;</a></h3>
 <h3 id="what_k1_does">What k₁ does<a class="headerlink" href="#what_k1_does" title="Permanent link">&para;</a></h3>
 <p>The <strong>k₁ parameter</strong> controls how quickly the curve flattens:</p>
 <ul>
-<li><strong>Lower k₁</strong> → curve flattens sooner (more aggressive saturation)</li>
-<li><strong>Higher k₁</strong> → curve stays steeper longer (less saturation, closer to linear)</li>
+<li><strong>Lower k₁</strong> → curve flattens sooner (more aggressive saturation meaning the threshold for 'term stuffing' to be considered is lower so the campening of more terms happens sooner).</li>
+<li><strong>Higher k₁</strong> → curve stays steeper longer (less saturation, closer to linear). More 'stuffing' is tolerated.</li>
 </ul>
 <p>Here's a clear comparison showing how k1 affects BM25 scores as term frequency increases:</p>
 <p><strong>Setup:</strong> Same document (length=100), avgdl=100, N=1000 docs, df=50</p>
@@ -2172,7 +2175,7 @@
 </tbody>
 </table>
 <p><img alt="various k1" src="../../images/fts/various-k1.png" /></p>
-<p>Lower values of k_1 in BM25 favor fewer repeated terms—they dampen the influence of term frequency more aggressively.</p>
+<p>Lower values of k_1 in BM25 favor fewer repeated terms — they dampen the influence of term frequency more aggressively.</p>
 <p>Here's why:</p>
 <p>BM25 uses a saturation function for term frequency:</p>
 <p><strong>Low k_1 (e.g., 0.2):</strong></p>
@@ -2196,18 +2199,19 @@
 <li><strong>Higher k1</strong> = more reward for repeated terms (good when repetition matters)</li>
 </ul>
 <h3 id="why_this_matters_-_eliteness">Why this matters - "Eliteness"<a class="headerlink" href="#why_this_matters_-_eliteness" title="Permanent link">&para;</a></h3>
-<p>The image explains the key insight: once a term appears several times in a document, that document is already "elite" (highly relevant) for that topic. Seeing the term 50 more times doesn't make it 50 times more relevant—it just confirms what you already know.</p>
+<p>Once a term appears several times in a document, that document is already "elite" (highly relevant) for that topic. Seeing the term 50 more times doesn't make it 50 times more relevant—it just confirms what you already know.</p>
 <p>For example, if you search for "php" and a document mentions it 5 times versus 500 times in another, the second document isn't necessarily 100x better. BM25's saturation prevents over-rewarding documents that spam keywords.</p>
 <p><strong>Default: 1.2-2.0</strong></p>
 <h3 id="b_length_normalization">b (Length Normalization)<a class="headerlink" href="#b_length_normalization" title="Permanent link">&para;</a></h3>
 <p><strong>Default: 0.75</strong></p>
 <p>Controls how much document length affects the score.</p>
-<p><div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>b = 0: Document length doesn&#39;t matter at all
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>b = 0: Document length doesn&#39;t matter at all
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>b = 0.5: Document length matters somewhat
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>b = 0.75: Document length matters a good amount (default)
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>b = 1.0: Document length matters completely
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>b = 1.0: Document length matters completely - long documents are penalised
 </span></code></pre></div>
-For a given number of terms, if b=1 then shorter documents get a higher score relative to a larger document. Rmemeber, it is relative scores not absolute values.</p>
+<p>For a given number of terms, if b=1 then shorter documents get a higher score relative to a larger document. Remember, it is relative scores not absolute values.</p>
+<p>We will see examples of this in the plugins which will make it visually more inromative.</p>
 <p><img alt="various b" src="../../images/fts/various-b.png" /></p>
 <h3 id="can_b_1">Can b &gt; 1?<a class="headerlink" href="#can_b_1" title="Permanent link">&para;</a></h3>
 <p>Yes, <code>b</code> in BM25 can technically be greater than 1, though it's unusual and not recommended in practice.</p>

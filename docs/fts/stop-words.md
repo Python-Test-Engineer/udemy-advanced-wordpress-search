@@ -1,6 +1,8 @@
 ## Stop Words in MySQL
 
-Stop words are one of the simplest but most misunderstood parts of MySQL’s full‑text search. Students often hear that MySQL “ignores common words,” but they rarely get a clean explanation of *why* this happens or *how* it affects search results. This guide breaks it down in a way that’s easy to teach and easy to remember.
+Stop words are one of the simplest but most misunderstood parts of MySQL’s full‑text search. 
+
+People often hear that MySQL “ignores common words,” but they rarely get a clean explanation of *why* this happens or *how* it affects search results. 
 
 ## What Stop Words Are
 
@@ -22,6 +24,7 @@ MySQL treats these words as too frequent to be useful for distinguishing one doc
 ### 1. They don’t help identify relevant documents  
 
 Words that appear in almost every row provide no meaningful signal.  
+
 If every document contains “the,” then searching for “the” would match everything.
 
 ### 2. They reduce index size  
@@ -41,7 +44,8 @@ If a student searches for “the and a,” MySQL returns nothing because all thr
 ### Mixed queries drop the stop words  
 
 A search for “the history of computing” becomes “history computing.”  
-This can surprise students if they expect an exact match.
+
+This can surprise people if they expect an exact match.
 
 ### Stop words can change the meaning of a query  
 
@@ -50,6 +54,7 @@ For example, “to be or not to be” becomes “be not be,” which is obviousl
 ## Where MySQL Gets Its Stop Words
 
 MySQL uses a built‑in stopword list by default.  
+
 This list is stored internally and automatically applied to all full‑text indexes unless you override it.
 
 The default list includes around 500 common English words.
@@ -81,5 +86,11 @@ Developers often need to customize or disable stop words for better relevance.
 ### It connects to broader search concepts  
 
 Stop words are an early example of the idea that not all words carry equal meaning—something that later ties into IDF, BM25, and semantic search.
+
+## Change stop words list
+
+This is explained more fully here in the MySQL Docs Implementation chapter:
+
+[https://udemy-advanced-wordpress-search.netlify.app/mysql-docs/05-stop-words/](https://udemy-advanced-wordpress-search.netlify.app/mysql-docs/05-stop-words/)
 
 <br>

@@ -2068,7 +2068,7 @@
 
 
 <h1 id="understanding_bm25_scores">Understanding BM25 Scores:<a class="headerlink" href="#understanding_bm25_scores" title="Permanent link">&para;</a></h1>
-<p>Why Negative Numbers Are Totally Normal</p>
+<p>Why Negative Numbers Are Totally Normal.</p>
 <h2 id="opening_intuition_what_is_bm25_trying_to_do">Opening Intuition: What Is BM25 Trying to Do?<a class="headerlink" href="#opening_intuition_what_is_bm25_trying_to_do" title="Permanent link">&para;</a></h2>
 <p>BM25 is a <strong>relevance scoring function</strong>. Its job is simple:</p>
 <blockquote>
@@ -2174,6 +2174,7 @@
 <li>Doc 3 (worst)</li>
 </ol>
 <p>Even though Doc 2 has a negative score, it’s still the <strong>best match</strong>.</p>
+<p>Zero values as in Doc 3 are filtered out even though 0 &gt; negative number.</p>
 <h2 id="when_youll_see_each_score_type">When You’ll See Each Score Type<a class="headerlink" href="#when_youll_see_each_score_type" title="Permanent link">&para;</a></h2>
 <h3 id="positive_scores_1">Positive Scores<a class="headerlink" href="#positive_scores_1" title="Permanent link">&para;</a></h3>
 <ul>

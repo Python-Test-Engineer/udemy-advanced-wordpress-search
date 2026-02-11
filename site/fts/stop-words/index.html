@@ -876,6 +876,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#change_stop_words_list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change stop words list
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2034,6 +2045,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#change_stop_words_list" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Change stop words list
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2054,7 +2076,8 @@
   <h1>Stop Words</h1>
 
 <h2 id="stop_words_in_mysql">Stop Words in MySQL<a class="headerlink" href="#stop_words_in_mysql" title="Permanent link">&para;</a></h2>
-<p>Stop words are one of the simplest but most misunderstood parts of MySQL’s full‑text search. Students often hear that MySQL “ignores common words,” but they rarely get a clean explanation of <em>why</em> this happens or <em>how</em> it affects search results. This guide breaks it down in a way that’s easy to teach and easy to remember.</p>
+<p>Stop words are one of the simplest but most misunderstood parts of MySQL’s full‑text search. </p>
+<p>People often hear that MySQL “ignores common words,” but they rarely get a clean explanation of <em>why</em> this happens or <em>how</em> it affects search results. </p>
 <h2 id="what_stop_words_are">What Stop Words Are<a class="headerlink" href="#what_stop_words_are" title="Permanent link">&para;</a></h2>
 <p>Stop words are very common words that MySQL’s full‑text search engine chooses to ignore.  </p>
 <p>They typically include everyday terms such as:</p>
@@ -2069,8 +2092,8 @@
 <p>MySQL treats these words as too frequent to be useful for distinguishing one document from another.</p>
 <h2 id="why_mysql_uses_stop_words">Why MySQL Uses Stop Words<a class="headerlink" href="#why_mysql_uses_stop_words" title="Permanent link">&para;</a></h2>
 <h3 id="1_they_dont_help_identify_relevant_documents">1. They don’t help identify relevant documents<a class="headerlink" href="#1_they_dont_help_identify_relevant_documents" title="Permanent link">&para;</a></h3>
-<p>Words that appear in almost every row provide no meaningful signal.<br />
-If every document contains “the,” then searching for “the” would match everything.</p>
+<p>Words that appear in almost every row provide no meaningful signal.  </p>
+<p>If every document contains “the,” then searching for “the” would match everything.</p>
 <h3 id="2_they_reduce_index_size">2. They reduce index size<a class="headerlink" href="#2_they_reduce_index_size" title="Permanent link">&para;</a></h3>
 <p>By skipping extremely common words, MySQL keeps the full‑text index smaller and faster to query.</p>
 <h3 id="3_they_improve_ranking">3. They improve ranking<a class="headerlink" href="#3_they_improve_ranking" title="Permanent link">&para;</a></h3>
@@ -2079,13 +2102,13 @@ If every document contains “the,” then searching for “the” would match e
 <h3 id="searches_containing_only_stop_words_return_no_results">Searches containing only stop words return no results<a class="headerlink" href="#searches_containing_only_stop_words_return_no_results" title="Permanent link">&para;</a></h3>
 <p>If a student searches for “the and a,” MySQL returns nothing because all three terms are ignored.</p>
 <h3 id="mixed_queries_drop_the_stop_words">Mixed queries drop the stop words<a class="headerlink" href="#mixed_queries_drop_the_stop_words" title="Permanent link">&para;</a></h3>
-<p>A search for “the history of computing” becomes “history computing.”<br />
-This can surprise students if they expect an exact match.</p>
+<p>A search for “the history of computing” becomes “history computing.”  </p>
+<p>This can surprise people if they expect an exact match.</p>
 <h3 id="stop_words_can_change_the_meaning_of_a_query">Stop words can change the meaning of a query<a class="headerlink" href="#stop_words_can_change_the_meaning_of_a_query" title="Permanent link">&para;</a></h3>
 <p>For example, “to be or not to be” becomes “be not be,” which is obviously not ideal for phrase‑based searching.</p>
 <h2 id="where_mysql_gets_its_stop_words">Where MySQL Gets Its Stop Words<a class="headerlink" href="#where_mysql_gets_its_stop_words" title="Permanent link">&para;</a></h2>
-<p>MySQL uses a built‑in stopword list by default.<br />
-This list is stored internally and automatically applied to all full‑text indexes unless you override it.</p>
+<p>MySQL uses a built‑in stopword list by default.  </p>
+<p>This list is stored internally and automatically applied to all full‑text indexes unless you override it.</p>
 <p>The default list includes around 500 common English words.</p>
 <h2 id="when_stop_words_become_a_problem">When Stop Words Become a Problem<a class="headerlink" href="#when_stop_words_become_a_problem" title="Permanent link">&para;</a></h2>
 <h3 id="searching_names_or_titles">Searching names or titles<a class="headerlink" href="#searching_names_or_titles" title="Permanent link">&para;</a></h3>
@@ -2101,6 +2124,9 @@ This list is stored internally and automatically applied to all full‑text inde
 <p>Developers often need to customize or disable stop words for better relevance.</p>
 <h3 id="it_connects_to_broader_search_concepts">It connects to broader search concepts<a class="headerlink" href="#it_connects_to_broader_search_concepts" title="Permanent link">&para;</a></h3>
 <p>Stop words are an early example of the idea that not all words carry equal meaning—something that later ties into IDF, BM25, and semantic search.</p>
+<h2 id="change_stop_words_list">Change stop words list<a class="headerlink" href="#change_stop_words_list" title="Permanent link">&para;</a></h2>
+<p>This is explained more fully here in the MySQL Docs Implementation chapter:</p>
+<p><a href="https://udemy-advanced-wordpress-search.netlify.app/mysql-docs/05-stop-words/">https://udemy-advanced-wordpress-search.netlify.app/mysql-docs/05-stop-words/</a></p>
 <p><br></p>
 
 

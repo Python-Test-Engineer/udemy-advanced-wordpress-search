@@ -1,6 +1,6 @@
 # Understanding BM25 Scores: 
 
-Why Negative Numbers Are Totally Normal
+Why Negative Numbers Are Totally Normal.
 
 
 ## Opening Intuition: What Is BM25 Trying to Do?
@@ -99,6 +99,8 @@ Ranking:
 3. Doc 3 (worst)
 
 Even though Doc 2 has a negative score, it’s still the **best match**.
+
+Zero values as in Doc 3 are filtered out even though 0 > negative number.
 
 ## When You’ll See Each Score Type
 

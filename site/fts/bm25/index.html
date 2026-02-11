@@ -709,17 +709,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#unfortunately_mysql_does_not_enable_k1_and_b_tuning_for_our_wordpress_sites_if_it_did_then" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Unfortunately, MySQL does not enable k1 and b tuning for our WordPress sites. If it did then...
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#higher_k1_eg_k1_20" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1880,17 +1869,6 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#unfortunately_mysql_does_not_enable_k1_and_b_tuning_for_our_wordpress_sites_if_it_did_then" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Unfortunately, MySQL does not enable k1 and b tuning for our WordPress sites. If it did then...
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#higher_k1_eg_k1_20" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1968,6 +1946,7 @@
 
 
 <h1 id="bm25">BM25<a class="headerlink" href="#bm25" title="Permanent link">&para;</a></h1>
+<p>When we look at the plugins, we will see how BM25 comares with TF-IDF and also fine tuning parameters for BM25.</p>
 <h2 id="what_is_bm25">What is BM25?<a class="headerlink" href="#what_is_bm25" title="Permanent link">&para;</a></h2>
 <p><strong>BM25</strong> (Best Matching 25th Iteration) an advancement on TF-IDF</p>
 <p><strong>Why is it better than TF-IDF?</strong></p>
@@ -2026,7 +2005,6 @@
 <p>It can be of value to understand <code>k1</code> and <code>b</code> as you may have a different database or have an additonal database for search that enables <code>k1</code> and <code>b</code> fine tuning.</p>
 <h3 id="k1_term_frequency_saturation">k1 (Term Frequency Saturation)<a class="headerlink" href="#k1_term_frequency_saturation" title="Permanent link">&para;</a></h3>
 <h3 id="what_k1_does">What k₁ does<a class="headerlink" href="#what_k1_does" title="Permanent link">&para;</a></h3>
-<p><img alt="various k1" src="../../images/fts/various-k1.png" /></p>
 <p>The <strong>k₁ parameter</strong> controls how quickly the curve flattens:</p>
 <ul>
 <li><strong>Lower k₁</strong> → curve flattens sooner (more aggressive saturation meaning the threshold for 'term stuffing' to be considered is lower so the campening of more terms happens sooner).</li>
@@ -2212,7 +2190,6 @@
 </span></code></pre></div>
 <p>For a given number of terms, if b=1 then shorter documents get a higher score relative to a larger document. Remember, it is relative scores not absolute values.</p>
 <p>We will see examples of this in the plugins which will make it visually more inromative.</p>
-<p><img alt="various b" src="../../images/fts/various-b.png" /></p>
 <h3 id="can_b_1">Can b &gt; 1?<a class="headerlink" href="#can_b_1" title="Permanent link">&para;</a></h3>
 <p>Yes, <code>b</code> in BM25 can technically be greater than 1, though it's unusual and not recommended in practice.</p>
 <p>The parameter <code>b</code> controls document length normalization in BM25:
@@ -2241,7 +2218,9 @@
 <p><strong>Higher b</strong> = Longer docs penalized more  </p>
 <p><strong>Lower b</strong> = Longer docs penalized less</p>
 <h2 id="tuning_parameters_for_different_use_cases">Tuning Parameters for Different Use Cases<a class="headerlink" href="#tuning_parameters_for_different_use_cases" title="Permanent link">&para;</a></h2>
-<h3 id="unfortunately_mysql_does_not_enable_k1_and_b_tuning_for_our_wordpress_sites_if_it_did_then"><em>Unfortunately, MySQL does not enable k1 and b tuning for our WordPress sites. If it did then...</em><a class="headerlink" href="#unfortunately_mysql_does_not_enable_k1_and_b_tuning_for_our_wordpress_sites_if_it_did_then" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><em>Unfortunately, MySQL does not enable k1 and b tuning for our WordPress sites. If it did then...</em></p>
+</blockquote>
 <h3 id="higher_k1_eg_k1_20">Higher k1 (e.g., k1 = 2.0):<a class="headerlink" href="#higher_k1_eg_k1_20" title="Permanent link">&para;</a></h3>
 <p><strong>Use when:</strong></p>
 <ul>

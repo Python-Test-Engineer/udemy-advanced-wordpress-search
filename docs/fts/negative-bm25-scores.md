@@ -157,7 +157,7 @@ Query: **cooking recipes** → zero
 
 Developers often ask this, so it’s worth adding:
 
-|     Feature     |       TF‑I       |               BM2               |
+|     Feature     |       TF‑IDF     |               BM25              |
 |-----------------|------------------|---------------------------------|
 | Term frequency  | Linear           | Saturates (diminishing returns) |
 | Document length | Not handled well | Normalized                      |

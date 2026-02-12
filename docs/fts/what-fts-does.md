@@ -14,38 +14,23 @@ The parser tokenizes the query string similar to how documents were indexed.
 
 ### Stemming
 
-
-
 MySQL FTS will treat "bluetooth", "bluetooths" (if that were a word), "run", "running", and "runs" as completely different terms. Stemming would treat "run" and "running" as the same because the 'stem' is the same - "run".
-
-Use BOOLEAN MODE with wildcards (partial solution)
-
-sqlMATCH(product_name, product_short_description, expanded_description) 
-AGAINST ('bluetooth* run*' IN BOOLEAN MODE)
 
 This matches "bluetooth", "bluetooths", "running", "runs", etc. But it's prefix-only, not true stemming.
 
-**2. Stopword Filtering**
+### Stopword Filtering
 
 MySQL filters out stopwords (common words like "the", "is", "at") based on the configured stopword list. 
 
 These are ignored because they appear too frequently to be useful for relevance ranking.
 
-**3. Query Expansion (Natural Language Mode)**
-
-In natural language mode, MySQL may expand the query internally. 
-
-It identifies the search terms that will be used to probe the full-text index.
-
-Query Expansion does not filter out rows that have been specified as 'must not contain' with the '-' operator. It just adjusts the relevancy score accordingly and these rows will appear lower in relevancy than before.
-
-**4. Index Lookup**
+### Index Lookup
 
 MySQL uses the FULLTEXT index to quickly locate documents containing the search terms. 
 
 The index is typically organized as an inverted index where each word maps to a list of documents (and positions within those documents) where it appears.
 
-**5. Relevance Calculation**
+### Relevance Calculation
 
 For each matching document, MySQL calculates a relevance score based on:
 
@@ -56,50 +41,23 @@ For each matching document, MySQL calculates a relevance score based on:
 
 The formula is similar to TF-IDF (Term Frequency-Inverse Document Frequency).
 
-**6. Boolean Evaluation (Boolean Mode)**
-
-In boolean mode, MySQL applies the boolean operators to determine which documents satisfy the query conditions. 
-
-Required terms (+), excluded terms (-), and optional terms are processed according to boolean logic.
-
-**7. Result Filtering and Sorting**
+### Result Filtering and Sorting
 
 MySQL filters results based on the WHERE clause conditions (including the MATCH() condition itself) and sorts results by relevance score (or other specified ORDER BY criteria).
 
-**8. Result Return**
+### Result Return
 
 Finally, MySQL returns the matching rows with their relevance scores, applying any LIMIT clauses to restrict the result set size.
 
-
-## Index Maintenance
-
-**Insert/Update/Delete Operations:**
-
-InnoDB maintains FULLTEXT indexes using auxiliary tables and a document ID system. New content is tokenized and added to in-memory buffers before being flushed to the index. Updates mark old documents as deleted and insert new versions, while deletes flag documents for later cleanup rather than immediate removal.
-
-**Performance Impact:**
-
-High-volume inserts create write overhead as indexes are maintained in real-time. Index fragmentation accumulates from updates and deletes, requiring periodic optimization with `OPTIMIZE TABLE`.
-
-**Best Practices:**
-
-- Batch inserts in transactions to reduce overhead
-- Monitor index size and fragmentation regularly
-- Tune configuration parameters like `innodb_ft_cache_size`
-- For extreme volumes, consider delayed indexing patterns or external search engines like Elasticsearch
-
-*The key tradeoff: better search performance costs write speed.*
-
-
 PROMPT: 
 
-*using this search phrase "What WordPress plugins help me with SEO and other similar search techniques" - detail whtat FTS in MySQL does to get a rank of search items. Use markdown.*
+> "What WordPress plugins help me with SEO and other similar search techniques"
 
 RESPONSE:
 
-# MySQL Full-Text Search: How Your Query Gets Ranked
+## Processing the Query: 
 
-## Processing the Query: "What WordPress plugins help me with SEO and other similar search techniques"
+"What WordPress plugins help me with SEO and other similar search techniques"
 
 ### Step 1: Break Into Words (Tokenization)
 
@@ -136,7 +94,6 @@ wordpress ✓ | plugins ✓ | help ✓ | me ✗ | seo ✓ | other ✓ | similar 
 ```
 wordpress | plugins | help | seo | other | similar | search | techniques
 ```
-
 
 ## How Ranking Works: Single Example
 

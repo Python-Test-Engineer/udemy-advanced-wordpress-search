@@ -716,6 +716,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#query_parsing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Query Parsing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#stemming" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1803,6 +1814,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#query_parsing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Query Parsing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#stemming" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2026,30 +2048,30 @@
 <h1 id="query_processing_overview">Query Processing Overview<a class="headerlink" href="#query_processing_overview" title="Permanent link">&para;</a></h1>
 <p>When MySQL receives a full-text search query, it goes through several stages:</p>
 <h2 id="process">Process<a class="headerlink" href="#process" title="Permanent link">&para;</a></h2>
-<p><strong>1. Query Parsing</strong></p>
+<h3 id="query_parsing">Query Parsing<a class="headerlink" href="#query_parsing" title="Permanent link">&para;</a></h3>
 <p>MySQL parses the search string to identify search terms and operators. </p>
 <p>It recognizes special syntax like boolean operators (+, -, &gt;, &lt;, ~, *, ""), stopwords, and phrase searches. </p>
 <p>The parser tokenizes the query string similar to how documents were indexed.</p>
 <h3 id="stemming">Stemming<a class="headerlink" href="#stemming" title="Permanent link">&para;</a></h3>
-<p>MySQL FTS will treat "bluetooth", "bluetooths" (if that were a word), "run", "running", and "runs" as completely different terms. Stemming would treat "run" and "running" as the same because the 'stem' is the same - "run".</p>
-<p>This matches "bluetooth", "bluetooths", "running", "runs", etc. But it's prefix-only, not true stemming.</p>
+<p>This is where 'run', 'running', 'runs' are stripped down into the core term 'run'.</p>
 <h3 id="stopword_filtering">Stopword Filtering<a class="headerlink" href="#stopword_filtering" title="Permanent link">&para;</a></h3>
 <p>MySQL filters out stopwords (common words like "the", "is", "at") based on the configured stopword list. </p>
 <p>These are ignored because they appear too frequently to be useful for relevance ranking.</p>
 <h3 id="index_lookup">Index Lookup<a class="headerlink" href="#index_lookup" title="Permanent link">&para;</a></h3>
 <p>MySQL uses the FULLTEXT index to quickly locate documents containing the search terms. </p>
-<p>The index is typically organized as an inverted index where each word maps to a list of documents (and positions within those documents) where it appears.</p>
+<p>The index is typically organized as an inverted index, (IDF), where each word maps to a list of documents (and positions within those documents) where it appears.</p>
 <h3 id="relevance_calculation">Relevance Calculation<a class="headerlink" href="#relevance_calculation" title="Permanent link">&para;</a></h3>
 <p>For each matching document, MySQL calculates a relevance score based on:</p>
 <ul>
 <li>Term frequency (how often the word appears in the document)</li>
 <li>Inverse document frequency (how rare the word is across all documents)</li>
 <li>Document length normalization</li>
-<li>Word proximity (for phrase searches)</li>
+<li>Word proximity (for phrase searches - covered later...)</li>
 </ul>
 <p>The formula is similar to TF-IDF (Term Frequency-Inverse Document Frequency).</p>
 <h3 id="result_filtering_and_sorting">Result Filtering and Sorting<a class="headerlink" href="#result_filtering_and_sorting" title="Permanent link">&para;</a></h3>
 <p>MySQL filters results based on the WHERE clause conditions (including the MATCH() condition itself) and sorts results by relevance score (or other specified ORDER BY criteria).</p>
+<p>This can enable pre-filtering to avoid searching for example all categories if we have specified categories in our search.</p>
 <h3 id="result_return">Result Return<a class="headerlink" href="#result_return" title="Permanent link">&para;</a></h3>
 <p>Finally, MySQL returns the matching rows with their relevance scores, applying any LIMIT clauses to restrict the result set size.</p>
 <p>PROMPT: </p>

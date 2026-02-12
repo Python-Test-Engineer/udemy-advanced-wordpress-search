@@ -4,7 +4,7 @@ When MySQL receives a full-text search query, it goes through several stages:
 
 ## Process
 
-**1. Query Parsing**
+### Query Parsing
 
 MySQL parses the search string to identify search terms and operators. 
 
@@ -14,9 +14,7 @@ The parser tokenizes the query string similar to how documents were indexed.
 
 ### Stemming
 
-MySQL FTS will treat "bluetooth", "bluetooths" (if that were a word), "run", "running", and "runs" as completely different terms. Stemming would treat "run" and "running" as the same because the 'stem' is the same - "run".
-
-This matches "bluetooth", "bluetooths", "running", "runs", etc. But it's prefix-only, not true stemming.
+This is where 'run', 'running', 'runs' are stripped down into the core term 'run'.
 
 ### Stopword Filtering
 
@@ -28,7 +26,7 @@ These are ignored because they appear too frequently to be useful for relevance 
 
 MySQL uses the FULLTEXT index to quickly locate documents containing the search terms. 
 
-The index is typically organized as an inverted index where each word maps to a list of documents (and positions within those documents) where it appears.
+The index is typically organized as an inverted index, (IDF), where each word maps to a list of documents (and positions within those documents) where it appears.
 
 ### Relevance Calculation
 
@@ -37,13 +35,15 @@ For each matching document, MySQL calculates a relevance score based on:
 - Term frequency (how often the word appears in the document)
 - Inverse document frequency (how rare the word is across all documents)
 - Document length normalization
-- Word proximity (for phrase searches)
+- Word proximity (for phrase searches - covered later...)
 
 The formula is similar to TF-IDF (Term Frequency-Inverse Document Frequency).
 
 ### Result Filtering and Sorting
 
 MySQL filters results based on the WHERE clause conditions (including the MATCH() condition itself) and sorts results by relevance score (or other specified ORDER BY criteria).
+
+This can enable pre-filtering to avoid searching for example all categories if we have specified categories in our search.
 
 ### Result Return
 

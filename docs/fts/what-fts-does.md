@@ -1,5 +1,7 @@
 # Query Processing Overview
 
+We will look at an actual example after this bit of theory.
+
 When MySQL receives a full-text search query, it goes through several stages:
 
 ## Process
@@ -47,6 +49,10 @@ This can enable pre-filtering to avoid searching for example all categories if w
 
 ### Result Return
 
+The final set of documents with relevancy scores is returned.
+
+## An example
+
 Finally, MySQL returns the matching rows with their relevance scores, applying any LIMIT clauses to restrict the result set size.
 
 PROMPT: 
@@ -55,80 +61,52 @@ PROMPT:
 
 RESPONSE:
 
-## Processing the Query: 
+### Processing the Query: 
 
-"What WordPress plugins help me with SEO and other similar search techniques"
+### BM25 Scoring Example
 
-### Step 1: Break Into Words (Tokenization)
+**Search Query:** "What WordPress plugins help me with SEO and other similar search techniques"
 
-MySQL splits your query at spaces:
+**Document Being Scored:** "Yoast SEO is the best WordPress SEO plugin for optimizing search rankings and implementing advanced SEO techniques"
 
-```
-what | wordpress | plugins | help | me | with | seo | and | other | similar | search | techniques
-```
-
-### Step 2: Remove Stopwords
-
-MySQL's default stopword list contains 36 common words including: what, with, the, is, at, and,for, from, how, in, of, on, or, that, to, was, when, where, who, will.
-
-These words appear so frequently they provide no search value:
-
-```
-what ✗ | wordpress ✓ | plugins ✓ | help ✓ | me ✓ | with ✗ | seo ✓ | other ✓ | similar ✓ | search ✓ | techniques ✓
-```
-
-**Removed:** "what", "with". "and"
-
-### Step 3: Check Word Length
-
-MySQL requires words to be at least 3 characters (by default):
-
-```
-wordpress ✓ | plugins ✓ | help ✓ | me ✗ | seo ✓ | other ✓ | similar ✓ | search ✓ | techniques ✓
-```
-
-**Removed:** "me" (only 2 characters)
-
-### Final Search Terms (9 words)
-
-```
-wordpress | plugins | help | seo | other | similar | search | techniques
-```
-
-## How Ranking Works: Single Example
-
-Let's say there are **10,000 WordPress plugin descriptions** in the database.
-
-We'll rank this plugin description:
-
-**"Yoast SEO is the best WordPress SEO plugin for optimizing search rankings and implementing advanced SEO techniques"**
-
-### The Ranking Formula
-
-For each search word that appears in the document:
-
-```
-Score for that word = (Times it appears) × IDF × IDF
-
-Where IDF = log10(Total documents / Documents containing this word)
-```
-
-**Rare words get higher IDF scores. Common words get lower IDF scores.**
+**Corpus:** 10,000 documents total
 
 ---
 
-### Calculating the Score
-
 | Search Term | How Many Documents Contain It? | IDF Score | Times in This Document | Contribution to Total |
 |-------------|-------------------------------|-----------|----------------------|---------------------|
-| **wordpress** | 8,500 (very common) | 0.07 | 1 | 0.07 × 0.07 × 1 = **0.005** |
-| **plugins** | 3,000 | 0.52 | 0 | **0.000** |
-| **help** | 4,500 | 0.35 | 0 | **0.000** |
-| **seo** | 1,500 (moderately rare) | 0.82 | 3 | 0.82 × 0.82 × 3 = **2.036** |
-| **other** | 7,000 | 0.15 | 0 | **0.000** |
-| **similar** | 1,800 | 0.74 | 0 | **0.000** |
-| **search** | 5,000 | 0.30 | 1 | 0.30 × 0.30 × 1 = **0.091** |
-| **techniques** | 300 (very rare) | 1.52 | 1 | 1.52 × 1.52 × 1 = **2.319** |
+| **yoast** | 150 (very rare) | 1.82 | 1 | 1.82 × 0.9 × 1 = **1.638** |
+| **seo** | 1,500 (moderately rare) | 0.82 | 3 | 0.82 × 1.5 × 3 = **3.690** |
+| **best** | 6,000 (very common) | 0.22 | 1 | 0.22 × 0.9 × 1 = **0.198** |
+| **wordpress** | 8,500 (very common) | 0.07 | 1 | 0.07 × 0.9 × 1 = **0.063** |
+| **plugin** | 2,800 (moderately common) | 0.55 | 1 | 0.55 × 0.9 × 1 = **0.495** |
+| **optimizing** | 1,200 (moderately rare) | 0.92 | 1 | 0.92 × 0.9 × 1 = **0.828** |
+| **search** | 5,000 (common) | 0.30 | 1 | 0.30 × 0.9 × 1 = **0.270** |
+| **rankings** | 900 (moderately rare) | 1.01 | 1 | 1.01 × 0.9 × 1 = **0.909** |
+| **implementing** | 400 (rare) | 1.39 | 1 | 1.39 × 0.9 × 1 = **1.251** |
+| **advanced** | 3,500 (moderately common) | 0.44 | 1 | 0.44 × 0.9 × 1 = **0.396** |
+| **techniques** | 300 (very rare) | 1.52 | 1 | 1.52 × 0.9 × 1 = **1.368** |
+
+### Final Score: 11.11 points
+
+```
+1.638 + 3.690 + 0.198 + 0.063 + 0.495 + 0.828 + 0.270 + 0.909 + 1.251 + 0.396 + 1.368 = 11.11
+```
+
+---
+
+**Key Observations:**
+
+- **"seo"** contributes most (appears 3 times in document)
+- **"yoast"**, **"techniques"**, and **"implementing"** are very rare terms with high impact
+- Common words like **"best"** and **"wordpress"** contribute minimally
+- Perfect match between query and document = very high score
+- Stop words like "is", "the", "for", "and" are typically filtered out before scoring
+- **"seo"** dominates the score (appears 3 times AND moderately rare)
+- **"techniques"** is very rare, contributing strongly despite appearing once
+- **"plugins"** contributes nothing (not in document - notice "plugin" not "plugins")
+- **"wordpress"** appears but contributes little due to being extremely common
+- This document ranks highly due to multiple mentions of the rare term "seo"
 
 ### Final Score: 4.45 points
 

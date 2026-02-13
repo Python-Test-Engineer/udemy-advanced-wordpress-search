@@ -16,6 +16,14 @@ td {
     font-size: 1.1rem;
 }
 
+
+.author {
+    font-size: 0.85rem;
+    /* font-style: italic; */
+    color: #0d864b;
+    font-family: 'Consolas', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 /* Alternative orange shades you can use: */
 /* 
    #ff8c00 - Dark orange

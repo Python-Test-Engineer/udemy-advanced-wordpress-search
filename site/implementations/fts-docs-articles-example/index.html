@@ -846,15 +846,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#create_fts_inded" class="md-nav__link">
+  <a href="#create_fts_index" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Create FTS inded
+        Create FTS index
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Create FTS inded">
+    <nav class="md-nav" aria-label="Create FTS index">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2320,15 +2320,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#create_fts_inded" class="md-nav__link">
+  <a href="#create_fts_index" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Create FTS inded
+        Create FTS index
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Create FTS inded">
+    <nav class="md-nav" aria-label="Create FTS index">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -3059,9 +3059,12 @@
 
 <h1 id="mysql_docs_example">MySQL Docs example<a class="headerlink" href="#mysql_docs_example" title="Permanent link">&para;</a></h1>
 <p>This uses a custom table <code>articles</code> that is used in the official MySQL docs.</p>
+<p><a href="https://dev.mysql.com/doc/refman/8.4/en/fulltext-natural-language.html">https://dev.mysql.com/doc/refman/8.4/en/fulltext-natural-language.html</a></p>
+<p class="author">My additions are formatted like this.</p>
+
 <h2 id="what_is_mysql_full-text_search">What is MySQL Full-Text Search?<a class="headerlink" href="#what_is_mysql_full-text_search" title="Permanent link">&para;</a></h2>
 <p>MySQL Full-Text Search lets you search through text columns <strong>FAST</strong> without using slow <code>LIKE</code> queries!</p>
-<h2 id="create_fts_inded">Create FTS inded<a class="headerlink" href="#create_fts_inded" title="Permanent link">&para;</a></h2>
+<h2 id="create_fts_index">Create FTS index<a class="headerlink" href="#create_fts_index" title="Permanent link">&para;</a></h2>
 <p>Two ways:</p>
 <ol>
 <li>After table creation:</li>
@@ -3091,11 +3094,11 @@
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="p">);</span>
 </span></code></pre></div>
 <h3 id="the_problem_with_like">The Problem with LIKE:<a class="headerlink" href="#the_problem_with_like" title="Permanent link">&para;</a></h3>
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">-- Slow query (scans entire table!) </span>
+<p><div class="language-sql highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">-- Slow query (scans entire table!) </span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">articles</span><span class="w"> </span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">body</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%machine learning%&#39;</span><span class="p">;</span>
 </span></code></pre></div>
-<p>Time: 5 seconds for 1 million rows ❌
+Time: 5 seconds for 1 million rows ❌
 Cannot use indexes efficiently</p>
 <h3 id="the_solution_full-text_search">The Solution: Full-Text Search<a class="headerlink" href="#the_solution_full-text_search" title="Permanent link">&para;</a></h3>
 <div class="language-sql highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">--</span>
@@ -3115,6 +3118,8 @@ Cannot use indexes efficiently</p>
 <p>Time: 0.05 seconds for 1 million rows ✅
 Uses specialized full-text indexes</p>
 <p><strong>Speed improvement: 100x faster!</strong> </p>
+<p class="author">MySQL's MATCH syntax is used for full-text searching and follows the pattern MATCH(column1, column2, ...) AGAINST('search terms' [search_modifier]), where you can search one or more text columns for specific words or phrases. <br><br>The critical requirement is that you must have a FULLTEXT index on the exact same column(s) in the same order that you specify in the MATCH clause—for example, if you use MATCH(title, body), you need a FULLTEXT index defined as FULLTEXT(title, body) or FULLTEXT(title) and FULLTEXT(body) separately </p>
+
 <h2 id="three_types_of_full-text_search_in_mysql">Three Types of Full-Text Search in MySQL<a class="headerlink" href="#three_types_of_full-text_search_in_mysql" title="Permanent link">&para;</a></h2>
 <p>MySQL offers <strong>3 different search modes</strong>, each with unique capabilities:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>┌─────────────────────────────────────────────────┐
@@ -3141,11 +3146,13 @@ Uses specialized full-text indexes</p>
 <h2 id="type_1_natural_language_mode">Type 1: NATURAL LANGUAGE MODE<a class="headerlink" href="#type_1_natural_language_mode" title="Permanent link">&para;</a></h2>
 <h3 id="what_it_does">What It Does:<a class="headerlink" href="#what_it_does" title="Permanent link">&para;</a></h3>
 <p>Searches like you're talking naturally - just type your query!</p>
-<p><strong>Key Features:</strong>
-- ✅ Ranks results by relevance (most relevant first)
-- ✅ Ignores words that appear in 50%+ of rows (too common)
-- ✅ Automatically handles word variations
-- ✅ No special operators needed</p>
+<p><strong>Key Features:</strong></p>
+<ul>
+<li>✅ Ranks results by relevance (most relevant first)</li>
+<li>✅ Ignores words that appear in 50%+ of rows (too common)</li>
+<li>✅ Automatically handles word variations</li>
+<li>✅ No special operators needed</li>
+</ul>
 <h3 id="visual_representation">Visual Representation:<a class="headerlink" href="#visual_representation" title="Permanent link">&para;</a></h3>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>User Query: &quot;machine learning tutorial&quot;
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>              ↓

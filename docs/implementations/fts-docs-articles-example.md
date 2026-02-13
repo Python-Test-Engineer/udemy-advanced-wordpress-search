@@ -2,11 +2,16 @@
 
 This uses a custom table `articles` that is used in the official MySQL docs.
 
+[https://dev.mysql.com/doc/refman/8.4/en/fulltext-natural-language.html](https://dev.mysql.com/doc/refman/8.4/en/fulltext-natural-language.html)
+
+
+<p class="author">My additions are formatted like this.</p>
+
 ## What is MySQL Full-Text Search?
 
 MySQL Full-Text Search lets you search through text columns **FAST** without using slow `LIKE` queries!
 
-## Create FTS inded
+## Create FTS index
 
 Two ways:
 
@@ -47,10 +52,8 @@ CREATE TABLE IF NOT EXISTS articles (
 SELECT * FROM articles 
 WHERE body LIKE '%machine learning%';
 ```
-
 Time: 5 seconds for 1 million rows ❌
 Cannot use indexes efficiently
-
 
 ### The Solution: Full-Text Search
 
@@ -73,9 +76,10 @@ WHERE MATCH(body) AGAINST('machine learning');
 Time: 0.05 seconds for 1 million rows ✅
 Uses specialized full-text indexes
 
-
 **Speed improvement: 100x faster!** 
 
+
+<p class="author">MySQL's MATCH syntax is used for full-text searching and follows the pattern MATCH(column1, column2, ...) AGAINST('search terms' [search_modifier]), where you can search one or more text columns for specific words or phrases. <br><br>The critical requirement is that you must have a FULLTEXT index on the exact same column(s) in the same order that you specify in the MATCH clause—for example, if you use MATCH(title, body), you need a FULLTEXT index defined as FULLTEXT(title, body) or FULLTEXT(title) and FULLTEXT(body) separately </p>
 
 ## Three Types of Full-Text Search in MySQL
 
@@ -111,6 +115,7 @@ MySQL offers **3 different search modes**, each with unique capabilities:
 Searches like you're talking naturally - just type your query!
 
 **Key Features:**
+
 - ✅ Ranks results by relevance (most relevant first)
 - ✅ Ignores words that appear in 50%+ of rows (too common)
 - ✅ Automatically handles word variations

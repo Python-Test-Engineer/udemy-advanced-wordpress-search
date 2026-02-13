@@ -95,7 +95,7 @@ MATCH(column1, column2, ...) AGAINST('search terms' [mode])
 
 ## Requirements and Setup
 
-Before you can use full-text search, you need to create a special type of index called a FULLTEXT index.
+Before you can use full-text search, you need to create a special type of index called a FULL-TEXT index.
 
 ### Supported Storage Engines
 

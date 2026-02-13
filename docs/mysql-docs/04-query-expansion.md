@@ -12,6 +12,8 @@ It works by performing the search twice, where the search phrase for the second 
 
 Thus, if one of these documents contains the word “databases” and the word “MySQL”, the second search finds the documents that contain the word “MySQL” even if they do not contain the word “database”. The following example shows this difference:
 
+## Example
+
 ```sql
 SELECT * FROM articles
 WHERE MATCH (title,body)
@@ -53,7 +55,7 @@ Another example could be searching for books by Georges Simenon about Maigret, w
 
 A search for “Megre and the reluctant witnesses” finds only “Maigret and the Reluctant Witnesses” without query expansion. A search with query expansion finds all books with the word “Maigret” on the second pass.
 
-### Note
+## Note
 
 Because blind query expansion tends to increase noise significantly by returning nonrelevant documents, use it only when a search phrase is short.
 

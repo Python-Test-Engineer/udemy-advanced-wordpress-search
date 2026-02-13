@@ -45,7 +45,7 @@ ADD FULLTEXT INDEX ft_name_short_desc (product_name, product_short_description);
 
 -- Composite index on multiple columns (recommended for comprehensive search)
 ALTER TABLE wp_products 
-ADD FULLTEXT INDEX ft_product_search (product_name, product_short_description,   expanded_description);
+ADD FULLTEXT INDEX ft_product_search (product_name, product_short_description, expanded_description);
 ```
 
 ```sql 
@@ -129,7 +129,8 @@ The MySQL documentation states that when you use MATCH ... AGAINST in both the W
 -- Default mode - searches for words in natural text
 -- Results ranked by relevance automaticall
 -- !! There must be an index on the  composite searched columns !!
--- If you MATCH against multiple columns, ensure a FULLTEXT index exists on all those columns, not just individual columns.
+-- If you MATCH against multiple columns, ensure a FULLTEXT index exists 
+-- on all those columns, not just individual columns.
 
 
 -- Basic natural language search

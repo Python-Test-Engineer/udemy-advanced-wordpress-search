@@ -951,9 +951,9 @@ Configuration changes that don't require restart:
 
 ## Resources
 
-- MySQL 8.4 Full-Text Search Documentation: https://dev.mysql.com/doc/refman/8.4/en/fulltext-search.html
-- MySQL 8.4 Fine-Tuning Guide: https://dev.mysql.com/doc/refman/8.4/en/fulltext-fine-tuning.html
-- InnoDB Full-Text Indexes: https://dev.mysql.com/doc/refman/8.4/en/innodb-fulltext-index.html
+- MySQL 8.4 Full-Text Search Documentation: [https://dev.mysql.com/doc/refman/8.4/en/fulltext-search.html](https://dev.mysql.com/doc/refman/8.4/en/fulltext-search.html)
+- MySQL 8.4 Fine-Tuning Guide: [https://dev.mysql.com/doc/refman/8.4/en/fulltext-fine-tuning.html](https://dev.mysql.com/doc/refman/8.4/en/fulltext-fine-tuning.html)
+- InnoDB Full-Text Indexes: [https://dev.mysql.com/doc/refman/8.4/en/innodb-fulltext-index.html](https://dev.mysql.com/doc/refman/8.4/en/innodb-fulltext-index.html)
 
 
 **Remember:** 

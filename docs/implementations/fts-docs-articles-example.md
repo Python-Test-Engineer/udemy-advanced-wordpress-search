@@ -15,7 +15,7 @@ MySQL Full-Text Search lets you search through text columns **FAST** without usi
 
 Two ways:
 
-1. After table creation:
+1 After table creation:
 
 ```sql
 CREATE TABLE IF NOT EXISTS  (
@@ -28,13 +28,19 @@ CREATE TABLE IF NOT EXISTS  (
 ALTER TABLE articles 
 ADD FULLTEXT INDEX ft_title_body (title, body);
 
+ALTER TABLE articles 
+ADD FULLTEXT INDEX ft_title (title);
+
+ALTER TABLE articles 
+ADD FULLTEXT INDEX ft_body (body);
+
 -- Or using CREATE INDEX
 CREATE FULLTEXT INDEX ft_title_body
 ON articles(title, body);
 
 ```
 
-2. As part of table creation:
+2 As part of table creation:
 
 ```sql
 CREATE TABLE IF NOT EXISTS articles (
@@ -62,15 +68,12 @@ Cannot use indexes efficiently
 -- Table structure for table `articles`
 --
 
-CREATE TABLE IF NOT EXISTS `articles` (
-  `id` int UNSIGNED NOT NULL,
-  `title` varchar(200) DEFAULT NULL,
-  `body` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
 -- Fast query (uses full-text index!) ⚡
 SELECT * FROM articles 
-WHERE MATCH(body) AGAINST('machine learning');
+WHERE MATCH(body) AGAINST('MySQL Tutorial');
+
+SELECT * FROM articles 
+WHERE MATCH(title, body) AGAINST('MySQL Tutorial');
 ```
 
 Time: 0.05 seconds for 1 million rows ✅
@@ -79,7 +82,7 @@ Uses specialized full-text indexes
 **Speed improvement: 100x faster!** 
 
 
-<p class="author">MySQL's MATCH syntax is used for full-text searching and follows the pattern MATCH(column1, column2, ...) AGAINST('search terms' [search_modifier]), where you can search one or more text columns for specific words or phrases. <br><br>The critical requirement is that you must have a FULLTEXT index on the exact same column(s) in the same order that you specify in the MATCH clause—for example, if you use MATCH(title, body), you need a FULLTEXT index defined as FULLTEXT(title, body) or FULLTEXT(title) and FULLTEXT(body) separately </p>
+<p class="author">MySQL's MATCH syntax is used for full-text searching and follows the pattern MATCH(column1, column2, ...) AGAINST('search terms' [search_modifier]), where you can search one or more text columns for specific words or phrases. <br><br>The critical requirement is that you must have a FULLTEXT index on the exact same column(s) in the same order that you specify in the MATCH claus — for example, if you use MATCH(title, body), you need a FULLTEXT index defined as FULLTEXT(title, body).</p>
 
 ## Three Types of Full-Text Search in MySQL
 
@@ -153,9 +156,10 @@ User Query: "machine learning tutorial"
 SELECT 
     id, 
     title,
+    body,
     MATCH(title, body) AGAINST('mysql database') AS relevance
 FROM articles
-WHERE MATCH(title, body) AGAINST('mysql database')
+WHERE MATCH(title, body) AGAINST('mysql database'  IN NATURAL LANGUAGE MODE) --  IN NATURAL LANGUAGE MODE is the default so not required
 ORDER BY relevance DESC;
 ```
 
@@ -253,7 +257,7 @@ If we excluede a term as in `-wifi` to say it must not contain `wifi`, rows with
 │    -     │ MUST NOT be present                     │
 │   ""     │ Exact phrase match                      │
 │    *     │ Wildcard (tech* = technology, technical)│
-│    ()    │ Group terms                             │
+│    ()    │ Group terms (mysql or postgres)         │
 │    >     │ Increase word importance                │
 │    <     │ Decrease word importance                │
 │    ~     │ Negation (reduce rank if present)       │
@@ -266,7 +270,7 @@ If we excluede a term as in `-wifi` to say it must not contain `wifi`, rows with
 
 ```
 Query: "+mysql +tutorial"
-       (MUST have mysql AND MUST have tutorial)
+       (MUST have mysql AND MUST have tutorial - "+mysql tutorial" means must have 'mysql' and can or cannot have' tutorial')
 
 Document Analysis:
   📄 Doc 1: "MySQL Tutorial for Beginners"
@@ -291,10 +295,10 @@ Document Analysis:
      database ✓ | oracle ✗ → MATCH! ✅
   
   📄 Doc 2: "Oracle Database Administration"
-     database ✓ | oracle ✓ → NO MATCH ❌
+     database ✓ | oracle ✓ →
   
   📄 Doc 3: "Database Design Principles"
-     database ✓ | oracle ✗ → MATCH! ✅
+     database ✓ | oracle ✗ →  NO MATCH ❌
 ```
 
 #### Example 3: Exact Phrase ("")
@@ -336,12 +340,12 @@ Document Analysis:
 ### Complex Boolean Query Example:
 
 ```sql
--- Find articles about MySQL or PostgreSQL tutorials,
--- but NOT about Oracle, and must mention "beginner"
+-- Find articles about (MySQL or PostgreSQL) or tutorials,
+-- but NOT about Oracle
 SELECT title, body
 FROM articles
 WHERE MATCH(title, body) 
-AGAINST('+beginner +(mysql postgresql) -oracle tutorial*' IN BOOLEAN MODE);
+AGAINST(' +(mysql postgresql) -oracle tutorial*' IN BOOLEAN MODE);
 ```
 
 **Visual breakdown:**

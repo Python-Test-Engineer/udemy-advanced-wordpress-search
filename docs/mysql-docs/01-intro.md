@@ -2,6 +2,10 @@
 
 Edited and formatted by AI for even more readability.
 
+Official docs:
+
+[https://dev.mysql.com/doc/refman/8.4/en/fulltext-search.html](https://dev.mysql.com/doc/refman/8.4/en/fulltext-search.html)
+
 ## Table of Contents
 
 1. [Introduction](#introduction)

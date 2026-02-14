@@ -56,10 +56,11 @@ CREATE TABLE IF NOT EXISTS articles (
 ```sql
 -- Slow query (scans entire table!) 
 SELECT * FROM articles 
-WHERE body LIKE '%machine learning%';
+WHERE body LIKE '%MySQL Tutorial%';
 ```
-Time: 5 seconds for 1 million rows ❌
-Cannot use indexes efficiently
+Time: 5 seconds for 1 million rows for example
+
+❌ Cannot use indexes efficiently
 
 ### The Solution: Full-Text Search
 
@@ -74,15 +75,16 @@ WHERE MATCH(body) AGAINST('MySQL Tutorial');
 
 SELECT * FROM articles 
 WHERE MATCH(title, body) AGAINST('MySQL Tutorial');
+
+-- Getting relative scores and ordering
+SELECT id, title, body, 
+MATCH (title,body) AGAINST ('MySQL Tutorial') AS score
+FROM articles ORDER BY score DESC;
 ```
 
-Time: 0.05 seconds for 1 million rows ✅
-Uses specialized full-text indexes
+<p class="author">MySQL's MATCH syntax is used for full-text searching and follows the pattern MATCH(column1, column2, ...) AGAINST('search terms' [search_modifier]), where you can search one or more text columns for specific words or phrases. </p>
 
-**Speed improvement: 100x faster!** 
-
-
-<p class="author">MySQL's MATCH syntax is used for full-text searching and follows the pattern MATCH(column1, column2, ...) AGAINST('search terms' [search_modifier]), where you can search one or more text columns for specific words or phrases. <br><br>The critical requirement is that you must have a FULLTEXT index on the exact same column(s) in the same order that you specify in the MATCH claus — for example, if you use MATCH(title, body), you need a FULLTEXT index defined as FULLTEXT(title, body).</p>
+<p class="author">The critical requirement is that you must have a FULLTEXT index on the exact same column(s) in the same order that you specify in the MATCH claus — for example, if you use MATCH(title, body), you need a FULLTEXT index defined as FULLTEXT(title, body).</p>
 
 ## Three Types of Full-Text Search in MySQL
 
@@ -159,73 +161,9 @@ SELECT
     body,
     MATCH(title, body) AGAINST('mysql database') AS relevance
 FROM articles
-WHERE MATCH(title, body) AGAINST('mysql database'  IN NATURAL LANGUAGE MODE) --  IN NATURAL LANGUAGE MODE is the default so not required
+WHERE MATCH(title, body) AGAINST('mysql database'  IN NATURAL LANGUAGE MODE) 
+--  IN NATURAL LANGUAGE MODE is the default so not required
 ORDER BY relevance DESC;
-```
-
-### Step-by-Step Example:
-
-**Table: articles**
-```
-ID | Title                              | Body
----+------------------------------------+----------------------------------
-1  | MySQL Database Tutorial            | Learn MySQL from scratch...
-2  | PostgreSQL vs MySQL                | Comparing databases...
-3  | Python Programming Guide           | Python basics for beginners...
-4  | MySQL Performance Tips             | Optimize your MySQL database...
-5  | Database Design Principles         | Good database design matters...
-```
-
-**Query:**
-```sql
-SELECT title, 
-       MATCH(title, body) AGAINST('mysql database') AS score
-FROM articles
-WHERE MATCH(title, body) AGAINST('mysql database')
-ORDER BY score DESC;
-```
-
-**Results:**
-```
-┌─────────────────────────────────┬────────┐
-│ Title                           │ Score  │
-├─────────────────────────────────┼────────┤
-│ MySQL Database Tutorial         │  3.45  │ ⭐⭐⭐⭐⭐
-│ MySQL Performance Tips          │  2.10  │ ⭐⭐⭐⭐
-│ PostgreSQL vs MySQL             │  1.75  │ ⭐⭐⭐
-│ Database Design Principles      │  0.85  │ ⭐⭐
-└─────────────────────────────────┴────────┘
-
-(Python Programming Guide not returned - no matches)
-```
-
-**Why these scores?**
-
-```
-Article 1: "MySQL Database Tutorial"
-
-  • "mysql" in title (high weight) ████████
-  • "database" in title (high weight) ████████
-  • Both terms in body ██████
-  Total: 3.45 ⭐⭐⭐⭐⭐
-
-Article 4: "MySQL Performance Tips"
-
-  • "mysql" in title ████████
-  • "database" in body only ████
-  Total: 2.10 ⭐⭐⭐⭐
-
-Article 2: "PostgreSQL vs MySQL"
-
-  • "mysql" in title ████████
-  • "database" in body (implied) ██
-  Total: 1.75 ⭐⭐⭐
-
-Article 5: "Database Design Principles"
-
-  • "database" in title ████
-  • No "mysql" mention
-  Total: 0.85 ⭐⭐
 ```
 
 ## Type 2: BOOLEAN MODE
@@ -340,42 +278,27 @@ Document Analysis:
 ### Complex Boolean Query Example:
 
 ```sql
--- Find articles about (MySQL or PostgreSQL) or tutorials,
--- but NOT about Oracle
-SELECT title, body
+-- Rank articles that must have 'mysql' and wildcard on tutorial
+SELECT id, title, body,
+  MATCH(title, body) AGAINST('+mysql tutorial*') AS relevance
 FROM articles
 WHERE MATCH(title, body) 
-AGAINST(' +(mysql postgresql) -oracle tutorial*' IN BOOLEAN MODE);
-```
+AGAINST('+mysql tutorial*' IN BOOLEAN MODE);
 
-**Visual breakdown:**
-```
-┌────────────────────────────────────── ───────────┐
-│  Query Components:                               │
-├─────────────────────────────────── ──────────────┤
-│  +beginner           MUST have "beginner"        │
-│  +(mysql postgresql) MUST have mysql OR postgres │
-│  -oracle             MUST NOT have "oracle"      │
-│  tutorial*           Optional, matches tutorial* │
-└─────────────────────────────────────────────── ──┘
 
-Documents:
+-- NB if we say it must not have 'YourSQL' 
+SELECT id, title, body,
+  MATCH(title, body) AGAINST('+mysql -security tutorial*') AS relevance
+FROM articles
+WHERE MATCH(title, body) 
+AGAINST('+mysql -security tutorial*' IN BOOLEAN MODE);
 
-  📄 "MySQL Tutorial for Beginners"
-     beginner ✓ | mysql ✓ | oracle ✗ | tutorial ✓
-     Result: MATCH! ✅⭐⭐⭐⭐⭐
-  
-  📄 "PostgreSQL Beginner Guide"
-     beginner ✓ | postgresql ✓ | oracle ✗ | tutorial ✗
-     Result: MATCH! ✅⭐⭐⭐⭐
-  
-  📄 "Oracle Tutorial for Beginners"
-     beginner ✓ | oracle ✓ (rejected!)
-     Result: NO MATCH ❌
-  
-  📄 "MySQL Advanced Topics"
-     mysql ✓ | beginner ✗ (missing!)
-     Result: NO MATCH ❌
+-- NB This works if the AGAINST do not match up
+SELECT id, title, body,
+  MATCH(title, body) AGAINST('+mysql tutorial*') AS relevance
+FROM articles
+WHERE MATCH(title, body) 
+AGAINST('+mysql -security tutorial*' IN BOOLEAN MODE);
 ```
 
 ### Real-World Boolean Examples:

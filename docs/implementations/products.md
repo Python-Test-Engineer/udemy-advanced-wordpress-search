@@ -268,18 +268,6 @@ ORDER BY relevance_score DESC;
 ```
 
 ```sql
--- Search for audio products with expansion
--- Will find "audio", "sound", "speaker", "music", etc.
-SELECT id, product_name, product_short_description, expanded_description,
-       MATCH(product_name, product_short_description, expanded_description) 
-       AGAINST ('audio' WITH QUERY EXPANSION) AS relevance_score
-FROM wp_products
-WHERE MATCH(product_name, product_short_description, expanded_description) 
-      AGAINST ('audio' WITH QUERY EXPANSION)
-ORDER BY relevance_score DESC;
-```
-
-```sql
 -- Search for fitness products with expansion
 -- Will find related terms to "yoga" like "exercise", "fitness", "workout"
 SELECT id, product_name, product_short_description, expanded_description,

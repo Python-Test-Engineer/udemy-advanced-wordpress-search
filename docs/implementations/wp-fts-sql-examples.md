@@ -93,7 +93,7 @@ Great for documentation sites or long tutorials.
 ```sql
 SELECT ID, post_title
 FROM wp_posts
-WHERE MATCH(post_title, post_content)
+WHERE MATCH(post_title) -- one column demonstrates better
       AGAINST ('how to speed up a wordpress site' IN NATURAL LANGUAGE MODE);
 ```
 

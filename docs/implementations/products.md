@@ -167,13 +167,13 @@ ORDER BY relevance_score DESC;
 
 ```sql
 -- Combine full-text with regular WHERE clause
-SELECT id, product_name, product_short_description, expanded_description,
+SELECT id, created_at, product_name, product_short_description, expanded_description,
        MATCH(product_name, product_short_description, expanded_description) 
        AGAINST ('smart home') AS relevance_score
 FROM wp_products
 WHERE MATCH(product_name, product_short_description, expanded_description) 
       AGAINST ('smart home')
-  AND created_at >= '2026-01-01'
+  AND created_at >= '2025-07-01'
 ORDER BY relevance_score DESC;
 ```
 ## Boolen Mode
@@ -184,22 +184,13 @@ ORDER BY relevance_score DESC;
 -- ============================================
 -- More control with operators: +required -excluded "phrase" wildcard
 
--- Search with required terms (+ operator)
--- Must contain "smart" AND "LED"
+-- Search with required terms (+/-operator)
+-- Must contain "smart" AND/NOT "LED" 
 -- LED is in expanded_description for Smart Indoor Garden Kit
 SELECT id, product_name, product_short_description
 FROM wp_products
 WHERE MATCH(product_name, product_short_description) 
       AGAINST ('+smart +LED' IN BOOLEAN MODE);
-```
-
-```sql
--- Search with excluded terms (- operator)
--- Contains "speaker" and optionally "bluetooth"
-SELECT id, product_name, product_short_description
-FROM wp_products
-WHERE MATCH(product_name, product_short_description) 
-      AGAINST ('+speaker bluetooth' IN BOOLEAN MODE);
 ```
 
 ```sql
@@ -231,17 +222,17 @@ WHERE MATCH(product_name, product_short_description, expanded_description)
 
 ```sql
 -- Optional terms with relevance boosting (> and < operators)
--- remove > from shower to see effect
+-- use > or < with shower to see effect
 SELECT 
     id, 
     product_name, 
     product_short_description, 
     expanded_description,
     MATCH(product_name, product_short_description, expanded_description) 
-        AGAINST ('>smart portable >shower' IN BOOLEAN MODE) AS relevance_score
+        AGAINST ('smart portable >shower' IN BOOLEAN MODE) AS relevance_score
 FROM wp_products
 WHERE MATCH(product_name, product_short_description, expanded_description) 
-      AGAINST ('>smart portable >shower' IN BOOLEAN MODE)
+      AGAINST ('smart portable >shower' IN BOOLEAN MODE)
 ORDER BY relevance_score DESC;
 ```
 
@@ -257,6 +248,7 @@ ORDER BY relevance_score DESC;
 -- compare by replacing with AGAINST ('search terms' IN NATURAL LANGUAGE MODE) 
 -- Basic query expansion
 -- Finds "bluetooth" and related terms like "wireless", "connectivity", etc.
+-- Remove QUERT EXPANSION and NATURAL default gives siginificantly less rows
 SELECT id, product_name, product_short_description, expanded_description,
        MATCH(product_name, product_short_description, expanded_description) 
        AGAINST ('bluetooth' WITH QUERY EXPANSION) AS relevance_score
@@ -278,17 +270,6 @@ WHERE MATCH(product_name, product_short_description, expanded_description)
 ORDER BY relevance_score DESC;
 ```
 
-```sql
-
-SELECT id, product_name, product_short_description, expanded_description,
-       MATCH(product_name, product_short_description, expanded_description) 
-       AGAINST ('smart home' WITH QUERY EXPANSION) AS relevance_score
-FROM wp_products
-WHERE MATCH(product_name, product_short_description, expanded_description) 
-      AGAINST ('smart home' WITH QUERY EXPANSION)
-ORDER BY relevance_score DESC
-LIMIT 10 OFFSET 0;
-```
 
 ```sql
 -- Search with minimum relevance threshold

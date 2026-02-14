@@ -205,7 +205,7 @@ WHERE MATCH(product_name, product_short_description)
 ```sql
 -- Phrase search with quotes
 -- Exact phrase "noise cancelling"
-SELECT product_name, product_short_description
+SELECT id, product_name, product_short_description
 FROM wp_products
 WHERE MATCH(product_name, product_short_description) 
       AGAINST ('"noise cancelling"' IN BOOLEAN MODE);
@@ -231,21 +231,20 @@ WHERE MATCH(product_name, product_short_description, expanded_description)
 
 ```sql
 -- Optional terms with relevance boosting (> and < operators)
--- "wireless" is more important, "audio" is less important
-SELECT id, product_name, product_short_description, expanded_description
+-- remove > from shower to see effect
+SELECT 
+    id, 
+    product_name, 
+    product_short_description, 
+    expanded_description,
+    MATCH(product_name, product_short_description, expanded_description) 
+        AGAINST ('>smart portable >shower' IN BOOLEAN MODE) AS relevance_score
 FROM wp_products
 WHERE MATCH(product_name, product_short_description, expanded_description) 
-      AGAINST ('>wireless <audio' IN BOOLEAN MODE);
+      AGAINST ('>smart portable >shower' IN BOOLEAN MODE)
+ORDER BY relevance_score DESC;
 ```
 
-```sql
--- Search for products with specific features
--- Must contain "waterproof" or "water-resistant" or "splash-resistant"
-SELECT id, product_name, product_short_description, expanded_description
-FROM wp_products
-WHERE MATCH(product_name, product_short_description, expanded_description) 
-      AGAINST ('+water* +(proof resistant)' IN BOOLEAN MODE);
-```
 
 ## Query Expansion Mode
 
@@ -264,18 +263,6 @@ SELECT id, product_name, product_short_description, expanded_description,
 FROM wp_products
 WHERE MATCH(product_name, product_short_description, expanded_description) 
       AGAINST ('bluetooth' WITH QUERY EXPANSION)
-ORDER BY relevance_score DESC;
-```
-
-```sql
--- Search for audio products with expansion
--- Will find "audio", "sound", "speaker", "music", etc.
-SELECT id, product_name, product_short_description, expanded_description,
-       MATCH(product_name, product_short_description, expanded_description) 
-       AGAINST ('audio' WITH QUERY EXPANSION) AS relevance_score
-FROM wp_products
-WHERE MATCH(product_name, product_short_description, expanded_description) 
-      AGAINST ('audio' WITH QUERY EXPANSION)
 ORDER BY relevance_score DESC;
 ```
 
@@ -311,9 +298,11 @@ SELECT id, product_name, product_short_description, expanded_description,
 FROM wp_products
 WHERE MATCH(product_name, product_short_description, expanded_description) 
       AGAINST ('wireless portable')
-HAVING relevance_score > 0.5
+HAVING relevance_score > 2.5
 ORDER BY relevance_score DESC;
 ```
+
+One could create a query that only returns those rows that in total make up 80% of total score to avoid long tail row. This is more involved scripting but doable.
 
 ```sql
 -- Combined search: Full-text + category filter (if you add categories)
@@ -325,15 +314,6 @@ FROM wp_products p
 WHERE MATCH(p.product_name, p.product_short_description, p.expanded_description) 
       AGAINST ('+audio +wireless' IN BOOLEAN MODE)
 ORDER BY relevance_score DESC;
-```
-
-
-```sql
--- Check full-text index status
-SHOW INDEX FROM wp_products WHERE Index_type = 'FULLTEXT';
-
--- Analyze table performance
-ANALYZE TABLE wp_products;
 ```
 
 <br>

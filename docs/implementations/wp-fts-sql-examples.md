@@ -2,7 +2,7 @@
 
 **The columns specified in MATCH() must exactly match a FULLTEXT index definition.**
 
-If you have `post_title`, `post_content` in your query ther emust be an FTS index built on these two columns and not two indexes of just one column.
+If you have `post_title`, `post_content` in your query there must be an FTS index built on these two columns and not two indexes of just one column.
 
 MySQL will select FTS indexes based on matching columns in query with index and has its own algorithms to determine which is best if there is more than one possibility, which is not recommended anyway.
 
@@ -19,13 +19,13 @@ Each section now includes:
 - Explanation of why each query behaves the way it does  
 - Notes on how WordPress developers might use it  
 
-# Natural Language Mode  
+## Natural Language Mode  
 
 Natural language mode is MySQL’s “Google‑like” search.  
 
 It ranks results by relevance using TF‑IDF‑style scoring.
 
-## Scenario: Searching blog posts about WordPress performance
+Scenario: Searching blog posts about WordPress performance
 
 ### Example A — Simple multi‑word search
 
@@ -42,6 +42,7 @@ ALTER TABLE wp_posts ADD FULLTEXT INDEX idx_content (post_content);
 
 ```sql
 -- This requires a composite index on the two columns and not two single column indices.
+-- 'IN NATURAL LANGUAGE MODE' is the default and does not need to be added.
 SELECT ID, post_title,
        MATCH(post_title, post_content)
        AGAINST ('wordpress performance caching' IN NATURAL LANGUAGE MODE) AS score
@@ -61,10 +62,21 @@ ORDER BY score DESC;
 ### Example B — Ranking titles higher than content
 ```sql
 -- We need single column indices as we are matching against one column each time.
-SELECT ID, post_title,
+SELECT ID, post_title, post_content,
        (MATCH(post_title) AGAINST ('performance tuning') * 3 +
         MATCH(post_content) AGAINST ('performance tuning')) AS relevance
 FROM wp_posts
+ORDER BY relevance DESC;
+```
+
+```sql
+-- We need single column indices as we are matching against one column each time.
+SELECT ID, post_title, post_content,
+       (MATCH(post_title) AGAINST ('performance tuning') * 3 +
+        MATCH(post_content) AGAINST ('performance tuning')) AS relevance
+FROM wp_posts
+WHERE MATCH(post_title, post_content )
+      AGAINST ('performance tuning' IN NATURAL LANGUAGE MODE) > 3
 ORDER BY relevance DESC;
 ```
 
@@ -84,6 +96,16 @@ FROM wp_posts
 ORDER BY score DESC;
 ```
 
+```sql
+SELECT ID, post_title,
+       MATCH(post_content)
+       AGAINST ('object cache redis persistent' IN NATURAL LANGUAGE MODE) AS score
+FROM wp_posts
+WHERE MATCH(post_content)
+      AGAINST ('object cache redis persistent' IN NATURAL LANGUAGE MODE) > 3
+ORDER BY score DESC;
+```
+
 **Use case:**  
 
 Great for documentation sites or long tutorials.
@@ -100,13 +122,13 @@ WHERE MATCH(post_title) -- one column demonstrates better
 **Note:**  
 Words like *how*, *to*, *a* are ignored unless you customize stopwords.
 
-# Boolean Mode  
+## Boolean Mode  
 
 Boolean mode gives you **precision control** using operators.
 
 Perfect for admin dashboards, advanced search pages, or custom WP search endpoints.
 
-## Scenario: Searching a knowledge base with strict rules
+Scenario: Searching a knowledge base with strict rules
 
 ### Example A — Required + excluded terms
 
@@ -185,7 +207,7 @@ WHERE MATCH(post_title, post_content)
 - “cache” is required  
 - “redis” is optional but increases relevance  
 
-# Query Expansion Mode  
+## Query Expansion Mode  
 
 Query expansion is MySQL’s “find related topics” mode.
 
@@ -198,7 +220,7 @@ It performs:
 4. Runs a second search  
 
 
-## Scenario: A user searches for “SEO” but your content uses synonyms like “search ranking,” “organic traffic,” etc.
+Scenario: A user searches for “SEO” but your content uses synonyms like “search ranking,” “organic traffic,” etc.
 
 PLUGIN05 is good to demonstrate this.
 

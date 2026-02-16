@@ -94,10 +94,10 @@ nav:
   - "Products": "implementations/products.md"
   - "WP Posts": "implementations/wp-fts-sql-examples.md"
 - "Vector Search":
+  - "Vector Search": "vector/vectors-wp-combined.md"
   - "Vector DB Hack": "vector/vector-databases-hack.md"
   # - "Vector Search in WP 1": "vector/vector-search-explainer.md"
   # - "Vector Search in WP 2": "vector/vectors-wordpress.md"
-  - "Vector Search": "vector/vectors-wp-combined.md"
   - "Indexing": "vector/ann-hnsw-explainer.md"
 - "Hybrid Search":
   - "Reranking": "hybrid/reranking.md"

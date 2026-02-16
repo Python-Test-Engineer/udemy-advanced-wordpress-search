@@ -66,6 +66,7 @@ This border issue can cause:
 - Poor recommendations or search matches
 - Confusion in edge cases (e.g. similar products or documents)
 
+![border](../images/vectors/ann-nearest-neighbour-slide.png)
 
 ### How to Fix It
 
@@ -77,7 +78,6 @@ Advanced techniques like:
 
 …can reduce border errors and improve accuracy.
 
-![border](../images/vectors/ann-nearest-neighbour-slide.png)
 
 ##  Hierarchical Navigable Small World (HNSW)
 

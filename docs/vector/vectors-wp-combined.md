@@ -84,7 +84,7 @@ A vector is simply a list of numbers.
 "dog" = [1.3, 1.1]
 ```
 
-### Real Embedding Example (768 dimensions)  
+### Real Embedding Example (1536 dimensions)  
 
 ```
 "car" = [0.23, -0.45, 0.12, 0.89, ...]
@@ -96,7 +96,9 @@ Each dimension encodes some semantic feature (vehicle‑ness, speed, size, etc.)
 
 ### Step 1 — Convert Documents to Vectors
 
-Each document is embedded into a vector.
+Each document is embedded into a vector. We can select for example just the post_title or post_content or the combination of the two. We could also use another field depending on what our table s
+
+![embedding-column](../images/vectors/embedding-column.png)
 
 ### Step 2 — Convert Query to Vector
 
@@ -116,9 +118,7 @@ This is where **distance metrics** become critical.
 
 Cosine similarity measures the **angle** between vectors — ignoring length.
 
-\[
-\text{Cosine Similarity} = \frac{A \cdot B}{||A|| \cdot ||B||}
-\]
+![cosine](../images/vectors/cosine-similarity.jpg)
 
 - 1.0 → identical direction  
 - 0.0 → unrelated  
@@ -302,16 +302,16 @@ Not used for embeddings.
 
 # 7. Summary Table
 
-<!-- | Metric | Measures | Best For | WordPress Use |
+| Metric | Measures | Best For | WordPress Use |
 |--------|----------|----------|----------------|
 | **Cosine** | Angle | Semantic similarity | Best default for semantic search |
 | **Euclidean** | Straight‑line distance | General vector search | Custom tables, vector DBs |
 | **Dot Product** | Alignment × magnitude | Recommenders | Related posts/products |
 | **Manhattan** | Grid distance | Sparse vectors | Rare |
 | **Chebyshev** | Max deviation | Outliers | Data validation |
-| **Hamming** | Mismatched bits | Binary vectors | Duplicate detection | -->
+| **Hamming** | Mismatched bits | Binary vectors | Duplicate detection | 
 
-
+<!-- 
 <style>
   .vector-metrics-table {
     width: 100%;
@@ -416,7 +416,7 @@ Not used for embeddings.
     </tr>
   </tbody>
 </table>
-
+ -->
 
 
 ## 8. How This Fits Into WordPress Search Architecture
@@ -503,3 +503,5 @@ Vector search in 5 points:
 3. Rank by similarity  
 4. Understand meaning, not just words  
 5. Works across languages  
+
+<br>

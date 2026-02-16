@@ -74,7 +74,7 @@ MATCH(column1, column2, ...) AGAINST('search terms' [mode])
 ├────────────────────────────────────────────────────────────────────────────────┤
 │                                                                                │
 │  SELECT * FROM articles                                                        │
-│  WHERE MATCH(title, content)                                                   │
+│  WHERE MATCH(title, body)                                                   │
 │        AGAINST('machine learning' IN NATURAL LANGUAGE MODE)                    │
 │         │      │                │                │                             │
 │         │      │                │                └─ Search mode (optional)
@@ -131,8 +131,7 @@ Full-text indexes work only with text columns:
 CREATE TABLE articles (
     id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(255),
-    content TEXT,
-    author VARCHAR(100),
+    body TEXT,
     FULLTEXT INDEX ft_title_content (title, content)
 );
 ```
@@ -142,11 +141,11 @@ CREATE TABLE articles (
 ```sql
 -- Using ALTER TABLE
 ALTER TABLE articles 
-ADD FULLTEXT INDEX ft_title_content (title, content);
+ADD FULLTEXT INDEX ft_title_content (title, body);
 
 -- Or using CREATE INDEX
 CREATE FULLTEXT INDEX ft_title_content 
-ON articles(title, content);
+ON articles(title, body);
 ```
 
 ### Performance Tip: Loading Data
@@ -217,10 +216,10 @@ Most relevant documents appear first
 ```sql
 -- These two queries are identical:
 SELECT * FROM articles 
-WHERE MATCH(title, content) AGAINST('machine learning');
+WHERE MATCH(title, body) AGAINST('machine learning');
 
 SELECT * FROM articles 
-WHERE MATCH(title, content) AGAINST('machine learning' IN NATURAL LANGUAGE MODE);
+WHERE MATCH(title, body) AGAINST('machine learning' IN NATURAL LANGUAGE MODE);
 ```
 
 **Features:**
@@ -234,10 +233,10 @@ WHERE MATCH(title, content) AGAINST('machine learning' IN NATURAL LANGUAGE MODE)
 
 ```sql
 -- Find articles about Python programming
-SELECT title, content, 
-       MATCH(title, content) AGAINST('Python programming') AS relevance
+SELECT title, body, 
+       MATCH(title, body) AGAINST('Python programming') AS relevance
 FROM articles
-WHERE MATCH(title, content) AGAINST('Python programming')
+WHERE MATCH(title, body) AGAINST('Python programming')
 ORDER BY relevance DESC
 LIMIT 10;
 ```
@@ -250,7 +249,7 @@ Boolean mode gives you precise control using special operators. It's like using 
 
 ```sql
 SELECT * FROM articles 
-WHERE MATCH(title, content) 
+WHERE MATCH(title, body) 
 AGAINST('+machine +learning -neural' IN BOOLEAN MODE);
 ```
 
@@ -292,14 +291,14 @@ AGAINST('"machine learning" >Python' IN BOOLEAN MODE)
 
 - Advanced search interfaces
 - When users need precise control
-- Filtering out unwanted content
+- Filtering out unwanted body
 - Combining multiple search criteria
 
 ---
 
 ### Mode 3: Query Expansion
 
-Query expansion is like having MySQL help you find related content. It performs the search twice, using results from the first search to improve the second.
+Query expansion is like having MySQL help you find related body. It performs the search twice, using results from the first search to improve the second.
 
 **How it works:**
 
@@ -321,11 +320,11 @@ Step 3: Searches again with expanded terms
 ```sql
 -- Both of these work:
 SELECT * FROM articles 
-WHERE MATCH(title, content) 
+WHERE MATCH(title, body) 
 AGAINST('SQL' WITH QUERY EXPANSION);
 
 SELECT * FROM articles 
-WHERE MATCH(title, content) 
+WHERE MATCH(title, body) 
 AGAINST('SQL' IN NATURAL LANGUAGE MODE WITH QUERY EXPANSION);
 ```
 
@@ -357,7 +356,7 @@ Second Pass (Final Results):
 
 - "More like this" features
 - When users might not know the best search terms
-- Finding related content
+- Finding related body
 - Exploratory searches
 
 **⚠️ Warning:** Query expansion can sometimes return less relevant results if your initial search matches poor-quality documents. Use with caution.

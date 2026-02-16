@@ -1457,56 +1457,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#a_wordpresscentric_view" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        A WordPress‑Centric View
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="A WordPress‑Centric View">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#fts_strengths_in_wp" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        FTS strengths in WP
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#vector_strengths_in_wp" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Vector strengths in WP
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#reranking_strengths_in_wp" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Reranking strengths in WP
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#summary_table" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1924,56 +1874,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#a_wordpresscentric_view" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        A WordPress‑Centric View
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="A WordPress‑Centric View">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#fts_strengths_in_wp" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        FTS strengths in WP
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#vector_strengths_in_wp" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Vector strengths in WP
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#reranking_strengths_in_wp" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Reranking strengths in WP
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#summary_table" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2044,7 +1944,7 @@
 <h3 id="1_fts_alone_is_brittle">1. FTS alone is brittle<a class="headerlink" href="#1_fts_alone_is_brittle" title="Permanent link">&para;</a></h3>
 <p>Misspellings, synonyms, and natural language phrasing break it.</p>
 <h3 id="2_vector_search_alone_is_too_fuzzy">2. Vector search alone is too fuzzy<a class="headerlink" href="#2_vector_search_alone_is_too_fuzzy" title="Permanent link">&para;</a></h3>
-<p>It may return semantically related content that doesn’t match the user’s intent.</p>
+<p>It may return semantically related content that doesn’t match the user’s intent. We may have very specific terms like prodcut numbers that semantic search will not find.</p>
 <h3 id="3_reranking_gives_you_the_best_of_both_worlds">3. Reranking gives you the best of both worlds<a class="headerlink" href="#3_reranking_gives_you_the_best_of_both_worlds" title="Permanent link">&para;</a></h3>
 <ul>
 <li>FTS ensures precision  </li>
@@ -2052,25 +1952,6 @@
 <li>Reranking ensures balance  </li>
 </ul>
 <p>This is exactly how modern search engines behave.</p>
-<h2 id="a_wordpresscentric_view">A WordPress‑Centric View<a class="headerlink" href="#a_wordpresscentric_view" title="Permanent link">&para;</a></h2>
-<h3 id="fts_strengths_in_wp">FTS strengths in WP<a class="headerlink" href="#fts_strengths_in_wp" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Fast in MySQL  </li>
-<li>Great for titles, slugs, product names  </li>
-<li>Good for exact intent (“blue shoes”, “ACF tutorial”)  </li>
-</ul>
-<h3 id="vector_strengths_in_wp">Vector strengths in WP<a class="headerlink" href="#vector_strengths_in_wp" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Understands meaning (“how to speed up my site” ≈ “WordPress performance tips”)  </li>
-<li>Handles long queries  </li>
-<li>Handles conversational queries  </li>
-</ul>
-<h3 id="reranking_strengths_in_wp">Reranking strengths in WP<a class="headerlink" href="#reranking_strengths_in_wp" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Perfect for blog search, product search, documentation search  </li>
-<li>Works beautifully with hybrid BM25 + embeddings  </li>
-<li>Gives users “Google‑like” relevance without replacing MySQL  </li>
-</ul>
 <h2 id="summary_table">Summary Table<a class="headerlink" href="#summary_table" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Keyword precision </li>

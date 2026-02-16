@@ -62,7 +62,7 @@ Misspellings, synonyms, and natural language phrasing break it.
 
 ### 2. Vector search alone is too fuzzy  
 
-It may return semantically related content that doesn’t match the user’s intent.
+It may return semantically related content that doesn’t match the user’s intent. We may have very specific terms like prodcut numbers that semantic search will not find.
 
 ### 3. Reranking gives you the best of both worlds  
 
@@ -71,27 +71,6 @@ It may return semantically related content that doesn’t match the user’s int
 - Reranking ensures balance  
 
 This is exactly how modern search engines behave.
-
-
-## A WordPress‑Centric View
-
-### FTS strengths in WP 
-
-- Fast in MySQL  
-- Great for titles, slugs, product names  
-- Good for exact intent (“blue shoes”, “ACF tutorial”)  
-
-### Vector strengths in WP
-
-- Understands meaning (“how to speed up my site” ≈ “WordPress performance tips”)  
-- Handles long queries  
-- Handles conversational queries  
-
-### Reranking strengths in WP
-
-- Perfect for blog search, product search, documentation search  
-- Works beautifully with hybrid BM25 + embeddings  
-- Gives users “Google‑like” relevance without replacing MySQL  
 
 ## Summary Table
 

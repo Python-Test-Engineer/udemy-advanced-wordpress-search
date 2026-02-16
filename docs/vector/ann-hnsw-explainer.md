@@ -2,6 +2,8 @@
 
 ## What is Approximate Nearest Neighbor (ANN)?
 
+![border](../images/vectors/ann-nearest-neighbour-slide.png)
+
 ANN is a fast method for finding vectors that are *close enough* to a query point — without scanning the entire database. 
 
 It’s widely used in search engines, recommendation systems, and vector databases.
@@ -66,7 +68,6 @@ This border issue can cause:
 - Poor recommendations or search matches
 - Confusion in edge cases (e.g. similar products or documents)
 
-![border](../images/vectors/ann-nearest-neighbour-slide.png)
 
 ### How to Fix It
 
